@@ -1,0 +1,12 @@
+{
+  "type": "smokeleafindustry:herb_grinder",
+  "ingredients": [
+    {
+      "item": "smokeleafindustry:bubble_kush_bud"
+    }
+  ],
+  "output": {
+    "count": 2,
+    "item": "smokeleafindustry:bubble_kush_weed"
+  }
+}

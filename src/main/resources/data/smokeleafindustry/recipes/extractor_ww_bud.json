@@ -1,0 +1,12 @@
+{
+  "type": "smokeleafindustry:herb_extractor",
+  "ingredients": [
+    {
+      "item": "smokeleafindustry:white_widow_bud"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "item": "smokeleafindustry:whitewidow_extract"
+  }
+}

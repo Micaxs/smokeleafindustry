@@ -1,0 +1,35 @@
+{
+  "item.smokeleafindustry.white_widow_bud": "White Widow Bud",
+  "item.smokeleafindustry.white_widow_weed": "White Widow Weed",
+  "item.smokeleafindustry.white_widow_seeds": "White Widow Seeds",
+
+  "item.smokeleafindustry.bubble_kush_bud": "Bubble Kush Bud",
+  "item.smokeleafindustry.bubble_kush_weed": "Bubble Kush Weed",
+  "item.smokeleafindustry.bubble_kush_seeds": "Bubble Kush Seeds",
+
+  "item.smokeleafindustry.hash_brownie": "Hash Brownie",
+  "item.smokeleafindustry.bong": "Glass Bong",
+
+  "block.smokeleafindustry.herb_grinder_station": "Herb Grinder",
+  "block.smokeleafindustry.herb_extractor": "Herb Extractor",
+  "block.smokeleafindustry.herb_generator": "Herb Energy Generator",
+  "block.smokeleafindustry.herb_mutation": "Herb Mutator",
+
+  "sounds.smokeleafindustry.bonghit": "Smoking a bong",
+  "creativetab.smokeleaf_industry_tab": "Smokeleaf Industry",
+  "tooltip.smokeleafindustry.effects": "Effects:",
+  "tooltip.smokeleafindustry.bong": "A bong is used to smoke weed that you are holding in your offhand directly to gain its provided effects.",
+
+  "item.smokeleafindustry.blunt": "Blunt",
+  "item.smokeleafindustry.blueice_extract": "Blue Ice Extract",
+  "item.smokeleafindustry.bubblegum_extract": "Bubblegum Extract",
+  "item.smokeleafindustry.bubblekush_extract": "Bubble Kush Extract",
+  "item.smokeleafindustry.lemonhaze_extract": "Lemon Haze Extract",
+  "item.smokeleafindustry.purplehaze_extract": "Purple Haze Extract",
+  "item.smokeleafindustry.sourdiesel_extract": "Sour Diesel Extract",
+  "item.smokeleafindustry.whitewidow_extract": "White Widow Extract",
+
+  "item.smokeleafindustry.hash_oil_bucket": "Hash Oil Bucket",
+  "fluid_type.smokeleafindustry.hash_oil_fluid": "Hash Oil",
+  "effect.smokeleafindustry.stoned": "Stoned"
+}

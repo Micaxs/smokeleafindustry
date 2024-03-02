@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "smokeleafindustry:block/herb_mutation",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "smokeleafindustry:block/herb_mutation"
+    },
+    "facing=south": {
+      "model": "smokeleafindustry:block/herb_mutation",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "smokeleafindustry:block/herb_mutation",
+      "y": 270
+    }
+  }
+}

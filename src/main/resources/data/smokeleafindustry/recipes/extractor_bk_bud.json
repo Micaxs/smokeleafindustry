@@ -1,0 +1,12 @@
+{
+  "type": "smokeleafindustry:herb_extractor",
+  "ingredients": [
+    {
+      "item": "smokeleafindustry:bubble_kush_bud"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "item": "smokeleafindustry:bubblekush_extract"
+  }
+}

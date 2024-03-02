@@ -1,0 +1,20 @@
+{
+  "type": "smokeleafindustry:herb_mutation",
+  "ingredients": [
+    {
+      "item": "smokeleafindustry:bubble_kush_bud",
+      "count": 1
+    },
+    {
+      "item": "minecraft:coal",
+      "count": 2
+    }
+  ],
+  "fluid": {
+    "FluidName": "smokeleafindustry:hash_oil_fluid",
+    "Amount": 250
+  },
+  "output": {
+    "item": "smokeleafindustry:white_widow_bud"
+  }
+}

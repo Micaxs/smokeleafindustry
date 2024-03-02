@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "smokeleafindustry:bubble_kush_bud"
+    }
+  ],
+  "result": {
+    "item": "smokeleafindustry:bubble_kush_seeds",
+    "count": 1
+  }
+}
