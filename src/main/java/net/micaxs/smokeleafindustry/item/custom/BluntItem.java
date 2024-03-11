@@ -1,10 +1,14 @@
 package net.micaxs.smokeleafindustry.item.custom;
 
+import com.mojang.blaze3d.shaders.Effect;
+import net.micaxs.smokeleafindustry.effect.ModEffects;
+import net.micaxs.smokeleafindustry.effect.StonedEffect;
 import net.micaxs.smokeleafindustry.item.ModItems;
 import net.micaxs.smokeleafindustry.item.custom.weeds.BubbleKushWeedItem;
 import net.micaxs.smokeleafindustry.item.custom.weeds.WhiteWidowWeedItem;
 import net.micaxs.smokeleafindustry.sound.ModSounds;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.renderer.EffectInstance;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
@@ -20,6 +24,7 @@ import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,11 +50,19 @@ public class BluntItem extends Item {
         return InteractionResultHolder.consume(itemstack);
     }
 
+    // TODO: Fix / check if item in offhand or mainhand and deduct as needed
     @Override
     public ItemStack finishUsingItem(ItemStack pStack, Level pLevel, LivingEntity pLivingEntity) {
         ItemStack mainhandItem = pLivingEntity.getItemInHand(InteractionHand.MAIN_HAND);
         mainhandItem.shrink(1);
         spawnSmokeParticles(pLevel, pLivingEntity);
+
+        // Give stoned effect
+        if (!pLevel.isClientSide()) {
+            pLivingEntity.addEffect(new MobEffectInstance(ModEffects.STONED.get(), 200, 1));
+        }
+
+
         return super.finishUsingItem(pStack, pLevel, pLivingEntity);
     }
 
