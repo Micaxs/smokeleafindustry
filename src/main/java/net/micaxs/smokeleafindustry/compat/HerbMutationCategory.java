@@ -57,9 +57,9 @@ public class HerbMutationCategory implements IRecipeCategory<HerbMutationRecipe>
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, HerbMutationRecipe recipe, IFocusGroup focuses) {
-        builder.addSlot(RecipeIngredientRole.INPUT, 86, 15).addIngredients(recipe.getIngredients().get(0));
-        builder.addSlot(RecipeIngredientRole.INPUT, 106, 15).addIngredients(recipe.getIngredients().get(1));
-        builder.addSlot(RecipeIngredientRole.INPUT, 55, 15).addIngredients(ForgeTypes.FLUID_STACK, List.of(recipe.getFluid())).setFluidRenderer(8000, false, 16, 61);
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 86, 60).addItemStack(recipe.getResultItem(null));
+        builder.addSlot(RecipeIngredientRole.INPUT, 81, 10).addIngredients(recipe.getIngredients().get(0));
+        builder.addSlot(RecipeIngredientRole.INPUT, 101, 10).addIngredients(recipe.getIngredients().get(1));
+        builder.addSlot(RecipeIngredientRole.INPUT, 50, 10).addIngredients(ForgeTypes.FLUID_STACK, List.of(recipe.getFluid())).setFluidRenderer(8000, false, 16, 61);
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 81, 55).addItemStack(recipe.getResultItem(null));
     }
 }
