@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "PPP",
+        "###",
+        "PPP"
+    ],
+    "key": {
+        "P": {
+            "item": "minecraft:paper"
+        },
+        "#": {
+            "item": "smokeleafindustry:bubble_kush_weed"
+        }
+    },
+    "result": {
+        "item": "smokeleafindustry:blunt",
+        "count": 1
+    }
+}
