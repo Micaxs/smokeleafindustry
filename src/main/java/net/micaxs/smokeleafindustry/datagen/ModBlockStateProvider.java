@@ -38,37 +38,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         horizontalBlock(ModBlocks.HERB_MUTATION.get(),
                 new ModelFile.UncheckedModelFile(modLoc("block/herb_mutation")));
 
-        makeWhiteWidowCrop((CropBlock) ModBlocks.WHITE_WIDOW_CROP.get(), "white_widow_stage_", "white_widow_stage_");
-        makeBubbleKushCrop(((CropBlock) ModBlocks.BUBBLE_KUSH_CROP.get()), "bubble_kush_stage_", "bubble_kush_stage_");
-    }
-
-    public void makeWhiteWidowCrop(CropBlock block, String modelName, String textureName) {
-        Function<BlockState, ConfiguredModel[]> function = state -> whiteWidowtats(state, block, modelName, textureName);
-
-        getVariantBuilder(block).forAllStates(function);
-    }
-
-    private ConfiguredModel[] whiteWidowtats(BlockState state, CropBlock block, String modelName, String textureName) {
-        ConfiguredModel[] models = new ConfiguredModel[1];
-        models[0] = new ConfiguredModel(models().crop(modelName + state.getValue(((WhiteWidowCropBlock) block).getAgeProperty()),
-                new ResourceLocation(SmokeleafIndustryMod.MOD_ID, "block/whitewidow/" + textureName + state.getValue(((WhiteWidowCropBlock) block).getAgeProperty()))).renderType("cutout"));
-
-        return models;
-    }
-
-
-    public void makeBubbleKushCrop(CropBlock block, String modelName, String textureName) {
-        Function<BlockState, ConfiguredModel[]> function = state -> bubbleKushStats(state, block, modelName, textureName);
-
-        getVariantBuilder(block).forAllStates(function);
-    }
-
-    private ConfiguredModel[] bubbleKushStats(BlockState state, CropBlock block, String modelName, String textureName) {
-        ConfiguredModel[] models = new ConfiguredModel[1];
-        models[0] = new ConfiguredModel(models().crop(modelName + state.getValue(((BubbleKushCropBlock) block).getAgeProperty()),
-                new ResourceLocation(SmokeleafIndustryMod.MOD_ID, "block/bubblekush/" + textureName + state.getValue(((BubbleKushCropBlock) block).getAgeProperty()))).renderType("cutout"));
-
-        return models;
+        //makeWhiteWidowCrop((CropBlock) ModBlocks.WHITE_WIDOW_CROP.get(), "white_widow_stage_", "white_widow_stage_");
+        //makeBubbleKushCrop(((CropBlock) ModBlocks.BUBBLE_KUSH_CROP.get()), "bubble_kush_stage_", "bubble_kush_stage_");
     }
 
     private void blockWithItem(RegistryObject<Block> blockRegistryObject) {

@@ -1,0 +1,6 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "smokeleafindustry:block/whitewidow/white_widow_stage_0"
+  }
+}
