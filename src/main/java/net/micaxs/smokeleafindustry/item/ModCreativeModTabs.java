@@ -22,16 +22,19 @@ public class ModCreativeModTabs {
                         pOutput.accept(ModItems.WHITE_WIDOW_BUD.get());
                         pOutput.accept(ModItems.BUBBLE_KUSH_BUD.get());
                         pOutput.accept(ModItems.LEMON_HAZE_BUD.get());
+                        pOutput.accept(ModItems.SOUR_DIESEL_BUD.get());
 
                         // Weed
                         pOutput.accept(ModItems.WHITE_WIDOW_WEED.get());
                         pOutput.accept(ModItems.BUBBLE_KUSH_WEED.get());
                         pOutput.accept(ModItems.LEMON_HAZE_WEED.get());
+                        pOutput.accept(ModItems.SOUR_DIESEL_WEED.get());
 
                         // Seeds
                         pOutput.accept(ModItems.WHITE_WIDOW_SEEDS.get());
                         pOutput.accept(ModItems.BUBBLE_KUSH_SEEDS.get());
                         pOutput.accept(ModItems.LEMON_HAZE_SEEDS.get());
+                        pOutput.accept(ModItems.SOUR_DIESEL_SEEDS.get());
 
                         // Extracts
                         pOutput.accept(ModItems.PURPLE_HAZE_EXTRACT.get());

@@ -43,6 +43,13 @@ public class ModItems {
     public static final RegistryObject<Item> LEMON_HAZE_WEED = ITEMS.register("lemon_haze_weed",
             () -> new BubbleKushWeedItem(new Item.Properties()));
 
+    // Sour Diesel
+    public static final RegistryObject<Item> SOUR_DIESEL_SEEDS = ITEMS.register("sour_diesel_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.SOUR_DIESEL_CROP.get(), new Item.Properties()));
+    public static final RegistryObject<Item> SOUR_DIESEL_BUD = ITEMS.register("sour_diesel_bud",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> SOUR_DIESEL_WEED = ITEMS.register("sour_diesel_weed",
+            () -> new BubbleKushWeedItem(new Item.Properties()));
 
 
 

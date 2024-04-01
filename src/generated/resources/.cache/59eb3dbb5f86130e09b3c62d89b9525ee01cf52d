@@ -1,4 +1,4 @@
-// 1.20.1	2024-04-01T22:13:52.634916033	Loot Tables
+// 1.20.1	2024-04-01T23:11:38.439699498	Loot Tables
 b844be36c0eda538ed2024d49270adac6a887a75 data/smokeleafindustry/loot_tables/blocks/bubble_kush_crop.json
 b0d6568a7d0a95d98701f51af1506867dde8179a data/smokeleafindustry/loot_tables/blocks/hash_oil_block.json
 c9add4eda5526838400f2a5c677ca2cb3ab33c57 data/smokeleafindustry/loot_tables/blocks/herb_extractor.json
@@ -6,4 +6,5 @@ a348bbee11ac92add159ceed0669b97cbf4cff9c data/smokeleafindustry/loot_tables/bloc
 d2ab469e46f9e7e994171fa999560ceee972871a data/smokeleafindustry/loot_tables/blocks/herb_grinder_station.json
 82977b6274a27ea714d56a53d551a735bcdca675 data/smokeleafindustry/loot_tables/blocks/herb_mutation.json
 5d9233ac304134d2a9ed7477f34513d4b8332ca4 data/smokeleafindustry/loot_tables/blocks/lemon_haze_crop.json
+a001f262c00ba1d9c34cb1e11103d0ed2e79bb51 data/smokeleafindustry/loot_tables/blocks/sour_diesel_crop.json
 a6bbf07054e5ec238f9bd94e8aed82723aa2d740 data/smokeleafindustry/loot_tables/blocks/white_widow_crop.json

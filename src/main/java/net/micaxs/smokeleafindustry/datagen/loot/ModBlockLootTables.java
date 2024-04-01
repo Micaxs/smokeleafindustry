@@ -3,6 +3,7 @@ package net.micaxs.smokeleafindustry.datagen.loot;
 import net.micaxs.smokeleafindustry.block.ModBlocks;
 import net.micaxs.smokeleafindustry.block.custom.BubbleKushCropBlock;
 import net.micaxs.smokeleafindustry.block.custom.LemonHazeCropBlock;
+import net.micaxs.smokeleafindustry.block.custom.SourDieselCropBlock;
 import net.micaxs.smokeleafindustry.block.custom.WhiteWidowCropBlock;
 import net.micaxs.smokeleafindustry.item.ModItems;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
@@ -49,11 +50,17 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BubbleKushCropBlock.AGE, 10));
         this.add(ModBlocks.BUBBLE_KUSH_CROP.get(), createCropDrops(ModBlocks.BUBBLE_KUSH_CROP.get(), ModItems.BUBBLE_KUSH_BUD.get(), ModItems.BUBBLE_KUSH_SEEDS.get(), lootitemcondition$builder2));
 
-        // Bubble Kush Crop drops
+        // Lemon Haze Crop drops
         LootItemCondition.Builder lootitemcondition$builder3 = LootItemBlockStatePropertyCondition
                 .hasBlockStateProperties(ModBlocks.LEMON_HAZE_CROP.get())
                 .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(LemonHazeCropBlock.AGE, 10));
         this.add(ModBlocks.LEMON_HAZE_CROP.get(), createCropDrops(ModBlocks.LEMON_HAZE_CROP.get(), ModItems.LEMON_HAZE_BUD.get(), ModItems.LEMON_HAZE_SEEDS.get(), lootitemcondition$builder3));
+
+        // Sour Diesel Crop drops
+        LootItemCondition.Builder lootitemcondition$builder4 = LootItemBlockStatePropertyCondition
+                .hasBlockStateProperties(ModBlocks.SOUR_DIESEL_CROP.get())
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SourDieselCropBlock.AGE, 10));
+        this.add(ModBlocks.SOUR_DIESEL_CROP.get(), createCropDrops(ModBlocks.SOUR_DIESEL_CROP.get(), ModItems.SOUR_DIESEL_BUD.get(), ModItems.SOUR_DIESEL_SEEDS.get(), lootitemcondition$builder4));
 
     }
 
