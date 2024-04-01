@@ -30,6 +30,9 @@ public class ModBlocks {
             () -> new BubbleKushCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission()));
 
 
+    public static final RegistryObject<Block> LEMON_HAZE_CROP = BLOCKS.register("lemon_haze_crop",
+            () -> new LemonHazeCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission()));
+
 
     // Machines
     public static final RegistryObject<Block> HERB_GRINDER_STATION = registerBlock("herb_grinder_station",
