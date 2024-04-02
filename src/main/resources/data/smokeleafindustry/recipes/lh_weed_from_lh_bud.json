@@ -1,0 +1,12 @@
+{
+  "type": "smokeleafindustry:herb_grinder",
+  "ingredients": [
+    {
+      "item": "smokeleafindustry:lemon_haze_bud"
+    }
+  ],
+  "output": {
+    "count": 2,
+    "item": "smokeleafindustry:lemon_haze_weed"
+  }
+}

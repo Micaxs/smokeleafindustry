@@ -39,4 +39,8 @@ public class PacketHandler {
         INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), msg);
     }
 
+    public static <MSG> void serverToAllClients(MSG msg) {
+        INSTANCE.send(PacketDistributor.ALL.noArg(), msg);
+    }
+
 }
