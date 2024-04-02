@@ -2,6 +2,7 @@ package net.micaxs.smokeleafindustry.screen;
 
 import net.micaxs.smokeleafindustry.block.ModBlocks;
 import net.micaxs.smokeleafindustry.block.entity.HerbExtractorBlockEntity;
+import net.micaxs.smokeleafindustry.block.entity.HerbMutationBlockEntity;
 import net.micaxs.smokeleafindustry.screen.slot.CustomFuelSlot;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -34,9 +35,7 @@ public class HerbExtractorMenu extends AbstractContainerMenu {
         addPlayerHotbar(inv);
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(iItemHandler -> {
-            this.addSlot(new SlotItemHandler(iItemHandler, 0, 28, 23)); // Input
-            this.addSlot(new CustomFuelSlot(iItemHandler, 1, 28, 46)); // Fuel
-            this.addSlot(new SlotItemHandler(iItemHandler, 2, 133, 34)); // Output
+            this.addSlot(new SlotItemHandler(iItemHandler, 0, 40, 35)); // Input
         });
 
         addDataSlots(data);
@@ -54,6 +53,22 @@ public class HerbExtractorMenu extends AbstractContainerMenu {
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }
 
+    public int getEnergy() {
+        return this.data.get(2);
+    }
+    public int getMaxEnergy() {
+        return this.data.get(3);
+    }
+
+    public HerbExtractorBlockEntity getBlockEntity() {
+        return this.blockEntity;
+    }
+
+    public int getEnergyStoredScaled() {
+        int energy = getEnergy();
+        int maxEnergy = getMaxEnergy();
+        return (int) (((float) energy / (float) maxEnergy) * 64);
+    }
 
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons
     // must assign a slot number to each of the slots used by the GUI.
@@ -71,7 +86,7 @@ public class HerbExtractorMenu extends AbstractContainerMenu {
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 3;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 1;  // must be the number of slots you have!
     @Override
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {
         Slot sourceSlot = slots.get(pIndex);
@@ -128,21 +143,5 @@ public class HerbExtractorMenu extends AbstractContainerMenu {
         }
     }
 
-    public int getFuel() {
-        return this.data.get(2);
-    }
 
-    public int getMaxFuel() {
-        return this.data.get(3);
-    }
-
-    public int getFuelStoredScaled() {
-        int fuel = getFuel();
-        int maxFuel = getMaxFuel();
-        if (fuel > 0 && maxFuel > 0) {
-            return (fuel * 14) / maxFuel;
-        } else {
-            return 0;
-        }
-    }
 }

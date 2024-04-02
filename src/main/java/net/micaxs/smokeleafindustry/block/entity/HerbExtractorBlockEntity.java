@@ -1,7 +1,10 @@
 package net.micaxs.smokeleafindustry.block.entity;
 
+import net.micaxs.smokeleafindustry.fluid.ModFluids;
+import net.micaxs.smokeleafindustry.item.ModItems;
 import net.micaxs.smokeleafindustry.recipe.HerbExtractorRecipe;
 import net.micaxs.smokeleafindustry.screen.HerbExtractorMenu;
+import net.micaxs.smokeleafindustry.utils.ModEnergyStorage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -23,14 +26,19 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 
 import java.util.Optional;
 
@@ -44,16 +52,39 @@ public class HerbExtractorBlockEntity extends BlockEntity implements MenuProvide
                 level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
             }
         }
+
+        @Override
+        public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+            return switch (slot) {
+                case 0 ->   stack.getItem() == ModItems.BUBBLE_KUSH_WEED.get() ||
+                            stack.getItem() == ModItems.WHITE_WIDOW_WEED.get() ||
+                            stack.getItem() == ModItems.LEMON_HAZE_WEED.get() ||
+                            stack.getItem() == ModItems.SOUR_DIESEL_WEED.get();
+                case 1 -> false; // Don't put stuff in output slot bro.
+                default -> super.isItemValid(slot, stack);
+            };
+        }
     };
 
     private static int INPUT_SLOT = 0;
-    private static int FUEL_SLOT = 1;
-    private static int OUTPUT_SLOT = 2;
-
-
-    private int burnTime = 0, maxBurnTime = 0;
 
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
+
+    private final ModEnergyStorage energy = new ModEnergyStorage(10000, 50, 50, 0);
+    private final LazyOptional<ModEnergyStorage> lazyEnergy = LazyOptional.of(() -> this.energy);
+    private LazyOptional<IFluidHandler> lazyFluidHandler = LazyOptional.empty();
+
+    private final FluidTank FLUID_TANK = new FluidTank(8000) {
+        @Override
+        protected void onContentsChanged() {
+            setChanged();
+        }
+
+        @Override
+        public boolean isFluidValid(FluidStack stack) {
+            return stack.getFluid() == ModFluids.SOURCE_HASH_OIL.get();
+        }
+    };
 
     protected final ContainerData data;
     private int progress = 0;
@@ -61,14 +92,15 @@ public class HerbExtractorBlockEntity extends BlockEntity implements MenuProvide
 
     public HerbExtractorBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.HERB_EXTRACTOR_BE.get(), pPos, pBlockState);
+
         this.data = new ContainerData() {
             @Override
             public int get(int pIndex) {
                 return switch (pIndex) {
                     case 0 -> HerbExtractorBlockEntity.this.progress;
                     case 1 -> HerbExtractorBlockEntity.this.maxProgress;
-                    case 2 -> HerbExtractorBlockEntity.this.burnTime;
-                    case 3 -> HerbExtractorBlockEntity.this.maxBurnTime;
+                    case 2 -> HerbExtractorBlockEntity.this.energy.getEnergyStored();
+                    case 3 -> HerbExtractorBlockEntity.this.energy.getMaxEnergyStored();
                     default -> 0;
                 };
             }
@@ -78,8 +110,7 @@ public class HerbExtractorBlockEntity extends BlockEntity implements MenuProvide
                 switch (pIndex) {
                     case 0 -> HerbExtractorBlockEntity.this.progress = pValue;
                     case 1 -> HerbExtractorBlockEntity.this.maxProgress = pValue;
-                    case 2 -> HerbExtractorBlockEntity.this.burnTime = pValue;
-                    case 3 -> HerbExtractorBlockEntity.this.maxBurnTime = pValue;
+                    case 2 -> HerbExtractorBlockEntity.this.energy.setEnergy(pValue);
                 }
             }
 
@@ -91,17 +122,20 @@ public class HerbExtractorBlockEntity extends BlockEntity implements MenuProvide
     }
 
     public ItemStack getRenderStack() {
-        if (itemHandler.getStackInSlot(OUTPUT_SLOT).isEmpty()) {
+        if (itemHandler.getStackInSlot(INPUT_SLOT).isEmpty()) {
             return itemHandler.getStackInSlot(INPUT_SLOT);
-        } else {
-            return itemHandler.getStackInSlot(OUTPUT_SLOT);
         }
+        return null;
     }
 
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         if (cap == ForgeCapabilities.ITEM_HANDLER) {
             return lazyItemHandler.cast();
+        } else if (cap == ForgeCapabilities.ENERGY) {
+            return lazyEnergy.cast();
+        } else if (cap == ForgeCapabilities.FLUID_HANDLER) {
+            return lazyFluidHandler.cast();
         }
 
         return super.getCapability(cap, side);
@@ -111,12 +145,15 @@ public class HerbExtractorBlockEntity extends BlockEntity implements MenuProvide
     public void onLoad() {
         super.onLoad();
         lazyItemHandler = LazyOptional.of(() -> itemHandler);
+        lazyFluidHandler = LazyOptional.of(() -> FLUID_TANK);
     }
 
     @Override
     public void invalidateCaps() {
         super.invalidateCaps();
         lazyItemHandler.invalidate();
+        lazyEnergy.invalidate();
+        lazyFluidHandler.invalidate();
     }
 
     public void drops() {
@@ -125,7 +162,6 @@ public class HerbExtractorBlockEntity extends BlockEntity implements MenuProvide
             inventory.setItem(i, itemHandler.getStackInSlot(i));
         }
         Containers.dropContents(this.level, this.worldPosition, inventory);
-
     }
 
     @Override
@@ -139,18 +175,12 @@ public class HerbExtractorBlockEntity extends BlockEntity implements MenuProvide
         return new HerbExtractorMenu(pContainerId, pPlayerInventory, this, this.data);
     }
 
-    public static int getFuelSlot() {
-        return FUEL_SLOT;
-    }
-
     @Override
     protected void saveAdditional(CompoundTag pTag) {
         pTag.put("inventory", itemHandler.serializeNBT());
         pTag.putInt("herb_extractor.progress", progress);
-
-        pTag.putInt("herb_extractor.burnTime", burnTime);
-        pTag.putInt("herb_extractor.maxBurnTime", maxBurnTime);
-
+        pTag.put("energy", this.energy.serializeNBT());
+        pTag = FLUID_TANK.writeToNBT(pTag);
         super.saveAdditional(pTag);
     }
 
@@ -158,100 +188,54 @@ public class HerbExtractorBlockEntity extends BlockEntity implements MenuProvide
     public void load(CompoundTag pTag) {
         super.load(pTag);
         itemHandler.deserializeNBT(pTag.getCompound("inventory"));
+        energy.deserializeNBT(pTag.get("energy"));
         progress = pTag.getInt("herb_extractor.progress");
-
-        burnTime = pTag.getInt("herb_extractor.burnTime");
-        maxBurnTime = pTag.getInt("herb_extractor.maxBurnTime");
+        FLUID_TANK.readFromNBT(pTag);
     }
 
-    public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
-        if (hasRecipe()) {
-            if (this.burnTime <= 0) {
-                if (canBurn(this.itemHandler.getStackInSlot(FUEL_SLOT))) {
-                    this.burnTime = this.maxBurnTime = getBurnTime(this.itemHandler.getStackInSlot(FUEL_SLOT));
-                    this.itemHandler.getStackInSlot(FUEL_SLOT).shrink(1);
-                    setChanged(pLevel, pPos, pState);
-                } else {
-                    resetProgress();
-                }
-            } else {
-                this.burnTime--;
-                increaseCraftingProgress();
-                if (pLevel.random.nextInt(2) == 0) {
-                    double x = pPos.getX() + 0.5;
-                    double y = pPos.getY() + 1.0;
-                    double z = pPos.getZ() + 0.5;
-                    pLevel.addParticle(ParticleTypes.SMOKE, x, y, z, 0.0, 0.0, 0.0);
-                }
-                setChanged(pLevel, pPos, pState);
-                if (hasProgressFinished()) {
-                    craftItem();
-                    resetProgress();
-                }
-            }
-        } else {
-            this.burnTime--;
-            if (this.burnTime < 0) {
-                this.burnTime = 0;
+    public void tick(Level pLevel, BlockPos pPos, BlockState pState, HerbExtractorBlockEntity pEntity) {
+        boolean hasEnergy = energy.getEnergyStored() > 0;
+
+        if(hasEnergy && hasRecipe()) {
+            increaseCraftingProgress();
+            energy.removeEnergy(10);
+
+            if (pLevel.random.nextInt(2) == 0) {
+                double x = pPos.getX() + 0.5;
+                double y = pPos.getY() + 1.0;
+                double z = pPos.getZ() + 0.5;
+
             }
             setChanged(pLevel, pPos, pState);
+
+            if (hasProgressFinished()) {
+                extractToFluid();
+                resetProgress();
+            }
+
+        } else {
             resetProgress();
         }
     }
-
-    /* FUEL STUFF */
-    public int getBurnTime(ItemStack stack) {
-        return ForgeHooks.getBurnTime(stack, RecipeType.SMELTING);
-    }
-
-    public boolean canBurn(ItemStack stack) {
-        return getBurnTime(stack) > 0;
-    }
-
 
     private void resetProgress() {
         progress = 0;
     }
 
-    private void craftItem() {
-        Optional<HerbExtractorRecipe> recipe = getCurrentRecipe();
-        ItemStack result = recipe.get().getResultItem(null);
-
-        this.itemHandler.extractItem(INPUT_SLOT, 1, false);
-
-        this.itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(result.getItem(),
-                this.itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() + result.getCount()));
+    private void extractToFluid() {
+        // Check if Fluid Tank is FULL
+        if (FLUID_TANK.getFluidAmount() < FLUID_TANK.getCapacity()) {
+            int filledAmount = FLUID_TANK.fill(new FluidStack(ModFluids.SOURCE_HASH_OIL.get(), 100), IFluidHandler.FluidAction.EXECUTE);
+            if (filledAmount > 0) {
+                itemHandler.extractItem(INPUT_SLOT, 1, false);
+            }
+        }
     }
 
     private boolean hasRecipe() {
-        Optional<HerbExtractorRecipe> recipe = getCurrentRecipe();
-
-        if (recipe.isEmpty()) {
-            return false;
-        }
-
-        ItemStack result = recipe.get().getResultItem(getLevel().registryAccess());
-
-        return canInsertAmountIntoOutputSlot(result.getCount()) && canInsertItemIntoOutputSlot(result.getItem());
+        return !itemHandler.getStackInSlot(INPUT_SLOT).isEmpty();
     }
 
-    private Optional<HerbExtractorRecipe> getCurrentRecipe() {
-        SimpleContainer inventory = new SimpleContainer(this.itemHandler.getSlots());
-
-        for (int i = 0; i < itemHandler.getSlots(); i++) {
-            inventory.setItem(i, this.itemHandler.getStackInSlot(i));
-        }
-
-        return this.level.getRecipeManager().getRecipeFor(HerbExtractorRecipe.Type.INSTANCE, inventory, level);
-    }
-
-    private boolean canInsertItemIntoOutputSlot(Item item) {
-        return this.itemHandler.getStackInSlot(OUTPUT_SLOT).isEmpty() || this.itemHandler.getStackInSlot(OUTPUT_SLOT).is(item);
-    }
-
-    private boolean canInsertAmountIntoOutputSlot(int count) {
-        return this.itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() + count <= this.itemHandler.getStackInSlot(OUTPUT_SLOT).getMaxStackSize();
-    }
 
     private boolean hasProgressFinished() {
         return progress >= maxProgress;
@@ -259,6 +243,27 @@ public class HerbExtractorBlockEntity extends BlockEntity implements MenuProvide
 
     private void increaseCraftingProgress() {
         progress++;
+    }
+
+
+    public LazyOptional<ModEnergyStorage> getLazyEnergy () {
+        return this.lazyEnergy;
+    }
+
+    public ModEnergyStorage getEnergy() {
+        return this.energy;
+    }
+
+    public FluidTank getFluidTank() {
+        return this.FLUID_TANK;
+    }
+
+    public void setFluid(FluidStack stack) {
+        this.FLUID_TANK.setFluid(stack);
+    }
+
+    public FluidStack getFluidStack() {
+        return this.FLUID_TANK.getFluid();
     }
 
     @Nullable
@@ -272,13 +277,5 @@ public class HerbExtractorBlockEntity extends BlockEntity implements MenuProvide
         return saveWithoutMetadata();
     }
 
-    private void spawnParticles(Level level, BlockPos pos) {
-        // Adjust the particle position based on the direction you want the particles to go
-        double x = pos.getX();
-        double y = pos.getY() + 0.9;
-        double z = pos.getZ();
-
-        level.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, x, y, z, 0.0D, 0.0D, 0.0D);
-    }
 
 }

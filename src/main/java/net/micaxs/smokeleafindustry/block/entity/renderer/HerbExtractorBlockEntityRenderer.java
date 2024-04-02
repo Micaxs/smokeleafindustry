@@ -23,18 +23,18 @@ public class HerbExtractorBlockEntityRenderer implements BlockEntityRenderer<Her
 
     @Override
     public void render(HerbExtractorBlockEntity pBlockEntity, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight, int pPackedOverlay) {
-        ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
-        ItemStack itemStack = pBlockEntity.getRenderStack();
-
-        pPoseStack.pushPose();
-        pPoseStack.translate(0.5f, 0.58f, 0.5f);
-        pPoseStack.scale(0.35f, 0.35f, 0.35f);
-        pPoseStack.mulPose(Axis.XP.rotationDegrees(270));
-
-        itemRenderer.renderStatic(itemStack, ItemDisplayContext.FIXED, getLightLevel(pBlockEntity.getLevel(), pBlockEntity.getBlockPos()),
-                OverlayTexture.NO_OVERLAY, pPoseStack, pBuffer, pBlockEntity.getLevel(), 1);
-
-        pPoseStack.popPose();
+//        ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
+//        ItemStack itemStack = pBlockEntity.getRenderStack();
+//
+//        pPoseStack.pushPose();
+//        pPoseStack.translate(0.5f, 0.58f, 0.5f);
+//        pPoseStack.scale(0.35f, 0.35f, 0.35f);
+//        pPoseStack.mulPose(Axis.XP.rotationDegrees(270));
+//
+//        itemRenderer.renderStatic(itemStack, ItemDisplayContext.FIXED, getLightLevel(pBlockEntity.getLevel(), pBlockEntity.getBlockPos()),
+//                OverlayTexture.NO_OVERLAY, pPoseStack, pBuffer, pBlockEntity.getLevel(), 1);
+//
+//        pPoseStack.popPose();
     }
 
     private int getLightLevel(Level level, BlockPos pos) {

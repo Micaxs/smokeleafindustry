@@ -5,9 +5,16 @@ import net.micaxs.smokeleafindustry.SmokeleafIndustryMod;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.InventoryMenu;
+import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.IFluidTank;
+import net.minecraftforge.fluids.capability.templates.FluidTank;
 
 public class HerbExtractorScreen extends AbstractContainerScreen<HerbExtractorMenu> {
     private static final ResourceLocation TEXTURE =
@@ -34,23 +41,45 @@ public class HerbExtractorScreen extends AbstractContainerScreen<HerbExtractorMe
 
         guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
 
-        int fuel = this.menu.getFuelStoredScaled();
-
-        renderFuelProgress(guiGraphics, x, y);
         renderProgressArrow(guiGraphics, x, y);
+
+        int energy = this.menu.getEnergyStoredScaled();
+        guiGraphics.fill(x + 20, y + 11 + (64 - energy), x + 28, y + 75, 0xBFCC2222);
+
+        FluidTank tank = this.menu.getBlockEntity().getFluidTank();
+        FluidStack fluid = tank.getFluid();
+        if (fluid.isEmpty()) return;
+
+        int fluidHeight = getFluidHeight(tank);
+
+        IClientFluidTypeExtensions fluidTypeExtensions = IClientFluidTypeExtensions.of(fluid.getFluid());
+        ResourceLocation stillTexture = fluidTypeExtensions.getStillTexture(fluid);
+        if (stillTexture == null) return;
+
+
+        TextureAtlasSprite sprite = this.minecraft.getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(stillTexture);
+        int tintColor = fluidTypeExtensions.getTintColor(fluid);
+        float alpha = ((tintColor >> 24) & 0xFF) / 255f;
+        float red = ((tintColor >> 16) & 0xFF) / 255f;
+        float green = ((tintColor >> 8) & 0xFF) / 255f;
+        float blue = (tintColor & 0xFF) / 255f;
+
+        guiGraphics.setColor(red, green, blue, alpha);
+
+        GuiUtils.drawTiledSprite(guiGraphics, x + 141, y + 13, 61, 16, fluidHeight, sprite, 16, 16, 0, GuiUtils.TilingDirection.DOWN_RIGHT);
+
+        //guiGraphics.blit(x + 55,  getFluidY(fluidHeight, x, y), 0, 16, fluidHeight, sprite);
+        guiGraphics.setColor(1.0f,1.0f,1.0f,1.0f );
+
     }
 
-    private void renderFuelProgress(GuiGraphics guiGraphics, int x, int y) {
-        int scaledHeight = menu.getFuelStoredScaled();
-        if (scaledHeight > 0) {
-            int adjustedY = y + 38 + (14 - scaledHeight);
-            guiGraphics.blit(TEXTURE, x + 8, adjustedY, 176, 14 - scaledHeight, 14, scaledHeight);
-        }
+    private static int  getFluidHeight(IFluidTank tank) {
+        return (int) (61 * ((float)tank.getFluidAmount() / tank.getCapacity()));
     }
 
     private void renderProgressArrow(GuiGraphics guiGraphics, int x, int y) {
         if(menu.isCrafting()) {
-            guiGraphics.blit(TEXTURE, x + 62, y + 35, 0, 166, menu.getScaledProgress(),16);
+            guiGraphics.blit(TEXTURE, x + 69, y + 35, 0, 166, menu.getScaledProgress(),16);
         }
     }
 
@@ -60,12 +89,23 @@ public class HerbExtractorScreen extends AbstractContainerScreen<HerbExtractorMe
         super.render(guiGraphics, mouseX, mouseY, delta);
         renderTooltip(guiGraphics, mouseX, mouseY);
 
-        int fuelStored = this.menu.getFuel();
-        int burnTimeSeconds = (int) fuelStored / 20;
-
-        Component text = Component.literal("Fuel: " + burnTimeSeconds + "s");
-        if (isHovering(8, 35, 14, 14, mouseX, mouseY)) {
-            guiGraphics.renderTooltip(this.font, text, mouseX, mouseY);
+        int energyStored = this.menu.getEnergy();
+        int maxEnergy = this.menu.getMaxEnergy();
+        Component energyText = Component.literal("Energy: " + energyStored + " / " + maxEnergy);
+        if (isHovering(20, 11, 10, 65, mouseX, mouseY)) {
+            guiGraphics.renderTooltip(this.font, energyText, mouseX, mouseY);
         }
+
+        FluidTank tank = this.menu.getBlockEntity().getFluidTank();
+        FluidStack fluid = tank.getFluid();
+        if (fluid.isEmpty()) return;
+
+        if (isHovering(141, 13, 18, 63, mouseX, mouseY)) {
+            Component fluidText = MutableComponent.create(fluid.getDisplayName().getContents())
+                    .append(" (%s/%s mB)".formatted(tank.getFluidAmount(), tank.getCapacity()));
+            guiGraphics.renderTooltip(this.font, fluidText, mouseX, mouseY);
+        }
+
     }
+
 }
