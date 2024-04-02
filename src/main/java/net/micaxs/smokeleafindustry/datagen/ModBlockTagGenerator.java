@@ -27,7 +27,8 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
         this.tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(ModBlocks.HERB_GRINDER_STATION.get())
                 .add(ModBlocks.HERB_EXTRACTOR.get())
-                .add(ModBlocks.HERB_GENERATOR.get());
+                .add(ModBlocks.HERB_GENERATOR.get())
+                .add(ModBlocks.HEMPCRETE.get());
 
 
     }

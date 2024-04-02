@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "PPP",
+        "U U",
+        "USU"
+    ],
+    "key": {
+        "P": {
+            "item": "minecraft:piston"
+        },
+        "U": {
+            "item": "minecraft:stone_slab"
+        },
+        "S": {
+          "item": "minecraft:stone"
+        }
+    },
+    "result": {
+        "item": "smokeleafindustry:herb_extractor",
+        "count": 1
+    }
+}

@@ -51,6 +51,8 @@ public class ModCreativeModTabs {
                         pOutput.accept(ModItems.BLUNT.get());
                         pOutput.accept(ModItems.HASH_BROWNIE.get());
 
+                        pOutput.accept(ModBlocks.HEMPCRETE.get());
+
                         pOutput.accept(ModBlocks.HERB_GRINDER_STATION.get());
                         pOutput.accept(ModBlocks.HERB_EXTRACTOR.get());
                         pOutput.accept(ModBlocks.HERB_GENERATOR.get());

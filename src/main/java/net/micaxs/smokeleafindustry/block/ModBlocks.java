@@ -4,6 +4,7 @@ import net.micaxs.smokeleafindustry.SmokeleafIndustryMod;
 import net.micaxs.smokeleafindustry.block.custom.*;
 import net.micaxs.smokeleafindustry.fluid.ModFluids;
 import net.micaxs.smokeleafindustry.item.ModItems;
+import net.minecraft.client.resources.model.Material;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -45,6 +46,11 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> HERB_MUTATION = registerBlock("herb_mutation",
             () -> new HerbMutationBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()));
+
+
+    // Custom Modded Blocks
+    public static final RegistryObject<Block> HEMPCRETE = registerBlock("hempcrete",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
 
 
     // Fluid Stuff

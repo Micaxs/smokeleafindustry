@@ -23,6 +23,8 @@
   "block.smokeleafindustry.herb_generator": "Herb Energy Generator",
   "block.smokeleafindustry.herb_mutation": "Herb Mutator",
 
+  "block.smokeleafindustry.hempcrete": "Hemp Stone",
+
   "sounds.smokeleafindustry.bonghit": "Smoking a bong",
   "creativetab.smokeleaf_industry_tab": "Smokeleaf Industry",
   "tooltip.smokeleafindustry.effects": "Effects:",
