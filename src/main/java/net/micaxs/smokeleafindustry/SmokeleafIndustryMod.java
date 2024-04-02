@@ -8,6 +8,7 @@ import net.micaxs.smokeleafindustry.fluid.ModFluidTypes;
 import net.micaxs.smokeleafindustry.fluid.ModFluids;
 import net.micaxs.smokeleafindustry.item.ModCreativeModTabs;
 import net.micaxs.smokeleafindustry.item.ModItems;
+import net.micaxs.smokeleafindustry.network.PacketHandler;
 import net.micaxs.smokeleafindustry.recipe.ModRecipes;
 import net.micaxs.smokeleafindustry.screen.*;
 import net.micaxs.smokeleafindustry.sound.ModSounds;
@@ -65,6 +66,7 @@ public class SmokeleafIndustryMod
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         // Some common setup code
+        PacketHandler.register();
     }
 
 
