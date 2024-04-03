@@ -1,14 +1,14 @@
 package net.micaxs.smokeleafindustry.block.custom;
 
+import net.micaxs.smokeleafindustry.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
@@ -18,6 +18,8 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.IPlantable;
+import org.jetbrains.annotations.NotNull;
+import net.minecraft.world.entity.item.ItemEntity;
 
 import java.util.function.Supplier;
 
@@ -27,6 +29,7 @@ public class BaseWeedCropBlock extends CropBlock {
     public static final int SECOND_STAGE_MAX_AGE = 3;
 
     private final Supplier<Item> seedItem;
+    private final Supplier<Item> budItem;
     public int THC = 0;
     public int CBD = 0;
 
@@ -48,14 +51,16 @@ public class BaseWeedCropBlock extends CropBlock {
 
     public static final IntegerProperty AGE = IntegerProperty.create("age",0, 10);
 
-    public BaseWeedCropBlock(Properties pProperties, Supplier<Item> seedItem) {
+    public BaseWeedCropBlock(Properties pProperties, Supplier<Item> seedItem, Supplier<Item> budItem) {
         super(pProperties);
         this.seedItem = seedItem;
+        this.budItem = budItem;
     }
 
-    public BaseWeedCropBlock(Properties pProperties, Supplier<Item> seedItem, int pSeedTHC, int pSeedCBD) {
+    public BaseWeedCropBlock(Properties pProperties, Supplier<Item> seedItem, Supplier<Item> budItem, int pSeedTHC, int pSeedCBD) {
         super(pProperties);
         this.seedItem = seedItem;
+        this.budItem = budItem;
         this.THC = pSeedTHC;
         this.CBD = pSeedCBD;
     }
@@ -65,7 +70,7 @@ public class BaseWeedCropBlock extends CropBlock {
     }
 
     @Override
-    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+    public @NotNull VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         return SHAPE_BY_AGE[this.getAge(pState)];
     }
 
@@ -78,7 +83,7 @@ public class BaseWeedCropBlock extends CropBlock {
     public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
         if (!pLevel.isAreaLoaded(pPos, 1)) return;
 
-        if (pLevel.getRawBrightness(pPos, 0) >= 9) {
+        if (pLevel.getRawBrightness(pPos, 0) >= 11) {
             int currentAge = this.getAge(pState);
 
             if (currentAge < this.getMaxAge()) {
@@ -163,17 +168,41 @@ public class BaseWeedCropBlock extends CropBlock {
     }
 
     @Override
+    public void destroy(LevelAccessor pLevel, BlockPos pPos, BlockState pState) {
+        if (!(pLevel instanceof Level level)) {
+            return;
+        }
+
+        BlockPos belowPos = pPos.below();
+        BlockState belowBlockState = level.getBlockState(belowPos);
+
+        if (belowBlockState.is(this)) {
+            int belowBlockAge = this.getAge(belowBlockState);
+            int topAge = this.getAge(pState);
+            if (topAge == this.getMaxAge() && belowBlockAge == FIRST_STAGE_MAX_AGE) {
+                Item budItem = this.budItem.get();
+                ItemEntity budItemEntity = new ItemEntity(EntityType.ITEM, level);
+                budItemEntity.setItem(new ItemStack(budItem));
+                budItemEntity.setPos(belowPos.getX() + 0.5, belowPos.getY() + 0.5, belowPos.getZ() + 0.5);
+                level.addFreshEntity(budItemEntity);
+            }
+            level.destroyBlock(belowPos, true);
+        }
+        super.destroy(level, pPos, pState);
+    }
+
+    @Override
     public int getMaxAge() {
         return FIRST_STAGE_MAX_AGE + SECOND_STAGE_MAX_AGE;
     }
 
     @Override
-    protected ItemLike getBaseSeedId() {
+    protected @NotNull ItemLike getBaseSeedId() {
         return this.seedItem.get();
     }
 
     @Override
-    public IntegerProperty getAgeProperty() {
+    public @NotNull IntegerProperty getAgeProperty() {
         return AGE;
     }
 
