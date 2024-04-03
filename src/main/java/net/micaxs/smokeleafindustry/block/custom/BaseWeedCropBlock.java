@@ -1,14 +1,13 @@
 package net.micaxs.smokeleafindustry.block.custom;
 
-import net.micaxs.smokeleafindustry.block.ModBlocks;
-import net.micaxs.smokeleafindustry.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -20,10 +19,16 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.IPlantable;
 
-public class BubbleKushCropBlock extends CropBlock {
+import java.util.function.Supplier;
+
+public class BaseWeedCropBlock extends CropBlock {
 
     public static final int FIRST_STAGE_MAX_AGE = 7;
     public static final int SECOND_STAGE_MAX_AGE = 3;
+
+    private final Supplier<Item> seedItem;
+    public int THC = 0;
+    public int CBD = 0;
 
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
             Block.box(0.0, 0.0, 0.0, 16.0, 2.0, 16.0),
@@ -43,11 +48,21 @@ public class BubbleKushCropBlock extends CropBlock {
 
     public static final IntegerProperty AGE = IntegerProperty.create("age",0, 10);
 
-
-    public BubbleKushCropBlock(Properties pProperties) {
+    public BaseWeedCropBlock(Properties pProperties, Supplier<Item> seedItem) {
         super(pProperties);
+        this.seedItem = seedItem;
     }
 
+    public BaseWeedCropBlock(Properties pProperties, Supplier<Item> seedItem, int pSeedTHC, int pSeedCBD) {
+        super(pProperties);
+        this.seedItem = seedItem;
+        this.THC = pSeedTHC;
+        this.CBD = pSeedCBD;
+    }
+
+    public Item getSeedItem() {
+        return seedItem.get();
+    }
 
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
@@ -76,7 +91,7 @@ public class BubbleKushCropBlock extends CropBlock {
                     if (currentAge == FIRST_STAGE_MAX_AGE) {
                         if (pLevel.getBlockState(abovePos).is(Blocks.AIR)) {
                             pLevel.setBlock(abovePos, this.getStateForAge(currentAge + 1), 2);
-                        } else if (pLevel.getBlockState(abovePos).is(ModBlocks.BUBBLE_KUSH_CROP.get())) {
+                        } else if (pLevel.getBlockState(abovePos).is(this)) {
                             // get the age of the block above and set it to +1
                             BlockState aboveBlockState = pLevel.getBlockState(abovePos);
                             int aboveBlockAge = this.getAge(aboveBlockState);
@@ -113,7 +128,7 @@ public class BubbleKushCropBlock extends CropBlock {
         }
 
         BlockPos belowPos = pPos.below(1);
-        if (!pLevel.getBlockState(belowPos).is(ModBlocks.BUBBLE_KUSH_CROP.get())) {
+        if (!pLevel.getBlockState(belowPos).is(this)) {
             if (currentAge < FIRST_STAGE_MAX_AGE) {
                 if (nextAge > FIRST_STAGE_MAX_AGE) {
                     BlockPos abovePos = pPos.above(1);
@@ -129,7 +144,7 @@ public class BubbleKushCropBlock extends CropBlock {
                     BlockPos abovePos = pPos.above(1);
                     BlockState aboveBlockState = pLevel.getBlockState(abovePos);
 
-                    if (aboveBlockState.is(ModBlocks.BUBBLE_KUSH_CROP.get())) {
+                    if (aboveBlockState.is(this)) {
                         int aboveBlockAge = this.getAge(aboveBlockState);
 
                         if (aboveBlockAge < maxAge) {
@@ -154,7 +169,7 @@ public class BubbleKushCropBlock extends CropBlock {
 
     @Override
     protected ItemLike getBaseSeedId() {
-        return ModItems.BUBBLE_KUSH_SEEDS.get();
+        return this.seedItem.get();
     }
 
     @Override

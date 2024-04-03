@@ -38,35 +38,36 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
         this.dropSelf(ModBlocks.HASH_OIL_BLOCK.get());
 
+
         // White Widow Crop drops
         LootItemCondition.Builder lootitemcondition$builder = LootItemBlockStatePropertyCondition
                 .hasBlockStateProperties(ModBlocks.WHITE_WIDOW_CROP.get())
-                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(WhiteWidowCropBlock.AGE, 10));
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BaseWeedCropBlock.AGE, 10));
         this.add(ModBlocks.WHITE_WIDOW_CROP.get(), createCropDrops(ModBlocks.WHITE_WIDOW_CROP.get(), ModItems.WHITE_WIDOW_BUD.get(), ModItems.WHITE_WIDOW_SEEDS.get(), lootitemcondition$builder));
 
         // Bubble Kush Crop drops
         LootItemCondition.Builder lootitemcondition$builder2 = LootItemBlockStatePropertyCondition
                 .hasBlockStateProperties(ModBlocks.BUBBLE_KUSH_CROP.get())
-                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BubbleKushCropBlock.AGE, 10));
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BaseWeedCropBlock.AGE, 10));
         this.add(ModBlocks.BUBBLE_KUSH_CROP.get(), createCropDrops(ModBlocks.BUBBLE_KUSH_CROP.get(), ModItems.BUBBLE_KUSH_BUD.get(), ModItems.BUBBLE_KUSH_SEEDS.get(), lootitemcondition$builder2));
 
         // Lemon Haze Crop drops
         LootItemCondition.Builder lootitemcondition$builder3 = LootItemBlockStatePropertyCondition
                 .hasBlockStateProperties(ModBlocks.LEMON_HAZE_CROP.get())
-                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(LemonHazeCropBlock.AGE, 10));
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BaseWeedCropBlock.AGE, 10));
         this.add(ModBlocks.LEMON_HAZE_CROP.get(), createCropDrops(ModBlocks.LEMON_HAZE_CROP.get(), ModItems.LEMON_HAZE_BUD.get(), ModItems.LEMON_HAZE_SEEDS.get(), lootitemcondition$builder3));
 
         // Sour Diesel Crop drops
         LootItemCondition.Builder lootitemcondition$builder4 = LootItemBlockStatePropertyCondition
                 .hasBlockStateProperties(ModBlocks.SOUR_DIESEL_CROP.get())
-                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SourDieselCropBlock.AGE, 10));
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BaseWeedCropBlock.AGE, 10));
         this.add(ModBlocks.SOUR_DIESEL_CROP.get(), createCropDrops(ModBlocks.SOUR_DIESEL_CROP.get(), ModItems.SOUR_DIESEL_BUD.get(), ModItems.SOUR_DIESEL_SEEDS.get(), lootitemcondition$builder4));
 
 
         // Blue Ice Crop drops
         LootItemCondition.Builder lootitemcondition$builder5 = LootItemBlockStatePropertyCondition
                 .hasBlockStateProperties(ModBlocks.BLUE_ICE_CROP.get())
-                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BlueIceCropBlock.AGE, 10));
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BaseWeedCropBlock.AGE, 10));
         this.add(ModBlocks.BLUE_ICE_CROP.get(), createCropDrops(ModBlocks.BLUE_ICE_CROP.get(), ModItems.BLUE_ICE_BUD.get(), ModItems.BLUE_ICE_SEEDS.get(), lootitemcondition$builder5));
     }
 

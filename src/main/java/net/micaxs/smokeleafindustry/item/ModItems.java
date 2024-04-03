@@ -3,6 +3,7 @@ package net.micaxs.smokeleafindustry.item;
 import net.micaxs.smokeleafindustry.SmokeleafIndustryMod;
 import net.micaxs.smokeleafindustry.block.ModBlocks;
 import net.micaxs.smokeleafindustry.fluid.ModFluids;
+import net.micaxs.smokeleafindustry.item.custom.BaseBudItem;
 import net.micaxs.smokeleafindustry.item.custom.BluntItem;
 import net.micaxs.smokeleafindustry.item.custom.BongItem;
 import net.micaxs.smokeleafindustry.item.custom.BaseWeedItem;
@@ -20,10 +21,10 @@ public class ModItems {
 
     /* Weed Buds, Weed & Seeds */
     // White Widow
-    public static final RegistryObject<Item> WHITE_WIDOW_BUD = ITEMS.register("white_widow_bud",
-            () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> WHITE_WIDOW_SEEDS = ITEMS.register("white_widow_seeds",
             () -> new ItemNameBlockItem(ModBlocks.WHITE_WIDOW_CROP.get(), new Item.Properties()));
+    public static final RegistryObject<Item> WHITE_WIDOW_BUD = ITEMS.register("white_widow_bud",
+            () -> new BaseBudItem(new Item.Properties()));
     public static final RegistryObject<Item> WHITE_WIDOW_WEED = ITEMS.register("white_widow_weed",
             () -> new BaseWeedItem(new Item.Properties(), MobEffects.REGENERATION, 400, 1));
 
@@ -32,7 +33,7 @@ public class ModItems {
     public static final RegistryObject<Item> BUBBLE_KUSH_SEEDS = ITEMS.register("bubble_kush_seeds",
             () -> new ItemNameBlockItem(ModBlocks.BUBBLE_KUSH_CROP.get(), new Item.Properties()));
     public static final RegistryObject<Item> BUBBLE_KUSH_BUD = ITEMS.register("bubble_kush_bud",
-            () -> new Item(new Item.Properties()));
+            () -> new BaseBudItem(new Item.Properties()));
     public static final RegistryObject<Item> BUBBLE_KUSH_WEED = ITEMS.register("bubble_kush_weed",
             () -> new BaseWeedItem(new Item.Properties(), MobEffects.DIG_SPEED, 400, 1));
 
@@ -41,7 +42,7 @@ public class ModItems {
     public static final RegistryObject<Item> LEMON_HAZE_SEEDS = ITEMS.register("lemon_haze_seeds",
             () -> new ItemNameBlockItem(ModBlocks.LEMON_HAZE_CROP.get(), new Item.Properties()));
     public static final RegistryObject<Item> LEMON_HAZE_BUD = ITEMS.register("lemon_haze_bud",
-            () -> new Item(new Item.Properties()));
+            () -> new BaseBudItem(new Item.Properties()));
     public static final RegistryObject<Item> LEMON_HAZE_WEED = ITEMS.register("lemon_haze_weed",
             () -> new BaseWeedItem(new Item.Properties(), MobEffects.JUMP, 400, 1));
 
@@ -49,7 +50,7 @@ public class ModItems {
     public static final RegistryObject<Item> SOUR_DIESEL_SEEDS = ITEMS.register("sour_diesel_seeds",
             () -> new ItemNameBlockItem(ModBlocks.SOUR_DIESEL_CROP.get(), new Item.Properties()));
     public static final RegistryObject<Item> SOUR_DIESEL_BUD = ITEMS.register("sour_diesel_bud",
-            () -> new Item(new Item.Properties()));
+            () -> new BaseBudItem(new Item.Properties()));
     public static final RegistryObject<Item> SOUR_DIESEL_WEED = ITEMS.register("sour_diesel_weed",
             () -> new BaseWeedItem(new Item.Properties(), MobEffects.SATURATION, 400, 1));
 
@@ -57,7 +58,7 @@ public class ModItems {
     public static final RegistryObject<Item> BLUE_ICE_SEEDS = ITEMS.register("blue_ice_seeds",
             () -> new ItemNameBlockItem(ModBlocks.BLUE_ICE_CROP.get(), new Item.Properties()));
     public static final RegistryObject<Item> BLUE_ICE_BUD = ITEMS.register("blue_ice_bud",
-            () -> new Item(new Item.Properties()));
+            () -> new BaseBudItem(new Item.Properties()));
     public static final RegistryObject<Item> BLUE_ICE_WEED = ITEMS.register("blue_ice_weed",
             () -> new BaseWeedItem(new Item.Properties(), MobEffects.LUCK, 400, 1));
 
@@ -95,6 +96,23 @@ public class ModItems {
     public static final RegistryObject<Item> HEMP_CORE = ITEMS.register("hemp_core",
             () -> new Item(new Item.Properties()));
 
+
+
+    public static Item getWhiteWidowSeeds() {
+        return WHITE_WIDOW_SEEDS.get(); // Return the actual Item from the registry object
+    }
+    public static Item getBubbleKushSeeds() {
+        return BUBBLE_KUSH_SEEDS.get(); // Return the actual Item from the registry object
+    }
+    public static Item getLemonHazeSeeds() {
+        return LEMON_HAZE_SEEDS.get(); // Return the actual Item from the registry object
+    }
+    public static Item getSourDieselSeeds() {
+        return SOUR_DIESEL_SEEDS.get(); // Return the actual Item from the registry object
+    }
+    public static Item getBlueIceSeeds() {
+        return BLUE_ICE_SEEDS.get(); // Return the actual Item from the registry object
+    }
 
 
     public static void register(IEventBus eventBus) {

@@ -1,8 +1,9 @@
 package net.micaxs.smokeleafindustry.block.entity;
 
 
+import net.micaxs.smokeleafindustry.item.custom.BaseBudItem;
+import net.micaxs.smokeleafindustry.item.custom.BaseWeedItem;
 import net.micaxs.smokeleafindustry.utils.ModEnergyStorage;
-import net.micaxs.smokeleafindustry.item.ModItems;
 import net.micaxs.smokeleafindustry.screen.HerbGeneratorMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -204,14 +205,11 @@ public class HerbGeneratorBlockEntity extends BlockEntity implements MenuProvide
     public int getBurnTime(ItemStack stack) {
 
         if (!stack.isEmpty()) {
-            if (stack.getItem() == ModItems.WHITE_WIDOW_BUD.get()) {
-                return 100;
-            } else if (stack.getItem() == ModItems.WHITE_WIDOW_WEED.get()) {
+            if (stack.getItem() instanceof BaseWeedItem) {
                 return 50;
-            } else if (stack.getItem() == ModItems.BUBBLE_KUSH_BUD.get()) {
+            }
+            else if (stack.getItem() instanceof BaseBudItem) {
                 return 100;
-            } else if (stack.getItem() == ModItems.BUBBLE_KUSH_WEED.get()) {
-                return 50;
             }
         }
         return 0; // Default burn time if no match is found
@@ -219,10 +217,7 @@ public class HerbGeneratorBlockEntity extends BlockEntity implements MenuProvide
 
     public boolean canBurn(ItemStack stack) {
         if (!stack.isEmpty()) {
-            return  stack.getItem() == ModItems.WHITE_WIDOW_BUD.get() ||
-                    stack.getItem() == ModItems.WHITE_WIDOW_WEED.get() ||
-                    stack.getItem() == ModItems.BUBBLE_KUSH_BUD.get() ||
-                    stack.getItem() == ModItems.BUBBLE_KUSH_WEED.get();
+            return stack.getItem() instanceof BaseWeedItem || stack.getItem() instanceof BaseBudItem;
         }
         return false;
     }
