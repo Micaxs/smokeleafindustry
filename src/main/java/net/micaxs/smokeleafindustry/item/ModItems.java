@@ -5,7 +5,7 @@ import net.micaxs.smokeleafindustry.block.ModBlocks;
 import net.micaxs.smokeleafindustry.fluid.ModFluids;
 import net.micaxs.smokeleafindustry.item.custom.BluntItem;
 import net.micaxs.smokeleafindustry.item.custom.BongItem;
-import net.micaxs.smokeleafindustry.item.custom.weeds.BaseWeedItem;
+import net.micaxs.smokeleafindustry.item.custom.BaseWeedItem;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;

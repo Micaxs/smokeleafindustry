@@ -1,6 +1,5 @@
 package net.micaxs.smokeleafindustry.item.custom;
 
-import net.micaxs.smokeleafindustry.item.custom.weeds.BaseWeedItem;
 import net.micaxs.smokeleafindustry.sound.ModSounds;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.particles.ParticleTypes;

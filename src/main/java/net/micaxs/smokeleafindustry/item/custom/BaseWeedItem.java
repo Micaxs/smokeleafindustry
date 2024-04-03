@@ -1,4 +1,4 @@
-package net.micaxs.smokeleafindustry.item.custom.weeds;
+package net.micaxs.smokeleafindustry.item.custom;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
