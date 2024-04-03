@@ -39,7 +39,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.BLUE_ICE_SEEDS);
         simpleItem(ModItems.BLUE_ICE_WEED);
         simpleItem(ModItems.BLUE_ICE_BUD);
-
+        simpleItem(ModItems.BUBBLEGUM_SEEDS);
+        simpleItem(ModItems.BUBBLEGUM_BUD);
+        simpleItem(ModItems.BUBBLEGUM_WEED);
 
         simpleItem(ModItems.BLUNT);
 

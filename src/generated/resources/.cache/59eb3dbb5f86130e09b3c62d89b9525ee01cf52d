@@ -1,6 +1,7 @@
-// 1.20.1	2024-04-03T18:48:37.796477227	Loot Tables
+// 1.20.1	2024-04-03T20:47:47.836999842	Loot Tables
 e5547338d8d40158bb7a32cb87b431b1d2b7efda data/smokeleafindustry/loot_tables/blocks/blue_ice_crop.json
 b844be36c0eda538ed2024d49270adac6a887a75 data/smokeleafindustry/loot_tables/blocks/bubble_kush_crop.json
+55c17cb66d44f0a2b17113082ad131099f60d89c data/smokeleafindustry/loot_tables/blocks/bubblegum_crop.json
 b0d6568a7d0a95d98701f51af1506867dde8179a data/smokeleafindustry/loot_tables/blocks/hash_oil_block.json
 9aedc9c152173cb8cc46824a47c5c71aec2e721d data/smokeleafindustry/loot_tables/blocks/hemp_planks.json
 8a03bf61a56738b6511c7c1e068d6c8f818801e8 data/smokeleafindustry/loot_tables/blocks/hemp_stone.json

@@ -62,6 +62,14 @@ public class ModItems {
     public static final RegistryObject<Item> BLUE_ICE_WEED = ITEMS.register("blue_ice_weed",
             () -> new BaseWeedItem(new Item.Properties(), MobEffects.LUCK, 400, 1));
 
+    // Bubblegum
+    public static final RegistryObject<Item> BUBBLEGUM_SEEDS = ITEMS.register("bubblegum_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.BUBBLEGUM_CROP.get(), new Item.Properties()));
+    public static final RegistryObject<Item> BUBBLEGUM_BUD = ITEMS.register("bubblegum_bud",
+            () -> new BaseBudItem(new Item.Properties()));
+    public static final RegistryObject<Item> BUBBLEGUM_WEED = ITEMS.register("bubblegum_weed",
+            () -> new BaseWeedItem(new Item.Properties(), MobEffects.LEVITATION, 400, 1));
+
 
     /* Extracts */
     public static final RegistryObject<Item> BLUE_ICE_EXTRACT = ITEMS.register("blueice_extract",
@@ -99,19 +107,45 @@ public class ModItems {
 
 
     public static Item getWhiteWidowSeeds() {
-        return WHITE_WIDOW_SEEDS.get(); // Return the actual Item from the registry object
+        return WHITE_WIDOW_SEEDS.get();
     }
+    public static Item getWhiteWidowBud() {
+        return WHITE_WIDOW_BUD.get();
+    }
+
     public static Item getBubbleKushSeeds() {
         return BUBBLE_KUSH_SEEDS.get(); // Return the actual Item from the registry object
     }
+    public static Item getBubbleKushBud() {
+        return BUBBLE_KUSH_BUD.get(); // Return the actual Item from the registry object
+    }
+
     public static Item getLemonHazeSeeds() {
         return LEMON_HAZE_SEEDS.get(); // Return the actual Item from the registry object
     }
+    public static Item getLemonHazeBud() {
+        return LEMON_HAZE_BUD.get(); // Return the actual Item from the registry object
+    }
+
     public static Item getSourDieselSeeds() {
         return SOUR_DIESEL_SEEDS.get(); // Return the actual Item from the registry object
     }
+    public static Item getSourDieselBud() {
+        return SOUR_DIESEL_BUD.get(); // Return the actual Item from the registry object
+    }
+
     public static Item getBlueIceSeeds() {
         return BLUE_ICE_SEEDS.get(); // Return the actual Item from the registry object
+    }
+    public static Item getBlueIceBud() {
+        return BLUE_ICE_BUD.get(); // Return the actual Item from the registry object
+    }
+
+    public static Item getBubblegumSeeds() {
+        return BUBBLEGUM_SEEDS.get(); // Return the actual Item from the registry object
+    }
+    public static Item getBubblegumBud() {
+        return BUBBLEGUM_BUD.get(); // Return the actual Item from the registry object
     }
 
 
