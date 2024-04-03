@@ -49,8 +49,10 @@ public class ModBlocks {
 
 
     // Custom Modded Blocks
-    public static final RegistryObject<Block> HEMPCRETE = registerBlock("hempcrete",
+    public static final RegistryObject<Block> HEMP_STONE = registerBlock("hemp_stone",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> HEMP_PLANKS = registerBlock("hemp_planks",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
 
 
     // Fluid Stuff

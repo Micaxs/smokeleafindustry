@@ -1,14 +1,13 @@
 package net.micaxs.smokeleafindustry.item.custom;
 
-import net.micaxs.smokeleafindustry.item.ModItems;
-import net.micaxs.smokeleafindustry.item.custom.weeds.BubbleKushWeedItem;
-import net.micaxs.smokeleafindustry.item.custom.weeds.WhiteWidowWeedItem;
+import net.micaxs.smokeleafindustry.item.custom.weeds.BaseWeedItem;
 import net.micaxs.smokeleafindustry.sound.ModSounds;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -35,19 +34,35 @@ public class BongItem extends Item {
 
     @Override
     public int getUseDuration(ItemStack pStack) {
-        return 40;
+        return 30;
     }
 
-    private List<MobEffectInstance> getOffhandEffects(ItemStack offhandItem) {
+    private List<MobEffectInstance> getOffhandEffects(ItemStack offhandItem, LivingEntity livingEntity) {
         List<MobEffectInstance> effects = new ArrayList<>();
-
-        // TODO: Add more weed item effects here when created
-        if (offhandItem.getItem() instanceof WhiteWidowWeedItem) {
-            effects.addAll(((WhiteWidowWeedItem) offhandItem.getItem()).getEffects());
-        } else if (offhandItem.getItem() instanceof BubbleKushWeedItem) {
-            effects.addAll(((BubbleKushWeedItem) offhandItem.getItem()).getEffects());
+        if (offhandItem.getItem() instanceof BaseWeedItem weedItem) {
+            effects.addAll(weedItem.getEffects());
+            List<MobEffectInstance> updatedEffects = new ArrayList<>();
+            for (MobEffectInstance newEffect : new ArrayList<>(effects)) {
+                boolean effectExists = false;
+                for (MobEffectInstance existingEffect : livingEntity.getActiveEffects()) {
+                    MobEffect existingMobEffect = existingEffect.getEffect();
+                    MobEffect newMobEffect = newEffect.getEffect();
+                    if (existingMobEffect.equals(newMobEffect)) {
+                        effectExists = true;
+                        int existingDuration = existingEffect.getDuration();
+                        int newDuration = existingDuration + weedItem.getDuration();
+                        newDuration = Math.min(newDuration, 2410);
+                        effects.remove(newEffect);
+                        updatedEffects.add(new MobEffectInstance(newMobEffect, newDuration, existingEffect.getAmplifier(), existingEffect.isAmbient(), existingEffect.isVisible()));
+                        break;
+                    }
+                }
+                if (!effectExists) {
+                    updatedEffects.add(newEffect);
+                }
+            }
+            effects.addAll(updatedEffects);
         }
-
         return effects;
     }
 
@@ -74,7 +89,7 @@ public class BongItem extends Item {
             offhandItem.shrink(1);
             pLivingEntity.setItemInHand(InteractionHand.OFF_HAND, offhandItem);
 
-            List<MobEffectInstance> offhandEffects = getOffhandEffects(offhandItem);
+            List<MobEffectInstance> offhandEffects = getOffhandEffects(offhandItem, pLivingEntity);
 
             spawnSmokeParticles(pLevel, pLivingEntity);
 
@@ -103,11 +118,8 @@ public class BongItem extends Item {
     }
 
     private boolean isValidOffhandItem(ItemStack offhand) {
-        // TODO: Add more weed item effects here when created
-
         if (!offhand.isEmpty()) {
-            return  offhand.getItem() == ModItems.WHITE_WIDOW_WEED.get() ||
-                    offhand.getItem() == ModItems.BUBBLE_KUSH_WEED.get();
+            return (offhand.getItem() instanceof BaseWeedItem);
         }
         return false;
     }

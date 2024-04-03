@@ -28,7 +28,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(ModBlocks.HERB_GRINDER_STATION.get())
                 .add(ModBlocks.HERB_EXTRACTOR.get())
                 .add(ModBlocks.HERB_GENERATOR.get())
-                .add(ModBlocks.HEMPCRETE.get());
+                .add(ModBlocks.HEMP_STONE.get());
 
 
     }

@@ -36,7 +36,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.HERB_GENERATOR.get());
         this.dropSelf(ModBlocks.HERB_MUTATION.get());
 
-        this.dropSelf(ModBlocks.HEMPCRETE.get());
+        this.dropSelf(ModBlocks.HEMP_STONE.get());
+        this.dropSelf(ModBlocks.HEMP_PLANKS.get());
 
         this.dropSelf(ModBlocks.HASH_OIL_BLOCK.get());
 

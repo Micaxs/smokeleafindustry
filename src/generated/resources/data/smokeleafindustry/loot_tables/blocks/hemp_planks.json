@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "smokeleafindustry:hempcrete"
+          "name": "smokeleafindustry:hemp_planks"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "smokeleafindustry:blocks/hempcrete"
+  "random_sequence": "smokeleafindustry:blocks/hemp_planks"
 }

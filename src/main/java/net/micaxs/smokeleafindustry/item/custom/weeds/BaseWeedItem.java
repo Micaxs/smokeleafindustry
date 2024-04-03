@@ -14,26 +14,27 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BubbleKushWeedItem extends Item {
-    public BubbleKushWeedItem(Properties pProperties) {
+public class BaseWeedItem extends Item {
+
+    private final List<MobEffectInstance> effects = new ArrayList<>();
+    public int duration;
+
+    public BaseWeedItem(Properties pProperties, MobEffect effect, int iDuration, int iAmplifier) {
         super(pProperties);
+        duration = iDuration;
+        effects.add(new MobEffectInstance(effect, iDuration, iAmplifier));
     }
 
-    // BubbleKush gives 400 ticks of Dig Speed (Haste 1?)
     public List<MobEffectInstance> getEffects() {
-        List<MobEffectInstance> effects = new ArrayList<>();
-        effects.add(new MobEffectInstance(MobEffects.DIG_SPEED, 400, 1));
         return effects;
     }
 
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
-
         pTooltipComponents.add(Component.translatable("tooltip.smokeleafindustry.effects").withStyle(ChatFormatting.GRAY));
-
-        List<MobEffectInstance> bubbleKushEffects = getEffects();
-        for (MobEffectInstance effect : bubbleKushEffects) {
+        List<MobEffectInstance> weedEffects = getEffects();
+        for (MobEffectInstance effect : weedEffects) {
             pTooltipComponents.add(getEffectText(effect));
         }
     }
@@ -48,5 +49,9 @@ public class BubbleKushWeedItem extends Item {
                 .withStyle(ChatFormatting.GREEN)
                 .append(" ")
                 .append(Component.literal("(" + duration + "s)").withStyle(ChatFormatting.GRAY));
+    }
+
+    public int getDuration() {
+        return duration;
     }
 }

@@ -1,17 +1,9 @@
 package net.micaxs.smokeleafindustry.item.custom;
 
-import com.mojang.blaze3d.shaders.Effect;
 import net.micaxs.smokeleafindustry.effect.ModEffects;
-import net.micaxs.smokeleafindustry.effect.StonedEffect;
-import net.micaxs.smokeleafindustry.item.ModItems;
-import net.micaxs.smokeleafindustry.item.custom.weeds.BubbleKushWeedItem;
-import net.micaxs.smokeleafindustry.item.custom.weeds.WhiteWidowWeedItem;
-import net.micaxs.smokeleafindustry.sound.ModSounds;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.renderer.EffectInstance;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -24,8 +16,6 @@ import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class BluntItem extends Item {

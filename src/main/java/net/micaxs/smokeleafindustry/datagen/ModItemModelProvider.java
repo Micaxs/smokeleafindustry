@@ -38,6 +38,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.BUBBLE_KUSH_WEED);
         simpleItem(ModItems.BLUNT);
 
+        simpleItem(ModItems.HEMP_CORE);
+        simpleItem(ModItems.HEMP_STICK);
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {

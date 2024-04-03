@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "smokeleafindustry:block/hempcrete"
+    "all": "smokeleafindustry:block/hemp_planks"
   }
 }
