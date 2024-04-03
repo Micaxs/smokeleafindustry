@@ -20,8 +20,8 @@ public class StonedEffect extends MobEffect {
             Double y = pLivingEntity.getY();
             Double z = pLivingEntity.getZ();
 
-            pLivingEntity.addEffect(new MobEffectInstance(new MobEffectInstance(MobEffects.CONFUSION, 100, pAmplifier, true, true, false)));
-            pLivingEntity.addEffect(new MobEffectInstance(new MobEffectInstance(MobEffects.HUNGER, 100, pAmplifier, true, true, false)));
+            pLivingEntity.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 100, pAmplifier, true, true, false));
+            pLivingEntity.addEffect(new MobEffectInstance(MobEffects.HUNGER, 100, pAmplifier, true, true, false));
         }
         super.applyEffectTick(pLivingEntity, pAmplifier);
     }

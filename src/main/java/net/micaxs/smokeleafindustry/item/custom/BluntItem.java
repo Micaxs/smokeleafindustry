@@ -53,18 +53,22 @@ public class BluntItem extends Item {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
-        ItemStack itemstack = pPlayer.getItemInHand(pUsedHand);
-        pPlayer.startUsingItem(pUsedHand);
-        return InteractionResultHolder.consume(itemstack);
+        if (pUsedHand == InteractionHand.MAIN_HAND) {
+            ItemStack itemstack = pPlayer.getItemInHand(pUsedHand);
+            pPlayer.startUsingItem(pUsedHand);
+            return InteractionResultHolder.consume(itemstack);
+        } else {
+            return InteractionResultHolder.pass(pPlayer.getItemInHand(pUsedHand));
+        }
     }
 
-    // TODO: Fix / check if item in offhand or mainhand and deduct as needed
     @Override
     public ItemStack finishUsingItem(ItemStack pStack, Level pLevel, LivingEntity pLivingEntity) {
         ItemStack mainhandItem = pLivingEntity.getItemInHand(InteractionHand.MAIN_HAND);
         spawnSmokeParticles(pLevel, pLivingEntity);
 
-        // Retrieve the effect from the NBT data
+        pLivingEntity.addEffect(new MobEffectInstance(ModEffects.STONED.get(), 200, 1));
+
         CompoundTag tag = mainhandItem.getTag();
         if (tag != null && tag.contains("effect")) {
             String effectId = tag.getString("effect");
@@ -78,12 +82,10 @@ public class BluntItem extends Item {
     }
 
     private void spawnSmokeParticles(Level level, LivingEntity entity) {
-        // Adjust particle spawning based on your preferences
         for (int i = 0; i < 10; i++) {
             double xOffset = level.random.nextGaussian() * 0.02D;
             double yOffset = level.random.nextGaussian() * 0.02D;
             double zOffset = level.random.nextGaussian() * 0.02D;
-
             level.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE,
                     entity.getX() + entity.getBbWidth() * (level.random.nextDouble() - 0.5D),
                     entity.getEyeY(),
