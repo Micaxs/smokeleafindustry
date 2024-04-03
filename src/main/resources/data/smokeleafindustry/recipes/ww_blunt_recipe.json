@@ -1,20 +1,20 @@
 {
-  "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "PPP",
-        "###",
-        "PPP"
-    ],
-    "key": {
-        "P": {
-            "item": "minecraft:paper"
-        },
-        "#": {
-            "item": "smokeleafindustry:white_widow_weed"
-        }
+  "type": "smokeleafindustry:blunt_crafting",
+  "pattern": [
+    "###",
+    "WWW",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:paper"
     },
-    "result": {
-        "item": "smokeleafindustry:blunt",
-        "count": 1
+    "W": {
+      "item": "smokeleafindustry:white_widow_weed"
     }
+  },
+  "result": {
+    "item": "smokeleafindustry:blunt",
+    "count": 1
+  }
 }

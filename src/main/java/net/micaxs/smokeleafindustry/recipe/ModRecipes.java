@@ -19,6 +19,10 @@ public class ModRecipes {
 
     public static final RegistryObject<RecipeSerializer<HerbMutationRecipe>> HERB_MUTATION_SERIALIZER =
             SERIALIZERS.register("herb_mutation", () -> HerbMutationRecipe.Serializer.INSTANCE);
+
+    public static final RegistryObject<RecipeSerializer<BluntCraftingRecipe>> BLUNT_CRAFTING =
+            SERIALIZERS.register("blunt_crafting", () -> BluntCraftingRecipe.Serializer.INSTANCE);
+
     public static void register(IEventBus eventBus) {
         SERIALIZERS.register(eventBus);
     }

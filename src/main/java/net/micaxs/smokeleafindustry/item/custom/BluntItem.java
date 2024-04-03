@@ -2,10 +2,15 @@ package net.micaxs.smokeleafindustry.item.custom;
 
 import net.micaxs.smokeleafindustry.effect.ModEffects;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -14,6 +19,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -34,6 +40,18 @@ public class BluntItem extends Item {
     }
 
     @Override
+    public void onCraftedBy(ItemStack stack, Level world, Player player) {
+        ItemStack original = player.getInventory().getSelected();
+        if (!original.isEmpty() && original.getItem() instanceof BluntItem) {
+            CompoundTag originalTag = original.getTag();
+            if (originalTag != null) {
+                stack.setTag(originalTag.copy());
+            }
+        }
+        super.onCraftedBy(stack, world, player);
+    }
+
+    @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         ItemStack itemstack = pPlayer.getItemInHand(pUsedHand);
         pPlayer.startUsingItem(pUsedHand);
@@ -44,15 +62,18 @@ public class BluntItem extends Item {
     @Override
     public ItemStack finishUsingItem(ItemStack pStack, Level pLevel, LivingEntity pLivingEntity) {
         ItemStack mainhandItem = pLivingEntity.getItemInHand(InteractionHand.MAIN_HAND);
-        mainhandItem.shrink(1);
         spawnSmokeParticles(pLevel, pLivingEntity);
 
-        // Give stoned effect
-        if (!pLevel.isClientSide()) {
-            pLivingEntity.addEffect(new MobEffectInstance(ModEffects.STONED.get(), 200, 1));
+        // Retrieve the effect from the NBT data
+        CompoundTag tag = mainhandItem.getTag();
+        if (tag != null && tag.contains("effect")) {
+            String effectId = tag.getString("effect");
+            MobEffect effect = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(effectId));
+            if (effect != null) {
+                pLivingEntity.addEffect(new MobEffectInstance(effect, 1200, 1));
+            }
         }
-
-
+        mainhandItem.shrink(1);
         return super.finishUsingItem(pStack, pLevel, pLivingEntity);
     }
 
@@ -74,7 +95,25 @@ public class BluntItem extends Item {
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
+        pTooltipComponents.add(Component.translatable("tooltip.smokeleafindustry.effects").withStyle(ChatFormatting.GRAY));
+        CompoundTag tag = pStack.getTag();
+        if (tag != null && tag.contains("effect")) {
+            String effectId = tag.getString("effect");
+            MobEffect effect = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(effectId));
+            if (effect != null) {
+                MobEffectInstance effectInstance = new MobEffectInstance(effect, 1200, 1);
+                pTooltipComponents.add(getEffectText(effectInstance));
+            }
+        }
+    }
 
-        pTooltipComponents.add(Component.translatable("tooltip.smokeleafindustry.blunt").withStyle(ChatFormatting.GRAY));
+    private Component getEffectText(MobEffectInstance effect) {
+        MobEffect effectType = effect.getEffect();
+        int duration = effect.getDuration() / 20;
+        return Component.literal("- ")
+                .append(Component.translatable(effectType.getDescriptionId()))
+                .withStyle(ChatFormatting.GREEN)
+                .append(" ")
+                .append(Component.literal("(" + duration + "s)").withStyle(ChatFormatting.GRAY));
     }
 }

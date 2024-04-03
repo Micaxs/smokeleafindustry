@@ -24,9 +24,9 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> WHITE_WIDOW_SEEDS = ITEMS.register("white_widow_seeds",
             () -> new ItemNameBlockItem(ModBlocks.WHITE_WIDOW_CROP.get(), new Item.Properties()));
-
     public static final RegistryObject<Item> WHITE_WIDOW_WEED = ITEMS.register("white_widow_weed",
             () -> new BaseWeedItem(new Item.Properties(), MobEffects.REGENERATION, 400, 1));
+
 
     // Bubble Kush
     public static final RegistryObject<Item> BUBBLE_KUSH_SEEDS = ITEMS.register("bubble_kush_seeds",
@@ -35,6 +35,7 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> BUBBLE_KUSH_WEED = ITEMS.register("bubble_kush_weed",
             () -> new BaseWeedItem(new Item.Properties(), MobEffects.DIG_SPEED, 400, 1));
+
 
     // Lemon Haze
     public static final RegistryObject<Item> LEMON_HAZE_SEEDS = ITEMS.register("lemon_haze_seeds",
@@ -51,7 +52,6 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> SOUR_DIESEL_WEED = ITEMS.register("sour_diesel_weed",
             () -> new BaseWeedItem(new Item.Properties(), MobEffects.LUCK, 400, 1));
-
 
 
     /* Extracts */
@@ -71,14 +71,10 @@ public class ModItems {
             () -> new Item(new Item.Properties().stacksTo(64)));
 
 
-
     public static final RegistryObject<Item> HASH_OIL_BUCKET = ITEMS.register("hash_oil_bucket",
             () -> new BucketItem(ModFluids.SOURCE_HASH_OIL, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-
-
     public static final RegistryObject<Item> BONG = ITEMS.register("bong",
             () -> new BongItem(new Item.Properties().stacksTo(1).fireResistant()));
-
     public static final RegistryObject<Item> BLUNT = ITEMS.register("blunt",
             () -> new BluntItem(new Item.Properties().stacksTo(64)));
 
