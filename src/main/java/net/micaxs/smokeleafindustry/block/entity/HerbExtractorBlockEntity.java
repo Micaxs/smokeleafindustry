@@ -2,6 +2,7 @@ package net.micaxs.smokeleafindustry.block.entity;
 
 import net.micaxs.smokeleafindustry.fluid.ModFluids;
 import net.micaxs.smokeleafindustry.item.ModItems;
+import net.micaxs.smokeleafindustry.item.custom.BaseWeedItem;
 import net.micaxs.smokeleafindustry.recipe.HerbExtractorRecipe;
 import net.micaxs.smokeleafindustry.screen.HerbExtractorMenu;
 import net.micaxs.smokeleafindustry.utils.ModEnergyStorage;
@@ -56,10 +57,7 @@ public class HerbExtractorBlockEntity extends BlockEntity implements MenuProvide
         @Override
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
             return switch (slot) {
-                case 0 ->   stack.getItem() == ModItems.BUBBLE_KUSH_WEED.get() ||
-                            stack.getItem() == ModItems.WHITE_WIDOW_WEED.get() ||
-                            stack.getItem() == ModItems.LEMON_HAZE_WEED.get() ||
-                            stack.getItem() == ModItems.SOUR_DIESEL_WEED.get();
+                case 0 -> stack.getItem() instanceof BaseWeedItem;
                 case 1 -> false; // Don't put stuff in output slot bro.
                 default -> super.isItemValid(slot, stack);
             };

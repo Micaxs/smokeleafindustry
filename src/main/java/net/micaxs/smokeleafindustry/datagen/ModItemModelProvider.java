@@ -33,9 +33,14 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.WHITE_WIDOW_SEEDS);
         simpleItem(ModItems.LEMON_HAZE_SEEDS);
         simpleItem(ModItems.BUBBLE_KUSH_SEEDS);
-        simpleItem(ModItems.SOUR_DIESEL_SEEDS);
         simpleItem(ModItems.BUBBLE_KUSH_BUD);
         simpleItem(ModItems.BUBBLE_KUSH_WEED);
+        simpleItem(ModItems.SOUR_DIESEL_SEEDS);
+        simpleItem(ModItems.BLUE_ICE_SEEDS);
+        simpleItem(ModItems.BLUE_ICE_WEED);
+        simpleItem(ModItems.BLUE_ICE_BUD);
+
+
         simpleItem(ModItems.BLUNT);
 
         simpleItem(ModItems.HEMP_CORE);

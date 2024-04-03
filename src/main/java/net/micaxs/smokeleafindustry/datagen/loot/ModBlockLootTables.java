@@ -1,10 +1,7 @@
 package net.micaxs.smokeleafindustry.datagen.loot;
 
 import net.micaxs.smokeleafindustry.block.ModBlocks;
-import net.micaxs.smokeleafindustry.block.custom.BubbleKushCropBlock;
-import net.micaxs.smokeleafindustry.block.custom.LemonHazeCropBlock;
-import net.micaxs.smokeleafindustry.block.custom.SourDieselCropBlock;
-import net.micaxs.smokeleafindustry.block.custom.WhiteWidowCropBlock;
+import net.micaxs.smokeleafindustry.block.custom.*;
 import net.micaxs.smokeleafindustry.item.ModItems;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.loot.BlockLootSubProvider;
@@ -65,6 +62,12 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SourDieselCropBlock.AGE, 10));
         this.add(ModBlocks.SOUR_DIESEL_CROP.get(), createCropDrops(ModBlocks.SOUR_DIESEL_CROP.get(), ModItems.SOUR_DIESEL_BUD.get(), ModItems.SOUR_DIESEL_SEEDS.get(), lootitemcondition$builder4));
 
+
+        // Blue Ice Crop drops
+        LootItemCondition.Builder lootitemcondition$builder5 = LootItemBlockStatePropertyCondition
+                .hasBlockStateProperties(ModBlocks.BLUE_ICE_CROP.get())
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BlueIceCropBlock.AGE, 10));
+        this.add(ModBlocks.BLUE_ICE_CROP.get(), createCropDrops(ModBlocks.BLUE_ICE_CROP.get(), ModItems.BLUE_ICE_BUD.get(), ModItems.BLUE_ICE_SEEDS.get(), lootitemcondition$builder5));
     }
 
 

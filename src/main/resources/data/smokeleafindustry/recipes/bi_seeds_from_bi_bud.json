@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "smokeleafindustry:blue_ice_bud"
+    }
+  ],
+  "result": {
+    "item": "smokeleafindustry:blue_ice_seeds",
+    "count": 1
+  }
+}

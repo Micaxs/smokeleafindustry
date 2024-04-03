@@ -51,6 +51,14 @@ public class ModItems {
     public static final RegistryObject<Item> SOUR_DIESEL_BUD = ITEMS.register("sour_diesel_bud",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> SOUR_DIESEL_WEED = ITEMS.register("sour_diesel_weed",
+            () -> new BaseWeedItem(new Item.Properties(), MobEffects.SATURATION, 400, 1));
+
+    // Blue Ice
+    public static final RegistryObject<Item> BLUE_ICE_SEEDS = ITEMS.register("blue_ice_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.BLUE_ICE_CROP.get(), new Item.Properties()));
+    public static final RegistryObject<Item> BLUE_ICE_BUD = ITEMS.register("blue_ice_bud",
+            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> BLUE_ICE_WEED = ITEMS.register("blue_ice_weed",
             () -> new BaseWeedItem(new Item.Properties(), MobEffects.LUCK, 400, 1));
 
 

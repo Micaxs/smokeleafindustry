@@ -32,7 +32,8 @@ public class ModBlocks {
             () -> new LemonHazeCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission()));
     public static final RegistryObject<Block> SOUR_DIESEL_CROP = BLOCKS.register("sour_diesel_crop",
             () -> new SourDieselCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission()));
-
+    public static final RegistryObject<Block> BLUE_ICE_CROP = BLOCKS.register("blue_ice_crop",
+            () -> new BlueIceCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission()));
 
     // Machines
     public static final RegistryObject<Block> HERB_GRINDER_STATION = registerBlock("herb_grinder_station",
