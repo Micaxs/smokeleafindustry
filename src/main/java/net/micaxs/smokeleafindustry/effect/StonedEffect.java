@@ -20,8 +20,8 @@ public class StonedEffect extends MobEffect {
             Double y = pLivingEntity.getY();
             Double z = pLivingEntity.getZ();
 
-            pLivingEntity.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 100, pAmplifier, true, true, false));
-            pLivingEntity.addEffect(new MobEffectInstance(MobEffects.HUNGER, 100, pAmplifier, true, true, false));
+            pLivingEntity.addEffect(new MobEffectInstance(MobEffects.CONFUSION, -1, pAmplifier, true, true, false));
+            pLivingEntity.addEffect(new MobEffectInstance(MobEffects.HUNGER, -1, pAmplifier, true, true, false));
         }
         super.applyEffectTick(pLivingEntity, pAmplifier);
     }
@@ -29,6 +29,7 @@ public class StonedEffect extends MobEffect {
     @Override
     public void removeAttributeModifiers(LivingEntity pLivingEntity, AttributeMap pAttributeMap, int pAmplifier) {
         pLivingEntity.removeEffect(MobEffects.CONFUSION);
+        pLivingEntity.removeEffect(MobEffects.HUNGER);
         super.removeAttributeModifiers(pLivingEntity, pAttributeMap, pAmplifier);
     }
 

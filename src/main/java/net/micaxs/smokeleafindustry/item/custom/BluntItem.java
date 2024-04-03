@@ -67,7 +67,10 @@ public class BluntItem extends Item {
         ItemStack mainhandItem = pLivingEntity.getItemInHand(InteractionHand.MAIN_HAND);
         spawnSmokeParticles(pLevel, pLivingEntity);
 
-        pLivingEntity.addEffect(new MobEffectInstance(ModEffects.STONED.get(), 200, 1));
+        // 50% of getting stoned effect from smoking a blunt.
+        if (pLevel.random.nextBoolean()) {
+            pLivingEntity.addEffect(new MobEffectInstance(ModEffects.STONED.get(), 200, 1));
+        }
 
         CompoundTag tag = mainhandItem.getTag();
         if (tag != null && tag.contains("effect")) {

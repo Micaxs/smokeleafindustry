@@ -1,0 +1,20 @@
+{
+  "type": "smokeleafindustry:blunt_crafting",
+  "pattern": [
+    "###",
+    "WWW",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:paper"
+    },
+    "W": {
+      "item": "smokeleafindustry:sour_diesel_weed"
+    }
+  },
+  "result": {
+    "item": "smokeleafindustry:blunt",
+    "count": 1
+  }
+}
