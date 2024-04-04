@@ -1,3 +1,3 @@
-// 1.20.1	2024-04-03T02:56:25.719850528	Tags for minecraft:block mod id smokeleafindustry
-137f8c8201659db4839457a6f7606f4136b6f661 data/minecraft/tags/blocks/mineable/pickaxe.json
-4a5b237805e4dd3a27fe5e0eaa9cc2aca3620279 data/minecraft/tags/blocks/needs_iron_tool.json
+// 1.20.1	2024-04-03T23:39:09.687868174	Tags for minecraft:block mod id smokeleafindustry
+3e26f2f48fc443a7a333c219dbbfbcf8dddef4aa data/minecraft/tags/blocks/mineable/pickaxe.json
+048dd378ec00009212d621dbc02d43bb8589e6f5 data/minecraft/tags/blocks/needs_iron_tool.json

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "smokeleafindustry:block/herb_evaporator",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "smokeleafindustry:block/herb_evaporator"
+    },
+    "facing=south": {
+      "model": "smokeleafindustry:block/herb_evaporator",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "smokeleafindustry:block/herb_evaporator",
+      "y": 270
+    }
+  }
+}

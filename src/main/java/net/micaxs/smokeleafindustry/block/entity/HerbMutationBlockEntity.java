@@ -36,6 +36,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -138,13 +139,54 @@ public class HerbMutationBlockEntity extends BlockEntity implements MenuProvider
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         if (cap == ForgeCapabilities.ITEM_HANDLER) {
-            return lazyItemHandler.cast();
+            if (side == null) {
+                return lazyItemHandler.cast();
+            } else {
+                return LazyOptional.of(() -> new IItemHandlerModifiable() {
+                    @Override
+                    public void setStackInSlot(int slot, @NotNull ItemStack stack) {
+                        itemHandler.setStackInSlot(slot, stack);
+                    }
+
+                    @Override
+                    public int getSlots() {
+                        return itemHandler.getSlots();
+                    }
+
+                    @Override
+                    public ItemStack getStackInSlot(int slot) {
+                        return itemHandler.getStackInSlot(slot);
+                    }
+
+                    @Override
+                    public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
+                        return itemHandler.insertItem(slot, stack, simulate);
+                    }
+
+                    @Override
+                    public ItemStack extractItem(int slot, int amount, boolean simulate) {
+                        if (slot != OUTPUT_SLOT) {
+                            return ItemStack.EMPTY;
+                        }
+                        return itemHandler.extractItem(slot, amount, simulate);
+                    }
+
+                    @Override
+                    public int getSlotLimit(int slot) {
+                        return itemHandler.getSlotLimit(slot);
+                    }
+
+                    @Override
+                    public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+                        return itemHandler.isItemValid(slot, stack);
+                    }
+                }).cast();
+            }
         } else if (cap == ForgeCapabilities.ENERGY) {
             return lazyEnergy.cast();
         } else if (cap == ForgeCapabilities.FLUID_HANDLER) {
             return lazyFluidHandler.cast();
         }
-
         return super.getCapability(cap, side);
     }
 

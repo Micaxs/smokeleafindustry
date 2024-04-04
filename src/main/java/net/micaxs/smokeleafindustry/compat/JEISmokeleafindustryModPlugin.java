@@ -6,9 +6,11 @@ import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.micaxs.smokeleafindustry.SmokeleafIndustryMod;
+import net.micaxs.smokeleafindustry.recipe.HerbEvaporatorRecipe;
 import net.micaxs.smokeleafindustry.recipe.HerbExtractorRecipe;
 import net.micaxs.smokeleafindustry.recipe.HerbGrinderRecipe;
 import net.micaxs.smokeleafindustry.recipe.HerbMutationRecipe;
+import net.micaxs.smokeleafindustry.screen.HerbEvaporatorScreen;
 import net.micaxs.smokeleafindustry.screen.HerbExtractorScreen;
 import net.micaxs.smokeleafindustry.screen.HerbGrinderStationScreen;
 import net.micaxs.smokeleafindustry.screen.HerbMutationScreen;
@@ -31,6 +33,7 @@ public class JEISmokeleafindustryModPlugin implements IModPlugin {
         registration.addRecipeCategories(new HerbGrinderCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new HerbExtractorCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new HerbMutationCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new HerbEvaporatorCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -46,6 +49,9 @@ public class JEISmokeleafindustryModPlugin implements IModPlugin {
 
         List<HerbMutationRecipe> mutationRecipes = recipeManager.getAllRecipesFor(HerbMutationRecipe.Type.INSTANCE);
         registration.addRecipes(HerbMutationCategory.HERB_MUTATION_TYPE, mutationRecipes);
+
+        List<HerbEvaporatorRecipe> evaporatorRecipes = recipeManager.getAllRecipesFor(HerbEvaporatorRecipe.Type.INSTANCE);
+        registration.addRecipes(HerbEvaporatorCategory.HERB_EVAPORATOR_TYPE, evaporatorRecipes);
     }
 
     @Override
@@ -58,5 +64,8 @@ public class JEISmokeleafindustryModPlugin implements IModPlugin {
 
         registration.addRecipeClickArea(HerbMutationScreen.class, 80, 30, 20, 30,
                 HerbMutationCategory.HERB_MUTATION_TYPE);
+
+        registration.addRecipeClickArea(HerbEvaporatorScreen.class, 80, 30, 20, 30,
+                HerbEvaporatorCategory.HERB_EVAPORATOR_TYPE);
     }
 }

@@ -58,6 +58,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> HERB_MUTATION = registerBlock("herb_mutation",
             () -> new HerbMutationBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()));
 
+    public static final RegistryObject<Block> HERB_EVAPORATOR = registerBlock("herb_evaporator",
+            () -> new HerbEvaporatorBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()));
 
 
     // Custom Modded Blocks

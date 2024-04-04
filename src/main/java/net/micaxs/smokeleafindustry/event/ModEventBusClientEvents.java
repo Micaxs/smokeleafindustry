@@ -2,6 +2,7 @@ package net.micaxs.smokeleafindustry.event;
 
 import net.micaxs.smokeleafindustry.SmokeleafIndustryMod;
 import net.micaxs.smokeleafindustry.block.entity.ModBlockEntities;
+import net.micaxs.smokeleafindustry.block.entity.renderer.HerbEvaporatorBlockEntityRenderer;
 import net.micaxs.smokeleafindustry.block.entity.renderer.HerbExtractorBlockEntityRenderer;
 import net.micaxs.smokeleafindustry.block.entity.renderer.HerbGrinderBlockEntityRenderer;
 import net.micaxs.smokeleafindustry.block.entity.renderer.HerbMutationBlockEntityRenderer;
@@ -17,5 +18,6 @@ public class ModEventBusClientEvents {
         event.registerBlockEntityRenderer(ModBlockEntities.HERB_GRINDER_BE.get(), HerbGrinderBlockEntityRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.HERB_EXTRACTOR_BE.get(), HerbExtractorBlockEntityRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.HERB_MUTATION_BE.get(), HerbMutationBlockEntityRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.HERB_EVAPORATOR_BE.get(), HerbEvaporatorBlockEntityRenderer::new);
     }
 }

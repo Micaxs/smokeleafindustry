@@ -22,13 +22,15 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(ModBlocks.HERB_GRINDER_STATION.get())
                 .add(ModBlocks.HERB_EXTRACTOR.get())
-                .add(ModBlocks.HERB_GENERATOR.get());
+                .add(ModBlocks.HERB_GENERATOR.get())
+                .add(ModBlocks.HERB_EVAPORATOR.get());
 
         this.tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(ModBlocks.HERB_GRINDER_STATION.get())
                 .add(ModBlocks.HERB_EXTRACTOR.get())
                 .add(ModBlocks.HERB_GENERATOR.get())
-                .add(ModBlocks.HEMP_STONE.get());
+                .add(ModBlocks.HEMP_STONE.get())
+                .add(ModBlocks.HERB_EVAPORATOR.get());
 
 
     }

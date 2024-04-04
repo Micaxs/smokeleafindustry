@@ -92,7 +92,7 @@ public class SmokeleafIndustryMod
             MenuScreens.register(ModMenuTypes.HERB_EXTRACTOR_MENU.get(), HerbExtractorScreen::new);
             MenuScreens.register(ModMenuTypes.HERB_GENERATOR_MENU.get(), HerbGeneratorScreen::new);
             MenuScreens.register(ModMenuTypes.HERB_MUTATION_MENU.get(), HerbMutationScreen::new);
-
+            MenuScreens.register(ModMenuTypes.HERB_EVAPORATOR_MENU.get(), HerbEvaporatorScreen::new);
 
             ItemBlockRenderTypes.setRenderLayer(ModFluids.SOURCE_HASH_OIL.get(), RenderType.translucent());
             ItemBlockRenderTypes.setRenderLayer(ModFluids.FLOWING_HASH_OIL.get(), RenderType.translucent());

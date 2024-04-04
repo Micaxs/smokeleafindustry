@@ -66,6 +66,7 @@ public class ModCreativeModTabs {
                         pOutput.accept(ModBlocks.HERB_EXTRACTOR.get());
                         pOutput.accept(ModBlocks.HERB_GENERATOR.get());
                         pOutput.accept(ModBlocks.HERB_MUTATION.get());
+                        pOutput.accept(ModBlocks.HERB_EVAPORATOR.get());
                     })
                     .build());
 
