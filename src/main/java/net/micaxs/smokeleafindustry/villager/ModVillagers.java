@@ -19,6 +19,8 @@ public class ModVillagers {
     public static final DeferredRegister<VillagerProfession> VILLAGER_PROFESSIONS =
             DeferredRegister.create(ForgeRegistries.VILLAGER_PROFESSIONS, SmokeleafIndustryMod.MOD_ID);
 
+
+    // TODO: Change the HEMP_PLANKS to an actual workstation for this dude...
     public static final RegistryObject<PoiType> HERB_POI = POI_TYPES.register("herb_poi",
             () -> new PoiType(ImmutableSet.copyOf(ModBlocks.HEMP_PLANKS.get().getStateDefinition().getPossibleStates()), 1, 1));
 
@@ -28,7 +30,7 @@ public class ModVillagers {
                     holder -> holder.get() == HERB_POI.get(),
                     ImmutableSet.of(),
                     ImmutableSet.of(),
-                    SoundEvents.VILLAGER_WORK_FARMER));
+                    SoundEvents.VILLAGER_NO));
 
     public static void register(IEventBus modEventBus) {
         POI_TYPES.register(modEventBus);
