@@ -26,6 +26,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -98,39 +99,52 @@ public class HerbGrinderStationBlockEntity extends BlockEntity implements MenuPr
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         if (cap == ForgeCapabilities.ITEM_HANDLER) {
-            return LazyOptional.of(() -> new IItemHandler() {
-                @Override
-                public int getSlots() {
-                    return itemHandler.getSlots();
-                }
-                @Override
-                public ItemStack getStackInSlot(int slot) {
-                    return itemHandler.getStackInSlot(slot);
-                }
-                @Override
-                public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
-                    return itemHandler.insertItem(slot, stack, simulate);
-                }
-                @Override
-                public ItemStack extractItem(int slot, int amount, boolean simulate) {
-                    if (slot == INPUT_SLOT) {
-                        return ItemStack.EMPTY;
+            if (side == null) {
+                return lazyItemHandler.cast();
+            } else {
+                return LazyOptional.of(() -> new IItemHandlerModifiable() {
+                    @Override
+                    public void setStackInSlot(int slot, @NotNull ItemStack stack) {
+                        itemHandler.setStackInSlot(slot, stack);
                     }
-                    return itemHandler.extractItem(slot, amount, simulate);
-                }
-                @Override
-                public int getSlotLimit(int slot) {
-                    return itemHandler.getSlotLimit(slot);
-                }
-                @Override
-                public boolean isItemValid(int slot, @NotNull ItemStack stack) {
-                    return itemHandler.isItemValid(slot, stack);
-                }
-            }).cast();
+
+                    @Override
+                    public int getSlots() {
+                        return itemHandler.getSlots();
+                    }
+
+                    @Override
+                    public ItemStack getStackInSlot(int slot) {
+                        return itemHandler.getStackInSlot(slot);
+                    }
+
+                    @Override
+                    public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
+                        return itemHandler.insertItem(slot, stack, simulate);
+                    }
+
+                    @Override
+                    public ItemStack extractItem(int slot, int amount, boolean simulate) {
+                        if (slot != OUTPUT_SLOT) {
+                            return ItemStack.EMPTY;
+                        }
+                        return itemHandler.extractItem(slot, amount, simulate);
+                    }
+
+                    @Override
+                    public int getSlotLimit(int slot) {
+                        return itemHandler.getSlotLimit(slot);
+                    }
+
+                    @Override
+                    public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+                        return itemHandler.isItemValid(slot, stack);
+                    }
+                }).cast();
+            }
         } else if (cap == ForgeCapabilities.ENERGY) {
             return lazyEnergy.cast();
         }
-
         return super.getCapability(cap, side);
     }
 

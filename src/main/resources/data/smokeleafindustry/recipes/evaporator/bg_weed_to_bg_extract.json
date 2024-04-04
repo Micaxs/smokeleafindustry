@@ -1,0 +1,12 @@
+{
+  "type": "smokeleafindustry:herb_evaporator",
+  "ingredients": [
+    {
+      "item": "smokeleafindustry:bubblegum_weed"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "item": "smokeleafindustry:bubblegum_extract"
+  }
+}

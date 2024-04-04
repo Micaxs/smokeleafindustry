@@ -1,0 +1,12 @@
+{
+  "type": "smokeleafindustry:herb_grinder",
+  "ingredients": [
+    {
+      "item": "smokeleafindustry:bubblegum_bud"
+    }
+  ],
+  "output": {
+    "count": 2,
+    "item": "smokeleafindustry:bubblegum_weed"
+  }
+}

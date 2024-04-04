@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "smokeleafindustry:lemon_haze_bud"
+    }
+  ],
+  "result": {
+    "item": "smokeleafindustry:lemon_haze_seeds",
+    "count": 1
+  }
+}

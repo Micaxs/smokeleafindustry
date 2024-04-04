@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "smokeleafindustry:bubblegum_bud"
+    }
+  ],
+  "result": {
+    "item": "smokeleafindustry:bubblegum_seeds",
+    "count": 1
+  }
+}

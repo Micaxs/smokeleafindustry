@@ -12,6 +12,7 @@ import net.micaxs.smokeleafindustry.network.PacketHandler;
 import net.micaxs.smokeleafindustry.recipe.ModRecipes;
 import net.micaxs.smokeleafindustry.screen.*;
 import net.micaxs.smokeleafindustry.sound.ModSounds;
+import net.micaxs.smokeleafindustry.villager.ModVillagers;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -57,6 +58,8 @@ public class SmokeleafIndustryMod
         ModFluidTypes.register(modEventBus);
 
         ModEffects.register(modEventBus);
+
+        ModVillagers.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 

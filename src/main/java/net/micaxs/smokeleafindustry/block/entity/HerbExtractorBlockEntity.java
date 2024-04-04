@@ -86,7 +86,7 @@ public class HerbExtractorBlockEntity extends BlockEntity implements MenuProvide
 
     protected final ContainerData data;
     private int progress = 0;
-    private int maxProgress = 200;
+    private int maxProgress = 100;
 
     public HerbExtractorBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.HERB_EXTRACTOR_BE.get(), pPos, pBlockState);

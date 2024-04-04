@@ -66,7 +66,9 @@ public class HerbExtractorScreen extends AbstractContainerScreen<HerbExtractorMe
 
         guiGraphics.setColor(red, green, blue, alpha);
 
-        GuiUtils.drawTiledSprite(guiGraphics, x + 141, y + 13, 61, 16, fluidHeight, sprite, 16, 16, 0, GuiUtils.TilingDirection.DOWN_RIGHT);
+        if (tank.getFluidAmount() > 0) {
+            GuiUtils.drawTiledSprite(guiGraphics, x + 141, y + 13, 61, 16, fluidHeight, sprite, 16, 16, 0, GuiUtils.TilingDirection.DOWN_RIGHT);
+        }
 
         //guiGraphics.blit(x + 55,  getFluidY(fluidHeight, x, y), 0, 16, fluidHeight, sprite);
         guiGraphics.setColor(1.0f,1.0f,1.0f,1.0f );

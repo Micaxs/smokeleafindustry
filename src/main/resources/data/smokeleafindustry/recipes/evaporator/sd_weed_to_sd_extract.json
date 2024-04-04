@@ -1,0 +1,12 @@
+{
+  "type": "smokeleafindustry:herb_evaporator",
+  "ingredients": [
+    {
+      "item": "smokeleafindustry:sour_diesel_weed"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "item": "smokeleafindustry:sourdiesel_extract"
+  }
+}
