@@ -28,7 +28,7 @@ public class BongItem extends Item {
 
     @Override
     public UseAnim getUseAnimation(ItemStack pStack) {
-        return UseAnim.EAT;
+        return UseAnim.DRINK;
     }
 
     @Override

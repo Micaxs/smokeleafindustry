@@ -1,0 +1,16 @@
+{
+  "type": "smokeleafindustry:grinder",
+  "group": "grinder",
+  "ingredients": [
+    {
+      "item": "smokeleafindustry:grinder"
+    },
+    {
+      "item": "smokeleafindustry:white_widow_bud"
+    }
+  ],
+  "result": {
+    "item": "smokeleafindustry:white_widow_weed",
+    "count": 1
+  }
+}

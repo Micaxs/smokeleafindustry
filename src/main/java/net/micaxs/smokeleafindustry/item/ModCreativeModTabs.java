@@ -52,6 +52,7 @@ public class ModCreativeModTabs {
                         pOutput.accept(ModItems.WHITE_WIDOW_EXTRACT.get());
 
                         // Baggies
+                        pOutput.accept(ModItems.EMPTY_BAG.get());
                         pOutput.accept(ModItems.WHITE_WIDOW_BAG.get());
                         pOutput.accept(ModItems.BUBBLE_KUSH_BAG.get());
                         pOutput.accept(ModItems.LEMON_HAZE_BAG.get());
@@ -63,6 +64,7 @@ public class ModCreativeModTabs {
                         pOutput.accept(ModItems.HASH_OIL_BUCKET.get());
                         pOutput.accept(ModItems.BONG.get());
                         pOutput.accept(ModItems.BLUNT.get());
+                        pOutput.accept(ModItems.GRINDER.get());
                         pOutput.accept(ModItems.HASH_BROWNIE.get());
 
                         pOutput.accept(ModBlocks.HEMP_STONE.get());

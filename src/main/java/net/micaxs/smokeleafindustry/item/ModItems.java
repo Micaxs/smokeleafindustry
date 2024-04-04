@@ -3,10 +3,7 @@ package net.micaxs.smokeleafindustry.item;
 import net.micaxs.smokeleafindustry.SmokeleafIndustryMod;
 import net.micaxs.smokeleafindustry.block.ModBlocks;
 import net.micaxs.smokeleafindustry.fluid.ModFluids;
-import net.micaxs.smokeleafindustry.item.custom.BaseBudItem;
-import net.micaxs.smokeleafindustry.item.custom.BluntItem;
-import net.micaxs.smokeleafindustry.item.custom.BongItem;
-import net.micaxs.smokeleafindustry.item.custom.BaseWeedItem;
+import net.micaxs.smokeleafindustry.item.custom.*;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -106,6 +103,10 @@ public class ModItems {
 
     public static final RegistryObject<Item> HASH_OIL_BUCKET = ITEMS.register("hash_oil_bucket",
             () -> new BucketItem(ModFluids.SOURCE_HASH_OIL, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+
+    public static final RegistryObject<Item> GRINDER = ITEMS.register("grinder",
+            () -> new ManualGrinder(new Item.Properties().stacksTo(1).durability(32)));
+
     public static final RegistryObject<Item> BONG = ITEMS.register("bong",
             () -> new BongItem(new Item.Properties().stacksTo(1).fireResistant()));
     public static final RegistryObject<Item> BLUNT = ITEMS.register("blunt",
