@@ -43,6 +43,14 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.BUBBLEGUM_BUD);
         simpleItem(ModItems.BUBBLEGUM_WEED);
 
+        simpleItem(ModItems.WHITE_WIDOW_BAG);
+        simpleItem(ModItems.BUBBLE_KUSH_BAG);
+        simpleItem(ModItems.LEMON_HAZE_BAG);
+        simpleItem(ModItems.SOUR_DIESEL_BAG);
+        simpleItem(ModItems.BLUE_ICE_BAG);
+        simpleItem(ModItems.BUBBLEGUM_BAG);
+
+
         simpleItem(ModItems.BLUNT);
 
         simpleItem(ModItems.HEMP_CORE);

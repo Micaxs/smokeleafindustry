@@ -88,6 +88,22 @@ public class ModItems {
             () -> new Item(new Item.Properties().stacksTo(64)));
 
 
+    // Baggies
+    public static final RegistryObject<Item> EMPTY_BAG = ITEMS.register("empty_bag",
+            () -> new Item(new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> WHITE_WIDOW_BAG = ITEMS.register("white_widow_bag",
+            () -> new Item(new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> BLUE_ICE_BAG = ITEMS.register("blue_ice_bag",
+            () -> new Item(new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> BUBBLEGUM_BAG = ITEMS.register("bubblegum_bag",
+            () -> new Item(new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> BUBBLE_KUSH_BAG = ITEMS.register("bubble_kush_bag",
+            () -> new Item(new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> LEMON_HAZE_BAG = ITEMS.register("lemon_haze_bag",
+            () -> new Item(new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> SOUR_DIESEL_BAG = ITEMS.register("sour_diesel_bag",
+            () -> new Item(new Item.Properties().stacksTo(64)));
+
     public static final RegistryObject<Item> HASH_OIL_BUCKET = ITEMS.register("hash_oil_bucket",
             () -> new BucketItem(ModFluids.SOURCE_HASH_OIL, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
     public static final RegistryObject<Item> BONG = ITEMS.register("bong",

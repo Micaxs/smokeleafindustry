@@ -51,6 +51,14 @@ public class ModCreativeModTabs {
                         pOutput.accept(ModItems.SOUR_DIESEL_EXTRACT.get());
                         pOutput.accept(ModItems.WHITE_WIDOW_EXTRACT.get());
 
+                        // Baggies
+                        pOutput.accept(ModItems.WHITE_WIDOW_BAG.get());
+                        pOutput.accept(ModItems.BUBBLE_KUSH_BAG.get());
+                        pOutput.accept(ModItems.LEMON_HAZE_BAG.get());
+                        pOutput.accept(ModItems.SOUR_DIESEL_BAG.get());
+                        pOutput.accept(ModItems.BLUE_ICE_BAG.get());
+                        pOutput.accept(ModItems.BUBBLEGUM_BAG.get());
+
                         // Other Items
                         pOutput.accept(ModItems.HASH_OIL_BUCKET.get());
                         pOutput.accept(ModItems.BONG.get());
