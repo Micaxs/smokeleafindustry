@@ -6,11 +6,10 @@ import net.minecraft.world.food.FoodProperties;
 
 public class ModFoods {
 
-    public static final FoodProperties HASH_BROWNIE = new FoodProperties.Builder()
+    public static final FoodProperties HERB_CAKE = new FoodProperties.Builder()
             .alwaysEat()
-            .nutrition(2)
-            .saturationMod(0.2f)
+            .nutrition(6)
+            .saturationMod(0.4f)
             .effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 200), 0.4f).build();
-
 
 }

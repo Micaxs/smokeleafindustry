@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SPS",
+    "PCP",
+    "SPS"
+  ],
+  "key": {
+    "S": {
+      "item": "smokeleafindustry:hemp_stone"
+    },
+    "P": {
+      "item": "smokeleafindustry:hemp_planks"
+    },
+    "C": {
+      "item": "smokeleafindustry:hemp_core"
+    }
+  },
+  "result": {
+    "item": "smokeleafindustry:hemp_machine_block",
+    "count": 1
+  }
+}

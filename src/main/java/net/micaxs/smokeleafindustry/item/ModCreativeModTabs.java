@@ -65,16 +65,17 @@ public class ModCreativeModTabs {
                         pOutput.accept(ModItems.BONG.get());
                         pOutput.accept(ModItems.BLUNT.get());
                         pOutput.accept(ModItems.GRINDER.get());
-                        pOutput.accept(ModItems.HASH_BROWNIE.get());
+                        pOutput.accept(ModItems.HERB_CAKE.get());
 
                         pOutput.accept(ModBlocks.HEMP_STONE.get());
                         pOutput.accept(ModBlocks.HEMP_PLANKS.get());
                         pOutput.accept(ModItems.HEMP_STICK.get());
                         pOutput.accept(ModItems.HEMP_CORE.get());
 
+                        pOutput.accept(ModBlocks.HEMP_MACHINE_BLOCK.get());
+                        pOutput.accept(ModBlocks.HERB_GENERATOR.get());
                         pOutput.accept(ModBlocks.HERB_GRINDER_STATION.get());
                         pOutput.accept(ModBlocks.HERB_EXTRACTOR.get());
-                        pOutput.accept(ModBlocks.HERB_GENERATOR.get());
                         pOutput.accept(ModBlocks.HERB_MUTATION.get());
                         pOutput.accept(ModBlocks.HERB_EVAPORATOR.get());
                     })

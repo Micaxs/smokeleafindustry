@@ -12,6 +12,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -77,7 +78,8 @@ public class BluntItem extends Item {
             String effectId = tag.getString("effect");
             MobEffect effect = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(effectId));
             if (effect != null) {
-                pLivingEntity.addEffect(new MobEffectInstance(effect, 1200, 1));
+                int duration = effect == MobEffects.LEVITATION ? 60 : 1200;
+                pLivingEntity.addEffect(new MobEffectInstance(effect, duration, 1));
             }
         }
         mainhandItem.shrink(1);

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "FSF",
+    "FFF"
+  ],
+  "key": {
+    "F": {
+      "item": "minecraft:iron_ingot"
+    },
+    "S": {
+      "item": "smokeleafindustry:white_widow_bud"
+    }
+  },
+  "result": {
+    "item": "smokeleafindustry:grinder",
+    "count": 1
+  }
+}

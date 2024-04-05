@@ -1,19 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
     "pattern": [
-        "AAA",
+        "   ",
         "P#P",
         "PFP"
     ],
     "key": {
-        "A": {
-          "item": "minecraft:stone"
-        },
         "P": {
             "item": "minecraft:iron_ingot"
         },
         "#": {
-            "item": "smokeleafindustry:white_widow_bud"
+            "item": "smokeleafindustry:hemp_core"
         },
         "F": {
           "item": "minecraft:furnace"

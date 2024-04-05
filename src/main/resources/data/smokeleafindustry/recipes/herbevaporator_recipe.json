@@ -7,17 +7,17 @@
     ],
     "key": {
         "P": {
-            "item": "minecraft:iron_ingot"
+            "item": "minecraft:copper_ingot"
         },
         "#": {
             "item": "smokeleafindustry:hemp_machine_block"
         },
         "S": {
-          "item": "minecraft:enchanting_table"
+          "item": "minecraft:smoker"
         }
     },
     "result": {
-        "item": "smokeleafindustry:herb_mutation",
+        "item": "smokeleafindustry:herb_evaporator",
         "count": 1
     }
 }

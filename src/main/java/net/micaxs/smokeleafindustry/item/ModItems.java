@@ -65,7 +65,7 @@ public class ModItems {
     public static final RegistryObject<Item> BUBBLEGUM_BUD = ITEMS.register("bubblegum_bud",
             () -> new BaseBudItem(new Item.Properties()));
     public static final RegistryObject<Item> BUBBLEGUM_WEED = ITEMS.register("bubblegum_weed",
-            () -> new BaseWeedItem(new Item.Properties(), MobEffects.LEVITATION, 400, 1));
+            () -> new BaseWeedItem(new Item.Properties(), MobEffects.LEVITATION, 20, 1));
 
 
     /* Extracts */
@@ -111,8 +111,8 @@ public class ModItems {
             () -> new BluntItem(new Item.Properties().stacksTo(64)));
 
 
-    public static final RegistryObject<Item> HASH_BROWNIE = ITEMS.register("hash_brownie",
-            () -> new Item(new Item.Properties().food(ModFoods.HASH_BROWNIE)));
+    public static final RegistryObject<Item> HERB_CAKE = ITEMS.register("herb_cake",
+            () -> new Item(new Item.Properties().food(ModFoods.HERB_CAKE)));
     public static final RegistryObject<Item> HEMP_STICK = ITEMS.register("hemp_stick",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> HEMP_CORE = ITEMS.register("hemp_core",

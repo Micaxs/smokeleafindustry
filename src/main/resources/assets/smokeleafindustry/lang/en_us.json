@@ -23,14 +23,16 @@
   "item.smokeleafindustry.bubblegum_weed": "Bubblegum Weed",
   "item.smokeleafindustry.bubblegum_seeds": "Bubblegum Seeds",
 
-  "item.smokeleafindustry.hash_brownie": "Hash Brownie",
+  "item.smokeleafindustry.herb_cake": "Weed Cake",
   "item.smokeleafindustry.bong": "Glass Bong",
+  "item.smokeleafindustry.hemp_core": "Hemp Core",
 
-  "block.smokeleafindustry.herb_grinder_station": "Herb Grinder",
-  "block.smokeleafindustry.herb_extractor": "Herb Extractor",
-  "block.smokeleafindustry.herb_generator": "Herb Energy Generator",
-  "block.smokeleafindustry.herb_mutation": "Herb Mutator",
-  "block.smokeleafindustry.herb_evaporator": "Herb Evaporator",
+  "block.smokeleafindustry.hemp_machine_block": "Hemp Machine Block",
+  "block.smokeleafindustry.herb_grinder_station": "Weed Grinder",
+  "block.smokeleafindustry.herb_extractor": "Weed Liquifier",
+  "block.smokeleafindustry.herb_generator": "Weed Generator",
+  "block.smokeleafindustry.herb_mutation": "Seed Mutator",
+  "block.smokeleafindustry.herb_evaporator": "Weed Extractor",
 
   "block.smokeleafindustry.hemp_stone": "Hemp Stone",
   "block.smokeleafindustry.hemp_planks": "Hemp Planks",
