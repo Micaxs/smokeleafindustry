@@ -1,0 +1,12 @@
+{
+  "type": "crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "smokeleafindustry:sour_diesel_bag"
+    }
+  ],
+  "result": {
+    "item": "smokeleafindustry:sour_diesel_weed",
+    "count": 8
+  }
+}

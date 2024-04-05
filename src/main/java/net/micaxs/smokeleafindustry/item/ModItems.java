@@ -87,26 +87,24 @@ public class ModItems {
 
     // Baggies
     public static final RegistryObject<Item> EMPTY_BAG = ITEMS.register("empty_bag",
-            () -> new Item(new Item.Properties().stacksTo(64)));
+            () -> new BaseBagItem(new Item.Properties().stacksTo(64), "tooltip.smokeleafindustry.empty_bag"));
     public static final RegistryObject<Item> WHITE_WIDOW_BAG = ITEMS.register("white_widow_bag",
-            () -> new Item(new Item.Properties().stacksTo(64)));
+            () -> new BaseBagItem(new Item.Properties().stacksTo(64), "tooltip.smokeleafindustry.white_widow_bag"));
     public static final RegistryObject<Item> BLUE_ICE_BAG = ITEMS.register("blue_ice_bag",
-            () -> new Item(new Item.Properties().stacksTo(64)));
+            () -> new BaseBagItem(new Item.Properties().stacksTo(64), "tooltip.smokeleafindustry.blue_ice_bag"));
     public static final RegistryObject<Item> BUBBLEGUM_BAG = ITEMS.register("bubblegum_bag",
-            () -> new Item(new Item.Properties().stacksTo(64)));
+            () -> new BaseBagItem(new Item.Properties().stacksTo(64), "tooltip.smokeleafindustry.bubblegum_bag"));
     public static final RegistryObject<Item> BUBBLE_KUSH_BAG = ITEMS.register("bubble_kush_bag",
-            () -> new Item(new Item.Properties().stacksTo(64)));
+            () -> new BaseBagItem(new Item.Properties().stacksTo(64), "tooltip.smokeleafindustry.bubble_kush_bag"));
     public static final RegistryObject<Item> LEMON_HAZE_BAG = ITEMS.register("lemon_haze_bag",
-            () -> new Item(new Item.Properties().stacksTo(64)));
+            () -> new BaseBagItem(new Item.Properties().stacksTo(64), "tooltip.smokeleafindustry.lemon_haze_bag"));
     public static final RegistryObject<Item> SOUR_DIESEL_BAG = ITEMS.register("sour_diesel_bag",
-            () -> new Item(new Item.Properties().stacksTo(64)));
+            () -> new BaseBagItem(new Item.Properties().stacksTo(64), "tooltip.smokeleafindustry.sour_diesel_bag"));
 
     public static final RegistryObject<Item> HASH_OIL_BUCKET = ITEMS.register("hash_oil_bucket",
             () -> new BucketItem(ModFluids.SOURCE_HASH_OIL, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-
     public static final RegistryObject<Item> GRINDER = ITEMS.register("grinder",
-            () -> new ManualGrinder(new Item.Properties().stacksTo(1).durability(32)));
-
+            () -> new ManualGrinder(new Item.Properties().stacksTo(1).durability(16)));
     public static final RegistryObject<Item> BONG = ITEMS.register("bong",
             () -> new BongItem(new Item.Properties().stacksTo(1).fireResistant()));
     public static final RegistryObject<Item> BLUNT = ITEMS.register("blunt",
@@ -115,7 +113,6 @@ public class ModItems {
 
     public static final RegistryObject<Item> HASH_BROWNIE = ITEMS.register("hash_brownie",
             () -> new Item(new Item.Properties().food(ModFoods.HASH_BROWNIE)));
-
     public static final RegistryObject<Item> HEMP_STICK = ITEMS.register("hemp_stick",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> HEMP_CORE = ITEMS.register("hemp_core",

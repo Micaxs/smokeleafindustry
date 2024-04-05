@@ -1,0 +1,12 @@
+{
+  "type": "crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "smokeleafindustry:bubble_kush_bag"
+    }
+  ],
+  "result": {
+    "item": "smokeleafindustry:bubble_kush_weed",
+    "count": 8
+  }
+}

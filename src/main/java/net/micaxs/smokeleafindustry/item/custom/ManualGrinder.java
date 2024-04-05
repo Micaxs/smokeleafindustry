@@ -1,16 +1,21 @@
 package net.micaxs.smokeleafindustry.item.custom;
 
 import net.micaxs.smokeleafindustry.item.ModItems;
-import net.minecraft.sounds.SoundEvent;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.HitResult;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class ManualGrinder extends Item {
     public ManualGrinder(Properties pProperties) {
@@ -35,10 +40,6 @@ public class ManualGrinder extends Item {
 
     // TODO: Add all the Buds here...
     public static boolean isValidMainHandItem(ItemStack pStack) {
-
-        System.out.println("Checking if item is valid...");
-        System.out.println("Item: " + pStack.getItem());
-
         return pStack.getItem() == ModItems.WHITE_WIDOW_BUD.get() ||
                 pStack.getItem() == ModItems.BUBBLEGUM_BUD.get() ||
                 pStack.getItem() == ModItems.BLUE_ICE_BUD.get() ||
@@ -69,10 +70,9 @@ public class ManualGrinder extends Item {
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         if (pPlayer.getItemInHand(InteractionHand.OFF_HAND).getItem() == ModItems.GRINDER.get() && isValidMainHandItem(pPlayer.getItemInHand(InteractionHand.MAIN_HAND))) {
             ItemStack grinderStack = pPlayer.getItemInHand(InteractionHand.OFF_HAND);
-            if (grinderStack.getDamageValue() < grinderStack.getMaxDamage() - 1) {
+            if (grinderStack.getDamageValue() < grinderStack.getMaxDamage()) { // Allow use if durability is exactly 1
                 if (!pPlayer.isShiftKeyDown()) {
                     pPlayer.startUsingItem(pUsedHand);
-                    grinderStack.hurtAndBreak(1, pPlayer, (entity) -> entity.broadcastBreakEvent(InteractionHand.OFF_HAND));
                     pPlayer.setItemInHand(InteractionHand.OFF_HAND, grinderStack);
                 }
                 return InteractionResultHolder.success(grinderStack);
@@ -94,8 +94,24 @@ public class ManualGrinder extends Item {
                 }
                 budStack.shrink(1);
             }
+
+            // Check if the grinder's durability is 0 and remove it if so
+            ItemStack grinderStack = pPlayer.getItemInHand(InteractionHand.OFF_HAND);
+            grinderStack.hurtAndBreak(1, pPlayer, (entity) -> entity.broadcastBreakEvent(InteractionHand.OFF_HAND));
+            if (grinderStack.getDamageValue() >= grinderStack.getMaxDamage()) {
+                pPlayer.playSound(SoundEvents.CHAIN_BREAK, 1.0F, 1.0F);
+                pPlayer.setItemInHand(InteractionHand.OFF_HAND, ItemStack.EMPTY);
+            }
         }
         return pStack;
     }
 
+    @Override
+    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+        super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
+
+        pTooltipComponents.add(Component.translatable("tooltip.smokeleafindustry.grinder").withStyle(ChatFormatting.GRAY));
+    }
+
+    // TODO: Replace eating sound with grinding sound
 }

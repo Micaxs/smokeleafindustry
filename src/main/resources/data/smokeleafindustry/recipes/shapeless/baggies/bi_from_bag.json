@@ -1,0 +1,12 @@
+{
+  "type": "crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "smokeleafindustry:blue_ice_bag"
+    }
+  ],
+  "result": {
+    "item": "smokeleafindustry:blue_ice_weed",
+    "count": 8
+  }
+}
