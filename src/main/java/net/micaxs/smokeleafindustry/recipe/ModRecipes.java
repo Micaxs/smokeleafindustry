@@ -14,9 +14,6 @@ public class ModRecipes {
     public static final RegistryObject<RecipeSerializer<HerbGrinderRecipe>> HERB_GRINDER_SERIALIZER =
             SERIALIZERS.register("herb_grinder", () -> HerbGrinderRecipe.Serializer.INSTANCE);
 
-    public static final RegistryObject<RecipeSerializer<HerbExtractorRecipe>> HERB_EXTRACTOR_SERIALIZER =
-            SERIALIZERS.register("herb_extractor", () -> HerbExtractorRecipe.Serializer.INSTANCE);
-
     public static final RegistryObject<RecipeSerializer<HerbMutationRecipe>> HERB_MUTATION_SERIALIZER =
             SERIALIZERS.register("herb_mutation", () -> HerbMutationRecipe.Serializer.INSTANCE);
 

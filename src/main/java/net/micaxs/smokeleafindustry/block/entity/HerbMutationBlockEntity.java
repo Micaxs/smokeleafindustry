@@ -59,7 +59,7 @@ public class HerbMutationBlockEntity extends BlockEntity implements MenuProvider
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
             return switch (slot) {
                 case 0 -> stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).isPresent();
-                case 1 -> stack.getItem() == ModItems.BUBBLE_KUSH_BUD.get() || stack.getItem() == ModItems.WHITE_WIDOW_BUD.get();
+                case 1 -> true;
                 case 3 -> false; // Don't put stuff in output slot bro.
                 default -> super.isItemValid(slot, stack);
             };

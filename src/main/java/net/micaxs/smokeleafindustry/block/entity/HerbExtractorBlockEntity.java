@@ -1,14 +1,11 @@
 package net.micaxs.smokeleafindustry.block.entity;
 
 import net.micaxs.smokeleafindustry.fluid.ModFluids;
-import net.micaxs.smokeleafindustry.item.ModItems;
 import net.micaxs.smokeleafindustry.item.custom.BaseWeedItem;
-import net.micaxs.smokeleafindustry.recipe.HerbExtractorRecipe;
 import net.micaxs.smokeleafindustry.screen.HerbExtractorMenu;
 import net.micaxs.smokeleafindustry.utils.ModEnergyStorage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
@@ -21,14 +18,10 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Fluids;
-import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
@@ -39,9 +32,6 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-
-import java.util.Optional;
 
 public class HerbExtractorBlockEntity extends BlockEntity implements MenuProvider {
 

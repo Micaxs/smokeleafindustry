@@ -2,12 +2,12 @@
   "type": "smokeleafindustry:herb_mutation",
   "ingredients": [
     {
-      "item": "smokeleafindustry:bubble_kush_bud",
+      "item": "smokeleafindustry:sour_diesel_seeds",
       "count": 1
     },
     {
-      "item": "minecraft:coal",
-      "count": 2
+      "item": "smokeleafindustry:blueice_extract",
+      "count": 4
     }
   ],
   "fluid": {
@@ -15,6 +15,6 @@
     "Amount": 250
   },
   "output": {
-    "item": "smokeleafindustry:white_widow_bud"
+    "item": "smokeleafindustry:blue_ice_seeds"
   }
 }

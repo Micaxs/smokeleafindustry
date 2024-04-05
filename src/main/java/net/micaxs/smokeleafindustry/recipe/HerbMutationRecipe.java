@@ -115,11 +115,9 @@ public class HerbMutationRecipe implements Recipe<SimpleContainer> {
         public @Nullable HerbMutationRecipe fromNetwork(ResourceLocation pRecipeId, FriendlyByteBuf pBuffer) {
             NonNullList<Ingredient> inputs = NonNullList.withSize(pBuffer.readInt(), Ingredient.EMPTY);
             FluidStack fluid = pBuffer.readFluidStack();
-
             for (int i = 0; i < inputs.size(); i++) {
                 inputs.set(i, Ingredient.fromNetwork(pBuffer));
             }
-
             ItemStack output = pBuffer.readItem();
 
             return new HerbMutationRecipe(inputs, output, pRecipeId, fluid);
