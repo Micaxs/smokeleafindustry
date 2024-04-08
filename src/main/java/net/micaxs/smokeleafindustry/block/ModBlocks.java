@@ -71,6 +71,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> HEMP_MACHINE_BLOCK = registerBlock("hemp_machine_block",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
 
+    public static final RegistryObject<Block> GROW_LIGHT = registerBlock("grow_light",
+            () -> new GrowLightBlock(BlockBehaviour.Properties.copy(Blocks.GLOWSTONE).noOcclusion()));
 
     // Fluid Stuff
     public static final RegistryObject<LiquidBlock> HASH_OIL_BLOCK = BLOCKS.register("hash_oil_block",

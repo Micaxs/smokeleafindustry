@@ -49,15 +49,19 @@ public class BongItem extends Item {
                     if (existingMobEffect.equals(newMobEffect)) {
                         effectExists = true;
                         int existingDuration = existingEffect.getDuration();
-                        int newDuration = existingDuration + weedItem.getDuration();
+                        int newDuration = weedItem.getDuration() > 0 ? existingDuration + weedItem.getDuration() : 2410;
                         newDuration = Math.min(newDuration, 2410);
                         effects.remove(newEffect);
-                        updatedEffects.add(new MobEffectInstance(newMobEffect, newDuration, existingEffect.getAmplifier(), existingEffect.isAmbient(), existingEffect.isVisible()));
+                        if (updatedEffects.stream().noneMatch(effect -> effect.getEffect().equals(newMobEffect))) {
+                            updatedEffects.add(new MobEffectInstance(newMobEffect, newDuration, existingEffect.getAmplifier(), existingEffect.isAmbient(), existingEffect.isVisible()));
+                        }
                         break;
                     }
                 }
                 if (!effectExists) {
-                    updatedEffects.add(newEffect);
+                    if (updatedEffects.stream().noneMatch(effect -> effect.getEffect().equals(newEffect.getEffect()))) {
+                        updatedEffects.add(new MobEffectInstance(newEffect.getEffect(), weedItem.getDuration() > 0 ? weedItem.getDuration() : 2410, newEffect.getAmplifier(), newEffect.isAmbient(), newEffect.isVisible()));
+                    }
                 }
             }
             effects.addAll(updatedEffects);

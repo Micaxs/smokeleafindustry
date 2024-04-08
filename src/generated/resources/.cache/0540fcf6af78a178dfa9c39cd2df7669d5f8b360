@@ -1,0 +1,4 @@
+// 1.20.1	2024-04-07T23:48:33.48833599	Global Loot Modifiers : smokeleafindustry
+da34ede4da0a8329997ab16784fb67704a2bb55b data/forge/loot_modifiers/global_loot_modifiers.json
+3c3c3a3f48e7f3ca084834f691ebfcacc210c502 data/smokeleafindustry/loot_modifiers/bubble_kush_seeds_from_grass.json
+9deea0cafea6b9c98c24884174dbe3feda5aeab5 data/smokeleafindustry/loot_modifiers/white_widow_seeds_from_grass.json

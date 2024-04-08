@@ -27,79 +27,91 @@ public class ModEvents {
 
             // Level 1 Trades
             trades.get(1).add((pTrader, pRandom) -> new MerchantOffer(
-                    new ItemStack(Items.EMERALD, 2),
-                    new ItemStack(ModItems.WHITE_WIDOW_SEEDS.get(), 1),
-                    5, 3, 0.02f));
+                    new ItemStack(Items.DIAMOND, 2),
+                    new ItemStack(ModItems.WHITE_WIDOW_BAG.get(), 1),
+                    64, 3, 0.02f));
 
             trades.get(1).add((pTrader, pRandom) -> new MerchantOffer(
-                    new ItemStack(Items.EMERALD, 1),
-                    new ItemStack(ModItems.WHITE_WIDOW_WEED.get(), 2),
-                    5, 6, 0.02f));
+                    new ItemStack(Items.DIAMOND, 5),
+                    new ItemStack(ModItems.BUBBLE_KUSH_BAG.get(), 1),
+                    64, 3, 0.02f));
 
             trades.get(1).add((pTrader, pRandom) -> new MerchantOffer(
-                    new ItemStack(Items.EMERALD, 3),
-                    new ItemStack(ModItems.LEMON_HAZE_WEED.get(), 2),
-                    5, 6, 0.02f));
+                    new ItemStack(Items.DIAMOND, 8),
+                    new ItemStack(ModItems.LEMON_HAZE_BAG.get(), 1),
+                    64, 3, 0.02f));
 
             trades.get(1).add((pTrader, pRandom) -> new MerchantOffer(
-                    new ItemStack(ModItems.WHITE_WIDOW_SEEDS.get(), 3),
-                    new ItemStack(Items.EMERALD, 1),
-                    10, 4, 0.02f));
+                    new ItemStack(Items.DIAMOND, 12),
+                    new ItemStack(ModItems.SOUR_DIESEL_BAG.get(), 1),
+                    64, 3, 0.02f));
 
+            trades.get(1).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemStack(Items.DIAMOND, 16),
+                    new ItemStack(ModItems.BLUE_ICE_BAG.get(), 1),
+                    64, 3, 0.02f));
+
+            trades.get(1).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemStack(Items.DIAMOND, 20),
+                    new ItemStack(ModItems.BUBBLEGUM_BAG.get(), 1),
+                    64, 3, 0.02f));
 
             // Level 2 Trades
             trades.get(2).add((pTrader, pRandom) -> new MerchantOffer(
-                    new ItemStack(Items.EMERALD, 3),
-                    new ItemStack(ModItems.BUBBLE_KUSH_SEEDS.get(), 1),
-                    6, 6, 0.035f));
+                    new ItemStack(Items.DIAMOND, 8),
+                    new ItemStack(ModItems.LEMON_HAZE_BAG.get(), 1),
+                    64, 3, 0.02f));
 
             trades.get(2).add((pTrader, pRandom) -> new MerchantOffer(
-                    new ItemStack(Items.EMERALD, 3),
-                    new ItemStack(ModItems.BUBBLE_KUSH_WEED.get(), 1),
-                    8, 8, 0.035f));
+                    new ItemStack(Items.DIAMOND, 12),
+                    new ItemStack(ModItems.SOUR_DIESEL_BAG.get(), 1),
+                    64, 3, 0.02f));
 
             trades.get(2).add((pTrader, pRandom) -> new MerchantOffer(
-                    new ItemStack(ModItems.BUBBLE_KUSH_SEEDS.get(), 2),
-                    new ItemStack(Items.EMERALD, 1),
-                    10, 12, 0.035f));
+                    new ItemStack(Items.DIAMOND, 16),
+                    new ItemStack(ModItems.BLUE_ICE_BAG.get(), 1),
+                    64, 3, 0.02f));
 
+            trades.get(2).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemStack(Items.DIAMOND, 20),
+                    new ItemStack(ModItems.BUBBLEGUM_BAG.get(), 1),
+                    64, 3, 0.02f));
 
             // Level 3 Trades
             trades.get(3).add((pTrader, pRandom) -> new MerchantOffer(
-                    new ItemStack(Items.EMERALD, 8),
-                    new ItemStack(ModItems.LEMON_HAZE_SEEDS.get(), 1),
-                    8, 10, 0.035f));
+                    new ItemStack(Items.DIAMOND, 12),
+                    new ItemStack(ModItems.SOUR_DIESEL_BAG.get(), 1),
+                    64, 3, 0.02f));
 
             trades.get(3).add((pTrader, pRandom) -> new MerchantOffer(
-                    new ItemStack(Items.EMERALD, 4),
-                    new ItemStack(ModItems.BUBBLEGUM_WEED.get(), 1),
-                    8, 8, 0.035f));
+                    new ItemStack(Items.DIAMOND, 16),
+                    new ItemStack(ModItems.BLUE_ICE_BAG.get(), 1),
+                    64, 3, 0.02f));
 
             trades.get(3).add((pTrader, pRandom) -> new MerchantOffer(
-                    new ItemStack(Items.EMERALD, 4),
-                    new ItemStack(ModItems.SOUR_DIESEL_WEED.get(), 1),
-                    8, 11, 0.035f));
-
+                    new ItemStack(Items.DIAMOND, 20),
+                    new ItemStack(ModItems.BUBBLEGUM_BAG.get(), 1),
+                    64, 3, 0.02f));
 
             // Level 4 Trades
             trades.get(4).add((pTrader, pRandom) -> new MerchantOffer(
-                    new ItemStack(Items.EMERALD, 12),
-                    new ItemStack(ModItems.SOUR_DIESEL_SEEDS.get(), 1),
-                    10, 16, 0.035f));
+                    new ItemStack(Items.DIAMOND, 16),
+                    new ItemStack(ModItems.BLUE_ICE_BAG.get(), 1),
+                    64, 3, 0.02f));
 
-            // Level 5 Trades
-            trades.get(5).add((pTrader, pRandom) -> new MerchantOffer(
-                    new ItemStack(Items.EMERALD, 16),
-                    new ItemStack(ModItems.BLUE_ICE_SEEDS.get(), 1),
-                    6, 18, 0.035f));
-
-            trades.get(5).add((pTrader, pRandom) -> new MerchantOffer(
-                    new ItemStack(Items.EMERALD, 20),
-                    new ItemStack(ModItems.BUBBLEGUM_SEEDS.get(), 1),
-                    6, 20, 0.035f));
+            trades.get(4).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemStack(Items.DIAMOND, 20),
+                    new ItemStack(ModItems.BUBBLEGUM_BAG.get(), 1),
+                    64, 3, 0.02f));
 
         }
 
     }
 
 }
+
+//mcmeta
+//animation {
+//    interpolate
+//
+//}

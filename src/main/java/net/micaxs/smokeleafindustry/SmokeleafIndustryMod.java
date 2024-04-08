@@ -8,6 +8,7 @@ import net.micaxs.smokeleafindustry.fluid.ModFluidTypes;
 import net.micaxs.smokeleafindustry.fluid.ModFluids;
 import net.micaxs.smokeleafindustry.item.ModCreativeModTabs;
 import net.micaxs.smokeleafindustry.item.ModItems;
+import net.micaxs.smokeleafindustry.loot.ModLootModifiers;
 import net.micaxs.smokeleafindustry.network.PacketHandler;
 import net.micaxs.smokeleafindustry.recipe.ModRecipes;
 import net.micaxs.smokeleafindustry.screen.*;
@@ -40,29 +41,19 @@ public class SmokeleafIndustryMod
 
     public SmokeleafIndustryMod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
         ModCreativeModTabs.register(modEventBus);
-
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
-
         ModBlockEntities.register(modEventBus);
-
         ModMenuTypes.register(modEventBus);
-
         ModRecipes.register(modEventBus);
-
         ModSounds.register(modEventBus);
-
         ModFluids.register(modEventBus);
         ModFluidTypes.register(modEventBus);
-
         ModEffects.register(modEventBus);
-
         ModVillagers.register(modEventBus);
-
+        ModLootModifiers.register(modEventBus);
         modEventBus.addListener(this::commonSetup);
-
         MinecraftForge.EVENT_BUS.register(this);
         modEventBus.addListener(this::addCreative);
     }

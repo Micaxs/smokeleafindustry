@@ -31,6 +31,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         horizontalBlock(ModBlocks.HERB_EVAPORATOR.get(),
                 new ModelFile.UncheckedModelFile(modLoc("block/herb_evaporator")));
 
+        horizontalBlock(ModBlocks.GROW_LIGHT.get(),
+                new ModelFile.UncheckedModelFile(modLoc("block/grow_light")));
+
         //makeWhiteWidowCrop((CropBlock) ModBlocks.WHITE_WIDOW_CROP.get(), "white_widow_stage_", "white_widow_stage_");
         //makeBubbleKushCrop(((CropBlock) ModBlocks.BUBBLE_KUSH_CROP.get()), "bubble_kush_stage_", "bubble_kush_stage_");
     }

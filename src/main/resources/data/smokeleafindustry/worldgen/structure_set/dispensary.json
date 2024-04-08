@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "smokeleafindustry:dispensary",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 793236637,
+    "spacing": 30,
+    "separation": 18,
+    "type": "minecraft:random_spread"
+  }
+}
