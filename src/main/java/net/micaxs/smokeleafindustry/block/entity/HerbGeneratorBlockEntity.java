@@ -206,10 +206,10 @@ public class HerbGeneratorBlockEntity extends BlockEntity implements MenuProvide
 
         if (!stack.isEmpty()) {
             if (stack.getItem() instanceof BaseWeedItem) {
-                return 50;
+                return 80;
             }
             else if (stack.getItem() instanceof BaseBudItem) {
-                return 100;
+                return 160;
             }
         }
         return 0; // Default burn time if no match is found

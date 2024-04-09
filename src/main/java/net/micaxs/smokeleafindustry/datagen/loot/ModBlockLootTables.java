@@ -36,11 +36,10 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.HERB_EVAPORATOR.get());
         this.dropSelf(ModBlocks.HEMP_MACHINE_BLOCK.get());
         this.dropSelf(ModBlocks.GROW_LIGHT.get());
-
         this.dropSelf(ModBlocks.HEMP_STONE.get());
         this.dropSelf(ModBlocks.HEMP_PLANKS.get());
-
         this.dropSelf(ModBlocks.HASH_OIL_BLOCK.get());
+
 
         addCropLoot(ModBlocks.WHITE_WIDOW_CROP, ModItems::getWhiteWidowBud, ModItems::getWhiteWidowSeeds);
         addCropLoot(ModBlocks.BUBBLE_KUSH_CROP, ModItems::getBubbleKushBud, ModItems::getBubbleKushSeeds);
@@ -48,6 +47,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         addCropLoot(ModBlocks.SOUR_DIESEL_CROP, ModItems::getSourDieselBud, ModItems::getSourDieselSeeds);
         addCropLoot(ModBlocks.BLUE_ICE_CROP, ModItems::getBlueIceBud, ModItems::getBlueIceSeeds);
         addCropLoot(ModBlocks.BUBBLEGUM_CROP, ModItems::getBubblegumBud, ModItems::getBubblegumSeeds);
+        addCropLoot(ModBlocks.PURPLE_HAZE_CROP, ModItems::getPurpleHazeBud, ModItems::getPurpleHazeSeeds);
     }
 
     private void addCropLoot(RegistryObject<Block> cropBlock, Supplier<Item> budSupplier, Supplier<Item> seedsSupplier) {

@@ -1,4 +1,4 @@
-// 1.20.1	2024-04-04T21:07:13.805686806	Item Models: smokeleafindustry
+// 1.20.1	2024-04-09T06:17:02.083359544	Item Models: smokeleafindustry
 ac148d8fb55e41c932abaae5316d44f54fd25283 assets/smokeleafindustry/models/item/blue_ice_bag.json
 7859eee4c80a6bbac7773f6d79dd1e3bb269ba5c assets/smokeleafindustry/models/item/blue_ice_bud.json
 0f861291c3119e6507e09b3d5e0461754fca62a0 assets/smokeleafindustry/models/item/blue_ice_seeds.json
@@ -18,6 +18,10 @@ b6b458f2594ba821e568ddb68f6737f3f232077f assets/smokeleafindustry/models/item/gr
 10ed643d8918a3726d84be5eefc61d3deb40966f assets/smokeleafindustry/models/item/hemp_stick.json
 fb9ce58852b4f2af13e7da740d01fe5a3d670a6e assets/smokeleafindustry/models/item/lemon_haze_bag.json
 e5e7c426cec6ad9982154bff23e98e71412fce11 assets/smokeleafindustry/models/item/lemon_haze_seeds.json
+8f1b564ccef03c08fa7f9d2b2f853e78eab3801f assets/smokeleafindustry/models/item/purple_haze_bag.json
+af4cc5068bce0984d47aab58f7cd33f8b6a2f0ce assets/smokeleafindustry/models/item/purple_haze_bud.json
+2de8ee049278792ee6f06aad01967530ed8f5aa1 assets/smokeleafindustry/models/item/purple_haze_seeds.json
+bef3722f993a864a7f1f38f8b27fe04581d1c133 assets/smokeleafindustry/models/item/purple_haze_weed.json
 cd9b0791e731c22c9e125a57072dbc3ea82c20c3 assets/smokeleafindustry/models/item/sour_diesel_bag.json
 1f8d42a5510297e6fb56c77b87173ce33c752d01 assets/smokeleafindustry/models/item/sour_diesel_seeds.json
 0d72a1ed7f5f3cec78a69c5b622012dd1034f6df assets/smokeleafindustry/models/item/white_widow_bag.json

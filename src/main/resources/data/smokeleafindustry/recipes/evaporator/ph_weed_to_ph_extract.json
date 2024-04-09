@@ -1,0 +1,12 @@
+{
+  "type": "smokeleafindustry:herb_evaporator",
+  "ingredients": [
+    {
+      "item": "smokeleafindustry:purple_haze_weed"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "item": "smokeleafindustry:purplehaze_extract"
+  }
+}

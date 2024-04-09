@@ -43,6 +43,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> BUBBLEGUM_CROP = BLOCKS.register("bubblegum_crop",
             () -> new BaseWeedCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission(),
                     ModItems::getBubblegumSeeds, ModItems::getBubblegumBud));
+    public static final RegistryObject<Block> PURPLE_HAZE_CROP = BLOCKS.register("purple_haze_crop",
+            () -> new BaseWeedCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission(),
+                    ModItems::getPurpleHazeSeeds, ModItems::getPurpleHazeBud));
 
 
     // Machines

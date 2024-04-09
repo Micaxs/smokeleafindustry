@@ -42,6 +42,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.BUBBLEGUM_SEEDS);
         simpleItem(ModItems.BUBBLEGUM_BUD);
         simpleItem(ModItems.BUBBLEGUM_WEED);
+        simpleItem(ModItems.PURPLE_HAZE_SEEDS);
+        simpleItem(ModItems.PURPLE_HAZE_BUD);
+        simpleItem(ModItems.PURPLE_HAZE_WEED);
 
         simpleItem(ModItems.EMPTY_BAG);
         simpleItem(ModItems.WHITE_WIDOW_BAG);
@@ -50,6 +53,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.SOUR_DIESEL_BAG);
         simpleItem(ModItems.BLUE_ICE_BAG);
         simpleItem(ModItems.BUBBLEGUM_BAG);
+        simpleItem(ModItems.PURPLE_HAZE_BAG);
 
         simpleItem(ModItems.BLUNT);
         simpleItem(ModItems.GRINDER);

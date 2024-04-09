@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WWW",
+    "WWW",
+    "WWB"
+  ],
+  "key": {
+    "W": {
+      "item": "smokeleafindustry:purple_haze_weed"
+    },
+    "B": {
+      "item": "smokeleafindustry:empty_bag"
+    }
+  },
+  "result": {
+    "item": "smokeleafindustry:purple_haze_bag",
+    "count": 1
+  }
+}

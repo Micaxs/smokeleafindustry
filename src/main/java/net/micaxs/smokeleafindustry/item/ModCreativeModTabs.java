@@ -25,6 +25,7 @@ public class ModCreativeModTabs {
                         pOutput.accept(ModItems.SOUR_DIESEL_BUD.get());
                         pOutput.accept(ModItems.BLUE_ICE_BUD.get());
                         pOutput.accept(ModItems.BUBBLEGUM_BUD.get());
+                        pOutput.accept(ModItems.PURPLE_HAZE_BUD.get());
 
                         // Weed
                         pOutput.accept(ModItems.WHITE_WIDOW_WEED.get());
@@ -33,6 +34,7 @@ public class ModCreativeModTabs {
                         pOutput.accept(ModItems.SOUR_DIESEL_WEED.get());
                         pOutput.accept(ModItems.BLUE_ICE_WEED.get());
                         pOutput.accept(ModItems.BUBBLEGUM_WEED.get());
+                        pOutput.accept(ModItems.PURPLE_HAZE_WEED.get());
 
                         // Seeds
                         pOutput.accept(ModItems.WHITE_WIDOW_SEEDS.get());
@@ -41,6 +43,7 @@ public class ModCreativeModTabs {
                         pOutput.accept(ModItems.SOUR_DIESEL_SEEDS.get());
                         pOutput.accept(ModItems.BLUE_ICE_SEEDS.get());
                         pOutput.accept(ModItems.BUBBLEGUM_SEEDS.get());
+                        pOutput.accept(ModItems.PURPLE_HAZE_SEEDS.get());
 
                         // Extracts
                         pOutput.accept(ModItems.PURPLE_HAZE_EXTRACT.get());
@@ -59,6 +62,7 @@ public class ModCreativeModTabs {
                         pOutput.accept(ModItems.SOUR_DIESEL_BAG.get());
                         pOutput.accept(ModItems.BLUE_ICE_BAG.get());
                         pOutput.accept(ModItems.BUBBLEGUM_BAG.get());
+                        pOutput.accept(ModItems.PURPLE_HAZE_BAG.get());
 
                         // Other Items
                         pOutput.accept(ModItems.HASH_OIL_BUCKET.get());

@@ -67,6 +67,15 @@ public class ModItems {
     public static final RegistryObject<Item> BUBBLEGUM_WEED = ITEMS.register("bubblegum_weed",
             () -> new BaseWeedItem(new Item.Properties(), MobEffects.LEVITATION, 20, 1));
 
+    // Purple Haze
+    public static final RegistryObject<Item> PURPLE_HAZE_SEEDS = ITEMS.register("purple_haze_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.PURPLE_HAZE_CROP.get(), new Item.Properties()));
+    public static final RegistryObject<Item> PURPLE_HAZE_BUD = ITEMS.register("purple_haze_bud",
+            () -> new BaseBudItem(new Item.Properties()));
+    public static final RegistryObject<Item> PURPLE_HAZE_WEED = ITEMS.register("purple_haze_weed",
+            () -> new BaseWeedItem(new Item.Properties(), MobEffects.INVISIBILITY, 400, 1));
+
+
 
     /* Extracts */
     public static final RegistryObject<Item> BLUE_ICE_EXTRACT = ITEMS.register("blueice_extract",
@@ -85,7 +94,7 @@ public class ModItems {
             () -> new Item(new Item.Properties().stacksTo(64)));
 
 
-    // Baggies
+    /* Baggies */
     public static final RegistryObject<Item> EMPTY_BAG = ITEMS.register("empty_bag",
             () -> new BaseBagItem(new Item.Properties().stacksTo(64), "tooltip.smokeleafindustry.empty_bag"));
     public static final RegistryObject<Item> WHITE_WIDOW_BAG = ITEMS.register("white_widow_bag",
@@ -100,7 +109,11 @@ public class ModItems {
             () -> new BaseBagItem(new Item.Properties().stacksTo(64), "tooltip.smokeleafindustry.lemon_haze_bag"));
     public static final RegistryObject<Item> SOUR_DIESEL_BAG = ITEMS.register("sour_diesel_bag",
             () -> new BaseBagItem(new Item.Properties().stacksTo(64), "tooltip.smokeleafindustry.sour_diesel_bag"));
+    public static final RegistryObject<Item> PURPLE_HAZE_BAG = ITEMS.register("purple_haze_bag",
+            () -> new BaseBagItem(new Item.Properties().stacksTo(64), "tooltip.smokeleafindustry.purple_haze_bag"));
 
+
+    /* Other Items */
     public static final RegistryObject<Item> HASH_OIL_BUCKET = ITEMS.register("hash_oil_bucket",
             () -> new BucketItem(ModFluids.SOURCE_HASH_OIL, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
     public static final RegistryObject<Item> GRINDER = ITEMS.register("grinder",
@@ -160,6 +173,13 @@ public class ModItems {
     }
     public static Item getBubblegumBud() {
         return BUBBLEGUM_BUD.get(); // Return the actual Item from the registry object
+    }
+
+    public static Item getPurpleHazeSeeds() {
+        return PURPLE_HAZE_SEEDS.get(); // Return the actual Item from the registry object
+    }
+    public static Item getPurpleHazeBud() {
+        return PURPLE_HAZE_BUD.get(); // Return the actual Item from the registry object
     }
 
 

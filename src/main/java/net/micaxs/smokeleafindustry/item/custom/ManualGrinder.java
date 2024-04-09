@@ -45,7 +45,8 @@ public class ManualGrinder extends Item {
                 pStack.getItem() == ModItems.BLUE_ICE_BUD.get() ||
                 pStack.getItem() == ModItems.BUBBLE_KUSH_BUD.get() ||
                 pStack.getItem() == ModItems.LEMON_HAZE_BUD.get() ||
-                pStack.getItem() == ModItems.SOUR_DIESEL_BUD.get();
+                pStack.getItem() == ModItems.SOUR_DIESEL_BUD.get() ||
+                pStack.getItem() == ModItems.PURPLE_HAZE_BUD.get();
     }
 
     public static ItemStack resultItem(ItemStack pStack) {
@@ -62,6 +63,8 @@ public class ManualGrinder extends Item {
             return new ItemStack(ModItems.LEMON_HAZE_WEED.get());
         } else if (item == ModItems.SOUR_DIESEL_BUD.get()) {
             return new ItemStack(ModItems.SOUR_DIESEL_WEED.get());
+        } else if (item == ModItems.PURPLE_HAZE_BUD.get()) {
+            return new ItemStack(ModItems.PURPLE_HAZE_WEED.get());
         }
         return ItemStack.EMPTY;
     }

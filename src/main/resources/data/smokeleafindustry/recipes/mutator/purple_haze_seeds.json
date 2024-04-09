@@ -1,0 +1,20 @@
+{
+  "type": "smokeleafindustry:herb_mutation",
+  "ingredients": [
+    {
+      "item": "smokeleafindustry:bubblegum_seeds",
+      "count": 1
+    },
+    {
+      "item": "smokeleafindustry:purplehaze_extract",
+      "count": 4
+    }
+  ],
+  "fluid": {
+    "FluidName": "smokeleafindustry:hash_oil_fluid",
+    "Amount": 250
+  },
+  "output": {
+    "item": "smokeleafindustry:purple_haze_seeds"
+  }
+}
