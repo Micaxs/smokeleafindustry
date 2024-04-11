@@ -83,12 +83,14 @@ public class HerbMutationBlockEntity extends BlockEntity implements MenuProvider
         @Override
         protected void onContentsChanged() {
             setChanged();
-
+            if (!level.isClientSide()) {
+                level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+            }
         }
 
         @Override
         public boolean isFluidValid(FluidStack stack) {
-            return stack.getFluid() == ModFluids.SOURCE_HASH_OIL.get() || stack.getFluid() == Fluids.WATER;
+            return stack.getFluid() == ModFluids.SOURCE_HASH_OIL.get();
         }
     };
 
@@ -186,6 +188,8 @@ public class HerbMutationBlockEntity extends BlockEntity implements MenuProvider
             return lazyEnergy.cast();
         } else if (cap == ForgeCapabilities.FLUID_HANDLER) {
             return lazyFluidHandler.cast();
+        } else if (cap == ForgeCapabilities.FLUID_HANDLER_ITEM) {
+            return itemHandler.getStackInSlot(FLUID_INPUT_SLOT).getCapability(cap, side);
         }
         return super.getCapability(cap, side);
     }

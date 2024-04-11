@@ -66,6 +66,9 @@ public class HerbExtractorBlockEntity extends BlockEntity implements MenuProvide
         @Override
         protected void onContentsChanged() {
             setChanged();
+            if (!level.isClientSide()) {
+                level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+            }
         }
 
         @Override
