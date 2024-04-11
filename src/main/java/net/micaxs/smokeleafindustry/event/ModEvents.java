@@ -68,12 +68,12 @@ public class ModEvents {
                     64, 3, 0.02f));
 
             trades.get(2).add((pTrader, pRandom) -> new MerchantOffer(
-                    new ItemStack(Items.DIAMOND, 16),
+                    new ItemStack(Items.DIAMOND, 2),
                     new ItemStack(ModItems.BLUE_ICE_BAG.get(), 1),
                     64, 3, 0.02f));
 
             trades.get(2).add((pTrader, pRandom) -> new MerchantOffer(
-                    new ItemStack(Items.DIAMOND, 20),
+                    new ItemStack(Items.DIAMOND, 3),
                     new ItemStack(ModItems.BUBBLEGUM_BAG.get(), 1),
                     64, 3, 0.02f));
 
@@ -84,23 +84,23 @@ public class ModEvents {
 
             // Level 3 Trades
             trades.get(3).add((pTrader, pRandom) -> new MerchantOffer(
-                    new ItemStack(Items.DIAMOND, 16),
+                    new ItemStack(Items.DIAMOND, 2),
                     new ItemStack(ModItems.BLUE_ICE_BAG.get(), 1),
                     64, 3, 0.02f));
 
             trades.get(3).add((pTrader, pRandom) -> new MerchantOffer(
-                    new ItemStack(Items.DIAMOND, 20),
+                    new ItemStack(Items.DIAMOND, 3),
                     new ItemStack(ModItems.BUBBLEGUM_BAG.get(), 1),
                     64, 3, 0.02f));
 
             // Level 4 Trades
             trades.get(4).add((pTrader, pRandom) -> new MerchantOffer(
-                    new ItemStack(Items.DIAMOND, 16),
+                    new ItemStack(Items.DIAMOND, 2),
                     new ItemStack(ModItems.BLUE_ICE_BAG.get(), 1),
                     64, 3, 0.02f));
 
             trades.get(4).add((pTrader, pRandom) -> new MerchantOffer(
-                    new ItemStack(Items.DIAMOND, 20),
+                    new ItemStack(Items.DIAMOND, 3),
                     new ItemStack(ModItems.BUBBLEGUM_BAG.get(), 1),
                     64, 3, 0.02f));
 
