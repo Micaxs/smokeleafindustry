@@ -186,7 +186,7 @@ public class HerbExtractorBlockEntity extends BlockEntity implements MenuProvide
 
         if(hasEnergy && hasRecipe()) {
             increaseCraftingProgress();
-            energy.removeEnergy(10);
+            energy.removeEnergy(20);
 
             if (pLevel.random.nextInt(2) == 0) {
                 double x = pPos.getX() + 0.5;

@@ -44,6 +44,15 @@ public class HerbGrinderStationBlockEntity extends BlockEntity implements MenuPr
                 level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
             }
         }
+
+        @Override
+        public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+            return switch (slot) {
+                case 0 -> true;
+                case 1 -> false; // Don't put stuff in output slot pls.
+                default -> super.isItemValid(slot, stack);
+            };
+        }
     };
 
     private static int INPUT_SLOT = 0;
@@ -204,7 +213,7 @@ public class HerbGrinderStationBlockEntity extends BlockEntity implements MenuPr
         if(hasEnergy && hasRecipe()) {
             increaseCraftingProgress();
 
-            energy.removeEnergy(10);
+            energy.removeEnergy(20);
 
             if (pLevel.random.nextInt(2) == 0) {
                 double x = pPos.getX() + 0.5;

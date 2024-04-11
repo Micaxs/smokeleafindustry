@@ -253,7 +253,7 @@ public class HerbMutationBlockEntity extends BlockEntity implements MenuProvider
         
         if(hasEnergy && hasRecipe()) {
             increaseCraftingProgress();
-            energy.removeEnergy(10);
+            energy.removeEnergy(20);
 
             if (pLevel.random.nextInt(2) == 0) {
                 double x = pPos.getX() + 0.5;

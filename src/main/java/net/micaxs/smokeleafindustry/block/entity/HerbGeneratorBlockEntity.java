@@ -193,7 +193,7 @@ public class HerbGeneratorBlockEntity extends BlockEntity implements MenuProvide
                 }
             } else {
                 this.burnTime--;
-                this.energy.addEnergy(10);
+                this.energy.addEnergy(40);
                 setChanged();
             }
         }
