@@ -84,5 +84,7 @@
   "fluid_type.smokeleafindustry.hash_oil_fluid": "Hash Oil",
   "effect.smokeleafindustry.stoned": "Stoned",
 
-  "entity.minecraft.villager.smokeleafindustry.herb_dealer": "Herb Dealer"
+  "entity.minecraft.villager.smokeleafindustry.herb_dealer": "Herb Dealer",
+
+  "tooltip.smokeleafindustry.levels": "Levels: "
 }

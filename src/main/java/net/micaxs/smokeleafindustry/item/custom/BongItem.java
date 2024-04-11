@@ -89,12 +89,11 @@ public class BongItem extends Item {
         ItemStack mainhandItem = pLivingEntity.getItemInHand(InteractionHand.MAIN_HAND);
 
         if (isValidOffhandItem(offhandItem)) {
-            offhandItem.shrink(1);
             pLivingEntity.setItemInHand(InteractionHand.OFF_HAND, offhandItem);
 
             List<MobEffectInstance> offhandEffects = getOffhandEffects(offhandItem, pLivingEntity);
-
             spawnSmokeParticles(pLevel, pLivingEntity);
+            offhandItem.shrink(1);
 
             // Apply the offhand item's effects
             for (MobEffectInstance effect : offhandEffects) {

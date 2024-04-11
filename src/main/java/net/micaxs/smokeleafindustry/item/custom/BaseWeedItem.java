@@ -24,9 +24,14 @@ public class BaseWeedItem extends Item {
     private final List<MobEffectInstance> effects = new ArrayList<>();
     public int duration;
 
-    public BaseWeedItem(Properties pProperties, MobEffect effect, int iDuration, int iAmplifier) {
+    public int THC_LEVEL = 50;
+    public int CBD_LEVEL = 50;
+
+    public BaseWeedItem(Properties pProperties, MobEffect effect, int iDuration, int iAmplifier, int iThc, int iCbd) {
         super(pProperties);
         duration = iDuration;
+        THC_LEVEL = iThc;
+        CBD_LEVEL = iCbd;
         effects.add(new MobEffectInstance(effect, iDuration, iAmplifier));
     }
 
@@ -37,11 +42,15 @@ public class BaseWeedItem extends Item {
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
+        pTooltipComponents.add(Component.literal(" "));
         pTooltipComponents.add(Component.translatable("tooltip.smokeleafindustry.effects").withStyle(ChatFormatting.GRAY));
         List<MobEffectInstance> weedEffects = getEffects();
         for (MobEffectInstance effect : weedEffects) {
             pTooltipComponents.add(getEffectText(effect));
         }
+        pTooltipComponents.add(Component.literal(" "));
+        pTooltipComponents.add(Component.translatable("tooltip.smokeleafindustry.levels").withStyle(ChatFormatting.GRAY));
+        pTooltipComponents.add(getLevelsText());
     }
 
     private Component getEffectText(MobEffectInstance effect) {
@@ -49,12 +58,22 @@ public class BaseWeedItem extends Item {
         int duration = effect.getDuration() / 20; // Convert duration to seconds
 
         // Display effect name and duration in tooltip
-        return Component.literal("- ")
+        return Component.literal(" ")
                 .append(Component.translatable(effectType.getDescriptionId()))
                 .withStyle(ChatFormatting.GREEN)
                 .append(" ")
                 .append(Component.literal("(" + duration + "s)").withStyle(ChatFormatting.GRAY));
     }
+
+    private Component getLevelsText() {
+        return Component.literal(" ")
+                .append(Component.literal("THC: ").withStyle(ChatFormatting.DARK_GRAY))
+                .append(Component.literal(THC_LEVEL + "%").withStyle(ChatFormatting.GREEN))
+                .append(Component.literal(" | ").withStyle(ChatFormatting.GRAY))
+                .append(Component.literal("CDB: ").withStyle(ChatFormatting.DARK_GRAY))
+                .append(Component.literal(CBD_LEVEL + "%").withStyle(ChatFormatting.GREEN));
+    }
+
 
     public int getDuration() {
         return duration;
@@ -66,6 +85,11 @@ public class BaseWeedItem extends Item {
         if (tag == null) {
             tag = new CompoundTag();
         }
+
+        // Set the THC and CBD levels into the tag
+        tag.putInt("thc", THC_LEVEL);
+        tag.putInt("cbd", CBD_LEVEL);
+
         // Set the effect based on the actual effect of the BaseWeedItem
         if (!effects.isEmpty()) {
             MobEffect effect = effects.get(0).getEffect();
@@ -86,6 +110,14 @@ public class BaseWeedItem extends Item {
             for (int i = 0; i < effectsList.size(); i++) {
                 effects.add(MobEffectInstance.load(effectsList.getCompound(i)));
             }
+        }
+
+        // Read THC and CBD Levels from tag
+        if (nbt != null && nbt.contains("thc")) {
+            THC_LEVEL = nbt.getInt("thc");
+        }
+        if (nbt != null && nbt.contains("cbd")) {
+            CBD_LEVEL = nbt.getInt("cbd");
         }
     }
 }
