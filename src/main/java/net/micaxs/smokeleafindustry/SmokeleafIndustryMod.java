@@ -65,10 +65,6 @@ public class SmokeleafIndustryMod
 
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if(event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
-            event.accept(ModItems.WHITE_WIDOW_BUD);
-            event.accept(ModItems.WHITE_WIDOW_SEEDS);
-        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
