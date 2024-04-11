@@ -1,0 +1,36 @@
+{
+  "type": "botanypots:crop",
+  "seed": {
+    "item": "smokeleafindustry:white_widow_seeds"
+  },
+  "categories": [
+    "dirt",
+    "farmland"
+  ],
+  "growthTicks": 1200,
+  "display": {
+    "type": "botanypots:simple",
+    "block": "smokeleafindustry:white_widow_crop",
+    "properties": {
+      "age": 10
+    }
+  },
+  "drops": [
+    {
+      "chance": 1.00,
+      "output": {
+        "item": "smokeleafindustry:white_widow_bud"
+      },
+      "minRolls": 1,
+      "maxRolls": 1
+    },
+    {
+      "chance": 0.15,
+      "output": {
+        "item": "smokeleafindustry:white_widow_bud"
+      },
+      "minRolls": 1,
+      "maxRolls": 1
+    }
+  ]
+}
