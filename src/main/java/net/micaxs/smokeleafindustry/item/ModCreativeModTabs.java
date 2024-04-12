@@ -65,6 +65,10 @@ public class ModCreativeModTabs {
                         pOutput.accept(ModItems.PURPLE_HAZE_BAG.get());
 
                         // Other Items
+                        pOutput.accept(ModItems.HEMP_LEAF.get());
+                        pOutput.accept(ModItems.HEMP_FIBERS.get());
+                        pOutput.accept(ModItems.HEMP_FABRIC.get());
+
                         pOutput.accept(ModItems.HASH_OIL_BUCKET.get());
                         pOutput.accept(ModItems.BONG.get());
                         pOutput.accept(ModItems.BLUNT.get());
@@ -73,6 +77,8 @@ public class ModCreativeModTabs {
 
                         pOutput.accept(ModBlocks.HEMP_STONE.get());
                         pOutput.accept(ModBlocks.HEMP_PLANKS.get());
+                        pOutput.accept(ModBlocks.HEMP_WOOL.get());
+
                         pOutput.accept(ModItems.HEMP_STICK.get());
                         pOutput.accept(ModItems.HEMP_CORE.get());
 

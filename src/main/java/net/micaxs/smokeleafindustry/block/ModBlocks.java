@@ -70,6 +70,9 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> HEMP_PLANKS = registerBlock("hemp_planks",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+    public static final RegistryObject<Block> HEMP_WOOL = registerBlock("hemp_wool",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.GREEN_WOOL)));
+
 
     public static final RegistryObject<Block> HEMP_MACHINE_BLOCK = registerBlock("hemp_machine_block",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));

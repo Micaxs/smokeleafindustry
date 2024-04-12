@@ -132,6 +132,17 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
 
 
+    // Clothing / Fabric System
+    public static final RegistryObject<Item> HEMP_LEAF = ITEMS.register("hemp_leaf",
+            () -> new Item(new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> HEMP_FIBERS = ITEMS.register("hemp_fibers",
+            () -> new Item(new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> HEMP_FABRIC= ITEMS.register("hemp_fabric",
+            () -> new Item(new Item.Properties().stacksTo(64)));
+
+
+
+
 
     public static Item getWhiteWidowSeeds() {
         return WHITE_WIDOW_SEEDS.get();
@@ -180,6 +191,10 @@ public class ModItems {
     }
     public static Item getPurpleHazeBud() {
         return PURPLE_HAZE_BUD.get(); // Return the actual Item from the registry object
+    }
+
+    public static Item getHempLeaf() {
+        return HEMP_LEAF.get();
     }
 
 

@@ -1,35 +1,28 @@
 {
   "type": "minecraft:block",
-  "functions": [
-    {
-      "function": "minecraft:explosion_decay"
-    }
-  ],
   "pools": [
     {
       "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "smokeleafindustry:sour_diesel_crop",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "10"
+          }
+        }
+      ],
       "entries": [
         {
-          "type": "minecraft:alternatives",
-          "children": [
+          "type": "minecraft:item",
+          "functions": [
             {
-              "type": "minecraft:item",
-              "conditions": [
-                {
-                  "block": "smokeleafindustry:sour_diesel_crop",
-                  "condition": "minecraft:block_state_property",
-                  "properties": {
-                    "age": "10"
-                  }
-                }
-              ],
-              "name": "smokeleafindustry:sour_diesel_bud"
-            },
-            {
-              "type": "minecraft:item",
-              "name": "smokeleafindustry:sour_diesel_seeds"
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
             }
-          ]
+          ],
+          "name": "smokeleafindustry:sour_diesel_seeds"
         }
       ],
       "rolls": 1.0
@@ -50,16 +43,47 @@
           "type": "minecraft:item",
           "functions": [
             {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            },
+            {
               "enchantment": "minecraft:fortune",
               "formula": "minecraft:binomial_with_bonus_count",
               "function": "minecraft:apply_bonus",
               "parameters": {
-                "extra": 3,
-                "probability": 0.5714286
+                "extra": 1,
+                "probability": 0.55
               }
             }
           ],
-          "name": "smokeleafindustry:sour_diesel_seeds"
+          "name": "smokeleafindustry:sour_diesel_bud"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "smokeleafindustry:sour_diesel_crop",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "10"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "smokeleafindustry:hemp_leaf"
         }
       ],
       "rolls": 1.0

@@ -22,12 +22,20 @@
         "item": "smokeleafindustry:sour_diesel_bud"
       },
       "minRolls": 1,
+      "maxRolls": 2
+    },
+    {
+      "chance": 0.75,
+      "output": {
+        "item": "smokeleafindustry:hemp_leaf"
+      },
+      "minRolls": 1,
       "maxRolls": 1
     },
     {
       "chance": 0.15,
       "output": {
-        "item": "smokeleafindustry:sour_diesel_bud"
+        "item": "smokeleafindustry:sour_diesel_seeds"
       },
       "minRolls": 1,
       "maxRolls": 1

@@ -21,6 +21,7 @@ import net.minecraftforge.common.IPlantable;
 import org.jetbrains.annotations.NotNull;
 import net.minecraft.world.entity.item.ItemEntity;
 
+import java.util.Random;
 import java.util.function.Supplier;
 
 public class BaseWeedCropBlock extends CropBlock {
@@ -30,6 +31,8 @@ public class BaseWeedCropBlock extends CropBlock {
 
     private final Supplier<Item> seedItem;
     private final Supplier<Item> budItem;
+    private final Supplier<Item> leafItem;
+
     public int THC = 0;
     public int CBD = 0;
 
@@ -55,12 +58,14 @@ public class BaseWeedCropBlock extends CropBlock {
         super(pProperties);
         this.seedItem = seedItem;
         this.budItem = budItem;
+        this.leafItem = ModItems.HEMP_LEAF;
     }
 
     public BaseWeedCropBlock(Properties pProperties, Supplier<Item> seedItem, Supplier<Item> budItem, int pSeedTHC, int pSeedCBD) {
         super(pProperties);
         this.seedItem = seedItem;
         this.budItem = budItem;
+        this.leafItem = ModItems.HEMP_LEAF;
         this.THC = pSeedTHC;
         this.CBD = pSeedCBD;
     }
@@ -167,6 +172,57 @@ public class BaseWeedCropBlock extends CropBlock {
         }
     }
 
+
+    /*
+         -- Hacky-Fix --
+         Did this because I gave up trying to fix/figure out the LootTableDatagen to do as I wanted it to,
+         if anyone knows how to fix it, please make a pull request.
+         Basically: If you break a fully grown crop it should drop 1-2 Buds, 1 seed and 1 leaf.
+                    If you break a non fully grown crop, it should just drop 1 seed.
+     */
+    public void dropFullLoot(Level pLevel, BlockPos pPos, BlockState pState) {
+        if (!(pLevel instanceof ServerLevel level)) {
+            return;
+        }
+        BaseWeedCropBlock cropBlock = (BaseWeedCropBlock) pState.getBlock();
+        Item budItem = cropBlock.budItem.get();
+        Item seedItem = cropBlock.seedItem.get();
+        Item leafItem = cropBlock.leafItem.get();
+        ItemEntity budItemEntity = new ItemEntity(EntityType.ITEM, level);
+        budItemEntity.setItem(new ItemStack(budItem));
+        budItemEntity.setPos(pPos.getX() + 0.5, pPos.getY() + 0.5, pPos.getZ() + 0.5);
+        level.addFreshEntity(budItemEntity);
+        Random random = new Random();
+        double chance = random.nextDouble();
+        if (chance < 0.5) {
+            ItemEntity secondBudItemEntity = new ItemEntity(EntityType.ITEM, level);
+            secondBudItemEntity.setItem(new ItemStack(budItem));
+            secondBudItemEntity.setPos(pPos.getX() + 0.5, pPos.getY() + 0.5, pPos.getZ() + 0.5);
+            level.addFreshEntity(secondBudItemEntity);
+        }
+        ItemEntity seedItemEntity = new ItemEntity(EntityType.ITEM, level);
+        seedItemEntity.setItem(new ItemStack(seedItem));
+        seedItemEntity.setPos(pPos.getX() + 0.5, pPos.getY() + 0.5, pPos.getZ() + 0.5);
+        level.addFreshEntity(seedItemEntity);
+        ItemEntity leafItemEntity = new ItemEntity(EntityType.ITEM, level);
+        leafItemEntity.setItem(new ItemStack(leafItem));
+        leafItemEntity.setPos(pPos.getX() + 0.5, pPos.getY() + 0.5, pPos.getZ() + 0.5);
+        level.addFreshEntity(leafItemEntity);
+    }
+
+    public void dropSeedItem(Level pLevel, BlockPos pPos, BlockState pState) {
+        if (!(pLevel instanceof ServerLevel level)) {
+            return;
+        }
+        BaseWeedCropBlock cropBlock = (BaseWeedCropBlock) pState.getBlock();
+        Item seedItem = cropBlock.seedItem.get();
+        ItemEntity seedItemEntity = new ItemEntity(EntityType.ITEM, level);
+        seedItemEntity.setItem(new ItemStack(seedItem));
+        seedItemEntity.setPos(pPos.getX() + 0.5, pPos.getY() + 0.5, pPos.getZ() + 0.5);
+        level.addFreshEntity(seedItemEntity);
+    }
+
+
     @Override
     public void destroy(LevelAccessor pLevel, BlockPos pPos, BlockState pState) {
         if (!(pLevel instanceof Level level)) {
@@ -175,18 +231,28 @@ public class BaseWeedCropBlock extends CropBlock {
 
         BlockPos belowPos = pPos.below();
         BlockState belowBlockState = level.getBlockState(belowPos);
-
-        if (belowBlockState.is(this)) {
-            int belowBlockAge = this.getAge(belowBlockState);
-            int topAge = this.getAge(pState);
-            if (topAge == this.getMaxAge() && belowBlockAge == FIRST_STAGE_MAX_AGE) {
-                Item budItem = this.budItem.get();
-                ItemEntity budItemEntity = new ItemEntity(EntityType.ITEM, level);
-                budItemEntity.setItem(new ItemStack(budItem));
-                budItemEntity.setPos(belowPos.getX() + 0.5, belowPos.getY() + 0.5, belowPos.getZ() + 0.5);
-                level.addFreshEntity(budItemEntity);
+        BlockPos abovePos = pPos.above();
+        BlockState aboveBlockState = level.getBlockState(abovePos);
+        if (!belowBlockState.is(this)) {
+            if (this.getAge(pState) < 7) {
+                this.dropSeedItem(level, pPos, pState);
+                return;
+            } else if (this.getAge(pState) == FIRST_STAGE_MAX_AGE) {
+                if (aboveBlockState.is(this) && this.getAge(aboveBlockState) == this.getMaxAge()) {
+                    return;
+                } else {
+                    this.dropSeedItem(level, pPos, pState);
+                    return;
+                }
             }
-            level.destroyBlock(belowPos, true);
+        } else {
+            if (this.getAge(pState) == this.getMaxAge()) {
+                this.dropFullLoot(level, belowPos, pState);
+                level.destroyBlock(belowPos, false);
+            } else {
+                this.dropSeedItem(level, belowPos, pState);
+                level.destroyBlock(belowPos, false);
+            }
         }
         super.destroy(level, pPos, pState);
     }
