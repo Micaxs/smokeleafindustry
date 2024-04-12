@@ -140,8 +140,32 @@ public class ModItems {
     public static final RegistryObject<Item> HEMP_FABRIC= ITEMS.register("hemp_fabric",
             () -> new Item(new Item.Properties().stacksTo(64)));
 
+    public static final RegistryObject<Item> HEMP_HELMET_RED = ITEMS.register("hemp_helmet_red",
+            () -> new ArmorItem(ModArmorMaterials.HEMP_FABRIC_RED, ArmorItem.Type.HELMET, new Item.Properties()));
+    public static final RegistryObject<Item> HEMP_CHESTPLATE_RED = ITEMS.register("hemp_chestplate_red",
+            () -> new ArmorItem(ModArmorMaterials.HEMP_FABRIC_RED, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+    public static final RegistryObject<Item> HEMP_LEGGINGS_RED = ITEMS.register("hemp_leggings_red",
+            () -> new ArmorItem(ModArmorMaterials.HEMP_FABRIC_RED, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+    public static final RegistryObject<Item> HEMP_BOOTS_RED = ITEMS.register("hemp_boots_red",
+            () -> new ArmorItem(ModArmorMaterials.HEMP_FABRIC_RED, ArmorItem.Type.BOOTS, new Item.Properties()));
 
+    public static final RegistryObject<Item> HEMP_HELMET_GREEN = ITEMS.register("hemp_helmet_green",
+            () -> new ArmorItem(ModArmorMaterials.HEMP_FABRIC_GREEN, ArmorItem.Type.HELMET, new Item.Properties()));
+    public static final RegistryObject<Item> HEMP_CHESTPLATE_GREEN = ITEMS.register("hemp_chestplate_green",
+            () -> new ArmorItem(ModArmorMaterials.HEMP_FABRIC_GREEN, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+    public static final RegistryObject<Item> HEMP_LEGGINGS_GREEN = ITEMS.register("hemp_leggings_green",
+            () -> new ArmorItem(ModArmorMaterials.HEMP_FABRIC_GREEN, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+    public static final RegistryObject<Item> HEMP_BOOTS_GREEN = ITEMS.register("hemp_boots_green",
+            () -> new ArmorItem(ModArmorMaterials.HEMP_FABRIC_GREEN, ArmorItem.Type.BOOTS, new Item.Properties()));
 
+    public static final RegistryObject<Item> HEMP_HELMET_YELLOW = ITEMS.register("hemp_helmet_yellow",
+            () -> new ArmorItem(ModArmorMaterials.HEMP_FABRIC_YELLOW, ArmorItem.Type.HELMET, new Item.Properties()));
+    public static final RegistryObject<Item> HEMP_CHESTPLATE_YELLOW = ITEMS.register("hemp_chestplate_yellow",
+            () -> new ArmorItem(ModArmorMaterials.HEMP_FABRIC_YELLOW, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+    public static final RegistryObject<Item> HEMP_LEGGINGS_YELLOW = ITEMS.register("hemp_leggings_yellow",
+            () -> new ArmorItem(ModArmorMaterials.HEMP_FABRIC_YELLOW, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+    public static final RegistryObject<Item> HEMP_BOOTS_YELLOW = ITEMS.register("hemp_boots_yellow",
+            () -> new ArmorItem(ModArmorMaterials.HEMP_FABRIC_YELLOW, ArmorItem.Type.BOOTS, new Item.Properties()));
 
 
     public static Item getWhiteWidowSeeds() {

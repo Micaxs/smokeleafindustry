@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "smokeleafindustry:item/hemp_leggings_red",
+    "layer1": "minecraft:trims/items/leggings_trim_amethyst"
+  }
+}
