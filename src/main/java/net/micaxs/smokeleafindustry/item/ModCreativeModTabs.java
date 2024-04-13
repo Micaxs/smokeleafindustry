@@ -79,6 +79,11 @@ public class ModCreativeModTabs {
                         pOutput.accept(ModItems.HEMP_LEGGINGS_GREEN.get());
                         pOutput.accept(ModItems.HEMP_BOOTS_GREEN.get());
 
+                        pOutput.accept(ModItems.HEMP_HELMET_YELLOW.get());
+                        pOutput.accept(ModItems.HEMP_CHESTPLATE_YELLOW.get());
+                        pOutput.accept(ModItems.HEMP_LEGGINGS_YELLOW.get());
+                        pOutput.accept(ModItems.HEMP_BOOTS_YELLOW.get());
+
                         pOutput.accept(ModItems.HASH_OIL_BUCKET.get());
                         pOutput.accept(ModItems.BONG.get());
                         pOutput.accept(ModItems.BLUNT.get());

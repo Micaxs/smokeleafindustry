@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "XDX",
+    "FFF"
+  ],
+  "key": {
+    "F": {
+      "item": "smokeleafindustry:hemp_fabric"
+    },
+    "D": {
+      "item": "minecraft:lime_dye"
+    },
+    "X": {
+      "item": "smokeleafindustry:hemp_fibers"
+    }
+  },
+  "result": {
+    "item": "smokeleafindustry:hemp_boots_green",
+    "count": 1
+  }
+}

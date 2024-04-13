@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "FFF",
+    "FDF",
+    "X X"
+  ],
+  "key": {
+    "F": {
+      "item": "smokeleafindustry:hemp_fabric"
+    },
+    "D": {
+      "item": "minecraft:red_dye"
+    },
+    "X": {
+      "item": "smokeleafindustry:hemp_fibers"
+    }
+  },
+  "result": {
+    "item": "smokeleafindustry:hemp_leggings_red",
+    "count": 1
+  }
+}

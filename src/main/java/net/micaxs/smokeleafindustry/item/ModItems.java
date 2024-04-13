@@ -168,6 +168,8 @@ public class ModItems {
             () -> new ArmorItem(ModArmorMaterials.HEMP_FABRIC_YELLOW, ArmorItem.Type.BOOTS, new Item.Properties()));
 
 
+
+    // Getters
     public static Item getWhiteWidowSeeds() {
         return WHITE_WIDOW_SEEDS.get();
     }
