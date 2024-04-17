@@ -1,12 +1,4 @@
 
-0.4.0:
-- Hemp Weaver Machine       -> Produces Hemp Fabric from Hemp Fibers
-
-RECIPES:
-4 fiber -> weaver machine -> 3 fabric
-
-
-
 0.5.0:
 - Add Herb Dryer Machine     -> Produces Dried Herbs from Fresh Herbs
 - Add Herb Drying Rack       -> Produces Dried Herbs from Fresh Herbs without power (much slower)
