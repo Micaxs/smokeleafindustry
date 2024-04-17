@@ -88,5 +88,8 @@
   "tooltip.smokeleafindustry.levels": "Levels: ",
   "tooltip.smokeleafindustry.purple_haze_bag": "Contains 8 Purple Haze Weed.",
   "tooltip.smokeleafindustry.sour_diesel_bag": "Contains 8 Sour Diesel Weed.",
-  "tooltip.smokeleafindustry.white_widow_bag": "Contains 8 White Widow Weed."
+  "tooltip.smokeleafindustry.white_widow_bag": "Contains 8 White Widow Weed.",
+
+  "tooltip.smokeleafindustry.dried": "Dried",
+  "tooltip.smokeleafindustry.fresh": "Fresh"
 }

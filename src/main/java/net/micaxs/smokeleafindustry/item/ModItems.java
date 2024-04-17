@@ -21,7 +21,7 @@ public class ModItems {
     public static final RegistryObject<Item> WHITE_WIDOW_SEEDS = ITEMS.register("white_widow_seeds",
             () -> new ItemNameBlockItem(ModBlocks.WHITE_WIDOW_CROP.get(), new Item.Properties()));
     public static final RegistryObject<Item> WHITE_WIDOW_BUD = ITEMS.register("white_widow_bud",
-            () -> new BaseBudItem(new Item.Properties()));
+            () -> new BaseBudItem(new Item.Properties(), 0, 1200));
     public static final RegistryObject<Item> WHITE_WIDOW_WEED = ITEMS.register("white_widow_weed",
             () -> new BaseWeedItem(new Item.Properties(), MobEffects.REGENERATION, 400, 1, 15, 12));
 
@@ -30,7 +30,7 @@ public class ModItems {
     public static final RegistryObject<Item> BUBBLE_KUSH_SEEDS = ITEMS.register("bubble_kush_seeds",
             () -> new ItemNameBlockItem(ModBlocks.BUBBLE_KUSH_CROP.get(), new Item.Properties()));
     public static final RegistryObject<Item> BUBBLE_KUSH_BUD = ITEMS.register("bubble_kush_bud",
-            () -> new BaseBudItem(new Item.Properties()));
+            () -> new BaseBudItem(new Item.Properties(), 0, 1200));
     public static final RegistryObject<Item> BUBBLE_KUSH_WEED = ITEMS.register("bubble_kush_weed",
             () -> new BaseWeedItem(new Item.Properties(), MobEffects.DIG_SPEED, 400, 1, 20, 6));
 
@@ -39,7 +39,7 @@ public class ModItems {
     public static final RegistryObject<Item> LEMON_HAZE_SEEDS = ITEMS.register("lemon_haze_seeds",
             () -> new ItemNameBlockItem(ModBlocks.LEMON_HAZE_CROP.get(), new Item.Properties()));
     public static final RegistryObject<Item> LEMON_HAZE_BUD = ITEMS.register("lemon_haze_bud",
-            () -> new BaseBudItem(new Item.Properties()));
+            () -> new BaseBudItem(new Item.Properties(), 0, 1200));
     public static final RegistryObject<Item> LEMON_HAZE_WEED = ITEMS.register("lemon_haze_weed",
             () -> new BaseWeedItem(new Item.Properties(), MobEffects.JUMP, 400, 1, 19, 8));
 
@@ -47,7 +47,7 @@ public class ModItems {
     public static final RegistryObject<Item> SOUR_DIESEL_SEEDS = ITEMS.register("sour_diesel_seeds",
             () -> new ItemNameBlockItem(ModBlocks.SOUR_DIESEL_CROP.get(), new Item.Properties()));
     public static final RegistryObject<Item> SOUR_DIESEL_BUD = ITEMS.register("sour_diesel_bud",
-            () -> new BaseBudItem(new Item.Properties()));
+            () -> new BaseBudItem(new Item.Properties(), 0, 1200));
     public static final RegistryObject<Item> SOUR_DIESEL_WEED = ITEMS.register("sour_diesel_weed",
             () -> new BaseWeedItem(new Item.Properties(), MobEffects.SATURATION, 400, 1, 19, 0));
 
@@ -55,7 +55,7 @@ public class ModItems {
     public static final RegistryObject<Item> BLUE_ICE_SEEDS = ITEMS.register("blue_ice_seeds",
             () -> new ItemNameBlockItem(ModBlocks.BLUE_ICE_CROP.get(), new Item.Properties()));
     public static final RegistryObject<Item> BLUE_ICE_BUD = ITEMS.register("blue_ice_bud",
-            () -> new BaseBudItem(new Item.Properties()));
+            () -> new BaseBudItem(new Item.Properties(), 0, 1200));
     public static final RegistryObject<Item> BLUE_ICE_WEED = ITEMS.register("blue_ice_weed",
             () -> new BaseWeedItem(new Item.Properties(), MobEffects.LUCK, 400, 1, 20, 10));
 
@@ -63,7 +63,7 @@ public class ModItems {
     public static final RegistryObject<Item> BUBBLEGUM_SEEDS = ITEMS.register("bubblegum_seeds",
             () -> new ItemNameBlockItem(ModBlocks.BUBBLEGUM_CROP.get(), new Item.Properties()));
     public static final RegistryObject<Item> BUBBLEGUM_BUD = ITEMS.register("bubblegum_bud",
-            () -> new BaseBudItem(new Item.Properties()));
+            () -> new BaseBudItem(new Item.Properties(), 0, 1200));
     public static final RegistryObject<Item> BUBBLEGUM_WEED = ITEMS.register("bubblegum_weed",
             () -> new BaseWeedItem(new Item.Properties(), MobEffects.LEVITATION, 20, 1, 17, 8));
 
@@ -71,7 +71,7 @@ public class ModItems {
     public static final RegistryObject<Item> PURPLE_HAZE_SEEDS = ITEMS.register("purple_haze_seeds",
             () -> new ItemNameBlockItem(ModBlocks.PURPLE_HAZE_CROP.get(), new Item.Properties()));
     public static final RegistryObject<Item> PURPLE_HAZE_BUD = ITEMS.register("purple_haze_bud",
-            () -> new BaseBudItem(new Item.Properties()));
+            () -> new BaseBudItem(new Item.Properties(), 0, 1200));
     public static final RegistryObject<Item> PURPLE_HAZE_WEED = ITEMS.register("purple_haze_weed",
             () -> new BaseWeedItem(new Item.Properties(), MobEffects.INVISIBILITY, 400, 1, 16, 0));
 
