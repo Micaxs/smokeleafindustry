@@ -31,6 +31,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         horizontalBlock(ModBlocks.HERB_EVAPORATOR.get(),
                 new ModelFile.UncheckedModelFile(modLoc("block/herb_evaporator")));
 
+        horizontalBlock(ModBlocks.HEMP_SPINNER.get(),
+                new ModelFile.UncheckedModelFile(modLoc("block/hemp_spinner")));
+
         horizontalBlock(ModBlocks.GROW_LIGHT.get(),
                 new ModelFile.UncheckedModelFile(modLoc("block/grow_light")));
 

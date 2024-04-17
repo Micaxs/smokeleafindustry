@@ -1,0 +1,12 @@
+{
+  "type": "smokeleafindustry:hemp_spinner",
+  "ingredients": [
+    {
+      "item": "smokeleafindustry:hemp_leaf"
+    }
+  ],
+  "output": {
+    "count": 3,
+    "item": "smokeleafindustry:hemp_fibers"
+  }
+}

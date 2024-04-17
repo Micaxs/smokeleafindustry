@@ -1,0 +1,12 @@
+{
+  "type": "smokeleafindustry:hemp_spinner",
+  "ingredients": [
+    {
+      "item": "minecraft:grass"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "item": "minecraft:string"
+  }
+}

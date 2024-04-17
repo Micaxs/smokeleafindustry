@@ -1,4 +1,4 @@
-// 1.20.1	2024-04-12T15:42:09.671058408	Loot Tables
+// 1.20.1	2024-04-17T12:25:24.7959195	Loot Tables
 a2576fa9ad77183f2de46f06e7f1288994168010 data/smokeleafindustry/loot_tables/blocks/blue_ice_crop.json
 8186c189b68c9c7c865f9c7e054e3892a3043637 data/smokeleafindustry/loot_tables/blocks/bubble_kush_crop.json
 6e2fa96471eeff2fe34d0045bccbe896c750b7c0 data/smokeleafindustry/loot_tables/blocks/bubblegum_crop.json
@@ -6,6 +6,7 @@ b57198e645b3cc215c3984fa18fe509fba53edd4 data/smokeleafindustry/loot_tables/bloc
 b0d6568a7d0a95d98701f51af1506867dde8179a data/smokeleafindustry/loot_tables/blocks/hash_oil_block.json
 f53a32f8d55f7e824cb3b5a50aeb5af1b8585faa data/smokeleafindustry/loot_tables/blocks/hemp_machine_block.json
 9aedc9c152173cb8cc46824a47c5c71aec2e721d data/smokeleafindustry/loot_tables/blocks/hemp_planks.json
+3ce9d5ddf0cb595797d11fb4fda5272e5c10d019 data/smokeleafindustry/loot_tables/blocks/hemp_spinner.json
 8a03bf61a56738b6511c7c1e068d6c8f818801e8 data/smokeleafindustry/loot_tables/blocks/hemp_stone.json
 a860b509417208086be9aa910da4057deca552e8 data/smokeleafindustry/loot_tables/blocks/hemp_wool.json
 32f94e8bd1086828d40e85d56ce7bdb74894215a data/smokeleafindustry/loot_tables/blocks/herb_evaporator.json

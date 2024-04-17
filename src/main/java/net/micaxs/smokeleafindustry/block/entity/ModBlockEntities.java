@@ -37,6 +37,11 @@ public class ModBlockEntities {
                     BlockEntityType.Builder.of(HerbEvaporatorBlockEntity::new,
                             ModBlocks.HERB_EVAPORATOR.get()).build(null));
 
+    public static final RegistryObject<BlockEntityType<HempSpinnerBlockEntity>> HEMP_SPINNER_BE =
+            BLOCK_ENTITIES.register("hemp_spinner_be", () ->
+                    BlockEntityType.Builder.of(HempSpinnerBlockEntity::new,
+                            ModBlocks.HEMP_SPINNER.get()).build(null));
+
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
     }

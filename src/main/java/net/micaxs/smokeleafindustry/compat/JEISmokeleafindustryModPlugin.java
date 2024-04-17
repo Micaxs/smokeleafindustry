@@ -6,13 +6,11 @@ import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.micaxs.smokeleafindustry.SmokeleafIndustryMod;
+import net.micaxs.smokeleafindustry.recipe.HempSpinnerRecipe;
 import net.micaxs.smokeleafindustry.recipe.HerbEvaporatorRecipe;
 import net.micaxs.smokeleafindustry.recipe.HerbGrinderRecipe;
 import net.micaxs.smokeleafindustry.recipe.HerbMutationRecipe;
-import net.micaxs.smokeleafindustry.screen.HerbEvaporatorScreen;
-import net.micaxs.smokeleafindustry.screen.HerbExtractorScreen;
-import net.micaxs.smokeleafindustry.screen.HerbGrinderStationScreen;
-import net.micaxs.smokeleafindustry.screen.HerbMutationScreen;
+import net.micaxs.smokeleafindustry.screen.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeManager;
@@ -31,6 +29,7 @@ public class JEISmokeleafindustryModPlugin implements IModPlugin {
         registration.addRecipeCategories(new HerbGrinderCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new HerbMutationCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new HerbEvaporatorCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new HempSpinnerCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -46,12 +45,18 @@ public class JEISmokeleafindustryModPlugin implements IModPlugin {
 
         List<HerbEvaporatorRecipe> evaporatorRecipes = recipeManager.getAllRecipesFor(HerbEvaporatorRecipe.Type.INSTANCE);
         registration.addRecipes(HerbEvaporatorCategory.HERB_EVAPORATOR_TYPE, evaporatorRecipes);
+
+        List<HempSpinnerRecipe> spinnerRecipes = recipeManager.getAllRecipesFor(HempSpinnerRecipe.Type.INSTANCE);
+        registration.addRecipes(HempSpinnerCategory.HEMP_SPINNER_TYPE, spinnerRecipes);
     }
 
     @Override
     public void registerGuiHandlers(IGuiHandlerRegistration registration) {
         registration.addRecipeClickArea(HerbGrinderStationScreen.class, 80, 30, 20, 30,
                 HerbGrinderCategory.HERB_GRINDER_TYPE);
+
+        registration.addRecipeClickArea(HempSpinnerScreen.class, 80, 30, 20, 30,
+                HempSpinnerCategory.HEMP_SPINNER_TYPE);
 
         registration.addRecipeClickArea(HerbMutationScreen.class, 80, 30, 20, 30,
                 HerbMutationCategory.HERB_MUTATION_TYPE);
