@@ -67,6 +67,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> HEMP_SPINNER = registerBlock("hemp_spinner",
             () -> new HempSpinnerBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()));
 
+    public static final RegistryObject<Block> HEMP_WEAVER = registerBlock("hemp_weaver",
+            () -> new HempWeaverBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()));
 
 
     // Custom Modded Blocks

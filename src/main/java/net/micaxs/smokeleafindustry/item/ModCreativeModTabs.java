@@ -104,6 +104,7 @@ public class ModCreativeModTabs {
                         pOutput.accept(ModBlocks.HERB_MUTATION.get());
                         pOutput.accept(ModBlocks.HERB_EVAPORATOR.get());
                         pOutput.accept(ModBlocks.HEMP_SPINNER.get());
+                        pOutput.accept(ModBlocks.HEMP_WEAVER.get());
 
                         pOutput.accept(ModBlocks.GROW_LIGHT.get());
                     })

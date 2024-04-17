@@ -32,6 +32,9 @@ public class ModMenuTypes {
     public static final RegistryObject<MenuType<HempSpinnerMenu>> HEMP_SPINNER_MENU  =
             registerMenuType("hemp_spinner_menu", HempSpinnerMenu::new);
 
+    public static final RegistryObject<MenuType<HempWeaverMenu>> HEMP_WEAVER_MENU  =
+            registerMenuType("hemp_weaver_menu", HempWeaverMenu::new);
+
     private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
         return MENUS.register(name, () -> IForgeMenuType.create(factory));
     }

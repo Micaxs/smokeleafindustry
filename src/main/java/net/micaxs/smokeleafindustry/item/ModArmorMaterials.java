@@ -10,9 +10,9 @@ import net.minecraft.world.item.crafting.Ingredient;
 import java.util.function.Supplier;
 
 public enum ModArmorMaterials implements ArmorMaterial {
-    HEMP_FABRIC_RED("hempfabric_red", 26, new int[]{ 5, 7, 5, 4 }, 25, SoundEvents.ARMOR_EQUIP_LEATHER, 1f, 0f, () -> Ingredient.of(ModItems.HEMP_FABRIC.get())),
-    HEMP_FABRIC_GREEN("hempfabric_green", 26, new int[]{ 5, 7, 5, 4 }, 25, SoundEvents.ARMOR_EQUIP_LEATHER, 1f, 0f, () -> Ingredient.of(ModItems.HEMP_FABRIC.get())),
-    HEMP_FABRIC_YELLOW("hempfabric_yellow", 26, new int[]{ 5, 7, 5, 4 }, 25, SoundEvents.ARMOR_EQUIP_LEATHER, 1f, 0f, () -> Ingredient.of(ModItems.HEMP_FABRIC.get()));
+    HEMP_FABRIC_RED("hempfabric_red", 26, new int[]{ 1, 3, 2, 1 }, 25, SoundEvents.ARMOR_EQUIP_LEATHER, 0.5f, 0f, () -> Ingredient.of(ModItems.HEMP_FABRIC.get())),
+    HEMP_FABRIC_GREEN("hempfabric_green", 26, new int[]{ 1, 3, 2, 1 }, 25, SoundEvents.ARMOR_EQUIP_LEATHER, 0.5f, 0f, () -> Ingredient.of(ModItems.HEMP_FABRIC.get())),
+    HEMP_FABRIC_YELLOW("hempfabric_yellow", 26, new int[]{ 1, 3, 2, 1 }, 25, SoundEvents.ARMOR_EQUIP_LEATHER, 0.5f, 0f, () -> Ingredient.of(ModItems.HEMP_FABRIC.get()));
 
     private final String name;
     private final int durabilityMultiplier;

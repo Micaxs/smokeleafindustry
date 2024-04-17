@@ -6,10 +6,7 @@ import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.micaxs.smokeleafindustry.SmokeleafIndustryMod;
-import net.micaxs.smokeleafindustry.recipe.HempSpinnerRecipe;
-import net.micaxs.smokeleafindustry.recipe.HerbEvaporatorRecipe;
-import net.micaxs.smokeleafindustry.recipe.HerbGrinderRecipe;
-import net.micaxs.smokeleafindustry.recipe.HerbMutationRecipe;
+import net.micaxs.smokeleafindustry.recipe.*;
 import net.micaxs.smokeleafindustry.screen.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
@@ -30,6 +27,7 @@ public class JEISmokeleafindustryModPlugin implements IModPlugin {
         registration.addRecipeCategories(new HerbMutationCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new HerbEvaporatorCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new HempSpinnerCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new HempWeaverCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -48,6 +46,9 @@ public class JEISmokeleafindustryModPlugin implements IModPlugin {
 
         List<HempSpinnerRecipe> spinnerRecipes = recipeManager.getAllRecipesFor(HempSpinnerRecipe.Type.INSTANCE);
         registration.addRecipes(HempSpinnerCategory.HEMP_SPINNER_TYPE, spinnerRecipes);
+
+        List<HempWeaverRecipe> weaverRecipes = recipeManager.getAllRecipesFor(HempWeaverRecipe.Type.INSTANCE);
+        registration.addRecipes(HempWeaverCategory.HEMP_WEAVER_TYPE, weaverRecipes);
     }
 
     @Override
@@ -57,6 +58,9 @@ public class JEISmokeleafindustryModPlugin implements IModPlugin {
 
         registration.addRecipeClickArea(HempSpinnerScreen.class, 80, 30, 20, 30,
                 HempSpinnerCategory.HEMP_SPINNER_TYPE);
+
+        registration.addRecipeClickArea(HempWeaverScreen.class, 80, 30, 20, 30,
+                HempWeaverCategory.HEMP_WEAVER_TYPE);
 
         registration.addRecipeClickArea(HerbMutationScreen.class, 80, 30, 20, 30,
                 HerbMutationCategory.HERB_MUTATION_TYPE);

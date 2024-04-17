@@ -9,6 +9,8 @@
   "block.smokeleafindustry.herb_generator": "Weed Generator",
   "block.smokeleafindustry.herb_grinder_station": "Weed Grinder",
   "block.smokeleafindustry.herb_mutation": "Seed Mutator",
+  "block.smokeleafindustry.hemp_spinner": "Hemp Spinner",
+  "block.smokeleafindustry.hemp_weaver": "Hemp Weaver",
   "creativetab.smokeleaf_industry_tab": "Smokeleaf Industry",
   "effect.smokeleafindustry.stoned": "Stoned",
   "entity.minecraft.villager.smokeleafindustry.herb_dealer": "Herb Dealer",
