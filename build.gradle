@@ -178,6 +178,9 @@ dependencies {
     implementation fg.deobf("curse.maven:bookshelf-228525:5250293")
     implementation fg.deobf("curse.maven:botany-pots-353928:5219190")
 
+    // Harvest with Ease
+    implementation fg.deobf("curse.maven:harvest-with-ease-602171:5030334")
+
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

@@ -1,15 +1,15 @@
 {
   "variants": {
-    "age=0": { "model": "smokeleafindustry:block/plants/purple_haze_stage_0" },
-    "age=1": { "model": "smokeleafindustry:block/plants/purple_haze_stage_1" },
-    "age=2": { "model": "smokeleafindustry:block/plants/purple_haze_stage_2" },
-    "age=3": { "model": "smokeleafindustry:block/plants/purple_haze_stage_3" },
-    "age=4": { "model": "smokeleafindustry:block/plants/purple_haze_stage_4" },
-    "age=5": { "model": "smokeleafindustry:block/plants/purple_haze_stage_5" },
-    "age=6": { "model": "smokeleafindustry:block/plants/purple_haze_stage_6" },
-    "age=7": { "model": "smokeleafindustry:block/plants/purple_haze_stage_7" },
-    "age=8": { "model": "smokeleafindustry:block/plants/purple_haze_stage_8" },
-    "age=9": { "model": "smokeleafindustry:block/plants/purple_haze_stage_9" },
-    "age=10": { "model": "smokeleafindustry:block/plants/purple_haze_stage_10" }
+    "texture_age=0": { "model": "smokeleafindustry:block/plants/purple_haze_stage_0" },
+    "texture_age=1": { "model": "smokeleafindustry:block/plants/purple_haze_stage_1" },
+    "texture_age=2": { "model": "smokeleafindustry:block/plants/purple_haze_stage_2" },
+    "texture_age=3": { "model": "smokeleafindustry:block/plants/purple_haze_stage_3" },
+    "texture_age=4": { "model": "smokeleafindustry:block/plants/purple_haze_stage_4" },
+    "texture_age=5": { "model": "smokeleafindustry:block/plants/purple_haze_stage_5" },
+    "texture_age=6": { "model": "smokeleafindustry:block/plants/purple_haze_stage_6" },
+    "texture_age=7": { "model": "smokeleafindustry:block/plants/purple_haze_stage_7" },
+    "texture_age=8": { "model": "smokeleafindustry:block/plants/purple_haze_stage_8" },
+    "texture_age=9": { "model": "smokeleafindustry:block/plants/purple_haze_stage_9" },
+    "texture_age=10": { "model": "smokeleafindustry:block/plants/purple_haze_stage_10" }
   }
 }
