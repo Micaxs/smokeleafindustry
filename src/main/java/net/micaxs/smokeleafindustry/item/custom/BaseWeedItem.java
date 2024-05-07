@@ -70,7 +70,7 @@ public class BaseWeedItem extends Item {
                 .append(Component.literal("THC: ").withStyle(ChatFormatting.DARK_GRAY))
                 .append(Component.literal(THC_LEVEL + "%").withStyle(ChatFormatting.GREEN))
                 .append(Component.literal(" | ").withStyle(ChatFormatting.GRAY))
-                .append(Component.literal("CDB: ").withStyle(ChatFormatting.DARK_GRAY))
+                .append(Component.literal("CBD: ").withStyle(ChatFormatting.DARK_GRAY))
                 .append(Component.literal(CBD_LEVEL + "%").withStyle(ChatFormatting.GREEN));
     }
 
