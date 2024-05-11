@@ -7,7 +7,6 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
@@ -23,15 +22,23 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 .add(ModBlocks.HERB_GRINDER_STATION.get())
                 .add(ModBlocks.HERB_EXTRACTOR.get())
                 .add(ModBlocks.HERB_GENERATOR.get())
-                .add(ModBlocks.HERB_EVAPORATOR.get());
+                .add(ModBlocks.HERB_EVAPORATOR.get())
+                .add(ModBlocks.HERB_MUTATION.get())
+                .add(ModBlocks.HEMP_WEAVER.get())
+                .add(ModBlocks.HEMP_SPINNER.get())
+                .add(ModBlocks.HEMP_STONE.get());
 
         this.tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(ModBlocks.HERB_GRINDER_STATION.get())
                 .add(ModBlocks.HERB_EXTRACTOR.get())
                 .add(ModBlocks.HERB_GENERATOR.get())
-                .add(ModBlocks.HEMP_STONE.get())
-                .add(ModBlocks.HERB_EVAPORATOR.get());
+                .add(ModBlocks.HERB_EVAPORATOR.get())
+                .add(ModBlocks.HERB_MUTATION.get())
+                .add(ModBlocks.HEMP_WEAVER.get())
+                .add(ModBlocks.HEMP_SPINNER.get())
+                .add(ModBlocks.HEMP_STONE.get());
 
-
+        this.tag(BlockTags.MINEABLE_WITH_AXE)
+                .add(ModBlocks.HEMP_PLANKS.get());
     }
 }

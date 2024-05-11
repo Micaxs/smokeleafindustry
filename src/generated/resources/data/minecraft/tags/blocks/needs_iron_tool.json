@@ -3,7 +3,10 @@
     "smokeleafindustry:herb_grinder_station",
     "smokeleafindustry:herb_extractor",
     "smokeleafindustry:herb_generator",
-    "smokeleafindustry:hemp_stone",
-    "smokeleafindustry:herb_evaporator"
+    "smokeleafindustry:herb_evaporator",
+    "smokeleafindustry:herb_mutation",
+    "smokeleafindustry:hemp_spinner",
+    "smokeleafindustry:hemp_weaver",
+    "smokeleafindustry:hemp_stone"
   ]
 }
