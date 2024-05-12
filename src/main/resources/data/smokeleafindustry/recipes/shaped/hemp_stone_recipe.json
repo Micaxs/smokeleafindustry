@@ -7,7 +7,7 @@
   ],
   "key": {
     "S": {
-      "item": "minecraft:stone"
+      "tag": "forge:stone"
     },
     "W": {
       "item": "smokeleafindustry:white_widow_weed"

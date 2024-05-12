@@ -7,7 +7,7 @@
   ],
   "key": {
     "S": {
-      "item": "minecraft:oak_planks"
+      "tag": "minecraft:planks"
     },
     "W": {
       "item": "smokeleafindustry:white_widow_weed"
