@@ -27,7 +27,8 @@ import java.util.LinkedHashMap;
 
 public class ModItemModelProvider extends ItemModelProvider {
 
-    private static LinkedHashMap<ResourceKey<TrimMaterial>, Float> trimMaterials = new LinkedHashMap<>();
+    private static final LinkedHashMap<ResourceKey<TrimMaterial>, Float> trimMaterials = new LinkedHashMap<>();
+
     static {
         trimMaterials.put(TrimMaterials.QUARTZ, 0.1f);
         trimMaterials.put(TrimMaterials.IRON, 0.2f);
@@ -76,6 +77,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.GRINDER);
         simpleItem(ModItems.HEMP_CORE);
         simpleItem(ModItems.HEMP_STICK);
+        simpleItem(ModItems.BONG);
 
         trimmedArmorItem(ModItems.HEMP_HELMET_RED);
         trimmedArmorItem(ModItems.HEMP_CHESTPLATE_RED);
@@ -91,13 +93,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         trimmedArmorItem(ModItems.HEMP_CHESTPLATE_YELLOW);
         trimmedArmorItem(ModItems.HEMP_LEGGINGS_YELLOW);
         trimmedArmorItem(ModItems.HEMP_BOOTS_YELLOW);
-
     }
 
     private void trimmedArmorItem(RegistryObject<Item> itemRegistryObject) {
         final String MOD_ID = SmokeleafIndustryMod.MOD_ID;
 
-        if(itemRegistryObject.get() instanceof ArmorItem armorItem) {
+        if (itemRegistryObject.get() instanceof ArmorItem armorItem) {
             trimMaterials.entrySet().forEach(entry -> {
 
                 ResourceKey<TrimMaterial> trimMaterial = entry.getKey();
@@ -141,47 +142,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         }
     }
 
-
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation("item/generated")).texture("layer0",
-                new ResourceLocation(SmokeleafIndustryMod.MOD_ID,"item/" + item.getId().getPath()));
-    }
-
-    public void evenSimplerBlockItem(RegistryObject<Block> block) {
-        this.withExistingParent(SmokeleafIndustryMod.MOD_ID + ":" + ForgeRegistries.BLOCKS.getKey(block.get()).getPath(),
-                modLoc("block/" + ForgeRegistries.BLOCKS.getKey(block.get()).getPath()));
-    }
-
-    public void trapdoorItem(RegistryObject<Block> block) {
-        this.withExistingParent(ForgeRegistries.BLOCKS.getKey(block.get()).getPath(),
-                modLoc("block/" + ForgeRegistries.BLOCKS.getKey(block.get()).getPath() + "_bottom"));
-    }
-
-    public void fenceItem(RegistryObject<Block> block, RegistryObject<Block> baseBlock) {
-        this.withExistingParent(ForgeRegistries.BLOCKS.getKey(block.get()).getPath(), mcLoc("block/fence_inventory"))
-                .texture("texture",  new ResourceLocation(SmokeleafIndustryMod.MOD_ID, "block/" + ForgeRegistries.BLOCKS.getKey(baseBlock.get()).getPath()));
-    }
-
-    public void buttonItem(RegistryObject<Block> block, RegistryObject<Block> baseBlock) {
-        this.withExistingParent(ForgeRegistries.BLOCKS.getKey(block.get()).getPath(), mcLoc("block/button_inventory"))
-                .texture("texture",  new ResourceLocation(SmokeleafIndustryMod.MOD_ID, "block/" + ForgeRegistries.BLOCKS.getKey(baseBlock.get()).getPath()));
-    }
-
-    public void wallItem(RegistryObject<Block> block, RegistryObject<Block> baseBlock) {
-        this.withExistingParent(ForgeRegistries.BLOCKS.getKey(block.get()).getPath(), mcLoc("block/wall_inventory"))
-                .texture("wall",  new ResourceLocation(SmokeleafIndustryMod.MOD_ID, "block/" + ForgeRegistries.BLOCKS.getKey(baseBlock.get()).getPath()));
-    }
-
-    private ItemModelBuilder handheldItem(RegistryObject<Item> item) {
-        return withExistingParent(item.getId().getPath(),
-                new ResourceLocation("item/handheld")).texture("layer0",
-                new ResourceLocation(SmokeleafIndustryMod.MOD_ID,"item/" + item.getId().getPath()));
-    }
-
-    private ItemModelBuilder simpleBlockItem(RegistryObject<Block> item) {
-        return withExistingParent(item.getId().getPath(),
-                new ResourceLocation("item/generated")).texture("layer0",
-                new ResourceLocation(SmokeleafIndustryMod.MOD_ID,"item/" + item.getId().getPath()));
+                new ResourceLocation(SmokeleafIndustryMod.MOD_ID, "item/" + item.getId().getPath()));
     }
 }
