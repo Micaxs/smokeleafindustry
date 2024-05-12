@@ -39,6 +39,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         horizontalBlock(ModBlocks.GROW_LIGHT.get(),
                 new ModelFile.UncheckedModelFile(modLoc("block/grow_light")));
+
+        blockWithItem(ModBlocks.HEMP_STONE);
+        blockWithItem(ModBlocks.HEMP_PLANKS);
+        blockWithItem(ModBlocks.HEMP_WOOL);
     }
 
     private void blockWithItem(RegistryObject<Block> blockRegistryObject) {
