@@ -2,14 +2,14 @@ package net.micaxs.smokeleafindustry.compat;
 
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
-import mezz.jei.api.registration.IGuiHandlerRegistration;
-import mezz.jei.api.registration.IRecipeCategoryRegistration;
-import mezz.jei.api.registration.IRecipeRegistration;
+import mezz.jei.api.registration.*;
 import net.micaxs.smokeleafindustry.SmokeleafIndustryMod;
+import net.micaxs.smokeleafindustry.block.ModBlocks;
 import net.micaxs.smokeleafindustry.recipe.*;
 import net.micaxs.smokeleafindustry.screen.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeManager;
 
 import java.util.List;
@@ -28,11 +28,11 @@ public class JEISmokeleafindustryModPlugin implements IModPlugin {
         registration.addRecipeCategories(new HerbEvaporatorCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new HempSpinnerCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new HempWeaverCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new HerbExtractorCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
-
         RecipeManager recipeManager = Minecraft.getInstance().level.getRecipeManager();
 
         List<HerbGrinderRecipe> grinderRecipes = recipeManager.getAllRecipesFor(HerbGrinderRecipe.Type.INSTANCE);
@@ -49,6 +49,9 @@ public class JEISmokeleafindustryModPlugin implements IModPlugin {
 
         List<HempWeaverRecipe> weaverRecipes = recipeManager.getAllRecipesFor(HempWeaverRecipe.Type.INSTANCE);
         registration.addRecipes(HempWeaverCategory.HEMP_WEAVER_TYPE, weaverRecipes);
+
+        List<HerbExtractorRecipe> herbExtractorRecipes = recipeManager.getAllRecipesFor(HerbExtractorRecipe.Type.INSTANCE);
+        registration.addRecipes(HerbExtractorCategory.HERB_EXTRACTOR_TYPE, herbExtractorRecipes);
     }
 
     @Override
@@ -67,5 +70,18 @@ public class JEISmokeleafindustryModPlugin implements IModPlugin {
 
         registration.addRecipeClickArea(HerbEvaporatorScreen.class, 80, 30, 20, 30,
                 HerbEvaporatorCategory.HERB_EVAPORATOR_TYPE);
+
+        registration.addRecipeClickArea(HerbExtractorScreen.class, 64, 35, 64, 16,
+                HerbExtractorCategory.HERB_EXTRACTOR_TYPE);
+    }
+
+    @Override
+    public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.HERB_GRINDER_STATION.get()), HerbGrinderCategory.HERB_GRINDER_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.HEMP_SPINNER.get()), HempSpinnerCategory.HEMP_SPINNER_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.HEMP_WEAVER.get()), HempWeaverCategory.HEMP_WEAVER_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.HERB_MUTATION.get()), HerbMutationCategory.HERB_MUTATION_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.HERB_EVAPORATOR.get()), HerbEvaporatorCategory.HERB_EVAPORATOR_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.HERB_EXTRACTOR.get()), HerbExtractorCategory.HERB_EXTRACTOR_TYPE);
     }
 }

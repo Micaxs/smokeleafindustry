@@ -1,0 +1,12 @@
+{
+	"type": "smokeleafindustry:herb_extractor",
+	"ingredients": [
+		{
+			"item": "smokeleafindustry:purple_haze_weed"
+		}
+	],
+	"output": {
+		"FluidName": "smokeleafindustry:hash_oil_fluid",
+		"Amount": 100
+	}
+}

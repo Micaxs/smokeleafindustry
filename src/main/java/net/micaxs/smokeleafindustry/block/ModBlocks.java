@@ -23,7 +23,6 @@ public class ModBlocks {
             DeferredRegister.create(ForgeRegistries.BLOCKS, SmokeleafIndustryMod.MOD_ID);
 
 
-
     // Weed Crop Variants
     public static final RegistryObject<Block> WHITE_WIDOW_CROP = BLOCKS.register("white_widow_crop",
             () -> new BaseWeedCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission(),
