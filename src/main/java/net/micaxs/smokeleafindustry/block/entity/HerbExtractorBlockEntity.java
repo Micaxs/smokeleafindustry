@@ -1,7 +1,6 @@
 package net.micaxs.smokeleafindustry.block.entity;
 
-import net.micaxs.smokeleafindustry.fluid.ModFluids;
-import net.micaxs.smokeleafindustry.item.custom.BaseWeedItem;
+import net.micaxs.smokeleafindustry.recipe.HerbExtractorRecipe;
 import net.micaxs.smokeleafindustry.screen.HerbExtractorMenu;
 import net.micaxs.smokeleafindustry.utils.ModEnergyStorage;
 import net.minecraft.core.BlockPos;
@@ -33,9 +32,12 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+import java.util.Optional;
+
 public class HerbExtractorBlockEntity extends BlockEntity implements MenuProvider {
 
-    private final ItemStackHandler itemHandler = new ItemStackHandler(3) {
+    private final ItemStackHandler itemHandler = new ItemStackHandler(1) {
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
@@ -46,15 +48,17 @@ public class HerbExtractorBlockEntity extends BlockEntity implements MenuProvide
 
         @Override
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
-            return switch (slot) {
-                case 0 -> stack.getItem() instanceof BaseWeedItem;
-                case 1 -> false; // Don't put stuff in output slot bro.
-                default -> super.isItemValid(slot, stack);
-            };
+            List<HerbExtractorRecipe> recipes = level.getRecipeManager().getAllRecipesFor(HerbExtractorRecipe.Type.INSTANCE);
+            for (HerbExtractorRecipe herbExtractorRecipe : recipes) {
+                if (herbExtractorRecipe.matches(new SimpleContainer(stack), level)) {
+                    return true;
+                }
+            }
+            return false;
         }
     };
 
-    private static int INPUT_SLOT = 0;
+    private static final int INPUT_SLOT = 0;
 
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
@@ -73,7 +77,7 @@ public class HerbExtractorBlockEntity extends BlockEntity implements MenuProvide
 
         @Override
         public boolean isFluidValid(FluidStack stack) {
-            return stack.getFluid() == ModFluids.SOURCE_HASH_OIL.get();
+            return true;
         }
     };
 
@@ -187,23 +191,16 @@ public class HerbExtractorBlockEntity extends BlockEntity implements MenuProvide
     public void tick(Level pLevel, BlockPos pPos, BlockState pState, HerbExtractorBlockEntity pEntity) {
         boolean hasEnergy = energy.getEnergyStored() > 0;
 
-        if(hasEnergy && hasRecipe()) {
+        if (hasEnergy && hasRecipe()) {
             increaseCraftingProgress();
+            // Energy consumption is hardcoded to 2000 for all items, consider moving to json file / recipe
             energy.removeEnergy(20);
-
-            if (pLevel.random.nextInt(2) == 0) {
-                double x = pPos.getX() + 0.5;
-                double y = pPos.getY() + 1.0;
-                double z = pPos.getZ() + 0.5;
-
-            }
             setChanged(pLevel, pPos, pState);
 
             if (hasProgressFinished()) {
                 extractToFluid();
                 resetProgress();
             }
-
         } else {
             resetProgress();
         }
@@ -214,19 +211,37 @@ public class HerbExtractorBlockEntity extends BlockEntity implements MenuProvide
     }
 
     private void extractToFluid() {
-        // Check if Fluid Tank is FULL
-        if (FLUID_TANK.getFluidAmount() < FLUID_TANK.getCapacity()) {
-            int filledAmount = FLUID_TANK.fill(new FluidStack(ModFluids.SOURCE_HASH_OIL.get(), 100), IFluidHandler.FluidAction.EXECUTE);
-            if (filledAmount > 0) {
-                itemHandler.extractItem(INPUT_SLOT, 1, false);
-            }
+        // Fluid tank is assumed to have space, checked in hasRecipe method
+        Optional<HerbExtractorRecipe> recipe = getCurrentRecipe();
+        FluidStack fluidStack = recipe.get().getResultFluid();
+
+        int filledAmount = FLUID_TANK.fill(fluidStack, IFluidHandler.FluidAction.EXECUTE);
+        if (filledAmount > 0) {
+            itemHandler.extractItem(INPUT_SLOT, 1, false);
         }
     }
 
     private boolean hasRecipe() {
-        return !itemHandler.getStackInSlot(INPUT_SLOT).isEmpty();
+        Optional<HerbExtractorRecipe> recipe = getCurrentRecipe();
+        if (recipe.isEmpty()) {
+            return false;
+        }
+
+        // Check if tank doesn't have room for the result of the current recipe
+        if (FLUID_TANK.getFluidAmount() > FLUID_TANK.getCapacity() - recipe.get().getResultFluid().getAmount()) {
+            return false;
+        }
+
+        return true;
     }
 
+    private Optional<HerbExtractorRecipe> getCurrentRecipe() {
+        SimpleContainer inventory = new SimpleContainer(this.itemHandler.getSlots());
+        for (int i = 0; i < itemHandler.getSlots(); i++) {
+            inventory.setItem(i, this.itemHandler.getStackInSlot(i));
+        }
+        return this.level.getRecipeManager().getRecipeFor(HerbExtractorRecipe.Type.INSTANCE, inventory, level);
+    }
 
     private boolean hasProgressFinished() {
         return progress >= maxProgress;
@@ -236,8 +251,7 @@ public class HerbExtractorBlockEntity extends BlockEntity implements MenuProvide
         progress++;
     }
 
-
-    public LazyOptional<ModEnergyStorage> getLazyEnergy () {
+    public LazyOptional<ModEnergyStorage> getLazyEnergy() {
         return this.lazyEnergy;
     }
 
@@ -267,6 +281,4 @@ public class HerbExtractorBlockEntity extends BlockEntity implements MenuProvide
     public CompoundTag getUpdateTag() {
         return saveWithoutMetadata();
     }
-
-
 }

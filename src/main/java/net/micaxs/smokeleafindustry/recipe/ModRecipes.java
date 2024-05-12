@@ -32,6 +32,9 @@ public class ModRecipes {
     public static final RegistryObject<RecipeSerializer<HempWeaverRecipe>> HEMP_WEAVER_SERIALIZER =
             SERIALIZERS.register("hemp_weaver", () -> HempWeaverRecipe.Serializer.INSTANCE);
 
+    public static final RegistryObject<RecipeSerializer<HerbExtractorRecipe>> HERB_EXTRACTOR_SERIALIZER =
+            SERIALIZERS.register("herb_extractor", () -> HerbExtractorRecipe.Serializer.INSTANCE);
+
     public static void register(IEventBus eventBus) {
         SERIALIZERS.register(eventBus);
     }
