@@ -28,7 +28,7 @@ public class HerbEvaporatorCategory implements IRecipeCategory<HerbEvaporatorRec
 
     public HerbEvaporatorCategory(IGuiHelper helper) {
         this.background = helper.createDrawable(TEXTURE, 5, 5 , 168, 75);
-        this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.HERB_EXTRACTOR.get()));
+        this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.HERB_EVAPORATOR.get()));
     }
 
     @Override
