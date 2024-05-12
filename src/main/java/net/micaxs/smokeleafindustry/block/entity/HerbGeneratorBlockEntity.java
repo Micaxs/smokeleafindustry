@@ -43,9 +43,17 @@ public class HerbGeneratorBlockEntity extends BlockEntity implements MenuProvide
                 level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 1);
             }
         }
+
+        @Override
+        public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+            if (slot == 0) {
+                return canBurn(stack);
+            }
+            return false;
+        }
     };
 
-    private static int FUEL_SLOT = 0;
+    private static final int FUEL_SLOT = 0;
 
 
     private int burnTime = 0, maxBurnTime = 0;
@@ -57,7 +65,7 @@ public class HerbGeneratorBlockEntity extends BlockEntity implements MenuProvide
 
     protected final ContainerData data;
     private int progress = 0;
-    private int maxProgress = 200;
+    private final int maxProgress = 200;
 
     public HerbGeneratorBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.HERB_GENERATOR_BE.get(), pPos, pBlockState);
@@ -141,7 +149,7 @@ public class HerbGeneratorBlockEntity extends BlockEntity implements MenuProvide
         return new HerbGeneratorMenu(pContainerId, pPlayerInventory, this, this.data);
     }
 
-    public LazyOptional<ModEnergyStorage> getLazyEnergy () {
+    public LazyOptional<ModEnergyStorage> getLazyEnergy() {
         return this.lazyEnergy;
     }
 
@@ -176,9 +184,8 @@ public class HerbGeneratorBlockEntity extends BlockEntity implements MenuProvide
     }
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
-
         if (getBlockState().getValue(BlockStateProperties.POWERED) != burnTime > 0) {
-            if (pLevel != null ) {
+            if (pLevel != null) {
                 pLevel.setBlockAndUpdate(getBlockPos(), getBlockState().setValue(BlockStateProperties.POWERED, burnTime > 0));
             }
         }
@@ -203,12 +210,10 @@ public class HerbGeneratorBlockEntity extends BlockEntity implements MenuProvide
 
     /* FUEL STUFF */
     public int getBurnTime(ItemStack stack) {
-
         if (!stack.isEmpty()) {
             if (stack.getItem() instanceof BaseWeedItem) {
                 return 80;
-            }
-            else if (stack.getItem() instanceof BaseBudItem) {
+            } else if (stack.getItem() instanceof BaseBudItem) {
                 return 160;
             }
         }

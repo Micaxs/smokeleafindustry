@@ -1,6 +1,5 @@
 package net.micaxs.smokeleafindustry.block.entity;
 
-import net.micaxs.smokeleafindustry.item.custom.BaseWeedItem;
 import net.micaxs.smokeleafindustry.recipe.HerbEvaporatorRecipe;
 import net.micaxs.smokeleafindustry.screen.HerbEvaporatorMenu;
 import net.micaxs.smokeleafindustry.utils.ModEnergyStorage;
@@ -31,6 +30,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.Optional;
 
 public class HerbEvaporatorBlockEntity extends BlockEntity implements MenuProvider {
@@ -47,7 +47,15 @@ public class HerbEvaporatorBlockEntity extends BlockEntity implements MenuProvid
         @Override
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
             return switch (slot) {
-                case 0 -> stack.getItem() instanceof BaseWeedItem;
+                case 0 -> {
+                    List<HerbEvaporatorRecipe> recipes = level.getRecipeManager().getAllRecipesFor(HerbEvaporatorRecipe.Type.INSTANCE);
+                    for (HerbEvaporatorRecipe recipe : recipes) {
+                        if (recipe.matches(new SimpleContainer(stack), level)) {
+                            yield true;
+                        }
+                    }
+                    yield false;
+                }
                 case 1 -> false;
                 default -> super.isItemValid(slot, stack);
             };

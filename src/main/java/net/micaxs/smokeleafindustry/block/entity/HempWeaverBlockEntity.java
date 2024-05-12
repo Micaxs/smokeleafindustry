@@ -33,6 +33,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.Optional;
 
 public class HempWeaverBlockEntity extends BlockEntity implements MenuProvider {
@@ -49,7 +50,15 @@ public class HempWeaverBlockEntity extends BlockEntity implements MenuProvider {
         @Override
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
             return switch (slot) {
-                case 0 -> true;
+                case 0 -> {
+                    List<HempWeaverRecipe> recipes = level.getRecipeManager().getAllRecipesFor(HempWeaverRecipe.Type.INSTANCE);
+                    for (HempWeaverRecipe recipe : recipes) {
+                        if (recipe.matches(new SimpleContainer(stack), level)) {
+                            yield true;
+                        }
+                    }
+                    yield false;
+                }
                 case 1 -> false; // Don't put stuff in output slot pls.
                 default -> super.isItemValid(slot, stack);
             };
