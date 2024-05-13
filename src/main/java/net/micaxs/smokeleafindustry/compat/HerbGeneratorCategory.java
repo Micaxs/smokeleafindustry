@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HerbGeneratorCategory implements IRecipeCategory<HerbGeneratorRecipe> {
-    protected final int ENERGY_X = 111;
+    protected final int ENERGY_X = 120;
     protected final int ENERGY_Y = 16;
 
     public static final ResourceLocation UID = new ResourceLocation(SmokeleafIndustryMod.MOD_ID, "herb_generator");
@@ -61,7 +61,7 @@ public class HerbGeneratorCategory implements IRecipeCategory<HerbGeneratorRecip
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, HerbGeneratorRecipe recipe, IFocusGroup focuses) {
-        builder.addSlot(RecipeIngredientRole.INPUT, 23, 29).addIngredients(recipe.getIngredients().get(0));
+        builder.addSlot(RecipeIngredientRole.INPUT, 32, 29).addIngredients(recipe.getIngredients().get(0));
     }
 
     @Override

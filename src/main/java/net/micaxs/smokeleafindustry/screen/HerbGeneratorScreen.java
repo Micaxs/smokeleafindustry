@@ -38,7 +38,7 @@ public class HerbGeneratorScreen extends AbstractContainerScreen<HerbGeneratorMe
 
         int energy = this.menu.getEnergyStoredScaled();
         // Foreground
-        guiGraphics.fill(x + 116, y + 21 + (38 - energy), x + 129, y + 59, 0xBFCC2222);
+        guiGraphics.fill(x + 125, y + 21 + (38 - energy), x + 138, y + 59, 0xBFCC2222);
 
     }
 
@@ -46,7 +46,7 @@ public class HerbGeneratorScreen extends AbstractContainerScreen<HerbGeneratorMe
         int scaledHeight = menu.getFuelStoredScaled();
         if (scaledHeight > 0) {
             int adjustedY = y + 38 + (11 - scaledHeight);
-            guiGraphics.blit(TEXTURE, x + 72, adjustedY, 176, 14 - scaledHeight, 14, scaledHeight);
+            guiGraphics.blit(TEXTURE, x + 81, adjustedY, 176, 14 - scaledHeight, 14, scaledHeight);
         }
     }
 
@@ -59,7 +59,7 @@ public class HerbGeneratorScreen extends AbstractContainerScreen<HerbGeneratorMe
         int energyStored = this.menu.getEnergy();
         int maxEnergy = this.menu.getMaxEnergy();
         Component energyText = Component.literal("Energy: " + energyStored + " / " + maxEnergy);
-        if (isHovering(116, 21, 13, 38, mouseX, mouseY)) {
+        if (isHovering(125, 21, 13, 38, mouseX, mouseY)) {
             guiGraphics.renderTooltip(this.font, energyText, mouseX, mouseY);
         }
     }
