@@ -2,7 +2,7 @@
 	"type": "smokeleafindustry:herb_extractor",
 	"ingredients": [
 		{
-			"item": "smokeleafindustry:lemon_haze_weed"
+			"tag": "smokeleafindustry:weeds"
 		}
 	],
 	"output": {
