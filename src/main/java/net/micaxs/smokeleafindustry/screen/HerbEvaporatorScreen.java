@@ -37,7 +37,7 @@ public class HerbEvaporatorScreen extends AbstractContainerScreen<HerbEvaporator
         renderProgressArrow(guiGraphics, x, y);
 
         int energy = this.menu.getEnergyStoredScaled();
-        guiGraphics.fill(x + 9, y + 11 + (64 - energy), x + 17, y + 75, 0xBFCC2222);
+        guiGraphics.fill(x + 156, y + 11 + (64 - energy), x + 164, y + 75, 0xBFCC2222);
 
 
         guiGraphics.setColor(1.0f,1.0f,1.0f,1.0f );
@@ -59,7 +59,7 @@ public class HerbEvaporatorScreen extends AbstractContainerScreen<HerbEvaporator
         int energyStored = this.menu.getEnergy();
         int maxEnergy = this.menu.getMaxEnergy();
         Component energyText = Component.literal("Energy: " + energyStored + " / " + maxEnergy);
-        if (isHovering(9, 11, 10, 65, mouseX, mouseY)) {
+        if (isHovering(156, 11, 10, 65, mouseX, mouseY)) {
             guiGraphics.renderTooltip(this.font, energyText, mouseX, mouseY);
         }
 
