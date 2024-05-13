@@ -33,7 +33,7 @@ public class HerbGeneratorMenu extends AbstractContainerMenu {
         addPlayerHotbar(inv);
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(iItemHandler -> {
-            this.addSlot(new SlotItemHandler(iItemHandler, 0, 28, 33)); // TODO: Fix position of slot...
+            this.addSlot(new SlotItemHandler(iItemHandler, 0, 28, 34));
         });
 
         addDataSlots(data);
@@ -50,7 +50,6 @@ public class HerbGeneratorMenu extends AbstractContainerMenu {
 
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }
-
 
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons
     // must assign a slot number to each of the slots used by the GUI.
@@ -69,6 +68,7 @@ public class HerbGeneratorMenu extends AbstractContainerMenu {
 
     // THIS YOU HAVE TO DEFINE!
     private static final int TE_INVENTORY_SLOT_COUNT = 1;  // must be the number of slots you have!
+
     @Override
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {
         Slot sourceSlot = slots.get(pIndex);
@@ -103,8 +103,6 @@ public class HerbGeneratorMenu extends AbstractContainerMenu {
         return copyOfSourceStack;
     }
 
-
-
     @Override
     public boolean stillValid(Player pPlayer) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
@@ -128,12 +126,15 @@ public class HerbGeneratorMenu extends AbstractContainerMenu {
     public int getFuel() {
         return this.data.get(0);
     }
+
     public int getMaxFuel() {
         return this.data.get(1);
     }
+
     public int getEnergy() {
         return this.data.get(2);
     }
+
     public int getMaxEnergy() {
         return this.data.get(3);
     }
