@@ -1,0 +1,11 @@
+{
+	"type": "smokeleafindustry:herb_generator",
+	"ingredients": [
+		{
+			"item": "smokeleafindustry:white_widow_bud"
+		}
+	],
+	"output": {
+		"amount": 6400
+	}
+}

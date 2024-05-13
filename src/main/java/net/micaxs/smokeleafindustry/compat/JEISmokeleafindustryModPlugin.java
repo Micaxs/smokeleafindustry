@@ -29,6 +29,7 @@ public class JEISmokeleafindustryModPlugin implements IModPlugin {
         registration.addRecipeCategories(new HempSpinnerCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new HempWeaverCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new HerbExtractorCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new HerbGeneratorCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -52,6 +53,9 @@ public class JEISmokeleafindustryModPlugin implements IModPlugin {
 
         List<HerbExtractorRecipe> herbExtractorRecipes = recipeManager.getAllRecipesFor(HerbExtractorRecipe.Type.INSTANCE);
         registration.addRecipes(HerbExtractorCategory.HERB_EXTRACTOR_TYPE, herbExtractorRecipes);
+
+        List<HerbGeneratorRecipe> herbGeneratorRecipes = recipeManager.getAllRecipesFor(HerbGeneratorRecipe.Type.INSTANCE);
+        registration.addRecipes(HerbGeneratorCategory.HERB_GENERATOR_TYPE, herbGeneratorRecipes);
     }
 
     @Override
@@ -73,6 +77,9 @@ public class JEISmokeleafindustryModPlugin implements IModPlugin {
 
         registration.addRecipeClickArea(HerbExtractorScreen.class, 64, 35, 64, 16,
                 HerbExtractorCategory.HERB_EXTRACTOR_TYPE);
+
+        registration.addRecipeClickArea(HerbGeneratorScreen.class, 70, 33, 18, 16,
+                HerbGeneratorCategory.HERB_GENERATOR_TYPE);
     }
 
     @Override
@@ -83,5 +90,6 @@ public class JEISmokeleafindustryModPlugin implements IModPlugin {
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.HERB_MUTATION.get()), HerbMutationCategory.HERB_MUTATION_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.HERB_EVAPORATOR.get()), HerbEvaporatorCategory.HERB_EVAPORATOR_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.HERB_EXTRACTOR.get()), HerbExtractorCategory.HERB_EXTRACTOR_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.HERB_GENERATOR.get()), HerbGeneratorCategory.HERB_GENERATOR_TYPE);
     }
 }

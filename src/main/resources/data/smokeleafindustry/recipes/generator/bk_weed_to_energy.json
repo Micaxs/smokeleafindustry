@@ -1,0 +1,11 @@
+{
+	"type": "smokeleafindustry:herb_generator",
+	"ingredients": [
+		{
+			"item": "smokeleafindustry:bubble_kush_weed"
+		}
+	],
+	"output": {
+		"amount": 3200
+	}
+}

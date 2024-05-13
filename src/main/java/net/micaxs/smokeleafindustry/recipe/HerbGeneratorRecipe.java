@@ -14,14 +14,14 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
-public class HerbGrinderRecipe implements Recipe<SimpleContainer> {
+public class HerbGeneratorRecipe implements Recipe<SimpleContainer> {
     private final NonNullList<Ingredient> inputItems;
-    private final ItemStack output;
+    private final int outputEnergy;
     private final ResourceLocation id;
 
-    public HerbGrinderRecipe(NonNullList<Ingredient> inputItems, ItemStack output, ResourceLocation id) {
+    public HerbGeneratorRecipe(NonNullList<Ingredient> inputItems, int output, ResourceLocation id) {
         this.inputItems = inputItems;
-        this.output = output;
+        this.outputEnergy = output;
         this.id = id;
     }
 
@@ -40,23 +40,23 @@ public class HerbGrinderRecipe implements Recipe<SimpleContainer> {
     }
 
     @Override
-    public ItemStack assemble(SimpleContainer simpleContainer, RegistryAccess registryAccess) {
-        return output.copy();
+    public ItemStack assemble(SimpleContainer pContainer, RegistryAccess pRegistryAccess) {
+        return ItemStack.EMPTY;
     }
 
     @Override
-    public boolean canCraftInDimensions(int i, int i1) {
+    public boolean canCraftInDimensions(int pWidth, int pHeight) {
         return true;
     }
 
     @Override
-    public ItemStack getResultItem(RegistryAccess registryAccess) {
-        return output.copy();
+    public ItemStack getResultItem(RegistryAccess pRegistryAccess) {
+        return ItemStack.EMPTY;
     }
 
     @Override
     public ResourceLocation getId() {
-        return id;
+        return this.id;
     }
 
     @Override
@@ -69,19 +69,23 @@ public class HerbGrinderRecipe implements Recipe<SimpleContainer> {
         return Type.INSTANCE;
     }
 
-    public static class Type implements RecipeType<HerbGrinderRecipe> {
-        public static final Type INSTANCE = new Type();
-        public static final String ID =  "herb_grinder";
+    public int getResultEnergy() {
+        return this.outputEnergy;
     }
 
-    public static class Serializer implements RecipeSerializer<HerbGrinderRecipe> {
+    public static class Type implements RecipeType<HerbGeneratorRecipe> {
+        public static final Type INSTANCE = new Type();
+        public static final String ID =  "herb_recipe";
+    }
+
+    public static class Serializer implements RecipeSerializer<HerbGeneratorRecipe> {
 
         public static final Serializer INSTANCE = new Serializer();
-        public static final ResourceLocation ID = new ResourceLocation(SmokeleafIndustryMod.MOD_ID, "herb_grinder");
+        public static final ResourceLocation ID = new ResourceLocation(SmokeleafIndustryMod.MOD_ID, "herb_recipe");
 
         @Override
-        public HerbGrinderRecipe fromJson(ResourceLocation pRecipeId, JsonObject pSerializedRecipe) {
-            ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "output"));
+        public HerbGeneratorRecipe fromJson(ResourceLocation pRecipeId, JsonObject pSerializedRecipe) {
+            int output = GsonHelper.getAsJsonObject(pSerializedRecipe, "output").get("amount").getAsInt();
 
             JsonArray ingredients = GsonHelper.getAsJsonArray(pSerializedRecipe, "ingredients");
             NonNullList<Ingredient> inputs = NonNullList.withSize(1, Ingredient.EMPTY);
@@ -90,31 +94,31 @@ public class HerbGrinderRecipe implements Recipe<SimpleContainer> {
                 inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
             }
 
-            return new HerbGrinderRecipe(inputs, output, pRecipeId);
+            return new HerbGeneratorRecipe(inputs, output, pRecipeId);
         }
 
         @Override
-        public @Nullable HerbGrinderRecipe fromNetwork(ResourceLocation pRecipeId, FriendlyByteBuf pBuffer) {
+        public @Nullable HerbGeneratorRecipe fromNetwork(ResourceLocation pRecipeId, FriendlyByteBuf pBuffer) {
             NonNullList<Ingredient> inputs = NonNullList.withSize(pBuffer.readInt(), Ingredient.EMPTY);
 
             for (int i = 0; i < inputs.size(); i++) {
                 inputs.set(i, Ingredient.fromNetwork(pBuffer));
             }
 
-            ItemStack output = pBuffer.readItem();
+            int outputEnergy = pBuffer.readInt();
 
-            return new HerbGrinderRecipe(inputs, output, pRecipeId);
+            return new HerbGeneratorRecipe(inputs, outputEnergy, pRecipeId);
         }
 
         @Override
-        public void toNetwork(FriendlyByteBuf pBuffer, HerbGrinderRecipe pRecipe) {
+        public void toNetwork(FriendlyByteBuf pBuffer, HerbGeneratorRecipe pRecipe) {
             pBuffer.writeInt(pRecipe.inputItems.size());
 
             for (Ingredient ingredient : pRecipe.getIngredients()) {
                 ingredient.toNetwork(pBuffer);
             }
 
-            pBuffer.writeItemStack(pRecipe.getResultItem(null), false);
+            pBuffer.writeInt(pRecipe.getResultEnergy());
         }
     }
 }

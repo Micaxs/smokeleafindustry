@@ -1,0 +1,11 @@
+{
+	"type": "smokeleafindustry:herb_generator",
+	"ingredients": [
+		{
+			"item": "smokeleafindustry:sour_diesel_weed"
+		}
+	],
+	"output": {
+		"amount": 3200
+	}
+}

@@ -1,0 +1,11 @@
+{
+	"type": "smokeleafindustry:herb_generator",
+	"ingredients": [
+		{
+			"item": "smokeleafindustry:purple_haze_bud"
+		}
+	],
+	"output": {
+		"amount": 6400
+	}
+}

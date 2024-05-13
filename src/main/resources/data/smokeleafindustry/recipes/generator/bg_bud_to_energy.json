@@ -1,0 +1,11 @@
+{
+	"type": "smokeleafindustry:herb_generator",
+	"ingredients": [
+		{
+			"item": "smokeleafindustry:bubblegum_bud"
+		}
+	],
+	"output": {
+		"amount": 6400
+	}
+}

@@ -1,0 +1,11 @@
+{
+	"type": "smokeleafindustry:herb_generator",
+	"ingredients": [
+		{
+			"item": "smokeleafindustry:blue_ice_bud"
+		}
+	],
+	"output": {
+		"amount": 6400
+	}
+}

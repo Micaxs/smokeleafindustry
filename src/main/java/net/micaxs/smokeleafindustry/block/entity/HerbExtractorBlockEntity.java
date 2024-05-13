@@ -49,8 +49,8 @@ public class HerbExtractorBlockEntity extends BlockEntity implements MenuProvide
         @Override
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
             List<HerbExtractorRecipe> recipes = level.getRecipeManager().getAllRecipesFor(HerbExtractorRecipe.Type.INSTANCE);
-            for (HerbExtractorRecipe herbExtractorRecipe : recipes) {
-                if (herbExtractorRecipe.matches(new SimpleContainer(stack), level)) {
+            for (HerbExtractorRecipe recipe : recipes) {
+                if (recipe.matches(new SimpleContainer(stack), level)) {
                     return true;
                 }
             }

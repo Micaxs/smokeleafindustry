@@ -35,6 +35,9 @@ public class ModRecipes {
     public static final RegistryObject<RecipeSerializer<HerbExtractorRecipe>> HERB_EXTRACTOR_SERIALIZER =
             SERIALIZERS.register("herb_extractor", () -> HerbExtractorRecipe.Serializer.INSTANCE);
 
+    public static final RegistryObject<RecipeSerializer<HerbGeneratorRecipe>> HERB_GENERATOR_SERIALIZER =
+            SERIALIZERS.register("herb_generator", () -> HerbGeneratorRecipe.Serializer.INSTANCE);
+
     public static void register(IEventBus eventBus) {
         SERIALIZERS.register(eventBus);
     }
