@@ -29,6 +29,7 @@ public class JEISmokeleafindustryModPlugin implements IModPlugin {
         registration.addRecipeCategories(new HempSpinnerCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new HempWeaverCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new HerbExtractorCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new HerbGeneratorCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -52,6 +53,9 @@ public class JEISmokeleafindustryModPlugin implements IModPlugin {
 
         List<HerbExtractorRecipe> herbExtractorRecipes = recipeManager.getAllRecipesFor(HerbExtractorRecipe.Type.INSTANCE);
         registration.addRecipes(HerbExtractorCategory.HERB_EXTRACTOR_TYPE, herbExtractorRecipes);
+
+        List<HerbGeneratorRecipe> herbGeneratorRecipes = recipeManager.getAllRecipesFor(HerbGeneratorRecipe.Type.INSTANCE);
+        registration.addRecipes(HerbGeneratorCategory.HERB_GENERATOR_TYPE, herbGeneratorRecipes);
     }
 
     @Override
@@ -65,7 +69,7 @@ public class JEISmokeleafindustryModPlugin implements IModPlugin {
         registration.addRecipeClickArea(HempWeaverScreen.class, 80, 30, 20, 30,
                 HempWeaverCategory.HEMP_WEAVER_TYPE);
 
-        registration.addRecipeClickArea(HerbMutationScreen.class, 80, 30, 20, 30,
+        registration.addRecipeClickArea(HerbMutationScreen.class, 80, 30, 40, 30,
                 HerbMutationCategory.HERB_MUTATION_TYPE);
 
         registration.addRecipeClickArea(HerbEvaporatorScreen.class, 80, 30, 20, 30,
@@ -73,6 +77,9 @@ public class JEISmokeleafindustryModPlugin implements IModPlugin {
 
         registration.addRecipeClickArea(HerbExtractorScreen.class, 64, 35, 64, 16,
                 HerbExtractorCategory.HERB_EXTRACTOR_TYPE);
+
+        registration.addRecipeClickArea(HerbGeneratorScreen.class, 70, 33, 18, 16,
+                HerbGeneratorCategory.HERB_GENERATOR_TYPE);
     }
 
     @Override
@@ -83,5 +90,26 @@ public class JEISmokeleafindustryModPlugin implements IModPlugin {
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.HERB_MUTATION.get()), HerbMutationCategory.HERB_MUTATION_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.HERB_EVAPORATOR.get()), HerbEvaporatorCategory.HERB_EVAPORATOR_TYPE);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.HERB_EXTRACTOR.get()), HerbExtractorCategory.HERB_EXTRACTOR_TYPE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.HERB_GENERATOR.get()), HerbGeneratorCategory.HERB_GENERATOR_TYPE);
+    }
+
+    @Override
+    public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
+        registration.addRecipeTransferHandler(HerbGrinderStationMenu.class, ModMenuTypes.HERB_GRINDER_MENU.get(),
+                HerbGrinderCategory.HERB_GRINDER_TYPE, 36, 1, 0, 36);
+
+        registration.addRecipeTransferHandler(HempSpinnerMenu.class, ModMenuTypes.HEMP_SPINNER_MENU.get(),
+                HempSpinnerCategory.HEMP_SPINNER_TYPE, 36, 1, 0, 36);
+
+        registration.addRecipeTransferHandler(HerbEvaporatorMenu.class, ModMenuTypes.HERB_EVAPORATOR_MENU.get(),
+                HerbEvaporatorCategory.HERB_EVAPORATOR_TYPE, 36, 1, 0, 36);
+
+        registration.addRecipeTransferHandler(HerbExtractorMenu.class, ModMenuTypes.HERB_EXTRACTOR_MENU.get(),
+                HerbExtractorCategory.HERB_EXTRACTOR_TYPE, 36, 1, 0, 36);
+
+        registration.addRecipeTransferHandler(HerbGeneratorMenu.class, ModMenuTypes.HERB_GENERATOR_MENU.get(),
+                HerbGeneratorCategory.HERB_GENERATOR_TYPE, 36, 1, 0, 36);
+
+        // TODO: Mutator and weaver not implemented.
     }
 }

@@ -2,8 +2,6 @@ package net.micaxs.smokeleafindustry.screen;
 
 import net.micaxs.smokeleafindustry.block.ModBlocks;
 import net.micaxs.smokeleafindustry.block.entity.HerbExtractorBlockEntity;
-import net.micaxs.smokeleafindustry.block.entity.HerbMutationBlockEntity;
-import net.micaxs.smokeleafindustry.screen.slot.CustomFuelSlot;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -56,6 +54,7 @@ public class HerbExtractorMenu extends AbstractContainerMenu {
     public int getEnergy() {
         return this.data.get(2);
     }
+
     public int getMaxEnergy() {
         return this.data.get(3);
     }
@@ -87,6 +86,7 @@ public class HerbExtractorMenu extends AbstractContainerMenu {
 
     // THIS YOU HAVE TO DEFINE!
     private static final int TE_INVENTORY_SLOT_COUNT = 1;  // must be the number of slots you have!
+
     @Override
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {
         Slot sourceSlot = slots.get(pIndex);
@@ -121,8 +121,6 @@ public class HerbExtractorMenu extends AbstractContainerMenu {
         return copyOfSourceStack;
     }
 
-
-
     @Override
     public boolean stillValid(Player pPlayer) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
@@ -142,6 +140,4 @@ public class HerbExtractorMenu extends AbstractContainerMenu {
             this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
         }
     }
-
-
 }

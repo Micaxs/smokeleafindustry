@@ -37,22 +37,18 @@ public class HerbGeneratorScreen extends AbstractContainerScreen<HerbGeneratorMe
         renderFuelProgress(guiGraphics, x, y);
 
         int energy = this.menu.getEnergyStoredScaled();
-        // Background
-        //guiGraphics.fill(x + 115, y + 20, x + 115, x + 131, y + 60, 0xFF555555);
         // Foreground
-        guiGraphics.fill(x + 116, y+ 21 + (38 - energy), x + 129, y + 59, 0xBFCC2222);
+        guiGraphics.fill(x + 116, y + 21 + (38 - energy), x + 129, y + 59, 0xBFCC2222);
 
     }
 
     private void renderFuelProgress(GuiGraphics guiGraphics, int x, int y) {
         int scaledHeight = menu.getFuelStoredScaled();
         if (scaledHeight > 0) {
-            int adjustedY = y + 38 + (14 - scaledHeight);
-            guiGraphics.blit(TEXTURE, x + 71, adjustedY, 176, 14 - scaledHeight, 14, scaledHeight);
+            int adjustedY = y + 38 + (11 - scaledHeight);
+            guiGraphics.blit(TEXTURE, x + 72, adjustedY, 176, 14 - scaledHeight, 14, scaledHeight);
         }
     }
-
-
 
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
@@ -60,20 +56,11 @@ public class HerbGeneratorScreen extends AbstractContainerScreen<HerbGeneratorMe
         super.render(guiGraphics, mouseX, mouseY, delta);
         renderTooltip(guiGraphics, mouseX, mouseY);
 
-//        int fuelStored = this.menu.getFuel();
-//        int burnTimeSeconds = (int) fuelStored / 20;
-//
-//        Component text = Component.literal("Fuel: " + burnTimeSeconds + "s");
-//        if (isHovering(8, 35, 14, 14, mouseX, mouseY)) {
-//            guiGraphics.renderTooltip(this.font, text, mouseX, mouseY);
-//        }
-
         int energyStored = this.menu.getEnergy();
         int maxEnergy = this.menu.getMaxEnergy();
         Component energyText = Component.literal("Energy: " + energyStored + " / " + maxEnergy);
-        if (isHovering(115, 20, 16, 40, mouseX, mouseY)) {
+        if (isHovering(116, 21, 13, 38, mouseX, mouseY)) {
             guiGraphics.renderTooltip(this.font, energyText, mouseX, mouseY);
         }
-
     }
 }

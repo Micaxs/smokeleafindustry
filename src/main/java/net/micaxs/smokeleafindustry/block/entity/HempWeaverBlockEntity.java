@@ -186,7 +186,6 @@ public class HempWeaverBlockEntity extends BlockEntity implements MenuProvider {
             inventory.setItem(i, itemHandler.getStackInSlot(i));
         }
         Containers.dropContents(this.level, this.worldPosition, inventory);
-
     }
 
     @Override
@@ -203,7 +202,7 @@ public class HempWeaverBlockEntity extends BlockEntity implements MenuProvider {
     @Override
     protected void saveAdditional(CompoundTag pTag) {
         pTag.put("inventory", itemHandler.serializeNBT());
-        pTag.putInt("hemp_spinner.progress", progress);
+        pTag.putInt("hemp_weaver.progress", progress);
         pTag.put("energy", this.energy.serializeNBT());
         super.saveAdditional(pTag);
     }
@@ -220,7 +219,7 @@ public class HempWeaverBlockEntity extends BlockEntity implements MenuProvider {
     public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
         boolean hasEnergy = energy.getEnergyStored() > 0;
 
-        if(hasEnergy && hasRecipe()) {
+        if (hasEnergy && hasRecipe()) {
             increaseCraftingProgress();
 
             energy.removeEnergy(20);
@@ -296,10 +295,6 @@ public class HempWeaverBlockEntity extends BlockEntity implements MenuProvider {
         progress++;
     }
 
-    public LazyOptional<ModEnergyStorage> getLazyEnergy () {
-        return this.lazyEnergy;
-    }
-
     public ModEnergyStorage getEnergy() {
         return this.energy;
     }
@@ -314,14 +309,4 @@ public class HempWeaverBlockEntity extends BlockEntity implements MenuProvider {
     public CompoundTag getUpdateTag() {
         return saveWithoutMetadata();
     }
-
-    private void spawnParticles(Level level, BlockPos pos) {
-        // Adjust the particle position based on the direction you want the particles to go
-        double x = pos.getX();
-        double y = pos.getY() + 0.9;
-        double z = pos.getZ();
-
-        level.addParticle(ParticleTypes.CAMPFIRE_COSY_SMOKE, x, y, z, 0.0D, 0.0D, 0.0D);
-    }
-
 }

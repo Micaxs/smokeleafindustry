@@ -1,0 +1,11 @@
+{
+	"type": "smokeleafindustry:herb_generator",
+	"ingredients": [
+		{
+			"tag": "smokeleafindustry:weed_buds"
+		}
+	],
+	"output": {
+		"amount": 6400
+	}
+}
