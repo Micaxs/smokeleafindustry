@@ -75,7 +75,7 @@ public class JEISmokeleafindustryModPlugin implements IModPlugin {
         registration.addRecipeClickArea(HerbEvaporatorScreen.class, 80, 30, 20, 30,
                 HerbEvaporatorCategory.HERB_EVAPORATOR_TYPE);
 
-        registration.addRecipeClickArea(HerbExtractorScreen.class, 64, 35, 64, 16,
+        registration.addRecipeClickArea(HerbExtractorScreen.class, 59, 35, 54, 16,
                 HerbExtractorCategory.HERB_EXTRACTOR_TYPE);
 
         registration.addRecipeClickArea(HerbGeneratorScreen.class, 80, 33, 18, 16,

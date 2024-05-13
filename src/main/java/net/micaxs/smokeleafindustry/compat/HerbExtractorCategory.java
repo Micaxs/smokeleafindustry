@@ -56,9 +56,9 @@ public class HerbExtractorCategory implements IRecipeCategory<HerbExtractorRecip
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, HerbExtractorRecipe recipe, IFocusGroup focuses) {
-        builder.addSlot(RecipeIngredientRole.INPUT, 35, 30).addIngredients(recipe.getIngredients().get(0));
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 136, 8)
+        builder.addSlot(RecipeIngredientRole.INPUT, 25, 30).addIngredients(recipe.getIngredients().get(0));
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 129, 6)
                 .addIngredients(ForgeTypes.FLUID_STACK, List.of(recipe.getResultFluid()))
-                .setFluidRenderer(8000, false, 16, 61);
+                .setFluidRenderer(8000, false, 16, 64);
     }
 }

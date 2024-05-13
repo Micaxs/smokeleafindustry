@@ -33,7 +33,7 @@ public class HerbExtractorMenu extends AbstractContainerMenu {
         addPlayerHotbar(inv);
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(iItemHandler -> {
-            this.addSlot(new SlotItemHandler(iItemHandler, 0, 40, 35)); // Input
+            this.addSlot(new SlotItemHandler(iItemHandler, 0, 30, 35)); // Input
         });
 
         addDataSlots(data);
