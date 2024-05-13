@@ -6,7 +6,6 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -37,36 +36,21 @@ public class BongItem extends Item {
     }
 
     private List<MobEffectInstance> getOffhandEffects(ItemStack offhandItem, LivingEntity livingEntity) {
-        List<MobEffectInstance> effects = new ArrayList<>();
-        if (offhandItem.getItem() instanceof BaseWeedItem weedItem) {
-            effects.addAll(weedItem.getEffects());
-            List<MobEffectInstance> updatedEffects = new ArrayList<>();
-            for (MobEffectInstance newEffect : new ArrayList<>(effects)) {
-                boolean effectExists = false;
-                for (MobEffectInstance existingEffect : livingEntity.getActiveEffects()) {
-                    MobEffect existingMobEffect = existingEffect.getEffect();
-                    MobEffect newMobEffect = newEffect.getEffect();
-                    if (existingMobEffect.equals(newMobEffect)) {
-                        effectExists = true;
-                        int existingDuration = existingEffect.getDuration();
-                        int newDuration = weedItem.getDuration() > 0 ? existingDuration + weedItem.getDuration() : 2410;
-                        newDuration = Math.min(newDuration, 2410);
-                        effects.remove(newEffect);
-                        if (updatedEffects.stream().noneMatch(effect -> effect.getEffect().equals(newMobEffect))) {
-                            updatedEffects.add(new MobEffectInstance(newMobEffect, newDuration, existingEffect.getAmplifier(), existingEffect.isAmbient(), existingEffect.isVisible()));
-                        }
-                        break;
-                    }
-                }
-                if (!effectExists) {
-                    if (updatedEffects.stream().noneMatch(effect -> effect.getEffect().equals(newEffect.getEffect()))) {
-                        updatedEffects.add(new MobEffectInstance(newEffect.getEffect(), weedItem.getDuration() > 0 ? weedItem.getDuration() : 2410, newEffect.getAmplifier(), newEffect.isAmbient(), newEffect.isVisible()));
-                    }
-                }
+        BaseWeedItem weedItem = (BaseWeedItem) offhandItem.getItem();
+        List<MobEffectInstance> offHandEffectList = new ArrayList<>();
+
+        for (MobEffectInstance weedEffect : weedItem.getEffects()) {
+            if (livingEntity.hasEffect(weedEffect.getEffect())) {
+                int previousEffectDuration = livingEntity.getEffect(weedEffect.getEffect()).getDuration();
+                offHandEffectList.add(new MobEffectInstance(weedEffect.getEffect(), previousEffectDuration + weedEffect.getDuration(),
+                        weedEffect.getAmplifier(), weedEffect.isAmbient(), weedEffect.isVisible()));
+            } else {
+                offHandEffectList.add(new MobEffectInstance(weedEffect.getEffect(), weedEffect.getDuration(),
+                        weedEffect.getAmplifier(), weedEffect.isAmbient(), weedEffect.isVisible()));
             }
-            effects.addAll(updatedEffects);
         }
-        return effects;
+
+        return offHandEffectList;
     }
 
     @Override
@@ -86,7 +70,6 @@ public class BongItem extends Item {
     public ItemStack finishUsingItem(ItemStack pStack, Level pLevel, LivingEntity pLivingEntity) {
         InteractionHand offHand = InteractionHand.OFF_HAND;
         ItemStack offhandItem = pLivingEntity.getItemInHand(offHand);
-        ItemStack mainhandItem = pLivingEntity.getItemInHand(InteractionHand.MAIN_HAND);
 
         if (isValidOffhandItem(offhandItem)) {
             pLivingEntity.setItemInHand(InteractionHand.OFF_HAND, offhandItem);
