@@ -2,13 +2,11 @@ package net.micaxs.smokeleafindustry.item.custom;
 
 import net.micaxs.smokeleafindustry.effect.ModEffects;
 import net.minecraft.ChatFormatting;
-import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -70,7 +68,11 @@ public class BluntItem extends Item {
 
         // 50% of getting stoned effect from smoking a blunt.
         if (pLevel.random.nextBoolean()) {
-            pLivingEntity.addEffect(new MobEffectInstance(ModEffects.STONED.get(), 200, 1));
+            int previousStonedDuration = 0;
+            if (pLivingEntity.hasEffect(ModEffects.STONED.get())) {
+                previousStonedDuration = pLivingEntity.getEffect(ModEffects.STONED.get()).getDuration();
+            }
+            pLivingEntity.addEffect(new MobEffectInstance(ModEffects.STONED.get(), previousStonedDuration + 200, 1));
         }
 
         CompoundTag tag = mainhandItem.getTag();
@@ -79,9 +81,14 @@ public class BluntItem extends Item {
             MobEffect effect = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(effectId));
             if (effect != null) {
                 int duration = effect == MobEffects.LEVITATION ? 60 : 1200;
-                pLivingEntity.addEffect(new MobEffectInstance(effect, duration, 1));
+                int previousEffectDuration = 0;
+                if (pLivingEntity.hasEffect(effect)) {
+                    previousEffectDuration = pLivingEntity.getEffect(effect).getDuration();
+                }
+                pLivingEntity.addEffect(new MobEffectInstance(effect, previousEffectDuration + duration, 1));
             }
         }
+
         mainhandItem.shrink(1);
         return super.finishUsingItem(pStack, pLevel, pLivingEntity);
     }

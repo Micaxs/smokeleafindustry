@@ -6,7 +6,6 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.AttributeMap;
 
 public class StonedEffect extends MobEffect {
     protected StonedEffect(MobEffectCategory pCategory, int pColor) {
@@ -16,22 +15,12 @@ public class StonedEffect extends MobEffect {
     @Override
     public void applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
         if (!pLivingEntity.level().isClientSide()) {
-            Double x = pLivingEntity.getX();
-            Double y = pLivingEntity.getY();
-            Double z = pLivingEntity.getZ();
             int duration = pLivingEntity.getEffect(this).getDuration();
 
             pLivingEntity.addEffect(new MobEffectInstance(MobEffects.CONFUSION, duration, pAmplifier, true, true, false));
             pLivingEntity.addEffect(new MobEffectInstance(MobEffects.HUNGER, duration, pAmplifier, true, true, false));
         }
         super.applyEffectTick(pLivingEntity, pAmplifier);
-    }
-
-    @Override
-    public void removeAttributeModifiers(LivingEntity pLivingEntity, AttributeMap pAttributeMap, int pAmplifier) {
-        pLivingEntity.removeEffect(MobEffects.CONFUSION);
-        pLivingEntity.removeEffect(MobEffects.HUNGER);
-        super.removeAttributeModifiers(pLivingEntity, pAttributeMap, pAmplifier);
     }
 
     @Override
