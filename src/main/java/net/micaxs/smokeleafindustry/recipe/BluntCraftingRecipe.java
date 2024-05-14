@@ -4,20 +4,17 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
-import net.micaxs.smokeleafindustry.item.custom.BaseWeedItem;
+import net.micaxs.smokeleafindustry.item.custom.WeedEffectHelper;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.chat.Component;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
-import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,22 +44,13 @@ public class BluntCraftingRecipe extends ShapedRecipe {
     @Override
     public @NotNull ItemStack assemble(@NotNull CraftingContainer pContainer, @NotNull RegistryAccess pRegistry) {
         ItemStack output = super.assemble(pContainer, pRegistry);
+        if (output.isEmpty()) {
+            return output;
+        }
 
-        if (!output.isEmpty()) {
-            for (int i = 0; i < pContainer.getContainerSize(); i++) {
-                ItemStack ingredient = pContainer.getItem(i);
-                if (ingredient.getItem() instanceof BaseWeedItem) {
-                    CompoundTag tag = ingredient.getShareTag();
-                    if (tag == null) {
-                        tag = new CompoundTag();
-                    }
-                    output.setTag(tag.copy());
-                    Component weedNameComponent = ingredient.getItem().getName(ingredient);
-                    String weedName = weedNameComponent.getString().replace(" Weed", "").replace(" weed", "");
-                    output.setHoverName(Component.translatable("item.smokeleafindustry.blunt", weedName));
-                    break;
-                }
-            }
+        for (ItemStack ingredient : pContainer.getItems()) {
+            WeedEffectHelper.addWeedEffectToItem(ingredient, output);
+            WeedEffectHelper.nameWeedBasedItem(ingredient, output);
         }
 
         return output;

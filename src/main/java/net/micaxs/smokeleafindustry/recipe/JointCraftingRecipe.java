@@ -2,12 +2,10 @@ package net.micaxs.smokeleafindustry.recipe;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import net.micaxs.smokeleafindustry.item.custom.BaseWeedItem;
+import net.micaxs.smokeleafindustry.item.custom.WeedEffectHelper;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.inventory.CraftingContainer;
@@ -41,22 +39,13 @@ public class JointCraftingRecipe extends ShapelessRecipe {
     @Override
     public @NotNull ItemStack assemble(@NotNull CraftingContainer pContainer, @NotNull RegistryAccess pRegistry) {
         ItemStack output = super.assemble(pContainer, pRegistry);
-        if (!output.isEmpty()) {
+        if (output.isEmpty()) {
             return output;
         }
 
         for (ItemStack ingredient : pContainer.getItems()) {
-            if (ingredient.getItem() instanceof BaseWeedItem) {
-                CompoundTag tag = ingredient.getShareTag();
-                if (tag == null) {
-                    tag = new CompoundTag();
-                }
-                output.setTag(tag.copy());
-                Component weedNameComponent = ingredient.getItem().getName(ingredient);
-                String weedName = weedNameComponent.getString().replace(" Weed", "").replace(" weed", "");
-                output.setHoverName(Component.translatable("item.smokeleafindustry.joint", weedName));
-                break;
-            }
+            WeedEffectHelper.addWeedEffectToItem(ingredient, output);
+            WeedEffectHelper.nameWeedBasedItem(ingredient, output);
         }
 
         return output;
