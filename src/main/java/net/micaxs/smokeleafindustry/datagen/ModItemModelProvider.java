@@ -49,20 +49,39 @@ public class ModItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         simpleItem(ModItems.WHITE_WIDOW_SEEDS);
-        simpleItem(ModItems.LEMON_HAZE_SEEDS);
+        simpleItem(ModItems.WHITE_WIDOW_BUD);
+        simpleItem(ModItems.WHITE_WIDOW_WEED);
+        simpleItem(ModItems.WHITE_WIDOW_EXTRACT);
+
         simpleItem(ModItems.BUBBLE_KUSH_SEEDS);
         simpleItem(ModItems.BUBBLE_KUSH_BUD);
         simpleItem(ModItems.BUBBLE_KUSH_WEED);
+        simpleItem(ModItems.BUBBLE_KUSH_EXTRACT);
+
         simpleItem(ModItems.SOUR_DIESEL_SEEDS);
+        simpleItem(ModItems.SOUR_DIESEL_BUD);
+        simpleItem(ModItems.SOUR_DIESEL_WEED);
+        simpleItem(ModItems.SOUR_DIESEL_EXTRACT);
+
         simpleItem(ModItems.BLUE_ICE_SEEDS);
         simpleItem(ModItems.BLUE_ICE_WEED);
         simpleItem(ModItems.BLUE_ICE_BUD);
+        simpleItem(ModItems.BLUE_ICE_EXTRACT);
+
         simpleItem(ModItems.BUBBLEGUM_SEEDS);
         simpleItem(ModItems.BUBBLEGUM_BUD);
         simpleItem(ModItems.BUBBLEGUM_WEED);
+        simpleItem(ModItems.BUBBLEGUM_EXTRACT);
+
         simpleItem(ModItems.PURPLE_HAZE_SEEDS);
         simpleItem(ModItems.PURPLE_HAZE_BUD);
         simpleItem(ModItems.PURPLE_HAZE_WEED);
+        simpleItem(ModItems.PURPLE_HAZE_EXTRACT);
+
+        simpleItem(ModItems.LEMON_HAZE_SEEDS);
+        simpleItem(ModItems.LEMON_HAZE_BUD);
+        simpleItem(ModItems.LEMON_HAZE_WEED);
+        simpleItem(ModItems.LEMON_HAZE_EXTRACT);
 
         simpleItem(ModItems.EMPTY_BAG);
         simpleItem(ModItems.WHITE_WIDOW_BAG);
@@ -78,6 +97,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.HEMP_CORE);
         simpleItem(ModItems.HEMP_STICK);
         simpleItem(ModItems.BONG);
+        simpleItem(ModItems.HEMP_FABRIC);
+        simpleItem(ModItems.HEMP_FIBERS);
+        simpleItem(ModItems.HEMP_LEAF);
+        simpleItem(ModItems.HERB_CAKE);
+
+        simpleItem(ModItems.HASH_OIL_BUCKET);
 
         trimmedArmorItem(ModItems.HEMP_HELMET_RED);
         trimmedArmorItem(ModItems.HEMP_CHESTPLATE_RED);
