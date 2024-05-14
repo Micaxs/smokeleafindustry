@@ -1,0 +1,16 @@
+{
+  "type": "smokeleafindustry:joint_crafting",
+  "ingredients": [
+    {
+      "item": "minecraft:paper"
+    }, {
+      "item": "minecraft:paper"
+    }, {
+      "item": "smokeleafindustry:sour_diesel_weed"
+    }
+  ],
+  "result": {
+    "item": "smokeleafindustry:joint",
+    "count": 1
+  }
+}

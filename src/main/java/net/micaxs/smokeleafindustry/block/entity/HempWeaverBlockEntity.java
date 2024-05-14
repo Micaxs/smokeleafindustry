@@ -1,7 +1,7 @@
 package net.micaxs.smokeleafindustry.block.entity;
 
 
-import net.micaxs.smokeleafindustry.recipe.HempWeaverRecipe;
+import net.micaxs.smokeleafindustry.recipe.machines.HempWeaverRecipe;
 import net.micaxs.smokeleafindustry.screen.HempWeaverMenu;
 import net.micaxs.smokeleafindustry.utils.ModEnergyStorage;
 import net.minecraft.core.BlockPos;

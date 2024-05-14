@@ -1,6 +1,7 @@
 package net.micaxs.smokeleafindustry.recipe;
 
 import net.micaxs.smokeleafindustry.SmokeleafIndustryMod;
+import net.micaxs.smokeleafindustry.recipe.machines.*;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -22,6 +23,9 @@ public class ModRecipes {
 
     public static final RegistryObject<RecipeSerializer<BluntCraftingRecipe>> BLUNT_CRAFTING =
             SERIALIZERS.register("blunt_crafting", () -> BluntCraftingRecipe.Serializer.INSTANCE);
+
+    public static final RegistryObject<RecipeSerializer<JointCraftingRecipe>> JOINT_CRAFTING =
+            SERIALIZERS.register("joint_crafting", () -> JointCraftingRecipe.Serializer.INSTANCE);
 
     public static final RegistryObject<RecipeSerializer<ManualGrinderRecipe>> MANUAL_GRINDER_SERIALIZER =
             SERIALIZERS.register("grinder", () -> ManualGrinderRecipe.Serializer.INSTANCE);

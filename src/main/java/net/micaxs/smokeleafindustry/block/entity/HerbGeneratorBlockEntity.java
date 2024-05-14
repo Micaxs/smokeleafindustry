@@ -1,12 +1,11 @@
 package net.micaxs.smokeleafindustry.block.entity;
 
 
-import net.micaxs.smokeleafindustry.recipe.HerbGeneratorRecipe;
+import net.micaxs.smokeleafindustry.recipe.machines.HerbGeneratorRecipe;
 import net.micaxs.smokeleafindustry.utils.ModEnergyStorage;
 import net.micaxs.smokeleafindustry.screen.HerbGeneratorMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;

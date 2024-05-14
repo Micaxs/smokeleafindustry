@@ -1,6 +1,6 @@
 package net.micaxs.smokeleafindustry.block.entity;
 
-import net.micaxs.smokeleafindustry.recipe.HempSpinnerRecipe;
+import net.micaxs.smokeleafindustry.recipe.machines.HempSpinnerRecipe;
 import net.micaxs.smokeleafindustry.screen.HempSpinnerMenu;
 import net.micaxs.smokeleafindustry.utils.ModEnergyStorage;
 import net.minecraft.core.BlockPos;
