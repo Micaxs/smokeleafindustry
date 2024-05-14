@@ -22,12 +22,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BluntCraftingRecipe extends ShapedRecipe {
-
-    private ItemStack result;
+    private final ItemStack result;
 
     public BluntCraftingRecipe(ResourceLocation pId, String pGroup, CraftingBookCategory pCategory, int pWidth, int pHeight, NonNullList<Ingredient> pRecipeItems, ItemStack pResult) {
         super(pId, pGroup, pCategory, pWidth, pHeight, pRecipeItems, pResult);
-        result = pResult;
+        this.result = pResult;
     }
 
     @Override
@@ -44,7 +43,6 @@ public class BluntCraftingRecipe extends ShapedRecipe {
     public RecipeSerializer<?> getSerializer() {
         return BluntCraftingRecipe.Serializer.INSTANCE;
     }
-
 
     @Override
     public @NotNull ItemStack assemble(@NotNull CraftingContainer pContainer, @NotNull RegistryAccess pRegistry) {
@@ -69,7 +67,6 @@ public class BluntCraftingRecipe extends ShapedRecipe {
 
         return output;
     }
-
 
     public static class Serializer implements RecipeSerializer<BluntCraftingRecipe> {
         public static final Serializer INSTANCE = new Serializer();
@@ -134,5 +131,4 @@ public class BluntCraftingRecipe extends ShapedRecipe {
             buffer.writeItem(recipe.getResultItem(RegistryAccess.EMPTY));
         }
     }
-
 }

@@ -85,6 +85,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.BUBBLEGUM_BAG);
         simpleItem(ModItems.PURPLE_HAZE_BAG);
 
+        simpleItem(ModItems.JOINT);
         simpleItem(ModItems.BLUNT);
         simpleItem(ModItems.GRINDER);
         simpleItem(ModItems.HEMP_CORE);
