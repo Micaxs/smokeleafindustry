@@ -10,7 +10,7 @@ import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.micaxs.smokeleafindustry.SmokeleafIndustryMod;
 import net.micaxs.smokeleafindustry.block.ModBlocks;
-import net.micaxs.smokeleafindustry.recipe.HerbEvaporatorRecipe;
+import net.micaxs.smokeleafindustry.recipe.machines.HerbEvaporatorRecipe;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;

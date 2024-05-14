@@ -1,6 +1,7 @@
 package net.micaxs.smokeleafindustry.recipe;
 
 import net.micaxs.smokeleafindustry.SmokeleafIndustryMod;
+import net.micaxs.smokeleafindustry.recipe.machines.*;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;

@@ -5,7 +5,7 @@ import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.registration.*;
 import net.micaxs.smokeleafindustry.SmokeleafIndustryMod;
 import net.micaxs.smokeleafindustry.block.ModBlocks;
-import net.micaxs.smokeleafindustry.recipe.*;
+import net.micaxs.smokeleafindustry.recipe.machines.*;
 import net.micaxs.smokeleafindustry.screen.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;

@@ -1,6 +1,6 @@
 package net.micaxs.smokeleafindustry.block.entity;
 
-import net.micaxs.smokeleafindustry.recipe.HerbEvaporatorRecipe;
+import net.micaxs.smokeleafindustry.recipe.machines.HerbEvaporatorRecipe;
 import net.micaxs.smokeleafindustry.screen.HerbEvaporatorMenu;
 import net.micaxs.smokeleafindustry.utils.ModEnergyStorage;
 import net.minecraft.core.BlockPos;

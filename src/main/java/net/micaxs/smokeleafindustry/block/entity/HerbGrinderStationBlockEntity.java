@@ -1,7 +1,7 @@
 package net.micaxs.smokeleafindustry.block.entity;
 
 import net.micaxs.smokeleafindustry.utils.ModEnergyStorage;
-import net.micaxs.smokeleafindustry.recipe.HerbGrinderRecipe;
+import net.micaxs.smokeleafindustry.recipe.machines.HerbGrinderRecipe;
 import net.micaxs.smokeleafindustry.screen.HerbGrinderStationMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

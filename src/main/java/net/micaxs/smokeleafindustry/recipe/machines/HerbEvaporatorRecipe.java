@@ -1,4 +1,4 @@
-package net.micaxs.smokeleafindustry.recipe;
+package net.micaxs.smokeleafindustry.recipe.machines;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -14,12 +14,12 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
-public class HempSpinnerRecipe implements Recipe<SimpleContainer> {
+public class HerbEvaporatorRecipe implements Recipe<SimpleContainer> {
     private final NonNullList<Ingredient> inputItems;
     private final ItemStack output;
     private final ResourceLocation id;
 
-    public HempSpinnerRecipe(NonNullList<Ingredient> inputItems, ItemStack output, ResourceLocation id) {
+    public HerbEvaporatorRecipe(NonNullList<Ingredient> inputItems, ItemStack output, ResourceLocation id) {
         this.inputItems = inputItems;
         this.output = output;
         this.id = id;
@@ -69,18 +69,18 @@ public class HempSpinnerRecipe implements Recipe<SimpleContainer> {
         return Type.INSTANCE;
     }
 
-    public static class Type implements RecipeType<HempSpinnerRecipe> {
+    public static class Type implements RecipeType<HerbEvaporatorRecipe> {
         public static final Type INSTANCE = new Type();
-        public static final String ID =  "hemp_spinner";
+        public static final String ID =  "herb_evaporator";
     }
 
-    public static class Serializer implements RecipeSerializer<HempSpinnerRecipe> {
+    public static class Serializer implements RecipeSerializer<HerbEvaporatorRecipe> {
 
         public static final Serializer INSTANCE = new Serializer();
-        public static final ResourceLocation ID = new ResourceLocation(SmokeleafIndustryMod.MOD_ID, "hemp_spinner");
+        public static final ResourceLocation ID = new ResourceLocation(SmokeleafIndustryMod.MOD_ID, "herb_evaporator");
 
         @Override
-        public HempSpinnerRecipe fromJson(ResourceLocation pRecipeId, JsonObject pSerializedRecipe) {
+        public HerbEvaporatorRecipe fromJson(ResourceLocation pRecipeId, JsonObject pSerializedRecipe) {
             ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "output"));
 
             JsonArray ingredients = GsonHelper.getAsJsonArray(pSerializedRecipe, "ingredients");
@@ -90,11 +90,11 @@ public class HempSpinnerRecipe implements Recipe<SimpleContainer> {
                 inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
             }
 
-            return new HempSpinnerRecipe(inputs, output, pRecipeId);
+            return new HerbEvaporatorRecipe(inputs, output, pRecipeId);
         }
 
         @Override
-        public @Nullable HempSpinnerRecipe fromNetwork(ResourceLocation pRecipeId, FriendlyByteBuf pBuffer) {
+        public @Nullable HerbEvaporatorRecipe fromNetwork(ResourceLocation pRecipeId, FriendlyByteBuf pBuffer) {
             NonNullList<Ingredient> inputs = NonNullList.withSize(pBuffer.readInt(), Ingredient.EMPTY);
 
             for (int i = 0; i < inputs.size(); i++) {
@@ -103,11 +103,11 @@ public class HempSpinnerRecipe implements Recipe<SimpleContainer> {
 
             ItemStack output = pBuffer.readItem();
 
-            return new HempSpinnerRecipe(inputs, output, pRecipeId);
+            return new HerbEvaporatorRecipe(inputs, output, pRecipeId);
         }
 
         @Override
-        public void toNetwork(FriendlyByteBuf pBuffer, HempSpinnerRecipe pRecipe) {
+        public void toNetwork(FriendlyByteBuf pBuffer, HerbEvaporatorRecipe pRecipe) {
             pBuffer.writeInt(pRecipe.inputItems.size());
 
             for (Ingredient ingredient : pRecipe.getIngredients()) {

@@ -3,8 +3,7 @@ package net.micaxs.smokeleafindustry.block.entity;
 import net.micaxs.smokeleafindustry.utils.ModEnergyStorage;
 
 import net.micaxs.smokeleafindustry.fluid.ModFluids;
-import net.micaxs.smokeleafindustry.item.ModItems;
-import net.micaxs.smokeleafindustry.recipe.HerbMutationRecipe;
+import net.micaxs.smokeleafindustry.recipe.machines.HerbMutationRecipe;
 import net.micaxs.smokeleafindustry.screen.HerbMutationMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -28,7 +27,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
@@ -41,7 +39,6 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Arrays;
 import java.util.Optional;
 
 public class HerbMutationBlockEntity extends BlockEntity implements MenuProvider {
