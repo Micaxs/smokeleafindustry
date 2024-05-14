@@ -114,5 +114,10 @@ public class BaseWeedItem extends Item {
         if (nbt != null && nbt.contains("cbd")) {
             cbdLevel = nbt.getInt("cbd");
         }
+
+        // Read duration
+        if (nbt != null && nbt.contains("duration")) {
+            this.duration = nbt.getInt("duration");
+        }
     }
 }
