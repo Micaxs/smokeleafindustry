@@ -22,16 +22,21 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class EdibleItem extends Item implements ContainsWeed {
-    public static final float EDIBLE_FACTOR = 1.5F;
+public class WeedDerivedItem extends Item {
+    private final float effectDurationMultiplier;
+    private final float stonedChance;
+    private final UseAnim useAnimation;
 
-    public EdibleItem(Properties pProperties) {
+    public WeedDerivedItem(Properties pProperties, float effectDurationMultiplier, float stonedChance, UseAnim useAnimation) {
         super(pProperties);
+        this.effectDurationMultiplier = effectDurationMultiplier;
+        this.stonedChance = stonedChance;
+        this.useAnimation = useAnimation;
     }
 
     @Override
     public UseAnim getUseAnimation(ItemStack pStack) {
-        return UseAnim.EAT;
+        return this.useAnimation;
     }
 
     @Override
@@ -42,7 +47,7 @@ public class EdibleItem extends Item implements ContainsWeed {
     @Override
     public void onCraftedBy(ItemStack stack, Level world, Player player) {
         ItemStack original = player.getInventory().getSelected();
-        if (!original.isEmpty() && original.getItem() instanceof EdibleItem) {
+        if (!original.isEmpty() && original.getItem() instanceof WeedDerivedItem) {
             CompoundTag originalTag = original.getTag();
             if (originalTag != null) {
                 stack.setTag(originalTag.copy());
@@ -67,12 +72,14 @@ public class EdibleItem extends Item implements ContainsWeed {
         ItemStack mainHandItem = pLivingEntity.getItemInHand(InteractionHand.MAIN_HAND);
         spawnSmokeParticles(pLevel, pLivingEntity);
 
-        // Always get stoned from an edible
-        int previousStonedDuration = 0;
-        if (pLivingEntity.hasEffect(ModEffects.STONED.get())) {
-            previousStonedDuration = pLivingEntity.getEffect(ModEffects.STONED.get()).getDuration();
+        // A stonedChance of 1 will always result in being stoned
+        if (pLevel.random.nextDouble() <= this.stonedChance) {
+            int previousStonedDuration = 0;
+            if (pLivingEntity.hasEffect(ModEffects.STONED.get())) {
+                previousStonedDuration = pLivingEntity.getEffect(ModEffects.STONED.get()).getDuration();
+            }
+            pLivingEntity.addEffect(new MobEffectInstance(ModEffects.STONED.get(), previousStonedDuration + 200, 1));
         }
-        pLivingEntity.addEffect(new MobEffectInstance(ModEffects.STONED.get(), previousStonedDuration + 200, 1));
 
         CompoundTag tag = mainHandItem.getTag();
         if (tag != null && tag.contains("effect") && tag.contains("duration")) {
@@ -130,8 +137,7 @@ public class EdibleItem extends Item implements ContainsWeed {
                 .append(Component.literal("(" + duration + "s)").withStyle(ChatFormatting.GRAY));
     }
 
-    @Override
     public float getEffectFactor() {
-        return EDIBLE_FACTOR;
+        return this.effectDurationMultiplier;
     }
 }
