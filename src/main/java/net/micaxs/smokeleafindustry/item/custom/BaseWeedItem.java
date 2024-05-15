@@ -1,6 +1,5 @@
 package net.micaxs.smokeleafindustry.item.custom;
 
-import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -8,7 +7,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -20,19 +18,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BaseWeedItem extends Item {
-
     private final List<MobEffectInstance> effects = new ArrayList<>();
     public int duration;
+    public int thcLevel;
+    public int cbdLevel;
 
-    public int THC_LEVEL = 50;
-    public int CBD_LEVEL = 50;
 
     public BaseWeedItem(Properties pProperties, MobEffect effect, int iDuration, int iAmplifier, int iThc, int iCbd) {
         super(pProperties);
-        duration = iDuration;
-        THC_LEVEL = iThc;
-        CBD_LEVEL = iCbd;
-        effects.add(new MobEffectInstance(effect, iDuration, iAmplifier));
+        this.duration = iDuration;
+        this.thcLevel = iThc;
+        this.cbdLevel = iCbd;
+        this.effects.add(new MobEffectInstance(effect, iDuration, iAmplifier));
     }
 
     public List<MobEffectInstance> getEffects() {
@@ -68,15 +65,10 @@ public class BaseWeedItem extends Item {
     private Component getLevelsText() {
         return Component.literal(" ")
                 .append(Component.literal("THC: ").withStyle(ChatFormatting.DARK_GRAY))
-                .append(Component.literal(THC_LEVEL + "%").withStyle(ChatFormatting.GREEN))
+                .append(Component.literal(thcLevel + "%").withStyle(ChatFormatting.GREEN))
                 .append(Component.literal(" | ").withStyle(ChatFormatting.GRAY))
                 .append(Component.literal("CBD: ").withStyle(ChatFormatting.DARK_GRAY))
-                .append(Component.literal(CBD_LEVEL + "%").withStyle(ChatFormatting.GREEN));
-    }
-
-
-    public int getDuration() {
-        return duration;
+                .append(Component.literal(cbdLevel + "%").withStyle(ChatFormatting.GREEN));
     }
 
     @Override
@@ -87,8 +79,11 @@ public class BaseWeedItem extends Item {
         }
 
         // Set the THC and CBD levels into the tag
-        tag.putInt("thc", THC_LEVEL);
-        tag.putInt("cbd", CBD_LEVEL);
+        tag.putInt("thc", thcLevel);
+        tag.putInt("cbd", cbdLevel);
+
+        // Set the duration of the effect
+        tag.putInt("duration", this.duration);
 
         // Set the effect based on the actual effect of the BaseWeedItem
         if (!effects.isEmpty()) {
@@ -114,10 +109,15 @@ public class BaseWeedItem extends Item {
 
         // Read THC and CBD Levels from tag
         if (nbt != null && nbt.contains("thc")) {
-            THC_LEVEL = nbt.getInt("thc");
+            thcLevel = nbt.getInt("thc");
         }
         if (nbt != null && nbt.contains("cbd")) {
-            CBD_LEVEL = nbt.getInt("cbd");
+            cbdLevel = nbt.getInt("cbd");
+        }
+
+        // Read duration
+        if (nbt != null && nbt.contains("duration")) {
+            this.duration = nbt.getInt("duration");
         }
     }
 }

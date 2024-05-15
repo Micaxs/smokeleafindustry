@@ -10,7 +10,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -23,8 +22,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class BluntItem extends Item {
-    public BluntItem(Properties pProperties) {
+public class CombustibleItem extends Item {
+    public CombustibleItem(Properties pProperties) {
         super(pProperties);
     }
 
@@ -41,7 +40,7 @@ public class BluntItem extends Item {
     @Override
     public void onCraftedBy(ItemStack stack, Level world, Player player) {
         ItemStack original = player.getInventory().getSelected();
-        if (!original.isEmpty() && original.getItem() instanceof BluntItem) {
+        if (!original.isEmpty() && original.getItem() instanceof CombustibleItem) {
             CompoundTag originalTag = original.getTag();
             if (originalTag != null) {
                 stack.setTag(originalTag.copy());
@@ -63,7 +62,7 @@ public class BluntItem extends Item {
 
     @Override
     public ItemStack finishUsingItem(ItemStack pStack, Level pLevel, LivingEntity pLivingEntity) {
-        ItemStack mainhandItem = pLivingEntity.getItemInHand(InteractionHand.MAIN_HAND);
+        ItemStack mainHandItem = pLivingEntity.getItemInHand(InteractionHand.MAIN_HAND);
         spawnSmokeParticles(pLevel, pLivingEntity);
 
         // 50% of getting stoned effect from smoking a blunt.
@@ -75,12 +74,12 @@ public class BluntItem extends Item {
             pLivingEntity.addEffect(new MobEffectInstance(ModEffects.STONED.get(), previousStonedDuration + 200, 1));
         }
 
-        CompoundTag tag = mainhandItem.getTag();
-        if (tag != null && tag.contains("effect")) {
+        CompoundTag tag = mainHandItem.getTag();
+        if (tag != null && tag.contains("effect") && tag.contains("duration")) {
             String effectId = tag.getString("effect");
             MobEffect effect = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(effectId));
             if (effect != null) {
-                int duration = effect == MobEffects.LEVITATION ? 60 : 1200;
+                int duration = tag.getInt("duration");
                 int previousEffectDuration = 0;
                 if (pLivingEntity.hasEffect(effect)) {
                     previousEffectDuration = pLivingEntity.getEffect(effect).getDuration();
@@ -89,7 +88,7 @@ public class BluntItem extends Item {
             }
         }
 
-        mainhandItem.shrink(1);
+        mainHandItem.shrink(1);
         return super.finishUsingItem(pStack, pLevel, pLivingEntity);
     }
 
@@ -111,11 +110,11 @@ public class BluntItem extends Item {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
         pTooltipComponents.add(Component.translatable("tooltip.smokeleafindustry.effects").withStyle(ChatFormatting.GRAY));
         CompoundTag tag = pStack.getTag();
-        if (tag != null && tag.contains("effect")) {
+        if (tag != null && tag.contains("effect") && tag.contains("duration")) {
             String effectId = tag.getString("effect");
             MobEffect effect = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(effectId));
             if (effect != null) {
-                MobEffectInstance effectInstance = new MobEffectInstance(effect, 1200, 1);
+                MobEffectInstance effectInstance = new MobEffectInstance(effect, tag.getInt("duration"), 1);
                 pTooltipComponents.add(getEffectText(effectInstance));
             }
         }

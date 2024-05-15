@@ -4,7 +4,6 @@ import net.micaxs.smokeleafindustry.SmokeleafIndustryMod;
 import net.micaxs.smokeleafindustry.block.custom.*;
 import net.micaxs.smokeleafindustry.fluid.ModFluids;
 import net.micaxs.smokeleafindustry.item.ModItems;
-import net.minecraft.client.resources.model.Material;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -90,7 +89,6 @@ public class ModBlocks {
             () -> new LiquidBlock(ModFluids.SOURCE_HASH_OIL, BlockBehaviour.Properties.copy(Blocks.WATER)));
 
 
-
     // Other Shit
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         System.out.println("Registering block: " + name);
@@ -99,12 +97,12 @@ public class ModBlocks {
         return toReturn;
     }
 
-    private static <T extends Block>RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block) {
+    private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block) {
         System.out.println("Registering block item: " + name);
         return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
-    public  static void register(IEventBus eventBus) {
+    public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
     }
 }
