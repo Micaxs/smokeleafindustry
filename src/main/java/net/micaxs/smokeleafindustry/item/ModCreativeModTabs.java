@@ -90,6 +90,7 @@ public class ModCreativeModTabs {
                         pOutput.accept(ModItems.JOINT.get());
                         pOutput.accept(ModItems.GRINDER.get());
                         pOutput.accept(ModItems.HERB_CAKE.get());
+                        pOutput.accept(ModItems.HASH_BROWNIE.get());
 
                         pOutput.accept(ModBlocks.HEMP_STONE.get());
                         pOutput.accept(ModBlocks.HEMP_PLANKS.get());

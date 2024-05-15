@@ -1,0 +1,20 @@
+{
+  "type": "smokeleafindustry:shapeless_weed_crafting",
+  "ingredients": [
+    {
+      "item": "minecraft:milk_bucket"
+    }, {
+      "item": "minecraft:sugar"
+    }, {
+      "item": "minecraft:wheat"
+    }, {
+      "item": "minecraft:cocoa_beans"
+    }, {
+      "item": "smokeleafindustry:white_widow_weed"
+    }
+  ],
+  "result": {
+    "item": "smokeleafindustry:hash_brownie",
+    "count": 2
+  }
+}

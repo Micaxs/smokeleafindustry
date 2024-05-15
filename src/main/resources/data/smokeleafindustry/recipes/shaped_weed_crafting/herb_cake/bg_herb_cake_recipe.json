@@ -1,0 +1,26 @@
+{
+  "type": "smokeleafindustry:shaped_weed_crafting",
+  "pattern": [
+    "MMM",
+    "SES",
+    "WWW"
+  ],
+  "key": {
+    "M": {
+      "item": "minecraft:milk_bucket"
+    },
+    "S": {
+      "item": "minecraft:sugar"
+    },
+    "E": {
+      "item": "minecraft:egg"
+    },
+    "W": {
+      "item": "smokeleafindustry:bubblegum_weed"
+    }
+  },
+  "result": {
+    "item": "smokeleafindustry:herb_cake",
+    "count": 1
+  }
+}

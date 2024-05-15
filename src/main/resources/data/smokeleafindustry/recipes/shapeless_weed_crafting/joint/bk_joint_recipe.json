@@ -1,12 +1,12 @@
 {
-  "type": "smokeleafindustry:joint_crafting",
+  "type": "smokeleafindustry:shapeless_weed_crafting",
   "ingredients": [
     {
       "item": "minecraft:paper"
     }, {
       "item": "minecraft:paper"
     }, {
-      "item": "smokeleafindustry:sour_diesel_weed"
+      "item": "smokeleafindustry:bubble_kush_weed"
     }
   ],
   "result": {

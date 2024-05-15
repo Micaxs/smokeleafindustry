@@ -22,14 +22,21 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class CombustibleItem extends Item {
-    public CombustibleItem(Properties pProperties) {
+public class WeedDerivedItem extends Item {
+    private final float effectDurationMultiplier;
+    private final float stonedChance;
+    private final UseAnim useAnimation;
+
+    public WeedDerivedItem(Properties pProperties, float effectDurationMultiplier, float stonedChance, UseAnim useAnimation) {
         super(pProperties);
+        this.effectDurationMultiplier = effectDurationMultiplier;
+        this.stonedChance = stonedChance;
+        this.useAnimation = useAnimation;
     }
 
     @Override
     public UseAnim getUseAnimation(ItemStack pStack) {
-        return UseAnim.BOW;
+        return this.useAnimation;
     }
 
     @Override
@@ -40,7 +47,7 @@ public class CombustibleItem extends Item {
     @Override
     public void onCraftedBy(ItemStack stack, Level world, Player player) {
         ItemStack original = player.getInventory().getSelected();
-        if (!original.isEmpty() && original.getItem() instanceof CombustibleItem) {
+        if (!original.isEmpty() && original.getItem() instanceof WeedDerivedItem) {
             CompoundTag originalTag = original.getTag();
             if (originalTag != null) {
                 stack.setTag(originalTag.copy());
@@ -65,8 +72,8 @@ public class CombustibleItem extends Item {
         ItemStack mainHandItem = pLivingEntity.getItemInHand(InteractionHand.MAIN_HAND);
         spawnSmokeParticles(pLevel, pLivingEntity);
 
-        // 50% of getting stoned effect from smoking a blunt.
-        if (pLevel.random.nextBoolean()) {
+        // A stonedChance of 1 will always result in being stoned
+        if (pLevel.random.nextDouble() <= this.stonedChance) {
             int previousStonedDuration = 0;
             if (pLivingEntity.hasEffect(ModEffects.STONED.get())) {
                 previousStonedDuration = pLivingEntity.getEffect(ModEffects.STONED.get()).getDuration();
@@ -108,9 +115,9 @@ public class CombustibleItem extends Item {
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
-        pTooltipComponents.add(Component.translatable("tooltip.smokeleafindustry.effects").withStyle(ChatFormatting.GRAY));
         CompoundTag tag = pStack.getTag();
         if (tag != null && tag.contains("effect") && tag.contains("duration")) {
+            pTooltipComponents.add(Component.translatable("tooltip.smokeleafindustry.effects").withStyle(ChatFormatting.GRAY));
             String effectId = tag.getString("effect");
             MobEffect effect = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(effectId));
             if (effect != null) {
@@ -128,5 +135,9 @@ public class CombustibleItem extends Item {
                 .withStyle(ChatFormatting.GREEN)
                 .append(" ")
                 .append(Component.literal("(" + duration + "s)").withStyle(ChatFormatting.GRAY));
+    }
+
+    public float getEffectFactor() {
+        return this.effectDurationMultiplier;
     }
 }

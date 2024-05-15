@@ -6,7 +6,7 @@ import net.minecraft.world.item.ItemStack;
 
 public class WeedEffectHelper {
     public static void addWeedEffectToItem(ItemStack weedStack, ItemStack weedBasedItem) {
-        if (!(weedStack.getItem() instanceof BaseWeedItem)) {
+        if (!(weedStack.getItem() instanceof BaseWeedItem) || !(weedBasedItem.getItem() instanceof WeedDerivedItem)) {
             return;
         }
 
@@ -26,7 +26,10 @@ public class WeedEffectHelper {
 
         weedBasedItem.setTag(weedDataTag.copy());
         if (weedDataTag.contains("duration")) {
-            weedBasedItem.getShareTag().putInt("duration", (weedDataTag.getInt("duration") + previousDuration));
+            weedBasedItem.getShareTag().putInt(
+                    "duration",
+                    (int) ((weedDataTag.getInt("duration") * ((WeedDerivedItem) weedBasedItem.getItem()).getEffectFactor()) + previousDuration)
+            );
         }
     }
 

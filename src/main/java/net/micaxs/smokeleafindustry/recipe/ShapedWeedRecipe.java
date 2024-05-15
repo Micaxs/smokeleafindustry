@@ -18,10 +18,10 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BluntCraftingRecipe extends ShapedRecipe {
+public class ShapedWeedRecipe extends ShapedRecipe {
     private final ItemStack result;
 
-    public BluntCraftingRecipe(ResourceLocation pId, String pGroup, CraftingBookCategory pCategory, int pWidth, int pHeight, NonNullList<Ingredient> pRecipeItems, ItemStack pResult) {
+    public ShapedWeedRecipe(ResourceLocation pId, String pGroup, CraftingBookCategory pCategory, int pWidth, int pHeight, NonNullList<Ingredient> pRecipeItems, ItemStack pResult) {
         super(pId, pGroup, pCategory, pWidth, pHeight, pRecipeItems, pResult);
         this.result = pResult;
     }
@@ -38,7 +38,7 @@ public class BluntCraftingRecipe extends ShapedRecipe {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return BluntCraftingRecipe.Serializer.INSTANCE;
+        return ShapedWeedRecipe.Serializer.INSTANCE;
     }
 
     @Override
@@ -56,11 +56,11 @@ public class BluntCraftingRecipe extends ShapedRecipe {
         return output;
     }
 
-    public static class Serializer implements RecipeSerializer<BluntCraftingRecipe> {
+    public static class Serializer implements RecipeSerializer<ShapedWeedRecipe> {
         public static final Serializer INSTANCE = new Serializer();
 
         @Override
-        public @NotNull BluntCraftingRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
+        public @NotNull ShapedWeedRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
 
             JsonArray patternArray = GsonHelper.getAsJsonArray(json, "pattern");
@@ -91,11 +91,11 @@ public class BluntCraftingRecipe extends ShapedRecipe {
                 }
             }
 
-            return new BluntCraftingRecipe(recipeId, "", CraftingBookCategory.MISC, width, height, inputs, output);
+            return new ShapedWeedRecipe(recipeId, "", CraftingBookCategory.MISC, width, height, inputs, output);
         }
 
         @Override
-        public BluntCraftingRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
+        public ShapedWeedRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
             int numIngredients = buffer.readInt();
             NonNullList<Ingredient> inputs = NonNullList.withSize(numIngredients, Ingredient.EMPTY);
 
@@ -105,11 +105,11 @@ public class BluntCraftingRecipe extends ShapedRecipe {
 
             ItemStack output = buffer.readItem();
 
-            return new BluntCraftingRecipe(recipeId, "", CraftingBookCategory.MISC, 3, 3, inputs, output);
+            return new ShapedWeedRecipe(recipeId, "", CraftingBookCategory.MISC, 3, 3, inputs, output);
         }
 
         @Override
-        public void toNetwork(FriendlyByteBuf buffer, BluntCraftingRecipe recipe) {
+        public void toNetwork(FriendlyByteBuf buffer, ShapedWeedRecipe recipe) {
             buffer.writeInt(recipe.getIngredients().size());
 
             for (Ingredient ingredient : recipe.getIngredients()) {

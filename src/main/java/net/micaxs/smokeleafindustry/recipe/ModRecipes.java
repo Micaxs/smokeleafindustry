@@ -21,11 +21,11 @@ public class ModRecipes {
     public static final RegistryObject<RecipeSerializer<HerbEvaporatorRecipe>> HERB_EVAPORATOR_SERIALIZER =
             SERIALIZERS.register("herb_evaporator", () -> HerbEvaporatorRecipe.Serializer.INSTANCE);
 
-    public static final RegistryObject<RecipeSerializer<BluntCraftingRecipe>> BLUNT_CRAFTING =
-            SERIALIZERS.register("blunt_crafting", () -> BluntCraftingRecipe.Serializer.INSTANCE);
+    public static final RegistryObject<RecipeSerializer<ShapedWeedRecipe>> SHAPED_WEED_CRAFTING =
+            SERIALIZERS.register("shaped_weed_crafting", () -> ShapedWeedRecipe.Serializer.INSTANCE);
 
-    public static final RegistryObject<RecipeSerializer<JointCraftingRecipe>> JOINT_CRAFTING =
-            SERIALIZERS.register("joint_crafting", () -> JointCraftingRecipe.Serializer.INSTANCE);
+    public static final RegistryObject<RecipeSerializer<ShapelessWeedRecipe>> SHAPELESS_WEED_CRAFTING =
+            SERIALIZERS.register("shapeless_weed_crafting", () -> ShapelessWeedRecipe.Serializer.INSTANCE);
 
     public static final RegistryObject<RecipeSerializer<ManualGrinderRecipe>> MANUAL_GRINDER_SERIALIZER =
             SERIALIZERS.register("grinder", () -> ManualGrinderRecipe.Serializer.INSTANCE);

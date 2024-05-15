@@ -13,10 +13,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import org.jetbrains.annotations.NotNull;
 
-public class JointCraftingRecipe extends ShapelessRecipe {
+public class ShapelessWeedRecipe extends ShapelessRecipe {
     private final ItemStack result;
 
-    public JointCraftingRecipe(ResourceLocation pId, String pGroup, CraftingBookCategory pCategory, ItemStack pResult, NonNullList<Ingredient> pIngredients) {
+    public ShapelessWeedRecipe(ResourceLocation pId, String pGroup, CraftingBookCategory pCategory, ItemStack pResult, NonNullList<Ingredient> pIngredients) {
         super(pId, pGroup, pCategory, pResult, pIngredients);
         this.result = pResult;
     }
@@ -33,7 +33,7 @@ public class JointCraftingRecipe extends ShapelessRecipe {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return JointCraftingRecipe.Serializer.INSTANCE;
+        return ShapelessWeedRecipe.Serializer.INSTANCE;
     }
 
     @Override
@@ -51,11 +51,11 @@ public class JointCraftingRecipe extends ShapelessRecipe {
         return output;
     }
 
-    public static class Serializer implements RecipeSerializer<JointCraftingRecipe> {
+    public static class Serializer implements RecipeSerializer<ShapelessWeedRecipe> {
         public static final Serializer INSTANCE = new Serializer();
 
         @Override
-        public @NotNull JointCraftingRecipe fromJson(ResourceLocation recipeId, JsonObject serializedRecipe) {
+        public @NotNull ShapelessWeedRecipe fromJson(ResourceLocation recipeId, JsonObject serializedRecipe) {
             ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(serializedRecipe, "result"));
 
             JsonArray ingredientsJson = GsonHelper.getAsJsonArray(serializedRecipe, "ingredients");
@@ -64,11 +64,11 @@ public class JointCraftingRecipe extends ShapelessRecipe {
                 ingredients.set(i, Ingredient.fromJson(ingredientsJson.get(i)));
             }
 
-            return new JointCraftingRecipe(recipeId, "", CraftingBookCategory.MISC, output, ingredients);
+            return new ShapelessWeedRecipe(recipeId, "", CraftingBookCategory.MISC, output, ingredients);
         }
 
         @Override
-        public JointCraftingRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
+        public ShapelessWeedRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
             int numIngredients = buffer.readInt();
             NonNullList<Ingredient> inputs = NonNullList.withSize(numIngredients, Ingredient.EMPTY);
 
@@ -78,11 +78,11 @@ public class JointCraftingRecipe extends ShapelessRecipe {
 
             ItemStack output = buffer.readItem();
 
-            return new JointCraftingRecipe(recipeId, "", CraftingBookCategory.MISC, output, inputs);
+            return new ShapelessWeedRecipe(recipeId, "", CraftingBookCategory.MISC, output, inputs);
         }
 
         @Override
-        public void toNetwork(FriendlyByteBuf buffer, JointCraftingRecipe recipe) {
+        public void toNetwork(FriendlyByteBuf buffer, ShapelessWeedRecipe recipe) {
             buffer.writeInt(recipe.getIngredients().size());
 
             for (Ingredient ingredient : recipe.getIngredients()) {

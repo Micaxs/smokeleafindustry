@@ -121,12 +121,14 @@ public class ModItems {
     public static final RegistryObject<Item> BONG = ITEMS.register("bong",
             () -> new BongItem(new Item.Properties().stacksTo(1).fireResistant()));
     public static final RegistryObject<Item> BLUNT = ITEMS.register("blunt",
-            () -> new CombustibleItem(new Item.Properties().stacksTo(64)));
+            () -> new WeedDerivedItem(new Item.Properties().stacksTo(64), 1, 0.5f, UseAnim.BOW));
     public static final RegistryObject<Item> JOINT = ITEMS.register("joint",
-            () -> new CombustibleItem(new Item.Properties().stacksTo(64)));
-
+            () -> new WeedDerivedItem(new Item.Properties().stacksTo(64), 1, 0.5f, UseAnim.BOW));
     public static final RegistryObject<Item> HERB_CAKE = ITEMS.register("herb_cake",
-            () -> new Item(new Item.Properties().food(ModFoods.HERB_CAKE)));
+            () -> new WeedDerivedItem(new Item.Properties().food(ModFoods.HERB_CAKE), 1.5f, 1f, UseAnim.EAT));
+    public static final RegistryObject<Item> HASH_BROWNIE = ITEMS.register("hash_brownie",
+            () -> new WeedDerivedItem(new Item.Properties().food(ModFoods.HASH_BROWNIE), 1.5f, 1f, UseAnim.EAT));
+
     public static final RegistryObject<Item> HEMP_STICK = ITEMS.register("hemp_stick",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> HEMP_CORE = ITEMS.register("hemp_core",
