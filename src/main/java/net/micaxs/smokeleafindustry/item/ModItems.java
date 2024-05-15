@@ -128,6 +128,8 @@ public class ModItems {
             () -> new WeedDerivedItem(new Item.Properties().food(ModFoods.HERB_CAKE), 1.5f, 1f, UseAnim.EAT));
     public static final RegistryObject<Item> HASH_BROWNIE = ITEMS.register("hash_brownie",
             () -> new WeedDerivedItem(new Item.Properties().food(ModFoods.HASH_BROWNIE), 1.5f, 1f, UseAnim.EAT));
+    public static final RegistryObject<Item> WEED_COOKIE = ITEMS.register("weed_cookie",
+            () -> new WeedDerivedItem(new Item.Properties().food(ModFoods.WEED_COOKIE), 0.125f, 0.25f, UseAnim.EAT));
 
     public static final RegistryObject<Item> HEMP_STICK = ITEMS.register("hemp_stick",
             () -> new Item(new Item.Properties()));

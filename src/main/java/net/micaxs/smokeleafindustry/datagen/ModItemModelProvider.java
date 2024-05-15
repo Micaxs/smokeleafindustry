@@ -96,6 +96,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.HEMP_LEAF);
         simpleItem(ModItems.HERB_CAKE);
         simpleItem(ModItems.HASH_BROWNIE);
+        simpleItem(ModItems.WEED_COOKIE);
 
         simpleItem(ModItems.HASH_OIL_BUCKET);
 

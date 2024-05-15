@@ -1,0 +1,18 @@
+{
+  "type": "smokeleafindustry:shapeless_weed_crafting",
+  "ingredients": [
+    {
+      "item": "minecraft:wheat"
+    }, {
+      "item": "minecraft:cocoa_beans"
+    }, {
+      "item": "minecraft:wheat"
+    }, {
+      "item": "smokeleafindustry:sour_diesel_weed"
+    }
+  ],
+  "result": {
+    "item": "smokeleafindustry:weed_cookie",
+    "count": 8
+  }
+}
