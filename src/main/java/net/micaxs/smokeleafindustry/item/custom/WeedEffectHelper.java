@@ -39,7 +39,8 @@ public class WeedEffectHelper {
         }
 
         Component weedNameComponent = weedStack.getItem().getName(weedStack);
+        Component weedBasedItemName = weedBasedItem.getItem().getName(weedBasedItem);
         String weedName = weedNameComponent.getString().replace(" Weed", "").replace(" weed", "");
-        weedBasedItem.setHoverName(Component.translatable(weedBasedItem.getDescriptionId(), weedName));
+        weedBasedItem.setHoverName(Component.literal(weedName.concat(" ").concat(weedBasedItemName.getString())));
     }
 }
