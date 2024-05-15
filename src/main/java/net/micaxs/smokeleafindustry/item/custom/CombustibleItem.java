@@ -108,9 +108,9 @@ public class CombustibleItem extends Item implements ContainsWeed {
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
-        pTooltipComponents.add(Component.translatable("tooltip.smokeleafindustry.effects").withStyle(ChatFormatting.GRAY));
         CompoundTag tag = pStack.getTag();
         if (tag != null && tag.contains("effect") && tag.contains("duration")) {
+            pTooltipComponents.add(Component.translatable("tooltip.smokeleafindustry.effects").withStyle(ChatFormatting.GRAY));
             String effectId = tag.getString("effect");
             MobEffect effect = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(effectId));
             if (effect != null) {
