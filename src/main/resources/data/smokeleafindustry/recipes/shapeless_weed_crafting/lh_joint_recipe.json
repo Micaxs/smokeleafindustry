@@ -1,12 +1,12 @@
 {
-  "type": "smokeleafindustry:joint_crafting",
+  "type": "smokeleafindustry:shapeless_weed_crafting",
   "ingredients": [
     {
       "item": "minecraft:paper"
     }, {
       "item": "minecraft:paper"
     }, {
-      "item": "smokeleafindustry:blue_ice_weed"
+      "item": "smokeleafindustry:lemon_haze_weed"
     }
   ],
   "result": {

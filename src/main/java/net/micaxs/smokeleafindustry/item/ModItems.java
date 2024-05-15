@@ -124,9 +124,9 @@ public class ModItems {
             () -> new CombustibleItem(new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> JOINT = ITEMS.register("joint",
             () -> new CombustibleItem(new Item.Properties().stacksTo(64)));
-
     public static final RegistryObject<Item> HERB_CAKE = ITEMS.register("herb_cake",
-            () -> new Item(new Item.Properties().food(ModFoods.HERB_CAKE)));
+            () -> new EdibleItem(new Item.Properties().food(ModFoods.HERB_CAKE)));
+
     public static final RegistryObject<Item> HEMP_STICK = ITEMS.register("hemp_stick",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> HEMP_CORE = ITEMS.register("hemp_core",

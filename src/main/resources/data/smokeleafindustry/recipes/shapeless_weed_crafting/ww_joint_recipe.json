@@ -1,5 +1,5 @@
 {
-  "type": "smokeleafindustry:joint_crafting",
+  "type": "smokeleafindustry:shapeless_weed_crafting",
   "ingredients": [
     {
       "item": "minecraft:paper"

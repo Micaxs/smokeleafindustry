@@ -1,5 +1,5 @@
 {
-  "type": "smokeleafindustry:blunt_crafting",
+  "type": "smokeleafindustry:shaped_weed_crafting",
   "pattern": [
     "###",
     "WWW",
@@ -10,7 +10,7 @@
       "item": "minecraft:paper"
     },
     "W": {
-      "item": "smokeleafindustry:white_widow_weed"
+      "item": "smokeleafindustry:lemon_haze_weed"
     }
   },
   "result": {

@@ -22,14 +22,16 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class CombustibleItem extends Item implements ContainsWeed {
-    public CombustibleItem(Properties pProperties) {
+public class EdibleItem extends Item implements ContainsWeed {
+    public static final float EDIBLE_FACTOR = 1.5F;
+
+    public EdibleItem(Properties pProperties) {
         super(pProperties);
     }
 
     @Override
     public UseAnim getUseAnimation(ItemStack pStack) {
-        return UseAnim.BOW;
+        return UseAnim.EAT;
     }
 
     @Override
@@ -40,7 +42,7 @@ public class CombustibleItem extends Item implements ContainsWeed {
     @Override
     public void onCraftedBy(ItemStack stack, Level world, Player player) {
         ItemStack original = player.getInventory().getSelected();
-        if (!original.isEmpty() && original.getItem() instanceof CombustibleItem) {
+        if (!original.isEmpty() && original.getItem() instanceof EdibleItem) {
             CompoundTag originalTag = original.getTag();
             if (originalTag != null) {
                 stack.setTag(originalTag.copy());
@@ -65,14 +67,12 @@ public class CombustibleItem extends Item implements ContainsWeed {
         ItemStack mainHandItem = pLivingEntity.getItemInHand(InteractionHand.MAIN_HAND);
         spawnSmokeParticles(pLevel, pLivingEntity);
 
-        // 50% of getting stoned effect from smoking a blunt.
-        if (pLevel.random.nextBoolean()) {
-            int previousStonedDuration = 0;
-            if (pLivingEntity.hasEffect(ModEffects.STONED.get())) {
-                previousStonedDuration = pLivingEntity.getEffect(ModEffects.STONED.get()).getDuration();
-            }
-            pLivingEntity.addEffect(new MobEffectInstance(ModEffects.STONED.get(), previousStonedDuration + 200, 1));
+        // Always get stoned from an edible
+        int previousStonedDuration = 0;
+        if (pLivingEntity.hasEffect(ModEffects.STONED.get())) {
+            previousStonedDuration = pLivingEntity.getEffect(ModEffects.STONED.get()).getDuration();
         }
+        pLivingEntity.addEffect(new MobEffectInstance(ModEffects.STONED.get(), previousStonedDuration + 200, 1));
 
         CompoundTag tag = mainHandItem.getTag();
         if (tag != null && tag.contains("effect") && tag.contains("duration")) {
@@ -132,6 +132,6 @@ public class CombustibleItem extends Item implements ContainsWeed {
 
     @Override
     public float getEffectFactor() {
-        return 0;
+        return EDIBLE_FACTOR;
     }
 }
