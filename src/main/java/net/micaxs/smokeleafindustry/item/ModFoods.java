@@ -14,4 +14,10 @@ public class ModFoods {
             .saturationMod(0.1f)
             .fast()
             .build();
+    public static final FoodProperties WEED_COOKIE = new FoodProperties.Builder()
+            .alwaysEat()
+            .nutrition(2)
+            .saturationMod(0.1f)
+            .fast()
+            .build();
 }

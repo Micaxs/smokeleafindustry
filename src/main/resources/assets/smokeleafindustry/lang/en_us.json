@@ -20,8 +20,8 @@
   "item.smokeleafindustry.blue_ice_seeds": "Blue Ice Seeds",
   "item.smokeleafindustry.blue_ice_weed": "Blue Ice Weed",
   "item.smokeleafindustry.blueice_extract": "Blue Ice Extract",
-  "item.smokeleafindustry.blunt": "%s Blunt",
-  "item.smokeleafindustry.joint": "%s Joint",
+  "item.smokeleafindustry.blunt": "Blunt",
+  "item.smokeleafindustry.joint": "Joint",
   "item.smokeleafindustry.bong": "Glass Bong",
   "item.smokeleafindustry.bubble_kush_bag": "Bubble Kush Baggy",
   "item.smokeleafindustry.bubble_kush_bud": "Bubble Kush Bud",
@@ -44,6 +44,7 @@
   "item.smokeleafindustry.hemp_stick": "Hemp Stick",
   "item.smokeleafindustry.herb_cake": "Weed Cake",
   "item.smokeleafindustry.hash_brownie": "Hash Brownie",
+  "item.smokeleafindustry.weed_cookie": "Cookie",
 
   "item.smokeleafindustry.hemp_helmet_red": "Red Hemp Baja Hat",
   "item.smokeleafindustry.hemp_chestplate_red": "Red Hemp Baja Shirt",
