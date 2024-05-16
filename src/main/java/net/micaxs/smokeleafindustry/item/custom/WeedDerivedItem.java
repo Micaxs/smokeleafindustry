@@ -128,8 +128,6 @@ public class WeedDerivedItem extends Item {
             return null;
         }
 
-        // TODO: save name as just the base name
-        // TODO: use create optional so it doesn't crash
         String[] parts = tag.getString("active_ingredient").split("\\.");
         String activeIngredientName = parts[parts.length - 1];
         RegistryObject<Item> activeIngredient = RegistryObject.create(
