@@ -91,14 +91,12 @@ public class ModBlocks {
 
     // Other Shit
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
-        System.out.println("Registering block: " + name);
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);
         return toReturn;
     }
 
     private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block) {
-        System.out.println("Registering block item: " + name);
         return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
 

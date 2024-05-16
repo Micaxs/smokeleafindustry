@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "smokeleafindustry:item/whitewidow_extract"
+    "layer0": "smokeleafindustry:item/blue_ice_extract"
   }
 }
