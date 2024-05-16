@@ -11,6 +11,7 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Random;
 
 public class BaseWeedItem extends Item {
     private final MobEffect effect;
@@ -68,6 +69,11 @@ public class BaseWeedItem extends Item {
     }
 
     public int getDuration() {
+        if (this.variableDuration) {
+            // Random delta scales based on the provided duration with a cap of 200
+            int randomDelta = new Random().nextInt(Math.min(this.duration / 4, 200));
+            return randomDelta + this.duration;
+        }
         return this.duration;
     }
 

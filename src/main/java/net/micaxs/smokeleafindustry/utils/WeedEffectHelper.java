@@ -26,12 +26,7 @@ public class WeedEffectHelper {
 
             // Set duration tag
             float effectMultiplier = ((WeedDerivedItem) weedDerivedItem.getItem()).getEffectFactor();
-            int randomDelta = 0;
-            if (weedItem.isVariableDuration()) {
-                randomDelta = new Random().nextInt(100);
-            }
-
-            finalDuration += (weedItem.getDuration() + randomDelta) * effectMultiplier;
+            finalDuration += weedItem.getDuration() * effectMultiplier;
             weedBasedItemTag.putInt("duration", finalDuration);
 
             // Set the item used to produce the product
