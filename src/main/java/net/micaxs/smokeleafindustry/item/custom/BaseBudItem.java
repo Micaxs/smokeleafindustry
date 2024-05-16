@@ -7,16 +7,14 @@ import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
 public class BaseBudItem extends Item {
-
-    public int dry = 0;
-    public int dryingTime = 0;
+    public int dry;
+    public int dryingTime;
 
     public BaseBudItem(Properties pProperties, int iDry, int iDryingTime) {
         super(pProperties);
-        dry = iDry;
-        dryingTime = iDryingTime;
+        this.dry = iDry;
+        this.dryingTime = iDryingTime;
     }
-
 
     public boolean isDry() {
         return dry != 0;
@@ -43,8 +41,8 @@ public class BaseBudItem extends Item {
             tag = new CompoundTag();
         }
 
-        tag.putInt("dry", dry);
-        tag.putInt("dry_time", dryingTime);
+        tag.putInt("dry", this.dry);
+        tag.putInt("dry_time", this.dryingTime);
 
         return tag;
     }
@@ -54,13 +52,11 @@ public class BaseBudItem extends Item {
         super.readShareTag(stack, nbt);
 
         if (nbt != null && nbt.contains("dry")) {
-            dry = nbt.getInt("dry");
+            this.dry = nbt.getInt("dry");
         }
 
         if (nbt != null && nbt.contains("dry_time")) {
-            dryingTime = nbt.getInt("dry_time");
+            this.dryingTime = nbt.getInt("dry_time");
         }
     }
-
-
 }
