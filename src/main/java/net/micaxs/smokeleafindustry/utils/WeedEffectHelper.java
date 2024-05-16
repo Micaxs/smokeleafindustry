@@ -1,5 +1,7 @@
-package net.micaxs.smokeleafindustry.item.custom;
+package net.micaxs.smokeleafindustry.utils;
 
+import net.micaxs.smokeleafindustry.item.custom.BaseWeedItem;
+import net.micaxs.smokeleafindustry.item.custom.WeedDerivedItem;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
