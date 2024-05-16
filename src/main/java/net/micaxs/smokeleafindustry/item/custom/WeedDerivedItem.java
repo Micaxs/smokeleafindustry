@@ -127,6 +127,20 @@ public class WeedDerivedItem extends Item {
         }
     }
 
+    @Override
+    public @Nullable CompoundTag getShareTag(ItemStack stack) {
+        CompoundTag tag = super.getShareTag(stack);
+        if (tag == null) {
+            tag = new CompoundTag();
+        }
+        return tag;
+    }
+
+    @Override
+    public void readShareTag(ItemStack stack, @Nullable CompoundTag nbt) {
+        super.readShareTag(stack, nbt);
+    }
+
     private Component getEffectText(MobEffectInstance effect) {
         MobEffect effectType = effect.getEffect();
         int duration = effect.getDuration() / 20;

@@ -13,18 +13,7 @@ public class WeedEffectHelper {
             return;
         }
 
-        // Make sure item stacks have compound tags
         CompoundTag weedDataTag = weedStack.getShareTag();
-        if (weedDataTag == null) {
-            weedDataTag = new CompoundTag();
-        }
-        CompoundTag weedBasedItemTag = weedBasedItem.getShareTag();
-        if (weedBasedItemTag == null) {
-            weedBasedItemTag = new CompoundTag();
-            weedBasedItem.setTag(weedBasedItemTag);
-        }
-
-        // Get previous duration of effect for effect stacking
         int previousDuration = getPreviousDuration(weedBasedItem);
 
         // Copy over nbt tags from base weed to weed derived item (kinda useless atm, really just copies CBD and THC values)
