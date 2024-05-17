@@ -158,71 +158,7 @@ public class ModItems {
     public static final RegistryObject<Item> HEMP_BOOTS_YELLOW = ITEMS.register("hemp_boots_yellow",
             () -> new ArmorItem(ModArmorMaterials.HEMP_FABRIC_YELLOW, ArmorItem.Type.BOOTS, new Item.Properties()));
 
-
-    // Getters
-    public static Item getWhiteWidowSeeds() {
-        return WHITE_WIDOW_SEEDS.get();
-    }
-
-    public static Item getWhiteWidowBud() {
-        return WHITE_WIDOW_BUD.get();
-    }
-
-    public static Item getBubbleKushSeeds() {
-        return BUBBLE_KUSH_SEEDS.get();
-    }
-
-    public static Item getBubbleKushBud() {
-        return BUBBLE_KUSH_BUD.get();
-    }
-
-    public static Item getLemonHazeSeeds() {
-        return LEMON_HAZE_SEEDS.get();
-    }
-
-    public static Item getLemonHazeBud() {
-        return LEMON_HAZE_BUD.get();
-    }
-
-    public static Item getSourDieselSeeds() {
-        return SOUR_DIESEL_SEEDS.get();
-    }
-
-    public static Item getSourDieselBud() {
-        return SOUR_DIESEL_BUD.get();
-    }
-
-    public static Item getBlueIceSeeds() {
-        return BLUE_ICE_SEEDS.get();
-    }
-
-    public static Item getBlueIceBud() {
-        return BLUE_ICE_BUD.get();
-    }
-
-    public static Item getBubblegumSeeds() {
-        return BUBBLEGUM_SEEDS.get();
-    }
-
-    public static Item getBubblegumBud() {
-        return BUBBLEGUM_BUD.get();
-    }
-
-    public static Item getPurpleHazeSeeds() {
-        return PURPLE_HAZE_SEEDS.get();
-    }
-
-    public static Item getPurpleHazeBud() {
-        return PURPLE_HAZE_BUD.get();
-    }
-
-    public static Item getHempLeaf() {
-        return HEMP_LEAF.get();
-    }
-
-
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }
-
 }
