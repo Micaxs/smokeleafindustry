@@ -8,21 +8,21 @@
           "block": "smokeleafindustry:bubble_kush_crop",
           "condition": "minecraft:block_state_property",
           "properties": {
-            "age": "10"
+            "top": "false"
           }
         }
       ],
       "entries": [
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "add": false,
-              "count": 1.0,
-              "function": "minecraft:set_count"
-            }
-          ],
           "name": "smokeleafindustry:bubble_kush_seeds"
+        }
+      ],
+      "functions": [
+        {
+          "add": false,
+          "count": 1.0,
+          "function": "minecraft:set_count"
         }
       ],
       "rolls": 1.0
@@ -31,22 +31,29 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "block": "smokeleafindustry:bubble_kush_crop",
-          "condition": "minecraft:block_state_property",
-          "properties": {
-            "age": "10"
-          }
+          "condition": "minecraft:all_of",
+          "terms": [
+            {
+              "block": "smokeleafindustry:bubble_kush_crop",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "age": "10"
+              }
+            },
+            {
+              "block": "smokeleafindustry:bubble_kush_crop",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "top": "false"
+              }
+            }
+          ]
         }
       ],
       "entries": [
         {
           "type": "minecraft:item",
           "functions": [
-            {
-              "add": false,
-              "count": 1.0,
-              "function": "minecraft:set_count"
-            },
             {
               "enchantment": "minecraft:fortune",
               "formula": "minecraft:binomial_with_bonus_count",
@@ -66,24 +73,36 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "block": "smokeleafindustry:bubble_kush_crop",
-          "condition": "minecraft:block_state_property",
-          "properties": {
-            "age": "10"
-          }
+          "condition": "minecraft:all_of",
+          "terms": [
+            {
+              "block": "smokeleafindustry:bubble_kush_crop",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "age": "10"
+              }
+            },
+            {
+              "block": "smokeleafindustry:bubble_kush_crop",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "top": "false"
+              }
+            }
+          ]
         }
       ],
       "entries": [
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "add": false,
-              "count": 1.0,
-              "function": "minecraft:set_count"
-            }
-          ],
           "name": "smokeleafindustry:hemp_leaf"
+        }
+      ],
+      "functions": [
+        {
+          "add": false,
+          "count": 1.0,
+          "function": "minecraft:set_count"
         }
       ],
       "rolls": 1.0

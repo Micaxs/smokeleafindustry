@@ -1,7 +1,0 @@
-{
-  "parent": "block/cross",
-  "render_type": "cutout",
-  "textures": {
-    "cross": "smokeleafindustry:block/lemonhaze/lemon_haze_stage_7"
-  }
-}

@@ -1,7 +1,8 @@
 package net.micaxs.smokeleafindustry.item.custom;
 
+import net.micaxs.smokeleafindustry.SmokeleafIndustryMod;
 import net.micaxs.smokeleafindustry.effect.ModEffects;
-import net.minecraft.ChatFormatting;
+import net.micaxs.smokeleafindustry.utils.WeedEffectHelper;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -18,6 +19,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -42,18 +44,6 @@ public class WeedDerivedItem extends Item {
     @Override
     public int getUseDuration(ItemStack pStack) {
         return 20;
-    }
-
-    @Override
-    public void onCraftedBy(ItemStack stack, Level world, Player player) {
-        ItemStack original = player.getInventory().getSelected();
-        if (!original.isEmpty() && original.getItem() instanceof WeedDerivedItem) {
-            CompoundTag originalTag = original.getTag();
-            if (originalTag != null) {
-                stack.setTag(originalTag.copy());
-            }
-        }
-        super.onCraftedBy(stack, world, player);
     }
 
     @Override
@@ -82,17 +72,16 @@ public class WeedDerivedItem extends Item {
         }
 
         CompoundTag tag = mainHandItem.getTag();
-        if (tag != null && tag.contains("effect") && tag.contains("duration")) {
-            String effectId = tag.getString("effect");
-            MobEffect effect = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(effectId));
-            if (effect != null) {
-                int duration = tag.getInt("duration");
-                int previousEffectDuration = 0;
-                if (pLivingEntity.hasEffect(effect)) {
-                    previousEffectDuration = pLivingEntity.getEffect(effect).getDuration();
-                }
-                pLivingEntity.addEffect(new MobEffectInstance(effect, previousEffectDuration + duration, 1));
+        BaseWeedItem activeWeedIngredient = getActiveWeedIngredient(pStack);
+        if (tag != null && tag.contains("duration") && activeWeedIngredient != null) {
+
+            int duration = tag.getInt("duration");
+            int previousEffectDuration = 0;
+            if (pLivingEntity.hasEffect(activeWeedIngredient.getEffect())) {
+                previousEffectDuration = pLivingEntity.getEffect(activeWeedIngredient.getEffect()).getDuration();
             }
+            pLivingEntity.addEffect(new MobEffectInstance(activeWeedIngredient.getEffect(),
+                    previousEffectDuration + duration, activeWeedIngredient.getEffectAmplifier()));
         }
 
         mainHandItem.shrink(1);
@@ -116,42 +105,38 @@ public class WeedDerivedItem extends Item {
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
         CompoundTag tag = pStack.getTag();
-        if (tag != null && tag.contains("effect") && tag.contains("duration")) {
-            pTooltipComponents.add(Component.translatable("tooltip.smokeleafindustry.effects").withStyle(ChatFormatting.GRAY));
-            String effectId = tag.getString("effect");
-            MobEffect effect = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(effectId));
-            if (effect != null) {
-                MobEffectInstance effectInstance = new MobEffectInstance(effect, tag.getInt("duration"), 1);
-                pTooltipComponents.add(getEffectText(effectInstance));
-            }
+        if (tag == null || !tag.contains("duration")) {
+            return;
         }
-    }
 
-    @Override
-    public @Nullable CompoundTag getShareTag(ItemStack stack) {
-        CompoundTag tag = super.getShareTag(stack);
-        if (tag == null) {
-            tag = new CompoundTag();
+        BaseWeedItem activeIngredient = getActiveWeedIngredient(pStack);
+        if (activeIngredient == null) {
+            return;
         }
-        return tag;
-    }
 
-    @Override
-    public void readShareTag(ItemStack stack, @Nullable CompoundTag nbt) {
-        super.readShareTag(stack, nbt);
-    }
-
-    private Component getEffectText(MobEffectInstance effect) {
-        MobEffect effectType = effect.getEffect();
-        int duration = effect.getDuration() / 20;
-        return Component.literal("- ")
-                .append(Component.translatable(effectType.getDescriptionId()))
-                .withStyle(ChatFormatting.GREEN)
-                .append(" ")
-                .append(Component.literal("(" + duration + "s)").withStyle(ChatFormatting.GRAY));
+        pTooltipComponents.add(WeedEffectHelper.getEffectTooltip(activeIngredient.getEffect(),
+                tag.getInt("duration"), !activeIngredient.isVariableDuration()));
     }
 
     public float getEffectFactor() {
         return this.effectDurationMultiplier;
+    }
+
+    public @Nullable BaseWeedItem getActiveWeedIngredient(ItemStack itemStack) {
+        CompoundTag tag = itemStack.getTag();
+        if (tag == null || !tag.contains("active_ingredient")) {
+            return null;
+        }
+
+        String[] parts = tag.getString("active_ingredient").split("\\.");
+        String activeIngredientName = parts[parts.length - 1];
+        RegistryObject<Item> activeIngredient = RegistryObject.create(
+                new ResourceLocation(SmokeleafIndustryMod.MOD_ID, activeIngredientName), ForgeRegistries.ITEMS);
+
+        if (activeIngredient.get() instanceof BaseWeedItem activeIngredientItem) {
+            return activeIngredientItem;
+        }
+
+        return null;
     }
 }

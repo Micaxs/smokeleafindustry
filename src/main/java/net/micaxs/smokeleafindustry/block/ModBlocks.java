@@ -21,30 +21,28 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, SmokeleafIndustryMod.MOD_ID);
 
-
     // Weed Crop Variants
     public static final RegistryObject<Block> WHITE_WIDOW_CROP = BLOCKS.register("white_widow_crop",
             () -> new BaseWeedCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission(),
-                    ModItems::getWhiteWidowSeeds, ModItems::getWhiteWidowBud));
+                    ModItems.WHITE_WIDOW_SEEDS));
     public static final RegistryObject<Block> BUBBLE_KUSH_CROP = BLOCKS.register("bubble_kush_crop",
             () -> new BaseWeedCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission(),
-                    ModItems::getBubbleKushSeeds, ModItems::getBubbleKushBud));
+                    ModItems.BUBBLE_KUSH_SEEDS));
     public static final RegistryObject<Block> LEMON_HAZE_CROP = BLOCKS.register("lemon_haze_crop",
             () -> new BaseWeedCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission(),
-                    ModItems::getLemonHazeSeeds, ModItems::getLemonHazeBud));
+                    ModItems.LEMON_HAZE_SEEDS));
     public static final RegistryObject<Block> SOUR_DIESEL_CROP = BLOCKS.register("sour_diesel_crop",
             () -> new BaseWeedCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission(),
-                    ModItems::getSourDieselSeeds, ModItems::getSourDieselBud));
+                    ModItems.SOUR_DIESEL_SEEDS));
     public static final RegistryObject<Block> BLUE_ICE_CROP = BLOCKS.register("blue_ice_crop",
             () -> new BaseWeedCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission(),
-                    ModItems::getBlueIceSeeds, ModItems::getBlueIceBud));
+                    ModItems.BLUE_ICE_SEEDS));
     public static final RegistryObject<Block> BUBBLEGUM_CROP = BLOCKS.register("bubblegum_crop",
             () -> new BaseWeedCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission(),
-                    ModItems::getBubblegumSeeds, ModItems::getBubblegumBud));
+                    ModItems.BUBBLEGUM_SEEDS));
     public static final RegistryObject<Block> PURPLE_HAZE_CROP = BLOCKS.register("purple_haze_crop",
             () -> new BaseWeedCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission(),
-                    ModItems::getPurpleHazeSeeds, ModItems::getPurpleHazeBud));
-
+                    ModItems.PURPLE_HAZE_SEEDS));
 
     // Machines
     public static final RegistryObject<Block> HERB_GRINDER_STATION = registerBlock("herb_grinder_station",
@@ -68,7 +66,6 @@ public class ModBlocks {
     public static final RegistryObject<Block> HEMP_WEAVER = registerBlock("hemp_weaver",
             () -> new HempWeaverBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()));
 
-
     // Custom Modded Blocks
     public static final RegistryObject<Block> HEMP_STONE = registerBlock("hemp_stone",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
@@ -76,7 +73,6 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> HEMP_WOOL = registerBlock("hemp_wool",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.GREEN_WOOL)));
-
 
     public static final RegistryObject<Block> HEMP_MACHINE_BLOCK = registerBlock("hemp_machine_block",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
@@ -88,17 +84,14 @@ public class ModBlocks {
     public static final RegistryObject<LiquidBlock> HASH_OIL_BLOCK = BLOCKS.register("hash_oil_block",
             () -> new LiquidBlock(ModFluids.SOURCE_HASH_OIL, BlockBehaviour.Properties.copy(Blocks.WATER)));
 
-
     // Other Shit
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
-        System.out.println("Registering block: " + name);
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);
         return toReturn;
     }
 
     private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block) {
-        System.out.println("Registering block item: " + name);
         return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
 

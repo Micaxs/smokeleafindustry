@@ -1,7 +1,0 @@
-{
-  "parent": "block/cross",
-  "render_type": "cutout",
-  "textures": {
-    "cross": "smokeleafindustry:block/bubblekush/bubble_kush_stage_4"
-  }
-}

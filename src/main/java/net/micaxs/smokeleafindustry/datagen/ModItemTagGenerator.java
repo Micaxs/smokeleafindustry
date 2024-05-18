@@ -61,5 +61,34 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                         ModItems.HEMP_LEGGINGS_YELLOW.get(),
                         ModItems.HEMP_BOOTS_YELLOW.get()
                 );
+
+        this.tag(ModTags.WHITE_WIDOW_STRAIN).add(
+                ModItems.WHITE_WIDOW_WEED.get(),
+                ModItems.WHITE_WIDOW_EXTRACT.get()
+        );
+        this.tag(ModTags.SOUR_DIESEL_STRAIN).add(
+                ModItems.SOUR_DIESEL_WEED.get(),
+                ModItems.SOUR_DIESEL_EXTRACT.get()
+        );
+        this.tag(ModTags.PURPLE_HAZE_STRAIN).add(
+                ModItems.PURPLE_HAZE_WEED.get(),
+                ModItems.PURPLE_HAZE_EXTRACT.get()
+        );
+        this.tag(ModTags.LEMON_HAZE_STRAIN).add(
+                ModItems.LEMON_HAZE_WEED.get(),
+                ModItems.LEMON_HAZE_EXTRACT.get()
+        );
+        this.tag(ModTags.BUBBLE_KUSH_STRAIN).add(
+                ModItems.BUBBLE_KUSH_WEED.get(),
+                ModItems.BUBBLE_KUSH_EXTRACT.get()
+        );
+        this.tag(ModTags.BLUE_ICE_STRAIN).add(
+                ModItems.BLUE_ICE_WEED.get(),
+                ModItems.BLUE_ICE_EXTRACT.get()
+        );
+        this.tag(ModTags.BUBBLEGUM_STRAIN).add(
+                ModItems.BUBBLEGUM_WEED.get(),
+                ModItems.BUBBLEGUM_EXTRACT.get()
+        );
     }
 }

@@ -1,7 +1,0 @@
-{
-  "parent": "block/cross",
-  "render_type": "cutout",
-  "textures": {
-    "cross": "smokeleafindustry:block/blueice/blue_ice_stage_5"
-  }
-}

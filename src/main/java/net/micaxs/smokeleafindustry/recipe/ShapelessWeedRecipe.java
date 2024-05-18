@@ -42,12 +42,7 @@ public class ShapelessWeedRecipe extends ShapelessRecipe {
         if (output.isEmpty()) {
             return output;
         }
-
-        for (ItemStack ingredient : pContainer.getItems()) {
-            WeedEffectHelper.addWeedEffectToItem(ingredient, output);
-            WeedEffectHelper.nameWeedBasedItem(ingredient, output);
-        }
-
+        WeedEffectHelper.setWeedNBTData(pContainer, output);
         return output;
     }
 
