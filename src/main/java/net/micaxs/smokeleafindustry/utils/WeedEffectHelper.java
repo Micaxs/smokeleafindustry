@@ -2,52 +2,40 @@ package net.micaxs.smokeleafindustry.utils;
 
 import net.micaxs.smokeleafindustry.item.custom.BaseWeedItem;
 import net.micaxs.smokeleafindustry.item.custom.WeedDerivedItem;
+import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
 
+import java.util.Random;
+
 public class WeedEffectHelper {
-    public static void addWeedEffectToItem(ItemStack weedStack, ItemStack weedBasedItem) {
-        // Make sure item stacks are valid for these operations
-        if (!(weedStack.getItem() instanceof BaseWeedItem) || !(weedBasedItem.getItem() instanceof WeedDerivedItem)) {
-            return;
-        }
+    public static void setWeedNBTData(CraftingContainer pContainer, ItemStack weedDerivedItem) {
+        int finalDuration = 0;
+        for (ItemStack ingredient : pContainer.getItems()) {
+            if (!(ingredient.getItem() instanceof BaseWeedItem weedItem) || !(weedDerivedItem.getItem() instanceof WeedDerivedItem)) {
+                continue;
+            }
 
-        // Make sure item stacks have compound tags
-        CompoundTag weedDataTag = weedStack.getShareTag();
-        if (weedDataTag == null) {
-            weedDataTag = new CompoundTag();
-        }
-        CompoundTag weedBasedItemTag = weedBasedItem.getShareTag();
-        if (weedBasedItemTag == null) {
-            weedBasedItemTag = new CompoundTag();
-            weedBasedItem.setTag(weedBasedItemTag);
-        }
+            CompoundTag weedBasedItemTag = weedDerivedItem.getShareTag();
+            if (weedBasedItemTag == null) {
+                weedBasedItemTag = new CompoundTag();
+            }
 
-        // Get previous duration of effect for effect stacking
-        int previousDuration = getPreviousDuration(weedBasedItem);
+            // Set duration tag
+            float effectMultiplier = ((WeedDerivedItem) weedDerivedItem.getItem()).getEffectFactor();
+            finalDuration += weedItem.getDuration() * effectMultiplier;
+            weedBasedItemTag.putInt("duration", finalDuration);
 
-        // Copy over nbt tags from base weed to weed derived item (kinda useless atm, really just copies CBD and THC values)
-        weedBasedItem.setTag(weedDataTag.copy());
+            // Set the item used to produce the product
+            weedBasedItemTag.putString("active_ingredient", ingredient.getItem().getDescriptionId());
 
-        // Set duration tag + previous duration
-        if (weedDataTag.contains("duration")) {
-            float effectMultiplier = ((WeedDerivedItem) weedBasedItem.getItem()).getEffectFactor();
-            int finalDuration = (int) (weedDataTag.getInt("duration") * effectMultiplier) + previousDuration;
-            weedBasedItem.getShareTag().putInt("duration", finalDuration);
+            weedDerivedItem.setTag(weedBasedItemTag);
+
+            nameWeedBasedItem(ingredient, weedDerivedItem);
         }
-    }
-
-    private static int getPreviousDuration(ItemStack weedBasedItem) {
-        int previousDuration = 0;
-        CompoundTag weedBasedItemTag = weedBasedItem.getShareTag();
-        if (weedBasedItemTag == null) {
-            weedBasedItemTag = new CompoundTag();
-            weedBasedItem.setTag(weedBasedItemTag);
-        } else if (weedBasedItemTag.contains("duration")) {
-            previousDuration = weedBasedItemTag.getInt("duration");
-        }
-        return previousDuration;
     }
 
     public static void nameWeedBasedItem(ItemStack weedStack, ItemStack weedBasedItem) {
@@ -59,5 +47,20 @@ public class WeedEffectHelper {
         Component weedBasedItemName = weedBasedItem.getItem().getName(weedBasedItem);
         String weedName = weedNameComponent.getString().replace(" Weed", "").replace(" weed", "");
         weedBasedItem.setHoverName(Component.literal(weedName.concat(" ").concat(weedBasedItemName.getString())));
+    }
+
+    public static Component getEffectTooltip(MobEffect effect, int effectDuration, boolean showDuration) {
+        if (showDuration) {
+            int duration = effectDuration / 20; // Convert duration to seconds
+            return Component.translatable(effect.getDescriptionId())
+                    .append(" ")
+                    .append(Component.literal("(" + duration + "s)"))
+                    .withStyle(ChatFormatting.GREEN);
+        }
+
+        return Component.translatable(effect.getDescriptionId())
+                .append(" ")
+                .append(Component.literal("(??)"))
+                .withStyle(ChatFormatting.GREEN);
     }
 }

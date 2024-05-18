@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "smokeleafindustry:item/lemonhaze_extract"
+    "layer0": "smokeleafindustry:item/sour_diesel_extract"
   }
 }

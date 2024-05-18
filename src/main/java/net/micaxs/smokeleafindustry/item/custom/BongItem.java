@@ -39,15 +39,13 @@ public class BongItem extends Item {
         BaseWeedItem weedItem = (BaseWeedItem) offhandItem.getItem();
         List<MobEffectInstance> offHandEffectList = new ArrayList<>();
 
-        for (MobEffectInstance weedEffect : weedItem.getEffects()) {
-            if (livingEntity.hasEffect(weedEffect.getEffect())) {
-                int previousEffectDuration = livingEntity.getEffect(weedEffect.getEffect()).getDuration();
-                offHandEffectList.add(new MobEffectInstance(weedEffect.getEffect(), previousEffectDuration + weedEffect.getDuration(),
-                        weedEffect.getAmplifier(), weedEffect.isAmbient(), weedEffect.isVisible()));
-            } else {
-                offHandEffectList.add(new MobEffectInstance(weedEffect.getEffect(), weedEffect.getDuration(),
-                        weedEffect.getAmplifier(), weedEffect.isAmbient(), weedEffect.isVisible()));
-            }
+        if (livingEntity.hasEffect(weedItem.getEffect())) {
+            int previousEffectDuration = livingEntity.getEffect(weedItem.getEffect()).getDuration();
+            offHandEffectList.add(new MobEffectInstance(weedItem.getEffect(), previousEffectDuration + weedItem.getDuration(),
+                    weedItem.getEffectAmplifier()));
+        } else {
+            offHandEffectList.add(new MobEffectInstance(weedItem.getEffect(), weedItem.getDuration(),
+                    weedItem.getEffectAmplifier()));
         }
 
         return offHandEffectList;
