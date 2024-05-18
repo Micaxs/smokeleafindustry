@@ -55,27 +55,36 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     }
 
     private void addCropLoot(RegistryObject<Block> cropBlock, Supplier<Item> budSupplier, Supplier<Item> seedsSupplier, Supplier<Item> leafSupplier) {
-        LootItemCondition.Builder lootItemConditionBuilder10 = LootItemBlockStatePropertyCondition
+        LootItemCondition.Builder cropIsHarvestable = LootItemBlockStatePropertyCondition
                 .hasBlockStateProperties(cropBlock.get())
-                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BaseWeedCropBlock.AGE, 10));
-        this.add(cropBlock.get(), createCropDropFull(budSupplier.get(), seedsSupplier.get(), leafSupplier.get(), lootItemConditionBuilder10));
+                .setProperties(StatePropertiesPredicate.Builder.properties()
+                        .hasProperty(BaseWeedCropBlock.AGE, 10)
+                );
+        LootItemCondition.Builder cropIsBottomSegment = LootItemBlockStatePropertyCondition
+                .hasBlockStateProperties(cropBlock.get())
+                .setProperties(StatePropertiesPredicate.Builder.properties()
+                        .hasProperty(BaseWeedCropBlock.TOP, false)
+                );
+
+        this.add(cropBlock.get(), createCropDropFull(budSupplier.get(), seedsSupplier.get(), leafSupplier.get(), cropIsHarvestable, cropIsBottomSegment));
     }
 
-    protected LootTable.Builder createCropDropFull(Item pBudItem, Item pSeedsItem, Item pLeafItem, LootItemCondition.Builder pDropGrownCropCondition) {
+    private LootTable.Builder createCropDropFull(Item pBudItem, Item pSeedsItem, Item pLeafItem, LootItemCondition.Builder cropIsHarvestable, LootItemCondition.Builder cropIsBottomSegment) {
         return LootTable.lootTable()
-                .withPool(LootPool.lootPool()  // Seed drop with condition
-                        .when(pDropGrownCropCondition)
-                        .add(LootItem.lootTableItem(pSeedsItem)
-                                .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1)))))
+                .withPool(LootPool.lootPool()  // 1 Seed drop always
+                        .when(cropIsBottomSegment)
+                        .add(LootItem.lootTableItem(pSeedsItem))
+                        .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1)))
+                )
                 .withPool(LootPool.lootPool()  // Bud drop with condition
-                        .when(pDropGrownCropCondition)
+                        .when(cropIsHarvestable.and(cropIsBottomSegment))
                         .add(LootItem.lootTableItem(pBudItem)
-                                .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1)))
-                                .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.55F, 1))))
+                                .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.55F, 1)))
+                )
                 .withPool(LootPool.lootPool()  // Leaf drop with condition
-                        .when(pDropGrownCropCondition)
-                        .add(LootItem.lootTableItem(pLeafItem)
-                                .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1)))));
+                        .when(cropIsHarvestable.and(cropIsBottomSegment))
+                        .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1)))
+                        .add(LootItem.lootTableItem(pLeafItem)));
     }
 
     @Override
