@@ -24,25 +24,25 @@ public class ModBlocks {
     // Weed Crop Variants
     public static final RegistryObject<Block> WHITE_WIDOW_CROP = BLOCKS.register("white_widow_crop",
             () -> new BaseWeedCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission(),
-                    ModItems.WHITE_WIDOW_SEEDS, ModItems.WHITE_WIDOW_BUD));
+                    ModItems.WHITE_WIDOW_SEEDS));
     public static final RegistryObject<Block> BUBBLE_KUSH_CROP = BLOCKS.register("bubble_kush_crop",
             () -> new BaseWeedCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission(),
-                    ModItems.BUBBLE_KUSH_SEEDS, ModItems.BUBBLE_KUSH_BUD));
+                    ModItems.BUBBLE_KUSH_SEEDS));
     public static final RegistryObject<Block> LEMON_HAZE_CROP = BLOCKS.register("lemon_haze_crop",
             () -> new BaseWeedCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission(),
-                    ModItems.LEMON_HAZE_SEEDS, ModItems.LEMON_HAZE_BUD));
+                    ModItems.LEMON_HAZE_SEEDS));
     public static final RegistryObject<Block> SOUR_DIESEL_CROP = BLOCKS.register("sour_diesel_crop",
             () -> new BaseWeedCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission(),
-                    ModItems.SOUR_DIESEL_SEEDS, ModItems.SOUR_DIESEL_BUD));
+                    ModItems.SOUR_DIESEL_SEEDS));
     public static final RegistryObject<Block> BLUE_ICE_CROP = BLOCKS.register("blue_ice_crop",
             () -> new BaseWeedCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission(),
-                    ModItems.BLUE_ICE_SEEDS, ModItems.BLUE_ICE_BUD));
+                    ModItems.BLUE_ICE_SEEDS));
     public static final RegistryObject<Block> BUBBLEGUM_CROP = BLOCKS.register("bubblegum_crop",
             () -> new BaseWeedCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission(),
-                    ModItems.BUBBLEGUM_SEEDS, ModItems.BUBBLEGUM_BUD));
+                    ModItems.BUBBLEGUM_SEEDS));
     public static final RegistryObject<Block> PURPLE_HAZE_CROP = BLOCKS.register("purple_haze_crop",
             () -> new BaseWeedCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion().noCollission(),
-                    ModItems.PURPLE_HAZE_SEEDS, ModItems.PURPLE_HAZE_BUD));
+                    ModItems.PURPLE_HAZE_SEEDS));
 
     // Machines
     public static final RegistryObject<Block> HERB_GRINDER_STATION = registerBlock("herb_grinder_station",
