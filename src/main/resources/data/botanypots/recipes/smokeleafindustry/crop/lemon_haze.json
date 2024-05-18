@@ -12,7 +12,8 @@
     "type": "botanypots:simple",
     "block": "smokeleafindustry:lemon_haze_crop",
     "properties": {
-      "age": 10
+      "age": 10,
+      "top": true
     }
   },
   "drops": [
