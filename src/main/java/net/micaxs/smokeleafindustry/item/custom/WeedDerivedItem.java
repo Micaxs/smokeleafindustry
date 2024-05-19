@@ -28,12 +28,18 @@ public class WeedDerivedItem extends Item {
     private final float effectDurationMultiplier;
     private final float stonedChance;
     private final UseAnim useAnimation;
+    private final int useDuration;
 
     public WeedDerivedItem(Properties pProperties, float effectDurationMultiplier, float stonedChance, UseAnim useAnimation) {
+        this(pProperties, effectDurationMultiplier, stonedChance, useAnimation, 20);
+    }
+
+    public WeedDerivedItem(Properties pProperties, float effectDurationMultiplier, float stonedChance, UseAnim useAnimation, int useDuration) {
         super(pProperties);
         this.effectDurationMultiplier = effectDurationMultiplier;
         this.stonedChance = stonedChance;
         this.useAnimation = useAnimation;
+        this.useDuration = useDuration;
     }
 
     @Override
@@ -43,7 +49,7 @@ public class WeedDerivedItem extends Item {
 
     @Override
     public int getUseDuration(ItemStack pStack) {
-        return 20;
+        return this.useDuration;
     }
 
     @Override

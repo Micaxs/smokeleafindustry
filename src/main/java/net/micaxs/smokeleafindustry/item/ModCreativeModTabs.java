@@ -93,6 +93,14 @@ public class ModCreativeModTabs {
                         pOutput.accept(ModItems.HASH_BROWNIE.get());
                         pOutput.accept(ModItems.WEED_COOKIE.get());
 
+                        pOutput.accept(ModItems.WHITE_WIDOW_GUMMY.get());
+                        pOutput.accept(ModItems.SOUR_DIESEL_GUMMY.get());
+                        pOutput.accept(ModItems.PURPLE_HAZE_GUMMY.get());
+                        pOutput.accept(ModItems.LEMON_HAZE_GUMMY.get());
+                        pOutput.accept(ModItems.BUBBLE_KUSH_GUMMY.get());
+                        pOutput.accept(ModItems.BLUE_ICE_GUMMY.get());
+                        pOutput.accept(ModItems.BUBBLEGUM_GUMMY.get());
+
                         pOutput.accept(ModBlocks.HEMP_STONE.get());
                         pOutput.accept(ModBlocks.HEMP_PLANKS.get());
                         pOutput.accept(ModBlocks.HEMP_WOOL.get());

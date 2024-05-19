@@ -20,4 +20,9 @@ public class ModFoods {
             .saturationMod(0.1f)
             .fast()
             .build();
+    public static final FoodProperties WEED_GUMMY = new FoodProperties.Builder()
+            .alwaysEat()
+            .nutrition(4)
+            .saturationMod(0.4f)
+            .build();
 }
