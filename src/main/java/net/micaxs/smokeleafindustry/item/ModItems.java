@@ -105,11 +105,27 @@ public class ModItems {
     public static final RegistryObject<Item> JOINT = ITEMS.register("joint",
             () -> new WeedDerivedItem(new Item.Properties().stacksTo(64), 1, 0.5f, UseAnim.BOW));
     public static final RegistryObject<Item> HERB_CAKE = ITEMS.register("herb_cake",
-            () -> new WeedDerivedItem(new Item.Properties().food(ModFoods.HERB_CAKE), 1.5f, 1f, UseAnim.EAT));
+            () -> new WeedDerivedItem(new Item.Properties().food(ModFoods.HERB_CAKE), 1.5f, 1f, UseAnim.EAT, 50));
     public static final RegistryObject<Item> HASH_BROWNIE = ITEMS.register("hash_brownie",
             () -> new WeedDerivedItem(new Item.Properties().food(ModFoods.HASH_BROWNIE), 1.5f, 1f, UseAnim.EAT));
     public static final RegistryObject<Item> WEED_COOKIE = ITEMS.register("weed_cookie",
-            () -> new WeedDerivedItem(new Item.Properties().food(ModFoods.WEED_COOKIE), 0.125f, 0.25f, UseAnim.EAT));
+            () -> new WeedDerivedItem(new Item.Properties().food(ModFoods.WEED_COOKIE), 0.125f, 0.25f, UseAnim.EAT, 15));
+
+    // Gummies
+    public static final RegistryObject<Item> WHITE_WIDOW_GUMMY = ITEMS.register("white_widow_gummy",
+            () -> new WeedDerivedItem(new Item.Properties().food(ModFoods.WEED_GUMMY), 1.5f, 1f, UseAnim.EAT, 40));
+    public static final RegistryObject<Item> SOUR_DIESEL_GUMMY = ITEMS.register("sour_diesel_gummy",
+            () -> new WeedDerivedItem(new Item.Properties().food(ModFoods.WEED_GUMMY), 1.5f, 1f, UseAnim.EAT, 40));
+    public static final RegistryObject<Item> PURPLE_HAZE_GUMMY = ITEMS.register("purple_haze_gummy",
+            () -> new WeedDerivedItem(new Item.Properties().food(ModFoods.WEED_GUMMY), 1.5f, 1f, UseAnim.EAT, 40));
+    public static final RegistryObject<Item> LEMON_HAZE_GUMMY = ITEMS.register("lemon_haze_gummy",
+            () -> new WeedDerivedItem(new Item.Properties().food(ModFoods.WEED_GUMMY), 1.5f, 1f, UseAnim.EAT, 40));
+    public static final RegistryObject<Item> BUBBLE_KUSH_GUMMY = ITEMS.register("bubble_kush_gummy",
+            () -> new WeedDerivedItem(new Item.Properties().food(ModFoods.WEED_GUMMY), 1.5f, 1f, UseAnim.EAT, 40));
+    public static final RegistryObject<Item> BLUE_ICE_GUMMY = ITEMS.register("blue_ice_gummy",
+            () -> new WeedDerivedItem(new Item.Properties().food(ModFoods.WEED_GUMMY), 1.5f, 1f, UseAnim.EAT, 40));
+    public static final RegistryObject<Item> BUBBLEGUM_GUMMY = ITEMS.register("bubblegum_gummy",
+            () -> new WeedDerivedItem(new Item.Properties().food(ModFoods.WEED_GUMMY), 1.5f, 1f, UseAnim.EAT, 40));
 
     /* Other Items */
     public static final RegistryObject<Item> HASH_OIL_BUCKET = ITEMS.register("hash_oil_bucket",

@@ -1,0 +1,18 @@
+{
+  "type": "smokeleafindustry:shapeless_weed_crafting",
+  "ingredients": [
+    {
+      "item": "minecraft:sugar"
+    }, {
+      "item": "minecraft:glow_berries"
+    }, {
+      "item": "minecraft:honey_bottle"
+    }, {
+      "tag": "smokeleafindustry:purple_haze_strain"
+    }
+  ],
+  "result": {
+    "item": "smokeleafindustry:purple_haze_gummy",
+    "count": 1
+  }
+}
