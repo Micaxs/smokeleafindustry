@@ -39,6 +39,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.Optional;
 
 public class HerbMutationBlockEntity extends BlockEntity implements MenuProvider {
@@ -54,9 +55,25 @@ public class HerbMutationBlockEntity extends BlockEntity implements MenuProvider
 
         @Override
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+            List<HerbMutationRecipe> recipes = level.getRecipeManager().getAllRecipesFor(HerbMutationRecipe.Type.INSTANCE);
             return switch (slot) {
                 case 0 -> stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).isPresent();
-                case 1 -> true;
+                case 1 -> {
+                    for (HerbMutationRecipe recipe : recipes) {
+                        if (recipe.matches(new SimpleContainer(stack), level, 0)) {
+                            yield true;
+                        }
+                    }
+                    yield false;
+                }
+                case 2 -> {
+                    for (HerbMutationRecipe recipe : recipes) {
+                        if (recipe.matches(new SimpleContainer(stack), level, 1)) {
+                            yield true;
+                        }
+                    }
+                    yield false;
+                }
                 case 3 -> false; // Don't put stuff in output slot bro.
                 default -> super.isItemValid(slot, stack);
             };

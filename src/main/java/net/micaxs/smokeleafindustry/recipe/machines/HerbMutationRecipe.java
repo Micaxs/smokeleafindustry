@@ -46,6 +46,13 @@ public class HerbMutationRecipe implements Recipe<SimpleContainer> {
         return true;
     }
 
+    public boolean matches(SimpleContainer simpleContainer, Level level, int slot) {
+        if (level.isClientSide() || slot >= 2) {
+            return false;
+        }
+        return inputItems.get(slot).test(simpleContainer.getItem(0));
+    }
+
     public FluidStack getFluid() {
         return this.fluidStack;
     }
@@ -87,7 +94,7 @@ public class HerbMutationRecipe implements Recipe<SimpleContainer> {
 
     public static class Type implements RecipeType<HerbMutationRecipe> {
         public static final Type INSTANCE = new Type();
-        public static final String ID =  "herb_mutation";
+        public static final String ID = "herb_mutation";
     }
 
     public static class Serializer implements RecipeSerializer<HerbMutationRecipe> {
