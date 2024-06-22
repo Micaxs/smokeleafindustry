@@ -1,4 +1,12 @@
 
+Bugfixes:
+- Unify UI
+- - Spinner -> Green Color UI
+- - Weaver -> Green Color UI
+- - Weed Extractor (evaporator) -> power on right side
+- - Weed Liquifier (extracter) -> power right side
+
+
 0.5.0:
 - Add Herb Dryer Machine     -> Produces Dried Herbs from Fresh Herbs
 - Add Herb Drying Rack       -> Produces Dried Herbs from Fresh Herbs without power (much slower)
