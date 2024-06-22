@@ -40,5 +40,14 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
         this.tag(BlockTags.MINEABLE_WITH_AXE)
                 .add(ModBlocks.HEMP_PLANKS.get());
+
+        this.tag(BlockTags.CROPS)
+                .add(ModBlocks.BLUE_ICE_CROP.get())
+                .add(ModBlocks.BUBBLE_KUSH_CROP.get())
+                .add(ModBlocks.BUBBLEGUM_CROP.get())
+                .add(ModBlocks.LEMON_HAZE_CROP.get())
+                .add(ModBlocks.PURPLE_HAZE_CROP.get())
+                .add(ModBlocks.SOUR_DIESEL_CROP.get())
+                .add(ModBlocks.WHITE_WIDOW_CROP.get());
     }
 }
