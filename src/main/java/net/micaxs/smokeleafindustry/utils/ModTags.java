@@ -9,6 +9,7 @@ import net.minecraft.world.item.Item;
 public class ModTags {
     public static final TagKey<Item> WEEDS = tag("weeds");
     public static final TagKey<Item> WEED_BUDS = tag("weed_buds");
+    public static final TagKey<Item> WEED_EXTRACTS = tag("weed_extracts");
     public static final TagKey<Item> WHITE_WIDOW_STRAIN = tag("white_widow_strain");
     public static final TagKey<Item> SOUR_DIESEL_STRAIN = tag("sour_diesel_strain");
     public static final TagKey<Item> LEMON_HAZE_STRAIN = tag("lemon_haze_strain");

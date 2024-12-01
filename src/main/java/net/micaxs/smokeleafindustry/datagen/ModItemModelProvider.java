@@ -91,6 +91,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.HEMP_CORE);
         simpleItem(ModItems.HEMP_STICK);
         simpleItem(ModItems.BONG);
+        simpleItem(ModItems.DAB_RIG);
         simpleItem(ModItems.HEMP_FABRIC);
         simpleItem(ModItems.HEMP_FIBERS);
         simpleItem(ModItems.HEMP_LEAF);

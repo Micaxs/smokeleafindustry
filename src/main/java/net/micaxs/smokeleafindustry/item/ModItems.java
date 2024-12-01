@@ -134,6 +134,8 @@ public class ModItems {
             () -> new ManualGrinder(new Item.Properties().stacksTo(1).durability(16)));
     public static final RegistryObject<Item> BONG = ITEMS.register("bong",
             () -> new BongItem(new Item.Properties().stacksTo(1).fireResistant()));
+    public static final RegistryObject<Item> DAB_RIG = ITEMS.register("dab_rig",
+            () -> new DabRigItem(new Item.Properties().stacksTo(1).fireResistant()));
     public static final RegistryObject<Item> HEMP_STICK = ITEMS.register("hemp_stick",
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> HEMP_CORE = ITEMS.register("hemp_core",

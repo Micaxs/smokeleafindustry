@@ -41,6 +41,16 @@ public class ModItemTagGenerator extends ItemTagsProvider {
                 ModItems.BUBBLEGUM_BUD.get()
         );
 
+        this.tag(ModTags.WEED_EXTRACTS).add(
+                ModItems.WHITE_WIDOW_EXTRACT.get(),
+                ModItems.SOUR_DIESEL_EXTRACT.get(),
+                ModItems.PURPLE_HAZE_EXTRACT.get(),
+                ModItems.LEMON_HAZE_EXTRACT.get(),
+                ModItems.BUBBLE_KUSH_EXTRACT.get(),
+                ModItems.BLUE_ICE_EXTRACT.get(),
+                ModItems.BUBBLEGUM_EXTRACT.get()
+        );
+
         this.tag(ItemTags.TRIMMABLE_ARMOR)
                 .add(
                         // Red Baja Hoodie
