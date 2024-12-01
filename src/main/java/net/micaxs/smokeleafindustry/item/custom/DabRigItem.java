@@ -5,6 +5,7 @@ import net.micaxs.smokeleafindustry.utils.ModTags;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -15,14 +16,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
-import net.minecraft.sounds.SoundEvent;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BongItem extends Item {
-    public BongItem(Properties pProperties) {
+public class DabRigItem extends Item {
+    public DabRigItem(Properties pProperties) {
         super(pProperties);
     }
 
@@ -103,7 +103,7 @@ public class BongItem extends Item {
 
     private boolean isValidOffhandItem(ItemStack offhand) {
         if (!offhand.isEmpty()) {
-            return offhand.is(ModTags.WEEDS);
+            return (offhand.is(ModTags.WEED_EXTRACTS));
         }
         return false;
     }
@@ -112,7 +112,7 @@ public class BongItem extends Item {
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
 
-        pTooltipComponents.add(Component.translatable("tooltip.smokeleafindustry.bong").withStyle(ChatFormatting.GRAY));
+        pTooltipComponents.add(Component.translatable("tooltip.smokeleafindustry.dab_rig").withStyle(ChatFormatting.GRAY));
     }
 
     @Override
