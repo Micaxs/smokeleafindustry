@@ -79,7 +79,7 @@ public class WeedEffectHelper {
 
     public static Component getEffectTooltip(List<BaseWeedItem> activeIngredients, boolean showDuration) {
         MutableComponent result = MutableComponent.create(ComponentContents.EMPTY);
-        for (BaseWeedItem baseWeedItem: activeIngredients) {
+        for (BaseWeedItem baseWeedItem : activeIngredients) {
             result.append(getEffectTooltip(baseWeedItem.getEffect(), baseWeedItem.getDuration(), showDuration));
             result.append("\n");
         }
@@ -88,7 +88,7 @@ public class WeedEffectHelper {
 
     public static List<Component> getEffectTooltips(List<BaseWeedItem> activeIngredients, boolean showDuration) {
         List<Component> result = new ArrayList<>();
-        for (BaseWeedItem baseWeedItem: activeIngredients) {
+        for (BaseWeedItem baseWeedItem : activeIngredients) {
             result.add(getEffectTooltip(baseWeedItem.getEffect(), baseWeedItem.getDuration(), showDuration));
         }
         return result;

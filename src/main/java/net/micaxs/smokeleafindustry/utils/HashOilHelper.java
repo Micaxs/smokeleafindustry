@@ -39,7 +39,9 @@ public class HashOilHelper {
         }
 
         // Add active ingredient to list
-        activeIngredientsList.add(weedItem.getDescriptionId());
+        if (!activeIngredientsList.contains(JsonParser.parseString(weedItem.getDescriptionId()))) {
+            activeIngredientsList.add(weedItem.getDescriptionId());
+        }
 
         fluidTag.putString("active_ingredients", activeIngredientsList.toString());
         weedDerivedFluid.setTag(fluidTag);
@@ -78,7 +80,10 @@ public class HashOilHelper {
     }
 
     public static List<BaseWeedItem> getActiveWeedIngredient(FluidStack fluidStack) {
-        CompoundTag tag = fluidStack.getTag();
+        return getActiveWeedIngredient(fluidStack.getTag());
+    }
+
+    public static List<BaseWeedItem> getActiveWeedIngredient(CompoundTag tag) {
         if (tag == null || !tag.contains("active_ingredients")) {
             return List.of();
         }
@@ -97,6 +102,7 @@ public class HashOilHelper {
             RegistryObject<Item> activeIngredient = RegistryObject.create(new ResourceLocation(SmokeleafIndustryMod.MOD_ID, activeIngredientName), ForgeRegistries.ITEMS);
             if (activeIngredient.get() instanceof BaseWeedItem activeIngredientItem) {
                 activeIngredientItem.setVariableDuration(false);
+                activeIngredientItem.setDurationMultiplier(2);
                 result.add(activeIngredientItem);
             }
         }
