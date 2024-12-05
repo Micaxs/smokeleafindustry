@@ -1,6 +1,7 @@
 package net.micaxs.smokeleafindustry.item.custom;
 
 import net.micaxs.smokeleafindustry.item.ModItems;
+import net.micaxs.smokeleafindustry.utils.ModTags;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
@@ -37,16 +38,8 @@ public class ManualGrinder extends Item {
         return 1;
     }
 
-
-    // TODO: Add all the Buds here...
     public static boolean isValidMainHandItem(ItemStack pStack) {
-        return pStack.getItem() == ModItems.WHITE_WIDOW_BUD.get() ||
-                pStack.getItem() == ModItems.BUBBLEGUM_BUD.get() ||
-                pStack.getItem() == ModItems.BLUE_ICE_BUD.get() ||
-                pStack.getItem() == ModItems.BUBBLE_KUSH_BUD.get() ||
-                pStack.getItem() == ModItems.LEMON_HAZE_BUD.get() ||
-                pStack.getItem() == ModItems.SOUR_DIESEL_BUD.get() ||
-                pStack.getItem() == ModItems.PURPLE_HAZE_BUD.get();
+        return pStack.is(ModTags.WEED_BUDS);
     }
 
     public static ItemStack resultItem(ItemStack pStack) {
