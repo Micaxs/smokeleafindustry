@@ -1,21 +1,25 @@
 package net.micaxs.smokeleafindustry.utils;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import net.micaxs.smokeleafindustry.SmokeleafIndustryMod;
 import net.micaxs.smokeleafindustry.item.custom.BaseWeedItem;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.ComponentContents;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class HashOilHelper {
     public static boolean setWeedNBTDataFluid(ItemStack itemHandler, FluidStack weedDerivedFluid) {
@@ -28,22 +32,25 @@ public class HashOilHelper {
 
         // Check if oil already has active ingredients
         String previousData = fluidTag.getString("active_ingredients");
-        JsonArray activeIngredientsList = new JsonArray();
+        JsonObject activeIngredientsTag = new JsonObject();
         if (!previousData.equals("")) {
-            activeIngredientsList = JsonParser.parseString(fluidTag.getString("active_ingredients")).getAsJsonArray();
+            activeIngredientsTag = JsonParser.parseString(fluidTag.getString("active_ingredients")).getAsJsonObject();
         }
 
         // Check if 2 active ingredients are already in the set and exit if it is.
-        if (activeIngredientsList.size() >= 2) {
+        if (activeIngredientsTag.keySet().size() >= 2) {
             return true;
         }
 
-        // Add active ingredient to list
-        if (!activeIngredientsList.contains(JsonParser.parseString(weedItem.getDescriptionId()))) {
-            activeIngredientsList.add(weedItem.getDescriptionId());
+        // Set duration tag
+        // TODO: duration is stored in the key, doesn't need to be here
+        if (weedItem.getEffect() == MobEffects.LEVITATION) {
+            activeIngredientsTag.addProperty(weedItem.getDescriptionId(), 200);
+        } else {
+            activeIngredientsTag.addProperty(weedItem.getDescriptionId(), 400);
         }
 
-        fluidTag.putString("active_ingredients", activeIngredientsList.toString());
+        fluidTag.putString("active_ingredients", activeIngredientsTag.toString());
         weedDerivedFluid.setTag(fluidTag);
         return false;
     }
@@ -80,29 +87,26 @@ public class HashOilHelper {
     }
 
     public static List<BaseWeedItem> getActiveWeedIngredient(FluidStack fluidStack) {
-        return getActiveWeedIngredient(fluidStack.getTag());
-    }
-
-    public static List<BaseWeedItem> getActiveWeedIngredient(CompoundTag tag) {
+        CompoundTag tag = fluidStack.getTag();
         if (tag == null || !tag.contains("active_ingredients")) {
             return List.of();
         }
 
         // extract the active ingredients
-        JsonArray activeIngredientsTag = JsonParser.parseString(tag.getString("active_ingredients")).getAsJsonArray();
-        if (activeIngredientsTag.size() >= 3) {
+        JsonObject activeIngredientsTag = JsonParser.parseString(tag.getString("active_ingredients")).getAsJsonObject();
+        Set<String> activeIngredients = activeIngredientsTag.keySet();
+        if (activeIngredients.size() >= 3) {
             // Blend is "dead" if more than 3 types are mixed
             return List.of();
         }
 
         List<BaseWeedItem> result = new ArrayList<>();
-        for (JsonElement activeIngredientElement : activeIngredientsTag.asList()) {
-            String[] parts = activeIngredientElement.getAsString().split("\\.");
-            String activeIngredientName = parts[parts.length - 1];
+        for (String activeIngredientName : activeIngredients) {
+            String[] parts = activeIngredientName.split("\\.");
+            activeIngredientName = parts[parts.length - 1];
             RegistryObject<Item> activeIngredient = RegistryObject.create(new ResourceLocation(SmokeleafIndustryMod.MOD_ID, activeIngredientName), ForgeRegistries.ITEMS);
             if (activeIngredient.get() instanceof BaseWeedItem activeIngredientItem) {
                 activeIngredientItem.setVariableDuration(false);
-                activeIngredientItem.setDurationMultiplier(2);
                 result.add(activeIngredientItem);
             }
         }

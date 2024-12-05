@@ -2,7 +2,6 @@ package net.micaxs.smokeleafindustry.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.micaxs.smokeleafindustry.SmokeleafIndustryMod;
-import net.micaxs.smokeleafindustry.fluid.ModFluids;
 import net.micaxs.smokeleafindustry.item.custom.BaseWeedItem;
 import net.micaxs.smokeleafindustry.utils.HashOilHelper;
 import net.micaxs.smokeleafindustry.utils.WeedEffectHelper;
@@ -111,7 +110,8 @@ public class HerbExtractorScreen extends AbstractContainerScreen<HerbExtractorMe
         if (fluid.isEmpty()) return;
 
         if (isHovering(134, 11, 18, 64, mouseX, mouseY)) {
-            if (fluid.getFluid() == ModFluids.SOURCE_HASH_OIL.get()) {
+            // TODO: Extremely bad, check the types against the mod fluid types instead
+            if (fluid.getDisplayName().getString().equals("Hash Oil")) {
                 List<BaseWeedItem> activeIngredients = HashOilHelper.getActiveWeedIngredient(fluid);
 
                 Component fluidText = MutableComponent.create(ComponentContents.EMPTY)

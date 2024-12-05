@@ -2,7 +2,6 @@ package net.micaxs.smokeleafindustry.block.custom;
 
 import net.micaxs.smokeleafindustry.block.entity.HerbExtractorBlockEntity;
 import net.micaxs.smokeleafindustry.block.entity.ModBlockEntities;
-import net.micaxs.smokeleafindustry.item.ModItems;
 import net.micaxs.smokeleafindustry.utils.HashOilHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -113,29 +112,6 @@ public class HerbExtractorBlock extends BaseEntityBlock {
                 }
             } else {
                 pPlayer.setItemInHand(pHand, hashOilBucket);
-            }
-            pLevel.sendBlockUpdated(pPos, pState, pState, 3);
-            return InteractionResult.SUCCESS;
-        } else if (itemStack.getItem() == ModItems.EMPTY_TINCTURE.get()) {
-            // If we can't drain the liquid, open machine screen
-            if (herbExtractorBlockEntity.getFluidTank().getFluidAmount() < 300) {
-                NetworkHooks.openScreen(((ServerPlayer) pPlayer), (HerbExtractorBlockEntity) entity, pPos);
-                return InteractionResult.CONSUME;
-            }
-
-            // Create hash oil tincture
-            ItemStack hashOilTincture = new ItemStack(ModItems.HASH_OIL_TINCTURE.get());
-            HashOilHelper.transferWeedFluidNBTToBucket(hashOilTincture, herbExtractorBlockEntity.getFluidStack());
-            herbExtractorBlockEntity.getFluidTank().drain(300, IFluidHandler.FluidAction.EXECUTE);
-
-            // Replace tincture item, or add to inventory
-            if (itemStack.getCount() > 1) {
-                itemStack.shrink(1);
-                if (!pPlayer.getInventory().add(hashOilTincture)) {
-                    pPlayer.drop(hashOilTincture, false);
-                }
-            } else {
-                pPlayer.setItemInHand(pHand, hashOilTincture);
             }
             pLevel.sendBlockUpdated(pPos, pState, pState, 3);
             return InteractionResult.SUCCESS;
