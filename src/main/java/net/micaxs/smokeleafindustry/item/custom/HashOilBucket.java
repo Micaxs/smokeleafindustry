@@ -1,20 +1,38 @@
 package net.micaxs.smokeleafindustry.item.custom;
 
+import net.micaxs.smokeleafindustry.SmokeleafIndustryMod;
 import net.micaxs.smokeleafindustry.utils.HashOilHelper;
 import net.micaxs.smokeleafindustry.utils.WeedEffectHelper;
+import net.minecraft.ChatFormatting;
+import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.BlockSource;
+import net.minecraft.core.Direction;
+import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BucketPickup;
+import net.minecraft.world.level.block.DispenserBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.Fluid;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -47,11 +65,6 @@ public class HashOilBucket extends BucketItem {
     }
 
     @Override
-    public ICapabilityProvider initCapabilities(@Nonnull ItemStack stack, @Nullable CompoundTag nbt) {
-        return new net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper(stack);
-    }
-
-    @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
         CompoundTag tag = pStack.getTag();
@@ -59,20 +72,24 @@ public class HashOilBucket extends BucketItem {
             return;
         }
 
-        List<BaseWeedItem> activeIngredients = HashOilHelper.getActiveWeedIngredient(tag);
+        List<BaseWeedItem> activeIngredients = HashOilHelper.getActiveWeedIngredient(getFluidStack(tag));
         pTooltipComponents.add(Component.empty()
                 .append(WeedEffectHelper.getEffectTooltip(activeIngredients, true)));
     }
 
     @Override
-    public @NotNull Component getName(ItemStack pStack) {
+    public Component getName(ItemStack pStack) {
         CompoundTag tag = pStack.getTag();
         if (tag == null) {
             return Component.translatable("item.smokeleafindustry.hash_oil_bucket");
         }
 
-        List<BaseWeedItem> activeIngredients = HashOilHelper.getActiveWeedIngredient(tag);
+        List<BaseWeedItem> activeIngredients = HashOilHelper.getActiveWeedIngredient(getFluidStack(tag));
         return HashOilHelper.getHashOilName(activeIngredients, "item.smokeleafindustry.hash_oil_bucket",
                 "item.smokeleafindustry.hash_oil_bucket_blend");
+    }
+
+    private FluidStack getFluidStack(CompoundTag tag) {
+        return new FluidStack(getFluid(), 1000, tag);
     }
 }
