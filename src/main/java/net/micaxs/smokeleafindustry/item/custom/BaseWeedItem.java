@@ -16,11 +16,12 @@ import java.util.Random;
 public class BaseWeedItem extends Item {
     private final MobEffect effect;
     private final int duration;
-    private final int effectAmplifier;
+    private int effectAmplifier;
     private final int thcLevel;
     private final int cbdLevel;
     private boolean variableDuration;
     private final String[] weedNameParts = new String[2];
+    private float durationMultiplier = 1;
 
 
     public BaseWeedItem(Properties pProperties, MobEffect effect, int iDuration, int iAmplifier, int iThc, int iCbd) {
@@ -77,12 +78,13 @@ public class BaseWeedItem extends Item {
     }
 
     public int getDuration() {
+        float dur = this.duration * this.durationMultiplier;
         if (this.variableDuration) {
             // Random delta scales based on the provided duration with a cap of 200
-            int randomDelta = new Random().nextInt(Math.min(this.duration / 4, 200));
-            return randomDelta + this.duration;
+            float randomDelta = new Random().nextFloat(Math.min(dur / 4, 200));
+            return (int) (randomDelta + dur);
         }
-        return this.duration;
+        return (int) dur;
     }
 
     public MobEffect getEffect() {
@@ -91,6 +93,10 @@ public class BaseWeedItem extends Item {
 
     public int getEffectAmplifier() {
         return this.effectAmplifier;
+    }
+
+    public void setEffectAmplifier(int effectAmplifier) {
+        this.effectAmplifier = effectAmplifier;
     }
 
     public boolean isVariableDuration() {
@@ -103,5 +109,13 @@ public class BaseWeedItem extends Item {
 
     public String[] getWeedNameParts() {
         return weedNameParts;
+    }
+
+    public float getDurationMultiplier() {
+        return durationMultiplier;
+    }
+
+    public void setDurationMultiplier(float durationMultiplier) {
+        this.durationMultiplier = durationMultiplier;
     }
 }
