@@ -1,7 +1,9 @@
 package net.micaxs.smokeleafindustry.block.entity;
 
+import net.micaxs.smokeleafindustry.fluid.ModFluids;
 import net.micaxs.smokeleafindustry.recipe.machines.HerbExtractorRecipe;
 import net.micaxs.smokeleafindustry.screen.HerbExtractorMenu;
+import net.micaxs.smokeleafindustry.utils.HashOilHelper;
 import net.micaxs.smokeleafindustry.utils.ModEnergyStorage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -188,6 +190,17 @@ public class HerbExtractorBlockEntity extends BlockEntity implements MenuProvide
         FLUID_TANK.readFromNBT(pTag);
     }
 
+    @Nullable
+    @Override
+    public Packet<ClientGamePacketListener> getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
+
+    @Override
+    public CompoundTag getUpdateTag() {
+        return saveWithoutMetadata();
+    }
+
     public void tick(Level pLevel, BlockPos pPos, BlockState pState, HerbExtractorBlockEntity pEntity) {
         boolean hasEnergy = energy.getEnergyStored() > 0;
 
@@ -215,10 +228,38 @@ public class HerbExtractorBlockEntity extends BlockEntity implements MenuProvide
         Optional<HerbExtractorRecipe> recipe = getCurrentRecipe();
         FluidStack fluidStack = recipe.get().getResultFluid();
 
-        int filledAmount = FLUID_TANK.fill(fluidStack, IFluidHandler.FluidAction.EXECUTE);
+        int filledAmount = fill(fluidStack);
         if (filledAmount > 0) {
-            itemHandler.extractItem(INPUT_SLOT, 1, false);
+            ItemStack inputItem = itemHandler.extractItem(INPUT_SLOT, 1, false);
+            // Set tanks NBT data to correctly represent the fluid's weed source
+            FluidStack hashOil = FLUID_TANK.getFluid();
+            if(HashOilHelper.setWeedNBTDataFluid(inputItem, hashOil)) {
+                // Convert hash oil to sludge
+                FluidStack fluid = new FluidStack(ModFluids.SOURCE_HASH_OIL_SLUDGE.get(), FLUID_TANK.getFluidAmount());
+                FLUID_TANK.setFluid(fluid);
+            }
         }
+    }
+
+    private int fill(FluidStack hashOilFluid) {
+        int capacity = FLUID_TANK.getCapacity();
+        FluidStack fluid = FLUID_TANK.getFluid();
+
+        if (fluid.isEmpty()) {
+            fluid = new FluidStack(hashOilFluid, Math.min(capacity, hashOilFluid.getAmount()));
+            FLUID_TANK.setFluid(fluid);
+            return fluid.getAmount();
+        }
+
+        int filled = capacity - fluid.getAmount();
+
+        if (hashOilFluid.getAmount() < filled) {
+            fluid.grow(hashOilFluid.getAmount());
+            filled = hashOilFluid.getAmount();
+        } else {
+            fluid.setAmount(capacity);
+        }
+        return filled;
     }
 
     private boolean hasRecipe() {
@@ -269,16 +310,5 @@ public class HerbExtractorBlockEntity extends BlockEntity implements MenuProvide
 
     public FluidStack getFluidStack() {
         return this.FLUID_TANK.getFluid();
-    }
-
-    @Nullable
-    @Override
-    public Packet<ClientGamePacketListener> getUpdatePacket() {
-        return ClientboundBlockEntityDataPacket.create(this);
-    }
-
-    @Override
-    public CompoundTag getUpdateTag() {
-        return saveWithoutMetadata();
     }
 }

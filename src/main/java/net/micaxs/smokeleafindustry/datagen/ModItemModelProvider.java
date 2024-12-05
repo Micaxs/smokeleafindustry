@@ -108,6 +108,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.BUBBLEGUM_GUMMY);
 
         simpleItem(ModItems.HASH_OIL_BUCKET);
+        simpleItem(ModItems.HASH_OIL_SLUDGE_BUCKET);
 
         trimmedArmorItem(ModItems.HEMP_HELMET_RED);
         trimmedArmorItem(ModItems.HEMP_CHESTPLATE_RED);

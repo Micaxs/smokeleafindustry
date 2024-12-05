@@ -2,11 +2,15 @@ package net.micaxs.smokeleafindustry.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.micaxs.smokeleafindustry.SmokeleafIndustryMod;
+import net.micaxs.smokeleafindustry.item.custom.BaseWeedItem;
+import net.micaxs.smokeleafindustry.utils.HashOilHelper;
+import net.micaxs.smokeleafindustry.utils.WeedEffectHelper;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.ComponentContents;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -15,6 +19,9 @@ import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HerbExtractorScreen extends AbstractContainerScreen<HerbExtractorMenu> {
     private static final ResourceLocation TEXTURE =
@@ -103,9 +110,25 @@ public class HerbExtractorScreen extends AbstractContainerScreen<HerbExtractorMe
         if (fluid.isEmpty()) return;
 
         if (isHovering(134, 11, 18, 64, mouseX, mouseY)) {
-            Component fluidText = MutableComponent.create(fluid.getDisplayName().getContents())
-                    .append(" (%s/%s mB)".formatted(tank.getFluidAmount(), tank.getCapacity()));
-            guiGraphics.renderTooltip(this.font, fluidText, mouseX, mouseY);
+            // TODO: Extremely bad, check the types against the mod fluid types instead
+            if (fluid.getDisplayName().getString().equals("Hash Oil")) {
+                List<BaseWeedItem> activeIngredients = HashOilHelper.getActiveWeedIngredient(fluid);
+
+                Component fluidText = MutableComponent.create(ComponentContents.EMPTY)
+                        .append(HashOilHelper.getHashOilName(activeIngredients,
+                                "fluid_type.smokeleafindustry.hash_oil_fluid", "fluid_type.smokeleafindustry.hash_oil_fluid_blend"))
+                        .append(" (%s/%s mB)".formatted(tank.getFluidAmount(), tank.getCapacity()));
+                List<Component> tooltips = new ArrayList<>();
+                tooltips.add(fluidText);
+                tooltips.addAll(WeedEffectHelper.getEffectTooltips(activeIngredients, true));
+
+                guiGraphics.renderComponentTooltip(this.font, tooltips, mouseX, mouseY);
+            } else {
+                Component fluidText = MutableComponent.create(ComponentContents.EMPTY)
+                        .append(fluid.getDisplayName())
+                        .append(" (%s/%s mB)".formatted(tank.getFluidAmount(), tank.getCapacity()));
+                guiGraphics.renderTooltip(this.font, fluidText, mouseX, mouseY);
+            }
         }
 
     }

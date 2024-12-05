@@ -49,20 +49,27 @@ public class ModItems {
 
     // Ground Weeds
     public static final RegistryObject<Item> BUBBLE_KUSH_WEED = ITEMS.register("bubble_kush_weed",
-            () -> new BaseWeedItem(new Item.Properties(), MobEffects.DIG_SPEED, 200, 1, 20, 6));
+            () -> new BaseWeedItem(new Item.Properties(), MobEffects.DIG_SPEED, 200, 1, 20, 6,
+                    "Bubble", "Kush"));
     public static final RegistryObject<Item> LEMON_HAZE_WEED = ITEMS.register("lemon_haze_weed",
-            () -> new BaseWeedItem(new Item.Properties(), MobEffects.JUMP, 200, 1, 19, 8));
+            () -> new BaseWeedItem(new Item.Properties(), MobEffects.JUMP, 200, 1, 19, 8,
+                    "Lemon", "Haze"));
     public static final RegistryObject<Item> SOUR_DIESEL_WEED = ITEMS.register("sour_diesel_weed",
-            () -> new BaseWeedItem(new Item.Properties(), MobEffects.SATURATION, 200, 1, 19, 0));
+            () -> new BaseWeedItem(new Item.Properties(), MobEffects.SATURATION, 200, 1, 19, 0,
+                    "Sour", "Diesel"));
     public static final RegistryObject<Item> BLUE_ICE_WEED = ITEMS.register("blue_ice_weed",
-            () -> new BaseWeedItem(new Item.Properties(), MobEffects.LUCK, 200, 1, 20, 10));
+            () -> new BaseWeedItem(new Item.Properties(), MobEffects.LUCK, 200, 1, 20, 10,
+                    "Blue", "Ice"));
     // Changed from 20 to 10 \/
     public static final RegistryObject<Item> BUBBLEGUM_WEED = ITEMS.register("bubblegum_weed",
-            () -> new BaseWeedItem(new Item.Properties(), MobEffects.LEVITATION, 100, 1, 17, 8));
+            () -> new BaseWeedItem(new Item.Properties(), MobEffects.LEVITATION, 100, 1, 17, 8,
+                    "Bubble", "Gum"));
     public static final RegistryObject<Item> PURPLE_HAZE_WEED = ITEMS.register("purple_haze_weed",
-            () -> new BaseWeedItem(new Item.Properties(), MobEffects.INVISIBILITY, 200, 1, 16, 0));
+            () -> new BaseWeedItem(new Item.Properties(), MobEffects.INVISIBILITY, 200, 1, 16, 0,
+                    "Purple", "Haze"));
     public static final RegistryObject<Item> WHITE_WIDOW_WEED = ITEMS.register("white_widow_weed",
-            () -> new BaseWeedItem(new Item.Properties(), MobEffects.REGENERATION, 200, 1, 15, 12));
+            () -> new BaseWeedItem(new Item.Properties(), MobEffects.REGENERATION, 200, 1, 15, 12,
+                    "White", "Widow"));
 
     /* Extracts */
     public static final RegistryObject<Item> BLUE_ICE_EXTRACT = ITEMS.register("blue_ice_extract",
@@ -129,7 +136,9 @@ public class ModItems {
 
     /* Other Items */
     public static final RegistryObject<Item> HASH_OIL_BUCKET = ITEMS.register("hash_oil_bucket",
-            () -> new BucketItem(ModFluids.SOURCE_HASH_OIL, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+            () -> new HashOilBucket(ModFluids.SOURCE_HASH_OIL, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+    public static final RegistryObject<Item> HASH_OIL_SLUDGE_BUCKET = ITEMS.register("hash_oil_sludge_bucket",
+            () -> new BucketItem(ModFluids.SOURCE_HASH_OIL_SLUDGE, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
     public static final RegistryObject<Item> GRINDER = ITEMS.register("grinder",
             () -> new ManualGrinder(new Item.Properties().stacksTo(1).durability(16)));
     public static final RegistryObject<Item> BONG = ITEMS.register("bong",

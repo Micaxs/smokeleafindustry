@@ -2,7 +2,7 @@ package net.micaxs.smokeleafindustry.block.custom;
 
 import net.micaxs.smokeleafindustry.block.entity.HerbExtractorBlockEntity;
 import net.micaxs.smokeleafindustry.block.entity.ModBlockEntities;
-import net.micaxs.smokeleafindustry.item.ModItems;
+import net.micaxs.smokeleafindustry.utils.HashOilHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
@@ -81,45 +81,45 @@ public class HerbExtractorBlock extends BaseEntityBlock {
 
     @Override
     public @NotNull InteractionResult use(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, Player pPlayer, @NotNull InteractionHand pHand, @NotNull BlockHitResult pHit) {
+        // Return default if called from client
+        if (pLevel.isClientSide()) {
+            return InteractionResult.sidedSuccess(pLevel.isClientSide());
+        }
+
+        // If the block isn't the extractor, throw an error
+        BlockEntity entity = pLevel.getBlockEntity(pPos);
+        if (!(entity instanceof HerbExtractorBlockEntity herbExtractorBlockEntity)) {
+            throw new IllegalStateException("Container provider is missing!");
+        }
+
         ItemStack itemStack = pPlayer.getItemInHand(pHand);
         if (itemStack.getItem() == Items.BUCKET) {
-            if (!pLevel.isClientSide()) {
-                BlockEntity entity = pLevel.getBlockEntity(pPos);
-                if (entity instanceof HerbExtractorBlockEntity herbExtractorBlockEntity) {
-                    if (herbExtractorBlockEntity.getFluidTank().getFluidAmount() >= 1000) {
-                        herbExtractorBlockEntity.getFluidTank().drain(1000, IFluidHandler.FluidAction.EXECUTE);
-                        if (itemStack.getCount() > 1) {
-                            itemStack.shrink(1);
-                            ItemStack hashOilBucket = new ItemStack(ModItems.HASH_OIL_BUCKET.get());
-                            if (!pPlayer.getInventory().add(hashOilBucket)) {
-                                pPlayer.drop(hashOilBucket, false);
-                            }
-                        } else {
-                            pPlayer.setItemInHand(pHand, new ItemStack(ModItems.HASH_OIL_BUCKET.get()));
-                        }
-                        pLevel.sendBlockUpdated(pPos, pState, pState, 3);
-                        return InteractionResult.SUCCESS;
-                    } else {
-                        NetworkHooks.openScreen(((ServerPlayer) pPlayer), (HerbExtractorBlockEntity) entity, pPos);
-                    }
-                } else {
-                    throw new IllegalStateException("Container provider is missing!");
-                }
+            // If we can't drain the liquid, open machine screen
+            if (herbExtractorBlockEntity.getFluidTank().getFluidAmount() < 1000) {
+                NetworkHooks.openScreen(((ServerPlayer) pPlayer), (HerbExtractorBlockEntity) entity, pPos);
+                return InteractionResult.CONSUME;
             }
-            return InteractionResult.CONSUME;
+
+            ItemStack hashOilBucket = new ItemStack(herbExtractorBlockEntity.getFluidTank().getFluid().getFluid().getBucket());
+            HashOilHelper.transferWeedFluidNBTToBucket(hashOilBucket, herbExtractorBlockEntity.getFluidStack());
+            herbExtractorBlockEntity.getFluidTank().drain(1000, IFluidHandler.FluidAction.EXECUTE);
+
+            // Replace bucket item, or add to inventory
+            if (itemStack.getCount() > 1) {
+                itemStack.shrink(1);
+                if (!pPlayer.getInventory().add(hashOilBucket)) {
+                    pPlayer.drop(hashOilBucket, false);
+                }
+            } else {
+                pPlayer.setItemInHand(pHand, hashOilBucket);
+            }
+            pLevel.sendBlockUpdated(pPos, pState, pState, 3);
+            return InteractionResult.SUCCESS;
         }
 
         // If the player is not holding an empty bucket, open the screen as before
-        if (!pLevel.isClientSide()) {
-            BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if (entity instanceof HerbExtractorBlockEntity) {
-                NetworkHooks.openScreen(((ServerPlayer) pPlayer), (HerbExtractorBlockEntity) entity, pPos);
-            } else {
-                throw new IllegalStateException("Container provider is missing!");
-            }
-        }
-
-        return InteractionResult.sidedSuccess(pLevel.isClientSide());
+        NetworkHooks.openScreen(((ServerPlayer) pPlayer), (HerbExtractorBlockEntity) entity, pPos);
+        return InteractionResult.SUCCESS;
     }
 
 
@@ -143,7 +143,6 @@ public class HerbExtractorBlock extends BaseEntityBlock {
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
         return defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite());
     }
-
 
 
 }

@@ -23,6 +23,8 @@
   "effect.smokeleafindustry.stoned": "Stoned",
   "entity.minecraft.villager.smokeleafindustry.herb_dealer": "Herb Dealer",
   "fluid_type.smokeleafindustry.hash_oil_fluid": "Hash Oil",
+  "fluid_type.smokeleafindustry.hash_oil_fluid_blend": "%s %s Hash Oil",
+  "fluid_type.smokeleafindustry.hash_oil_sludge_fluid": "Hash Oil Sludge",
 
   "item.smokeleafindustry.blue_ice_bag": "Blue Ice Baggy",
   "item.smokeleafindustry.blue_ice_bud": "Blue Ice Bud",
@@ -46,6 +48,8 @@
   "item.smokeleafindustry.empty_bag": "Empty Baggy",
   "item.smokeleafindustry.grinder": "Bud Grinder",
   "item.smokeleafindustry.hash_oil_bucket": "Hash Oil Bucket",
+  "item.smokeleafindustry.hash_oil_bucket_blend": "%s %s Hash Oil Bucket",
+  "item.smokeleafindustry.hash_oil_sludge_bucket": "Hash Oil Sludge Bucket",
   "item.smokeleafindustry.hemp_cog": "Hemp Cog",
   "item.smokeleafindustry.hemp_core": "Hemp Core",
   "item.smokeleafindustry.hemp_fabric": "Hemp Fabric",
@@ -111,7 +115,7 @@
   "tooltip.smokeleafindustry.purple_haze_bag": "Contains 8 Purple Haze Weed.",
   "tooltip.smokeleafindustry.sour_diesel_bag": "Contains 8 Sour Diesel Weed.",
   "tooltip.smokeleafindustry.white_widow_bag": "Contains 8 White Widow Weed.",
-  "tooltip.smokeleafindustry.base_weed": "Effect duration varies, turn into extract for reliable effect durations.",
+  "tooltip.smokeleafindustry.base_weed": "Effect duration varies, turn into hash oil for reliable effect durations.",
 
   "tooltip.smokeleafindustry.dried": "Dried",
   "tooltip.smokeleafindustry.fresh": "Fresh"

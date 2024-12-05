@@ -85,6 +85,8 @@ public class ModCreativeModTabs {
                         pOutput.accept(ModItems.HEMP_BOOTS_YELLOW.get());
 
                         pOutput.accept(ModItems.HASH_OIL_BUCKET.get());
+                        pOutput.accept(ModItems.HASH_OIL_SLUDGE_BUCKET.get());
+
                         pOutput.accept(ModItems.BONG.get());
                         pOutput.accept(ModItems.DAB_RIG.get());
                         pOutput.accept(ModItems.BLUNT.get());

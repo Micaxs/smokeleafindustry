@@ -19,7 +19,8 @@ public class BaseWeedItem extends Item {
     private final int effectAmplifier;
     private final int thcLevel;
     private final int cbdLevel;
-    private final boolean variableDuration;
+    private boolean variableDuration;
+    private final String[] weedNameParts = new String[2];
 
 
     public BaseWeedItem(Properties pProperties, MobEffect effect, int iDuration, int iAmplifier, int iThc, int iCbd) {
@@ -32,6 +33,13 @@ public class BaseWeedItem extends Item {
         this.variableDuration = true;
     }
 
+    public BaseWeedItem(Properties pProperties, MobEffect effect, int iDuration, int iAmplifier, int iThc, int iCbd, String weedNamePart1, String weedNamePart2) {
+        this(pProperties, effect, iDuration, iAmplifier, iThc, iCbd, true);
+        this.weedNameParts[0] = weedNamePart1;
+        this.weedNameParts[1] = weedNamePart2;
+    }
+
+    @Deprecated
     public BaseWeedItem(Properties pProperties, MobEffect effect, int iDuration, int iAmplifier, int iThc, int iCbd, boolean variableDuration) {
         super(pProperties);
         this.duration = iDuration;
@@ -87,5 +95,13 @@ public class BaseWeedItem extends Item {
 
     public boolean isVariableDuration() {
         return this.variableDuration;
+    }
+
+    public void setVariableDuration(boolean variableDuration) {
+        this.variableDuration = variableDuration;
+    }
+
+    public String[] getWeedNameParts() {
+        return weedNameParts;
     }
 }
