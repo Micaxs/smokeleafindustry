@@ -99,6 +99,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.HASH_BROWNIE);
         simpleItem(ModItems.WEED_COOKIE);
 
+        simpleItem(ModItems.EMPTY_TINCTURE);
+        simpleItem(ModItems.HASH_OIL_TINCTURE);
+
         simpleItem(ModItems.WHITE_WIDOW_GUMMY);
         simpleItem(ModItems.SOUR_DIESEL_GUMMY);
         simpleItem(ModItems.PURPLE_HAZE_GUMMY);

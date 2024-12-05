@@ -150,6 +150,13 @@ public class ModItems {
     public static final RegistryObject<Item> HEMP_CORE = ITEMS.register("hemp_core",
             () -> new Item(new Item.Properties()));
 
+    // Tinctures
+    public static final RegistryObject<Item> EMPTY_TINCTURE = ITEMS.register("empty_tincture",
+            () -> new EmptyTinctureItem(new Item.Properties().stacksTo(16).fireResistant()));
+    public static final RegistryObject<Item> HASH_OIL_TINCTURE = ITEMS.register("hash_oil_tincture",
+            () -> new HashOilTinctureItem(new Item.Properties()
+                    .craftRemainder(ModItems.EMPTY_TINCTURE.get()).stacksTo(1).durability(3).fireResistant()));
+
     // Clothing / Fabric System
     public static final RegistryObject<Item> HEMP_LEAF = ITEMS.register("hemp_leaf",
             () -> new Item(new Item.Properties().stacksTo(64)));

@@ -95,6 +95,8 @@ public class ModCreativeModTabs {
                         pOutput.accept(ModItems.HERB_CAKE.get());
                         pOutput.accept(ModItems.HASH_BROWNIE.get());
                         pOutput.accept(ModItems.WEED_COOKIE.get());
+                        pOutput.accept(ModItems.EMPTY_TINCTURE.get());
+                        pOutput.accept(ModItems.HASH_OIL_TINCTURE.get());
 
                         pOutput.accept(ModItems.WHITE_WIDOW_GUMMY.get());
                         pOutput.accept(ModItems.SOUR_DIESEL_GUMMY.get());
