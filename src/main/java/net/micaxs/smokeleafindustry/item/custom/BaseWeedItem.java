@@ -23,24 +23,12 @@ public class BaseWeedItem extends Item {
     private final String[] weedNameParts = new String[2];
     private float durationMultiplier = 1;
 
-
-    public BaseWeedItem(Properties pProperties, MobEffect effect, int iDuration, int iAmplifier, int iThc, int iCbd) {
-        super(pProperties);
-        this.duration = iDuration;
-        this.thcLevel = iThc;
-        this.cbdLevel = iCbd;
-        this.effect = effect;
-        this.effectAmplifier = iAmplifier;
-        this.variableDuration = true;
-    }
-
     public BaseWeedItem(Properties pProperties, MobEffect effect, int iDuration, int iAmplifier, int iThc, int iCbd, String weedNamePart1, String weedNamePart2) {
         this(pProperties, effect, iDuration, iAmplifier, iThc, iCbd, true);
         this.weedNameParts[0] = weedNamePart1;
         this.weedNameParts[1] = weedNamePart2;
     }
 
-    @Deprecated
     public BaseWeedItem(Properties pProperties, MobEffect effect, int iDuration, int iAmplifier, int iThc, int iCbd, boolean variableDuration) {
         super(pProperties);
         this.duration = iDuration;
