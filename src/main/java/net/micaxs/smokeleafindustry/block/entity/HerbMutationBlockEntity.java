@@ -398,7 +398,7 @@ public class HerbMutationBlockEntity extends BlockEntity implements MenuProvider
         return recipe.filter(herbMutationRecipe -> {
             FluidStack tankFluid = FLUID_TANK.getFluid();
             FluidStack recipeFluid = herbMutationRecipe.getFluid();
-            return tankFluid.isFluidEqual(recipeFluid);
+            return tankFluid.getFluid() == recipeFluid.getFluid();
         }).isPresent();
     }
 
