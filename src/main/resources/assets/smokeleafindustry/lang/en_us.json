@@ -125,5 +125,8 @@
   "tooltip.smokeleafindustry.tincture": "Right click on a Weed Liquifier to fill.",
 
   "tooltip.smokeleafindustry.dried": "Dried",
-  "tooltip.smokeleafindustry.fresh": "Fresh"
+  "tooltip.smokeleafindustry.fresh": "Fresh",
+
+  "info.smokeleafindustry.hash_oil_sludge": "Created in a liquifier when more than 2 different weed strains are mixed.",
+  "info.smokeleafindustry.hash_oil_sludge_bucket": "Obtained by right clicking a liquifier that has hash oil sludge with an empty bucket."
 }

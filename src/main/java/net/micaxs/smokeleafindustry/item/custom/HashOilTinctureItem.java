@@ -51,4 +51,9 @@ public class HashOilTinctureItem extends Item {
         return HashOilHelper.getHashOilName(activeIngredients, "item.smokeleafindustry.hash_oil_tincture",
                 "item.smokeleafindustry.hash_oil_tincture_blend");
     }
+
+    @Override
+    public boolean isEnchantable(ItemStack pStack) {
+        return false;
+    }
 }
