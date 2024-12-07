@@ -10,6 +10,7 @@ import net.micaxs.smokeleafindustry.item.ModCreativeModTabs;
 import net.micaxs.smokeleafindustry.item.ModItems;
 import net.micaxs.smokeleafindustry.loot.ModLootModifiers;
 import net.micaxs.smokeleafindustry.network.PacketHandler;
+import net.micaxs.smokeleafindustry.painting.ModPaintings;
 import net.micaxs.smokeleafindustry.recipe.ModRecipes;
 import net.micaxs.smokeleafindustry.screen.*;
 import net.micaxs.smokeleafindustry.sound.ModSounds;
@@ -39,6 +40,7 @@ public class SmokeleafIndustryMod {
 
     public SmokeleafIndustryMod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
         ModCreativeModTabs.register(modEventBus);
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
@@ -51,6 +53,8 @@ public class SmokeleafIndustryMod {
         ModEffects.register(modEventBus);
         ModVillagers.register(modEventBus);
         ModLootModifiers.register(modEventBus);
+        ModPaintings.register(modEventBus);
+
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
         modEventBus.addListener(this::addCreative);
