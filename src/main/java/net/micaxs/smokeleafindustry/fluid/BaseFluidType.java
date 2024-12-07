@@ -17,7 +17,6 @@ import java.util.function.Consumer;
 
 
 public class BaseFluidType extends FluidType {
-
     private final ResourceLocation stillTexture;
     private final ResourceLocation flowingTexture;
     private final ResourceLocation overlayTexture;

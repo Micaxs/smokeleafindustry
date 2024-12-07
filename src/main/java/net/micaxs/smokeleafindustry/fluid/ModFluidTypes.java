@@ -12,10 +12,8 @@ import net.minecraftforge.registries.RegistryObject;
 import org.joml.Vector3f;
 
 public class ModFluidTypes {
-
     public static final ResourceLocation WATER_STILL_RL = new ResourceLocation("block/water_still");
     public static final ResourceLocation WATER_FLOWING_RL = new ResourceLocation("block/water_flow");
-
     public static final ResourceLocation HASH_OIL_OVERLAY_RL = new ResourceLocation(SmokeleafIndustryMod.MOD_ID, "misc/in_hashoil_water");
 
 
@@ -24,11 +22,20 @@ public class ModFluidTypes {
 
 
     public static final RegistryObject<FluidType> HASH_OIL_FLUID = register("hash_oil_fluid",
-    FluidType.Properties.create().canExtinguish(true).lightLevel(3).density(15).viscosity(5).sound(SoundAction.get("drink"), SoundEvents.HONEY_DRINK));
+            0xA1F2932E,
+            new Vector3f(172f / 255f, 85f / 255f, 207f / 255f),
+            FluidType.Properties.create().canExtinguish(true).lightLevel(3).density(15).viscosity(5).sound(SoundAction.get("drink"), SoundEvents.HONEY_DRINK));
 
-    private static RegistryObject<FluidType> register(String name, FluidType.Properties properties) {
-        return FLUID_TYPES.register(name, () -> new BaseFluidType(WATER_STILL_RL, WATER_FLOWING_RL, HASH_OIL_OVERLAY_RL, 0xA1F2932E,
-                new Vector3f( 172f / 255f, 85f / 255f, 207f / 255f ), properties));
+
+    public static final RegistryObject<FluidType> HASH_OIL_SLUDGE_FLUID = register("hash_oil_sludge_fluid",
+            0xFF3b3b3b,
+            new Vector3f(172f / 255f, 85f / 255f, 207f / 255f),
+            FluidType.Properties.create().canExtinguish(true).lightLevel(3).density(15).viscosity(5).sound(SoundAction.get("drink"), SoundEvents.HONEY_DRINK));
+
+
+    private static RegistryObject<FluidType> register(String name, int tintColor, Vector3f forColor, FluidType.Properties properties) {
+        return FLUID_TYPES.register(name, () -> new BaseFluidType(
+                WATER_STILL_RL, WATER_FLOWING_RL, HASH_OIL_OVERLAY_RL, tintColor, forColor, properties));
     }
 
     public static void register(IEventBus eventBus) {

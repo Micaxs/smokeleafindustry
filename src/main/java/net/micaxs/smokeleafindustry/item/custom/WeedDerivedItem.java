@@ -78,7 +78,7 @@ public class WeedDerivedItem extends Item {
         }
 
         CompoundTag tag = mainHandItem.getTag();
-        BaseWeedItem activeWeedIngredient = getActiveWeedIngredient(pStack);
+        BaseWeedItem activeWeedIngredient = WeedEffectHelper.getActiveWeedIngredient(pStack);
         if (tag != null && tag.contains("duration") && activeWeedIngredient != null) {
 
             int duration = tag.getInt("duration");
@@ -115,7 +115,7 @@ public class WeedDerivedItem extends Item {
             return;
         }
 
-        BaseWeedItem activeIngredient = getActiveWeedIngredient(pStack);
+        BaseWeedItem activeIngredient = WeedEffectHelper.getActiveWeedIngredient(pStack);
         if (activeIngredient == null) {
             return;
         }
@@ -126,23 +126,5 @@ public class WeedDerivedItem extends Item {
 
     public float getEffectFactor() {
         return this.effectDurationMultiplier;
-    }
-
-    public @Nullable BaseWeedItem getActiveWeedIngredient(ItemStack itemStack) {
-        CompoundTag tag = itemStack.getTag();
-        if (tag == null || !tag.contains("active_ingredient")) {
-            return null;
-        }
-
-        String[] parts = tag.getString("active_ingredient").split("\\.");
-        String activeIngredientName = parts[parts.length - 1];
-        RegistryObject<Item> activeIngredient = RegistryObject.create(
-                new ResourceLocation(SmokeleafIndustryMod.MOD_ID, activeIngredientName), ForgeRegistries.ITEMS);
-
-        if (activeIngredient.get() instanceof BaseWeedItem activeIngredientItem) {
-            return activeIngredientItem;
-        }
-
-        return null;
     }
 }

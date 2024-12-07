@@ -23,6 +23,8 @@
   "effect.smokeleafindustry.stoned": "Stoned",
   "entity.minecraft.villager.smokeleafindustry.herb_dealer": "Herb Dealer",
   "fluid_type.smokeleafindustry.hash_oil_fluid": "Hash Oil",
+  "fluid_type.smokeleafindustry.hash_oil_fluid_blend": "%s %s Hash Oil",
+  "fluid_type.smokeleafindustry.hash_oil_sludge_fluid": "Hash Oil Sludge",
 
   "item.smokeleafindustry.blue_ice_bag": "Blue Ice Baggy",
   "item.smokeleafindustry.blue_ice_bud": "Blue Ice Bud",
@@ -46,6 +48,8 @@
   "item.smokeleafindustry.empty_bag": "Empty Baggy",
   "item.smokeleafindustry.grinder": "Bud Grinder",
   "item.smokeleafindustry.hash_oil_bucket": "Hash Oil Bucket",
+  "item.smokeleafindustry.hash_oil_bucket_blend": "%s %s Hash Oil Bucket",
+  "item.smokeleafindustry.hash_oil_sludge_bucket": "Hash Oil Sludge Bucket",
   "item.smokeleafindustry.hemp_cog": "Hemp Cog",
   "item.smokeleafindustry.hemp_core": "Hemp Core",
   "item.smokeleafindustry.hemp_fabric": "Hemp Fabric",
@@ -55,6 +59,10 @@
   "item.smokeleafindustry.herb_cake": "Weed Cake",
   "item.smokeleafindustry.hash_brownie": "Hash Brownie",
   "item.smokeleafindustry.weed_cookie": "Cookie",
+
+  "item.smokeleafindustry.hash_oil_tincture": "Hash Oil Tincture",
+  "item.smokeleafindustry.hash_oil_tincture_blend": "%s %s Oil Tincture",
+  "item.smokeleafindustry.empty_tincture": "Tincture",
 
   "item.smokeleafindustry.white_widow_gummy": "Gummy",
   "item.smokeleafindustry.sour_diesel_gummy": "Gummy",
@@ -97,7 +105,9 @@
   "item.smokeleafindustry.white_widow_seeds": "White Widow Seeds",
   "item.smokeleafindustry.white_widow_weed": "White Widow Weed",
   "item.smokeleafindustry.white_widow_extract": "White Widow Extract",
+
   "sounds.smokeleafindustry.bonghit": "Smoking a bong",
+
   "tooltip.smokeleafindustry.blue_ice_bag": "Contains 8 Blue Ice Weed.",
   "tooltip.smokeleafindustry.bong": "A bong is used to smoke weed that you are holding in your offhand directly to gain its provided effects.",
   "tooltip.smokeleafindustry.dab_rig": "A dab rig is used to smoke extract that you are holding in your offhand to gain its provided effects.",
@@ -111,8 +121,12 @@
   "tooltip.smokeleafindustry.purple_haze_bag": "Contains 8 Purple Haze Weed.",
   "tooltip.smokeleafindustry.sour_diesel_bag": "Contains 8 Sour Diesel Weed.",
   "tooltip.smokeleafindustry.white_widow_bag": "Contains 8 White Widow Weed.",
-  "tooltip.smokeleafindustry.base_weed": "Effect duration varies, turn into extract for reliable effect durations.",
+  "tooltip.smokeleafindustry.base_weed": "Effect duration varies, turn into hash oil for reliable effect durations.",
+  "tooltip.smokeleafindustry.tincture": "Right click on a Weed Liquifier to fill.",
 
   "tooltip.smokeleafindustry.dried": "Dried",
-  "tooltip.smokeleafindustry.fresh": "Fresh"
+  "tooltip.smokeleafindustry.fresh": "Fresh",
+
+  "info.smokeleafindustry.hash_oil_sludge": "Created in a liquifier when more than 2 different weed strains are mixed.",
+  "info.smokeleafindustry.hash_oil_sludge_bucket": "Obtained by right clicking a liquifier that has hash oil sludge with an empty bucket."
 }

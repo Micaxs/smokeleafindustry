@@ -42,6 +42,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.HEMP_STONE.get());
         this.dropSelf(ModBlocks.HEMP_PLANKS.get());
         this.dropSelf(ModBlocks.HASH_OIL_BLOCK.get());
+        this.dropSelf(ModBlocks.HASH_OIL_SLUDGE_BLOCK.get());
         this.dropSelf(ModBlocks.HEMP_WOOL.get());
 
         // Weed crops

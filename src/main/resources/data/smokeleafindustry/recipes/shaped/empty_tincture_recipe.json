@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " H ",
+    "SFS",
+    "SSS"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:glass_pane"
+    },
+    "F": {
+      "item": "smokeleafindustry:hemp_fabric"
+    },
+    "H": {
+      "item": "smokeleafindustry:hemp_stick"
+    }
+  },
+  "result": {
+    "item": "smokeleafindustry:empty_tincture",
+    "count": 1
+  }
+}

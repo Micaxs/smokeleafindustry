@@ -12,21 +12,26 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ModFluids {
-
     public static DeferredRegister<Fluid> FLUIDS =
             DeferredRegister.create(ForgeRegistries.FLUIDS, SmokeleafIndustryMod.MOD_ID);
 
 
     public static final RegistryObject<FlowingFluid> SOURCE_HASH_OIL = FLUIDS.register("hash_oil_fluid",
             () -> new ForgeFlowingFluid.Source(ModFluids.HASH_OIL_FLUID_PROPERTIES));
-
     public static final RegistryObject<FlowingFluid> FLOWING_HASH_OIL = FLUIDS.register("flowing_hash_oil",
             () -> new ForgeFlowingFluid.Flowing(ModFluids.HASH_OIL_FLUID_PROPERTIES));
-
-
     public static final ForgeFlowingFluid.Properties HASH_OIL_FLUID_PROPERTIES = new ForgeFlowingFluid.Properties(
             ModFluidTypes.HASH_OIL_FLUID, SOURCE_HASH_OIL, FLOWING_HASH_OIL)
             .slopeFindDistance(2).levelDecreasePerBlock(2).block(ModBlocks.HASH_OIL_BLOCK).bucket(ModItems.HASH_OIL_BUCKET);
+
+
+    public static final RegistryObject<FlowingFluid> SOURCE_HASH_OIL_SLUDGE = FLUIDS.register("hash_oil_sludge_fluid",
+            () -> new ForgeFlowingFluid.Source(ModFluids.HASH_OIL_SLUDGE_FLUID_PROPERTIES));
+    public static final RegistryObject<FlowingFluid> FLOWING_HASH_OIL_SLUDGE = FLUIDS.register("flowing_hash_oil_sludge",
+            () -> new ForgeFlowingFluid.Flowing(ModFluids.HASH_OIL_SLUDGE_FLUID_PROPERTIES));
+    public static final ForgeFlowingFluid.Properties HASH_OIL_SLUDGE_FLUID_PROPERTIES = new ForgeFlowingFluid.Properties(
+            ModFluidTypes.HASH_OIL_SLUDGE_FLUID, SOURCE_HASH_OIL_SLUDGE, FLOWING_HASH_OIL_SLUDGE)
+            .slopeFindDistance(2).levelDecreasePerBlock(2).block(ModBlocks.HASH_OIL_SLUDGE_BLOCK).bucket(ModItems.HASH_OIL_SLUDGE_BUCKET);
 
 
 

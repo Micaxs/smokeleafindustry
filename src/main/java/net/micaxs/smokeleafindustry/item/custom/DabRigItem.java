@@ -1,11 +1,15 @@
 package net.micaxs.smokeleafindustry.item.custom;
 
+import net.micaxs.smokeleafindustry.item.ModItems;
 import net.micaxs.smokeleafindustry.sound.ModSounds;
+import net.micaxs.smokeleafindustry.utils.HashOilHelper;
 import net.micaxs.smokeleafindustry.utils.ModTags;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -28,7 +32,7 @@ public class DabRigItem extends Item {
 
     @Override
     public UseAnim getUseAnimation(ItemStack pStack) {
-        return UseAnim.EAT;
+        return UseAnim.DRINK;
     }
 
     @Override
@@ -37,16 +41,28 @@ public class DabRigItem extends Item {
     }
 
     private List<MobEffectInstance> getOffhandEffects(ItemStack offhandItem, LivingEntity livingEntity) {
-        BaseWeedItem weedItem = (BaseWeedItem) offhandItem.getItem();
         List<MobEffectInstance> offHandEffectList = new ArrayList<>();
 
-        if (livingEntity.hasEffect(weedItem.getEffect())) {
-            int previousEffectDuration = livingEntity.getEffect(weedItem.getEffect()).getDuration();
-            offHandEffectList.add(new MobEffectInstance(weedItem.getEffect(), previousEffectDuration + weedItem.getDuration(),
-                    weedItem.getEffectAmplifier()));
-        } else {
-            offHandEffectList.add(new MobEffectInstance(weedItem.getEffect(), weedItem.getDuration(),
-                    weedItem.getEffectAmplifier()));
+        if (offhandItem.getItem() instanceof BaseWeedItem weedItem) {
+            if (livingEntity.hasEffect(weedItem.getEffect())) {
+                int previousEffectDuration = livingEntity.getEffect(weedItem.getEffect()).getDuration();
+                offHandEffectList.add(new MobEffectInstance(weedItem.getEffect(), previousEffectDuration + weedItem.getDuration(),
+                        weedItem.getEffectAmplifier()));
+            } else {
+                offHandEffectList.add(new MobEffectInstance(weedItem.getEffect(), weedItem.getDuration(),
+                        weedItem.getEffectAmplifier()));
+            }
+        } else if (offhandItem.getItem() instanceof HashOilTinctureItem hashOilTincture) {
+            List<BaseWeedItem> weedItems = HashOilHelper.getActiveWeedIngredient(hashOilTincture.getShareTag(offhandItem));
+            for (BaseWeedItem weedItem: weedItems) {
+                if (livingEntity.hasEffect(weedItem.getEffect())) {
+                    int previousEffectDuration = livingEntity.getEffect(weedItem.getEffect()).getDuration();
+                    offHandEffectList.add(new MobEffectInstance(weedItem.getEffect(), previousEffectDuration + weedItem.getDuration(),
+                            weedItem.getEffectAmplifier()));
+                } else {
+                    offHandEffectList.add(new MobEffectInstance(weedItem.getEffect(), weedItem.getDuration(), weedItem.getEffectAmplifier()));
+                }
+            }
         }
 
         return offHandEffectList;
@@ -75,7 +91,15 @@ public class DabRigItem extends Item {
 
             List<MobEffectInstance> offhandEffects = getOffhandEffects(offhandItem, pLivingEntity);
             spawnSmokeParticles(pLevel, pLivingEntity);
-            offhandItem.shrink(1);
+
+            if (offhandItem.is(ModItems.HASH_OIL_TINCTURE.get())) {
+                Player pPlayer = (Player) pLivingEntity;
+                if(offhandItem.hurt(1, RandomSource.create(), null)) {
+                    pPlayer.setItemInHand(InteractionHand.OFF_HAND, new ItemStack(ModItems.EMPTY_TINCTURE.get()));
+                }
+            } else {
+                offhandItem.shrink(1);
+            }
 
             // Apply the offhand item's effects
             for (MobEffectInstance effect : offhandEffects) {
@@ -103,7 +127,7 @@ public class DabRigItem extends Item {
 
     private boolean isValidOffhandItem(ItemStack offhand) {
         if (!offhand.isEmpty()) {
-            return (offhand.is(ModTags.WEED_EXTRACTS));
+            return offhand.is(ModTags.WEED_EXTRACTS) || offhand.is(ModItems.HASH_OIL_TINCTURE.get());
         }
         return false;
     }
@@ -116,7 +140,7 @@ public class DabRigItem extends Item {
     }
 
     @Override
-    public SoundEvent getEatingSound() {
+    public SoundEvent getDrinkingSound() {
         return ModSounds.BONG_HIT.get();
     }
 }

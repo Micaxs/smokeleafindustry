@@ -2,15 +2,23 @@ package net.micaxs.smokeleafindustry.compat;
 
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
+import mezz.jei.api.constants.VanillaTypes;
+import mezz.jei.api.forge.ForgeTypes;
 import mezz.jei.api.registration.*;
 import net.micaxs.smokeleafindustry.SmokeleafIndustryMod;
 import net.micaxs.smokeleafindustry.block.ModBlocks;
+import net.micaxs.smokeleafindustry.fluid.ModFluidTypes;
+import net.micaxs.smokeleafindustry.fluid.ModFluids;
+import net.micaxs.smokeleafindustry.item.ModItems;
 import net.micaxs.smokeleafindustry.recipe.machines.*;
 import net.micaxs.smokeleafindustry.screen.*;
 import net.minecraft.client.Minecraft;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.RecipeManager;
+import net.minecraftforge.fluids.FluidStack;
 
 import java.util.List;
 
@@ -56,6 +64,15 @@ public class JEISmokeleafindustryModPlugin implements IModPlugin {
 
         List<HerbGeneratorRecipe> herbGeneratorRecipes = recipeManager.getAllRecipesFor(HerbGeneratorRecipe.Type.INSTANCE);
         registration.addRecipes(HerbGeneratorCategory.HERB_GENERATOR_TYPE, herbGeneratorRecipes);
+
+        registration.addItemStackInfo(
+                ModItems.HASH_OIL_SLUDGE_BUCKET.get().getDefaultInstance(), Component.translatable("info.smokeleafindustry.hash_oil_sludge_bucket")
+        );
+        registration.addIngredientInfo(
+                new FluidStack(ModFluids.SOURCE_HASH_OIL_SLUDGE.get(), 1000),
+                ForgeTypes.FLUID_STACK,
+                Component.translatable("info.smokeleafindustry.hash_oil_sludge")
+        );
     }
 
     @Override
