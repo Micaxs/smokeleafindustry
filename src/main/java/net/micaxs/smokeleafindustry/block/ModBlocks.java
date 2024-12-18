@@ -83,6 +83,8 @@ public class ModBlocks {
     // Fluid Stuff
     public static final RegistryObject<LiquidBlock> HASH_OIL_BLOCK = BLOCKS.register("hash_oil_block",
             () -> new LiquidBlock(ModFluids.SOURCE_HASH_OIL, BlockBehaviour.Properties.copy(Blocks.WATER)));
+    public static final RegistryObject<LiquidBlock> HASH_OIL_SLUDGE_BLOCK = BLOCKS.register("hash_oil_sludge_block",
+            () -> new LiquidBlock(ModFluids.SOURCE_HASH_OIL_SLUDGE, BlockBehaviour.Properties.copy(Blocks.WATER)));
 
     // Other Shit
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {

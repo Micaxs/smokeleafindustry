@@ -99,6 +99,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.HASH_BROWNIE);
         simpleItem(ModItems.WEED_COOKIE);
 
+        simpleItem(ModItems.EMPTY_TINCTURE);
+        simpleItem(ModItems.HASH_OIL_TINCTURE);
+
         simpleItem(ModItems.WHITE_WIDOW_GUMMY);
         simpleItem(ModItems.SOUR_DIESEL_GUMMY);
         simpleItem(ModItems.PURPLE_HAZE_GUMMY);
@@ -108,6 +111,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.BUBBLEGUM_GUMMY);
 
         simpleItem(ModItems.HASH_OIL_BUCKET);
+        simpleItem(ModItems.HASH_OIL_SLUDGE_BUCKET);
 
         trimmedArmorItem(ModItems.HEMP_HELMET_RED);
         trimmedArmorItem(ModItems.HEMP_CHESTPLATE_RED);

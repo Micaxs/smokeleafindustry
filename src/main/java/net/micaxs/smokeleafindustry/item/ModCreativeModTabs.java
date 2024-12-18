@@ -85,6 +85,8 @@ public class ModCreativeModTabs {
                         pOutput.accept(ModItems.HEMP_BOOTS_YELLOW.get());
 
                         pOutput.accept(ModItems.HASH_OIL_BUCKET.get());
+                        pOutput.accept(ModItems.HASH_OIL_SLUDGE_BUCKET.get());
+
                         pOutput.accept(ModItems.BONG.get());
                         pOutput.accept(ModItems.DAB_RIG.get());
                         pOutput.accept(ModItems.BLUNT.get());
@@ -93,6 +95,8 @@ public class ModCreativeModTabs {
                         pOutput.accept(ModItems.HERB_CAKE.get());
                         pOutput.accept(ModItems.HASH_BROWNIE.get());
                         pOutput.accept(ModItems.WEED_COOKIE.get());
+                        pOutput.accept(ModItems.EMPTY_TINCTURE.get());
+                        pOutput.accept(ModItems.HASH_OIL_TINCTURE.get());
 
                         pOutput.accept(ModItems.WHITE_WIDOW_GUMMY.get());
                         pOutput.accept(ModItems.SOUR_DIESEL_GUMMY.get());
