@@ -106,6 +106,11 @@ public class HerbMutationBlockEntity extends BlockEntity implements MenuProvider
         public boolean isFluidValid(FluidStack stack) {
             return stack.getFluid() == ModFluids.SOURCE_HASH_OIL.get();
         }
+
+        @Override
+        public int fill(FluidStack resource, FluidAction action) {
+            return super.fill(new FluidStack(resource.getFluid(), resource.getAmount()), action);
+        }
     };
 
     protected final ContainerData data;
