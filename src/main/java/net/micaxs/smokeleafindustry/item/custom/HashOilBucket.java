@@ -10,10 +10,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.Fluid;
-import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -43,6 +44,11 @@ public class HashOilBucket extends BucketItem {
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
         // TODO: maintain NBT data when placed on the ground and picked up
         return super.use(pLevel, pPlayer, pHand);
+    }
+
+    @Override
+    public ICapabilityProvider initCapabilities(@Nonnull ItemStack stack, @Nullable CompoundTag nbt) {
+        return new net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper(stack);
     }
 
     @Override
