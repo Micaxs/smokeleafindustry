@@ -31,5 +31,7 @@ public class DataGenerators {
         generator.addProvider(event.includeServer(), new ModPoiTypeTagsProvider(packOutput, lookupProvider, existingFileHelper));
 
         generator.addProvider(event.includeServer(), new ModGlobalLootModifiersProvider(packOutput));
+
+        generator.addProvider(event.includeServer(), new ModPaintingProvider(packOutput, lookupProvider, SmokeleafIndustryMod.MOD_ID, existingFileHelper));
     }
 }
