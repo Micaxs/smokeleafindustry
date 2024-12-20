@@ -33,9 +33,8 @@ public class HashOilBucket extends BucketItem {
                 if (bucket.emptyContents(null, level, dispenseAt, null, stack)) {
                     bucket.checkExtraContent(null, level, stack, dispenseAt);
                     return dispense(source, new ItemStack(Items.BUCKET));
-                } else {
-                    return dispense(source, stack);
                 }
+                return super.execute(source, stack);
             }
         });*/
     }
