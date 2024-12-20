@@ -113,7 +113,6 @@ public class HerbMutationBlockEntity extends BlockEntity implements MenuProvider
     private int maxProgress = 78;
 
 
-
     public HerbMutationBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.HERB_MUTATION_BE.get(), pPos, pBlockState);
         this.data = new ContainerData() {
@@ -268,8 +267,8 @@ public class HerbMutationBlockEntity extends BlockEntity implements MenuProvider
             transferItemFluidToFluidTank(pEntity);
         }
 
-        
-        if(hasEnergy && hasRecipe()) {
+
+        if (hasEnergy && hasRecipe()) {
             increaseCraftingProgress();
             energy.removeEnergy(20);
 
@@ -294,24 +293,20 @@ public class HerbMutationBlockEntity extends BlockEntity implements MenuProvider
 
     private void transferItemFluidToFluidTank(HerbMutationBlockEntity pEntity) {
         pEntity.itemHandler.getStackInSlot(FLUID_INPUT_SLOT).getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).ifPresent(handler -> {
-
-            if (!FLUID_TANK.getFluid().isFluidEqual(handler.getFluidInTank(0)) && FLUID_TANK.getFluidAmount() != 0) {
+            if (FLUID_TANK.getFluid().getFluid() != handler.getFluidInTank(0).getFluid() && FLUID_TANK.getFluidAmount() != 0) {
                 return;
             }
 
             int drainAmount = Math.min(pEntity.FLUID_TANK.getSpace(), 1000);
             FluidStack stack = handler.drain(drainAmount, IFluidHandler.FluidAction.SIMULATE);
-            if (pEntity.FLUID_TANK.isFluidValid(stack)) {
+            if (pEntity.FLUID_TANK.fill(stack, IFluidHandler.FluidAction.SIMULATE) > 0) {
                 stack = handler.drain(drainAmount, IFluidHandler.FluidAction.EXECUTE);
-                fillTankWithFluid(pEntity, stack, handler.getContainer());
+                pEntity.FLUID_TANK.fill(stack, IFluidHandler.FluidAction.EXECUTE);
+
+                pEntity.itemHandler.extractItem(0, 1, false);
+                pEntity.itemHandler.insertItem(0, handler.getContainer(), false);
             }
         });
-    }
-
-    private void fillTankWithFluid(HerbMutationBlockEntity pEntity, FluidStack stack, ItemStack container) {
-        pEntity.FLUID_TANK.fill(stack, IFluidHandler.FluidAction.EXECUTE);
-        pEntity.itemHandler.extractItem(0, 1, false);
-        pEntity.itemHandler.insertItem(0, container, false);
     }
 
     private boolean hasFluidItemInSourceSlot(HerbMutationBlockEntity pEntity) {
@@ -322,9 +317,11 @@ public class HerbMutationBlockEntity extends BlockEntity implements MenuProvider
     private void resetProgress() {
         progress = 0;
     }
+
     private boolean hasProgressFinished() {
         return progress >= maxProgress;
     }
+
     private void increaseCraftingProgress() {
         progress++;
     }
@@ -338,7 +335,7 @@ public class HerbMutationBlockEntity extends BlockEntity implements MenuProvider
 
         FLUID_TANK.drain(recipe.get().getFluid().getAmount(), IFluidHandler.FluidAction.EXECUTE);
         this.itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(result.getItem(), this.itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() + result.getCount()));
-        
+
     }
 
     private void removeCorrectItemsFromInputSlots(NonNullList<Ingredient> inputItems) {
@@ -362,7 +359,7 @@ public class HerbMutationBlockEntity extends BlockEntity implements MenuProvider
         }
         ItemStack result = recipe.get().getResultItem(null);
 
-        return  hasCorrectAmountsInInputSlots() && canInsertAmountIntoOutputSlot(result.getCount()) &&
+        return hasCorrectAmountsInInputSlots() && canInsertAmountIntoOutputSlot(result.getCount()) &&
                 canInsertItemIntoOutputSlot(result.getItem()) &&
                 hasCorrectFluidInTank(recipe) &&
                 hasCorrectFluidAmountInTank(recipe);
@@ -392,8 +389,6 @@ public class HerbMutationBlockEntity extends BlockEntity implements MenuProvider
     }
 
 
-
-
     private boolean hasCorrectFluidInTank(Optional<HerbMutationRecipe> recipe) {
         return recipe.filter(herbMutationRecipe -> {
             FluidStack tankFluid = FLUID_TANK.getFluid();
@@ -415,7 +410,6 @@ public class HerbMutationBlockEntity extends BlockEntity implements MenuProvider
     }
 
 
-
     private Optional<HerbMutationRecipe> getCurrentRecipe() {
         SimpleContainer inventory = new SimpleContainer(this.itemHandler.getSlots());
 
@@ -427,7 +421,7 @@ public class HerbMutationBlockEntity extends BlockEntity implements MenuProvider
     }
 
 
-    public LazyOptional<ModEnergyStorage> getLazyEnergy () {
+    public LazyOptional<ModEnergyStorage> getLazyEnergy() {
         return this.lazyEnergy;
     }
 
