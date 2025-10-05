@@ -1,0 +1,10 @@
+{
+  "type": "smokeleafindustries:grinder",
+  "ingredient": {
+    "item": "smokeleafindustries:blue_ice_bud"
+  },
+  "result": {
+    "id": "smokeleafindustries:blue_ice_weed",
+    "count": 2
+  }
+}

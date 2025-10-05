@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "smokeleafindustries:butter"
+    },
+    {
+      "tag": "smokeleafindustries:weeds"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "smokeleafindustries:infused_butter"
+  }
+}

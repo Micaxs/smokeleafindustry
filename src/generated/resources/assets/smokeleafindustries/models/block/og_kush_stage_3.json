@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "cross": "smokeleafindustries:block/og_kush/og_kush_stage_3"
+  }
+}

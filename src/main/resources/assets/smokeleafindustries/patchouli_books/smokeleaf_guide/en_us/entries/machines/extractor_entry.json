@@ -1,0 +1,16 @@
+{
+  "name": "Extractor",
+  "icon": "smokeleafindustries:extractor",
+  "category": "smokeleafindustries:machines_category",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The extractor uses energy to extract specific items to create other specific items."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "smokeleafindustries:extractor"
+    }
+  ]
+}

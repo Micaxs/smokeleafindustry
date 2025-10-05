@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "cross": "smokeleafindustries:block/grape_ape/grape_ape_stage_9"
+  }
+}

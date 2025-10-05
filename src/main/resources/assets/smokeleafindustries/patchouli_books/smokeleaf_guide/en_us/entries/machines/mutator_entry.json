@@ -1,0 +1,16 @@
+{
+  "name": "Mutator",
+  "icon": "smokeleafindustries:mutator",
+  "category": "smokeleafindustries:machines_category",
+  "sortnum": 5,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The Mutator is the machine to get different strains from their extracts. Simply provide the machine with Power, Hemp Oil or Hash Oil, some seeds and the required strain extracts to get the new strain seeds."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "smokeleafindustries:mutator"
+    }
+  ]
+}

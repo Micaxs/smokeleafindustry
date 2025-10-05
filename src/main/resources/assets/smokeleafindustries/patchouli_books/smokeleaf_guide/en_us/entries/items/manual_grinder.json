@@ -1,0 +1,20 @@
+{
+  "name": "Manual Grinder",
+  "icon": "smokeleafindustries:manual_grinder",
+  "category": "smokeleafindustries:items_category",
+  "sortnum": 9,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "This item is used to grind certain items into other items. For example, you can grind dried tobacco leaves into tobacco.$(br)$(br)More can be seen in the next pages."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "smokeleafindustries:manual_grinder"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "To fill the grinder, you simply place it inside your crafting grid along with the item you want to grind.$(br)$(br)Once you have done that, you can hold the filled manual grinder and hold right-click to grind the item."
+    }
+  ]
+}

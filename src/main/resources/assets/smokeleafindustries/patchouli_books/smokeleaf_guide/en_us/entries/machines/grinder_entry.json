@@ -1,0 +1,16 @@
+{
+  "name": "Grinder",
+  "icon": "smokeleafindustries:grinder",
+  "category": "smokeleafindustries:machines_category",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The grinder uses energy to grind specific items into other items."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "smokeleafindustries:grinder"
+    }
+  ]
+}

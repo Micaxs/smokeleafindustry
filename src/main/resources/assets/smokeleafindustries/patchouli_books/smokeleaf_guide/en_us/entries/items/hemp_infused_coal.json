@@ -1,0 +1,16 @@
+{
+  "name": "Hemp Infused Coal",
+  "icon": "smokeleafindustries:hemp_coal",
+  "category": "smokeleafindustries:items_category",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "This is an infused coal item, it smelts twice as long as a regular coal item.$(br)Can also be used inside the Generator to generate power."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "smokeleafindustries:hemp_coal"
+    }
+  ]
+}

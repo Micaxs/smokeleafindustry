@@ -1,0 +1,20 @@
+{
+  "bonghit": {
+    "subtitles": "sounds.smokeleafindustries.bonghit",
+    "sounds": [
+      "smokeleafindustries:bonghit"
+    ]
+  },
+  "manual_grinder": {
+    "subtitles": "sounds.smokeleafindustries.manual_grinder",
+    "sounds": [
+      "smokeleafindustries:manual_grinder"
+    ]
+  },
+  "lamp_break": {
+    "subtitles": "sounds.smokeleafindustries.lamp_break",
+    "sounds": [
+      "smokeleafindustries:lamp_break"
+    ]
+  }
+}

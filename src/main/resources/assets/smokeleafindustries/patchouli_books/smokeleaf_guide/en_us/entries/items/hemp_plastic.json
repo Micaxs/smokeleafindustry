@@ -1,0 +1,20 @@
+{
+  "name": "Hemp Plastic",
+  "icon": "smokeleafindustries:hemp_plastic",
+  "category": "smokeleafindustries:items_category",
+  "sortnum": 6,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "This item is used in various crafting recipes, including the machines. You can obtain it by smelting Bio Composite or by crafting Bio Composite with a bucket of hemp oil."
+    },
+    {
+      "type": "patchouli:smelting",
+      "recipe": "smokeleafindustries:smelting/hemp_plastic_from_bio_composite"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "smokeleafindustries:hemp_plastic"
+    }
+  ]
+}

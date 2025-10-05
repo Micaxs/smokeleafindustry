@@ -1,0 +1,21 @@
+{
+  "name": "Hemp Stick",
+  "icon": "smokeleafindustries:hemp_stick",
+  "category": "smokeleafindustries:items_category",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "This item is used in various crafting recipes!"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "smokeleafindustries:hemp_stick",
+      "recipe2": "smokeleafindustries:hemp_stick_alt"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "smokeleafindustries:hemp_stick_from_planks"
+    }
+  ]
+}

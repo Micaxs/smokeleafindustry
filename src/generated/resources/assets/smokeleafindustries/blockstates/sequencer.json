@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,powered=false": {
+      "model": "smokeleafindustries:block/sequencer",
+      "y": 270
+    },
+    "facing=east,powered=true": {
+      "model": "smokeleafindustries:block/sequencer_on",
+      "y": 270
+    },
+    "facing=north,powered=false": {
+      "model": "smokeleafindustries:block/sequencer",
+      "y": 180
+    },
+    "facing=north,powered=true": {
+      "model": "smokeleafindustries:block/sequencer_on",
+      "y": 180
+    },
+    "facing=south,powered=false": {
+      "model": "smokeleafindustries:block/sequencer"
+    },
+    "facing=south,powered=true": {
+      "model": "smokeleafindustries:block/sequencer_on"
+    },
+    "facing=west,powered=false": {
+      "model": "smokeleafindustries:block/sequencer",
+      "y": 90
+    },
+    "facing=west,powered=true": {
+      "model": "smokeleafindustries:block/sequencer_on",
+      "y": 90
+    }
+  }
+}

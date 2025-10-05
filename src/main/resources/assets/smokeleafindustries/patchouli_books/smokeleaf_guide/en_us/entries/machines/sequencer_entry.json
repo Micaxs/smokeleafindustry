@@ -1,0 +1,16 @@
+{
+  "name": "Sequencer",
+  "icon": "smokeleafindustries:sequencer",
+  "category": "smokeleafindustries:machines_category",
+  "sortnum": 7,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The sequencer is a machine that creates an extract of a specific filled DNA strand! It requires Power, base Extract and a filled DNA Strand to operate."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "smokeleafindustries:sequencer"
+    }
+  ]
+}

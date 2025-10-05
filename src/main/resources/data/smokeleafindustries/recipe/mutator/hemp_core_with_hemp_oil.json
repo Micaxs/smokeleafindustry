@@ -1,0 +1,20 @@
+{
+  "type": "smokeleafindustries:mutator",
+  "ingredients": [
+    {
+      "item": "smokeleafindustries:unfinished_hemp_core",
+      "count": 1
+    },
+    {
+      "item": "smokeleafindustries:hemp_leaf",
+      "count": 1
+    }
+  ],
+  "fluid": {
+    "FluidName": "smokeleafindustries:hemp_oil_fluid",
+    "Amount": 100
+  },
+  "output": {
+    "item": "smokeleafindustries:hemp_core"
+  }
+}

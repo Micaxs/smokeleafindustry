@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,has_lamp=false": {
+      "model": "smokeleafindustries:block/reflector",
+      "y": 270
+    },
+    "facing=east,has_lamp=true": {
+      "model": "smokeleafindustries:block/reflector_lamp",
+      "y": 270
+    },
+    "facing=north,has_lamp=false": {
+      "model": "smokeleafindustries:block/reflector",
+      "y": 180
+    },
+    "facing=north,has_lamp=true": {
+      "model": "smokeleafindustries:block/reflector_lamp",
+      "y": 180
+    },
+    "facing=south,has_lamp=false": {
+      "model": "smokeleafindustries:block/reflector"
+    },
+    "facing=south,has_lamp=true": {
+      "model": "smokeleafindustries:block/reflector_lamp"
+    },
+    "facing=west,has_lamp=false": {
+      "model": "smokeleafindustries:block/reflector",
+      "y": 90
+    },
+    "facing=west,has_lamp=true": {
+      "model": "smokeleafindustries:block/reflector_lamp",
+      "y": 90
+    }
+  }
+}

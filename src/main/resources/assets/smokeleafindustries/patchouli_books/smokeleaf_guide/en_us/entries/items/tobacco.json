@@ -1,0 +1,16 @@
+{
+  "name": "Tobacco",
+  "icon": "smokeleafindustries:dried_tobacco_leaves",
+  "category": "smokeleafindustries:items_category",
+  "sortnum": 8,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "This item can be obtained by grinding dried tobacco leaves in the manual grinder or grinder machine. And is used in various crafting recipes."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "smokeleafindustries:tobacco"
+    }
+  ]
+}

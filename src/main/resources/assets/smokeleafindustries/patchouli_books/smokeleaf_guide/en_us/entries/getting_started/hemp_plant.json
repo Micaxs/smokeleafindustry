@@ -1,0 +1,19 @@
+{
+  "name": "Growing Hemp Plant",
+  "icon": "smokeleafindustries:hemp_leaf",
+  "category": "smokeleafindustries:getting_started_category",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "its time to start growing your own hemp.$(br)$(br)These Drop Hemp Leaf, Hemp Seeds & Hemp Fibers $(br)These will provide resources you'll require throughout the progression of the mod, so plant lots!"
+    },
+    {
+      "type": "patchouli:image",
+      "title": "Hemp Plant",
+      "images": ["smokeleafindustries:textures/guide/hemp_plant.png"],
+      "border": true,
+      "text": "This is an example of a fully grown Hemp plant."
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Empty Bag",
+  "icon": "smokeleafindustries:empty_bag",
+  "category": "smokeleafindustries:items_category",
+  "sortnum": 10,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "smokeleafindustries:empty_bag",
+      "text": "This item is used to pack 8 weeds into a bag of weed.$(br)This is useful for distributing your weeds to friends or selling them to the Stoner villager."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "smokeleafindustries:empty_bag"
+    }
+  ]
+}

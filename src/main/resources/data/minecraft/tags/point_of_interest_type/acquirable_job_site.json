@@ -1,0 +1,13 @@
+{
+  "replace": false,
+    "values": [
+      {
+        "id": "smokeleafindustries:dealer_poi",
+        "required": false
+      },
+        {
+            "id": "smokeleafindustries:stoner_poi",
+            "required": false
+        }
+    ]
+}

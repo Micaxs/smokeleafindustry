@@ -1,0 +1,16 @@
+{
+  "name": "Bio Composite",
+  "icon": "smokeleafindustries:bio_composite",
+  "category": "smokeleafindustries:items_category",
+  "sortnum": 5,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "This item is used mainly to get hemp plastic. You can smelt it in a furnace for 1:1 ratio or you can craft it with a bucket of hemp oil to get 1:4 ratio."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "smokeleafindustries:hemp_plastic_from_hammering"
+    }
+  ]
+}

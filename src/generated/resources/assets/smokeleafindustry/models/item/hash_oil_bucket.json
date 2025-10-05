@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "smokeleafindustry:item/hash_oil_bucket"
-  }
-}

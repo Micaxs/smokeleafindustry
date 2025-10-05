@@ -1,0 +1,16 @@
+{
+  "name": "Synthesizer",
+  "icon": "smokeleafindustries:synthesizer",
+  "category": "smokeleafindustries:machines_category",
+  "sortnum": 6,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The synthesizer is a machine that fills a DNA Strand with items to create a filled DNA Strand. It requires Power and a DNA Strand to operate."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "smokeleafindustries:synthesizer"
+    }
+  ]
+}

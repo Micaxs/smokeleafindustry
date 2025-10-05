@@ -1,0 +1,14 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "smokeleafindustries:item/manual_grinder_empty"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "smokeleafindustries:filled": 1.0
+      },
+      "model": "smokeleafindustries:item/manual_grinder_full"
+    }
+  ]
+}

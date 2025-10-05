@@ -1,0 +1,19 @@
+{
+  "name": "Growing Tobacco Plant",
+  "icon": "smokeleafindustries:tobacco_leaves",
+  "category": "smokeleafindustries:getting_started_category",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "its time to start growing your own hemp.$(br)$(br)These drop Tobacco Leaves and Tobacco Seeds $(br)These will be used within some recipes for specific items."
+    },
+    {
+      "type": "patchouli:image",
+      "title": "Hemp Plant",
+      "images": ["smokeleafindustries:textures/guide/tobacco_plant.png"],
+      "border": true,
+      "text": "This is an example of a fully grown tobacco plant."
+    }
+  ]
+}

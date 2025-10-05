@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cross",
-  "render_type": "minecraft:cutout",
-  "textures": {
-    "cross": "smokeleafindustry:block/purplehaze/purple_haze_stage_3"
-  }
-}

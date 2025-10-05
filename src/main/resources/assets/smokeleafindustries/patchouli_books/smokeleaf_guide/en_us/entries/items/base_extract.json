@@ -1,0 +1,17 @@
+{
+  "name": "Base Extract",
+  "icon": "smokeleafindustries:base_extract",
+  "category": "smokeleafindustries:items_category",
+  "sortnum": 11,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "smokeleafindustries:base_extract",
+      "text": "This item is used to craft various strain extracts within the Sequencer machine."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "smokeleafindustries:base_extract"
+    }
+  ]
+}

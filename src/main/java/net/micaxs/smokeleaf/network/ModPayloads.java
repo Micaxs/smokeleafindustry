@@ -1,0 +1,30 @@
+package net.micaxs.smokeleaf.network;
+
+import net.micaxs.smokeleaf.SmokeleafIndustries;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.neoforge.network.registration.PayloadRegistrar;
+
+public class ModPayloads {
+
+    @SubscribeEvent
+    public static void register(final RegisterPayloadHandlersEvent event) {
+        final PayloadRegistrar registrar = event.registrar(SmokeleafIndustries.MODID)
+                .versioned("1")
+                .optional();
+
+        // GigglyFit -> client
+        registrar.playToClient(
+                GigglyFitPayload.TYPE,
+                GigglyFitPayload.STREAM_CODEC,
+                GigglyFitClientHandler::handle
+        );
+
+        // Paranoia Hallucination -> client
+        registrar.playToClient(
+                ParanoiaHallucinationPayload.TYPE,
+                ParanoiaHallucinationPayload.STREAM_CODEC,
+                ParanoiaHallucinationClientHandler::handle
+        );
+    }
+}

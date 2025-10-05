@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "cross": "smokeleafindustries:block/ak47/ak47_stage_8"
+  }
+}

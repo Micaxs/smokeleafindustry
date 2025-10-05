@@ -1,0 +1,40 @@
+{
+  "name": "Generator",
+  "icon": "smokeleafindustries:generator",
+  "category": "smokeleafindustries:machines_category",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "This machine produces RF power by burning weed related items.$(br)$(br)It has an input slot for specific items that generate an amount of energy based on the item."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "smokeleafindustries:generator"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Hemp Coal",
+      "item": "smokeleafindustries:hemp_coal",
+      "text": "This produces 1600 RF per item."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Weed Buds",
+      "item": "tag:smokeleafindustries:weed_buds",
+      "text": "This produces 6400 RF per item."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Weeds",
+      "item": "tag:smokeleafindustries:weeds",
+      "text": "This produces 3200 RF per item."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Hemp Oil Bucket",
+      "item": "smokeleafindustries:hemp_oil_bucket",
+      "text": "This produces 48000 RF per item (bucket consumed)."
+    }
+  ]
+}
