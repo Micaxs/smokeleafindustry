@@ -200,9 +200,32 @@
   "item.smokeleafindustries.pink_kush_gummy": "Pink Kush Gummy",
 
   "block.smokeleafindustries.hemp_stone": "Hemp Stone",
+  "block.smokeleafindustries.hemp_stone_stairs": "Hemp Stone Stairs",
+  "block.smokeleafindustries.hemp_stone_slab": "Hemp Stone Slab",
+  "block.smokeleafindustries.hemp_stone_pressure_plate": "Hemp Stone Pressure Plate",
+  "block.smokeleafindustries.hemp_stone_button": "Hemp Stone Button",
+  "block.smokeleafindustries.hemp_stone_wall": "Hemp Stone Wall",
+
   "block.smokeleafindustries.hemp_chiseled_stone": "Hemp Chiseled Stone",
+  "block.smokeleafindustries.hemp_chiseled_stone_stairs": "Hemp Chiseled Stone Stairs",
+  "block.smokeleafindustries.hemp_chiseled_stone_slab": "Hemp Chiseled Stone Slab",
+  "block.smokeleafindustries.hemp_chiseled_stone_wall": "Hemp Chiseled Stone Wall",
+
   "block.smokeleafindustries.hemp_bricks": "Hemp Bricks",
+  "block.smokeleafindustries.hemp_brick_stairs": "Hemp Brick Stairs",
+  "block.smokeleafindustries.hemp_brick_slab": "Hemp Brick Slab",
+  "block.smokeleafindustries.hemp_brick_wall": "Hemp Brick Wall",
+
   "block.smokeleafindustries.hemp_planks": "Hemp Planks",
+  "block.smokeleafindustries.hemp_plank_stairs": "Hemp Planks Stairs",
+  "block.smokeleafindustries.hemp_plank_slab": "Hemp Planks Slab",
+  "block.smokeleafindustries.hemp_plank_pressure_plate": "Hemp Planks Pressure Plate",
+  "block.smokeleafindustries.hemp_plank_button": "Hemp Planks Button",
+  "block.smokeleafindustries.hemp_plank_fence": "Hemp Planks Fence",
+  "block.smokeleafindustries.hemp_plank_fence_gate": "Hemp Planks Fence Gate",
+  "block.smokeleafindustries.hemp_plank_door": "Hemp Planks Door",
+  "block.smokeleafindustries.hemp_plank_trapdoor": "Hemp Planks Trapdoor",
+
   "block.smokeleafindustries.led_light": "LED Grow Light",
   "block.smokeleafindustries.grinder": "Grinder",
   "block.smokeleafindustries.extractor": "Extractor",

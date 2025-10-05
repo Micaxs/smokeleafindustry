@@ -12,6 +12,12 @@
     "smokeleafindustries:mutator",
     "smokeleafindustries:liquifier",
     "smokeleafindustries:sequencer",
-    "smokeleafindustries:synthesizer"
+    "smokeleafindustries:synthesizer",
+    "smokeleafindustries:hemp_stone_slab",
+    "smokeleafindustries:hemp_brick_slab",
+    "smokeleafindustries:hemp_chiseled_stone_slab",
+    "smokeleafindustries:hemp_stone_stairs",
+    "smokeleafindustries:hemp_brick_stairs",
+    "smokeleafindustries:hemp_chiseled_stone_stairs"
   ]
 }

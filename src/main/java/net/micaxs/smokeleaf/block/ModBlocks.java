@@ -5,10 +5,10 @@ import net.micaxs.smokeleaf.block.custom.*;
 import net.micaxs.smokeleaf.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -22,18 +22,81 @@ public class ModBlocks {
     public static final DeferredBlock<Block> HEMP_STONE = registerBlock("hemp_stone",
             () -> new Block(BlockBehaviour.Properties.of()
                     .strength(1f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> HEMP_STONE_STAIRS = registerBlock("hemp_stone_stairs",
+            () -> new StairBlock(ModBlocks.HEMP_STONE.get().defaultBlockState(), BlockBehaviour.Properties.of()
+                    .strength(1f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> HEMP_STONE_SLAB = registerBlock("hemp_stone_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.of()
+                    .strength(1f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> HEMP_STONE_PRESSURE_PLATE = registerBlock("hemp_stone_pressure_plate",
+            () -> new PressurePlateBlock(BlockSetType.STONE, BlockBehaviour.Properties.of()
+                    .strength(1f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> HEMP_STONE_BUTTON = registerBlock("hemp_stone_button",
+            () -> new ButtonBlock(BlockSetType.STONE, 10, BlockBehaviour.Properties.of().noCollission()
+                    .strength(1f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> HEMP_STONE_WALL = registerBlock("hemp_stone_wall",
+            () -> new WallBlock(BlockBehaviour.Properties.of()
+                    .strength(1f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+
 
     public static final DeferredBlock<Block> HEMP_PLANKS = registerBlock("hemp_planks",
             () -> new Block(BlockBehaviour.Properties.of()
                     .strength(1f).requiresCorrectToolForDrops().sound(SoundType.WOOD)));
+    public static final DeferredBlock<Block> HEMP_PLANK_STAIRS = registerBlock("hemp_plank_stairs",
+            () -> new StairBlock(ModBlocks.HEMP_PLANKS.get().defaultBlockState(), BlockBehaviour.Properties.of()
+                    .strength(1f).requiresCorrectToolForDrops().sound(SoundType.WOOD)));
+    public static final DeferredBlock<Block> HEMP_PLANK_SLAB = registerBlock("hemp_plank_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.of()
+                    .strength(1f).requiresCorrectToolForDrops().sound(SoundType.WOOD)));
+    public static final DeferredBlock<Block> HEMP_PLANK_PRESSURE_PLATE = registerBlock("hemp_plank_pressure_plate",
+            () -> new PressurePlateBlock(BlockSetType.OAK, BlockBehaviour.Properties.of()
+                    .strength(1f).requiresCorrectToolForDrops().sound(SoundType.WOOD)));
+    public static final DeferredBlock<Block> HEMP_PLANK_BUTTON = registerBlock("hemp_plank_button",
+            () -> new ButtonBlock(BlockSetType.OAK, 10, BlockBehaviour.Properties.of().noCollission()
+                    .strength(1f).requiresCorrectToolForDrops().sound(SoundType.WOOD)));
+    public static final DeferredBlock<Block> HEMP_PLANK_FENCE = registerBlock("hemp_plank_fence",
+            () -> new FenceBlock(BlockBehaviour.Properties.of()
+                    .strength(1f).requiresCorrectToolForDrops().sound(SoundType.WOOD)));
+    public static final DeferredBlock<Block> HEMP_PLANK_FENCE_GATE = registerBlock("hemp_plank_fence_gate",
+            () -> new FenceGateBlock(WoodType.OAK, BlockBehaviour.Properties.of()
+                    .strength(1f).requiresCorrectToolForDrops().sound(SoundType.WOOD)));
+    public static final DeferredBlock<Block> HEMP_PLANK_DOOR = registerBlock("hemp_plank_door",
+            () -> new DoorBlock(BlockSetType.OAK, BlockBehaviour.Properties.of().noOcclusion()
+                    .strength(1f).requiresCorrectToolForDrops().sound(SoundType.WOOD)));
+    public static final DeferredBlock<Block> HEMP_PLANK_TRAPDOOR = registerBlock("hemp_plank_trapdoor",
+            () -> new TrapDoorBlock(BlockSetType.OAK, BlockBehaviour.Properties.of().noOcclusion()
+                    .strength(1f).requiresCorrectToolForDrops().sound(SoundType.WOOD)));
+
 
     public static final DeferredBlock<Block> HEMP_BRICKS = registerBlock("hemp_bricks",
             () -> new Block(BlockBehaviour.Properties.of()
                     .strength(1f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> HEMP_BRICK_STAIRS = registerBlock("hemp_brick_stairs",
+            () -> new StairBlock(ModBlocks.HEMP_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.of()
+                    .strength(1f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> HEMP_BRICK_SLAB = registerBlock("hemp_brick_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.of()
+                    .strength(1f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> HEMP_BRICK_WALL = registerBlock("hemp_brick_wall",
+            () -> new WallBlock(BlockBehaviour.Properties.of()
+                    .strength(1f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+
 
     public static final DeferredBlock<Block> HEMP_CHISELED_STONE = registerBlock("hemp_chiseled_stone",
             () -> new Block(BlockBehaviour.Properties.of()
                     .strength(1f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> HEMP_CHISELED_STONE_STAIRS = registerBlock("hemp_chiseled_stone_stairs",
+            () -> new StairBlock(ModBlocks.HEMP_CHISELED_STONE.get().defaultBlockState(), BlockBehaviour.Properties.of()
+                    .strength(1f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> HEMP_CHISELED_STONE_SLAB = registerBlock("hemp_chiseled_stone_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.of()
+                    .strength(1f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> HEMP_CHISELED_STONE_WALL = registerBlock("hemp_chiseled_stone_wall",
+            () -> new WallBlock(BlockBehaviour.Properties.of()
+                    .strength(1f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+
+
+    // TODO: Grow Pot Implementation
 
 
     public static final DeferredBlock<Block> LED_LIGHT = registerBlock("led_light",

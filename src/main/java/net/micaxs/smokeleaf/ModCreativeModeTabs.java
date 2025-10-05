@@ -36,10 +36,35 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.BIO_COMPOSITE);
                         output.accept(ModItems.HEMP_COAL);
                         output.accept(ModItems.HEMP_PLASTIC);
+
                         output.accept(ModBlocks.HEMP_STONE);
+                        output.accept(ModBlocks.HEMP_STONE_SLAB);
+                        output.accept(ModBlocks.HEMP_STONE_STAIRS);
+                        output.accept(ModBlocks.HEMP_STONE_PRESSURE_PLATE);
+                        output.accept(ModBlocks.HEMP_STONE_BUTTON);
+                        output.accept(ModBlocks.HEMP_STONE_WALL);
+
                         output.accept(ModBlocks.HEMP_PLANKS);
+                        output.accept(ModBlocks.HEMP_PLANK_SLAB);
+                        output.accept(ModBlocks.HEMP_PLANK_STAIRS);
+                        output.accept(ModBlocks.HEMP_PLANK_PRESSURE_PLATE);
+                        output.accept(ModBlocks.HEMP_PLANK_BUTTON);
+                        output.accept(ModBlocks.HEMP_PLANK_FENCE);
+                        output.accept(ModBlocks.HEMP_PLANK_FENCE_GATE);
+                        output.accept(ModBlocks.HEMP_PLANK_DOOR);
+                        output.accept(ModBlocks.HEMP_PLANK_TRAPDOOR);
+
                         output.accept(ModBlocks.HEMP_BRICKS);
+                        output.accept(ModBlocks.HEMP_BRICK_SLAB);
+                        output.accept(ModBlocks.HEMP_BRICK_STAIRS);
+                        output.accept(ModBlocks.HEMP_BRICK_WALL);
+
                         output.accept(ModBlocks.HEMP_CHISELED_STONE);
+                        output.accept(ModBlocks.HEMP_CHISELED_STONE_SLAB);
+                        output.accept(ModBlocks.HEMP_CHISELED_STONE_STAIRS);
+                        output.accept(ModBlocks.HEMP_CHISELED_STONE_WALL);
+
+
 
                         output.accept(ModItems.TOBACCO);
                         output.accept(ModItems.TOBACCO_LEAF);

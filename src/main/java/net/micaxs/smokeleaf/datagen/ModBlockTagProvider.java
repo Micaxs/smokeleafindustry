@@ -34,7 +34,13 @@ public class ModBlockTagProvider extends BlockTagsProvider  {
                 .add(ModBlocks.MUTATOR.get())
                 .add(ModBlocks.LIQUIFIER.get())
                 .add(ModBlocks.SEQUENCER.get())
-                .add(ModBlocks.SYNTHESIZER.get());
+                .add(ModBlocks.SYNTHESIZER.get())
+                .add(ModBlocks.HEMP_STONE_SLAB.get())
+                .add(ModBlocks.HEMP_BRICK_SLAB.get())
+                .add(ModBlocks.HEMP_CHISELED_STONE_SLAB.get())
+                .add(ModBlocks.HEMP_STONE_STAIRS.get())
+                .add(ModBlocks.HEMP_BRICK_STAIRS.get())
+                .add(ModBlocks.HEMP_CHISELED_STONE_STAIRS.get());
 
         this.tag(BlockTags.NEEDS_STONE_TOOL)
                 .add(ModBlocks.HEMP_STONE.get())
@@ -42,7 +48,15 @@ public class ModBlockTagProvider extends BlockTagsProvider  {
                 .add(ModBlocks.REFLECTOR.get())
                 .add(ModBlocks.HEMP_CHISELED_STONE.get())
                 .add(ModBlocks.HEMP_BRICKS.get())
-                .add(ModBlocks.DRYING_RACK.get());
+                .add(ModBlocks.DRYING_RACK.get())
+                .add(ModBlocks.HEMP_PLANK_SLAB.get())
+                .add(ModBlocks.HEMP_STONE_SLAB.get())
+                .add(ModBlocks.HEMP_BRICK_SLAB.get())
+                .add(ModBlocks.HEMP_CHISELED_STONE_SLAB.get())
+                .add(ModBlocks.HEMP_PLANK_STAIRS.get())
+                .add(ModBlocks.HEMP_STONE_STAIRS.get())
+                .add(ModBlocks.HEMP_BRICK_STAIRS.get())
+                .add(ModBlocks.HEMP_CHISELED_STONE_STAIRS.get());
 
         this.tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(ModBlocks.GRINDER.get())
@@ -54,7 +68,17 @@ public class ModBlockTagProvider extends BlockTagsProvider  {
                 .add(ModBlocks.SYNTHESIZER.get());
 
         this.tag(BlockTags.PLANKS)
-                .add(ModBlocks.HEMP_PLANKS.get());
+                .add(ModBlocks.HEMP_PLANKS.get())
+                .add(ModBlocks.HEMP_PLANK_SLAB.get())
+                .add(ModBlocks.HEMP_PLANK_STAIRS.get());
+
+        this.tag(BlockTags.WOODEN_FENCES).add(ModBlocks.HEMP_PLANK_FENCE.get());
+        this.tag(BlockTags.FENCES).add(ModBlocks.HEMP_PLANK_FENCE.get());
+        this.tag(BlockTags.FENCE_GATES).add(ModBlocks.HEMP_PLANK_FENCE_GATE.get());
+        this.tag(BlockTags.WALLS)
+                .add(ModBlocks.HEMP_STONE_WALL.get())
+                .add(ModBlocks.HEMP_BRICK_WALL.get())
+                .add(ModBlocks.HEMP_CHISELED_STONE_WALL.get());
 
     }
 

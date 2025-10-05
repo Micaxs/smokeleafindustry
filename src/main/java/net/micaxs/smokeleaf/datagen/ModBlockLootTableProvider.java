@@ -37,12 +37,35 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        // Add Block Loot Tables here
+        // Blocks & Stuff
         dropSelf(ModBlocks.HEMP_STONE.get());
-        dropSelf(ModBlocks.HEMP_BRICKS.get());
-        dropSelf(ModBlocks.HEMP_CHISELED_STONE.get());
-        dropSelf(ModBlocks.HEMP_PLANKS.get());
+        dropSelf(ModBlocks.HEMP_STONE_STAIRS.get());
+        this.add(ModBlocks.HEMP_STONE_SLAB.get(), block -> createSlabItemTable(ModBlocks.HEMP_STONE_SLAB.get()));
+        dropSelf(ModBlocks.HEMP_STONE_PRESSURE_PLATE.get());
+        dropSelf(ModBlocks.HEMP_STONE_BUTTON.get());
+        dropSelf(ModBlocks.HEMP_STONE_WALL.get());
 
+        dropSelf(ModBlocks.HEMP_BRICKS.get());
+        dropSelf(ModBlocks.HEMP_BRICK_STAIRS.get());
+        this.add(ModBlocks.HEMP_BRICK_SLAB.get(), block -> createSlabItemTable(ModBlocks.HEMP_BRICK_SLAB.get()));
+        dropSelf(ModBlocks.HEMP_BRICK_WALL.get());
+
+        dropSelf(ModBlocks.HEMP_CHISELED_STONE.get());
+        dropSelf(ModBlocks.HEMP_CHISELED_STONE_STAIRS.get());
+        this.add(ModBlocks.HEMP_CHISELED_STONE_SLAB.get(), block -> createSlabItemTable(ModBlocks.HEMP_CHISELED_STONE_SLAB.get()));
+        dropSelf(ModBlocks.HEMP_CHISELED_STONE_WALL.get());
+
+        dropSelf(ModBlocks.HEMP_PLANKS.get());
+        dropSelf(ModBlocks.HEMP_PLANK_STAIRS.get());
+        this.add(ModBlocks.HEMP_PLANK_SLAB.get(), block -> createSlabItemTable(ModBlocks.HEMP_PLANK_SLAB.get()));
+        dropSelf(ModBlocks.HEMP_PLANK_PRESSURE_PLATE.get());
+        dropSelf(ModBlocks.HEMP_PLANK_BUTTON.get());
+        dropSelf(ModBlocks.HEMP_PLANK_FENCE.get());
+        dropSelf(ModBlocks.HEMP_PLANK_FENCE_GATE.get());
+        dropSelf(ModBlocks.HEMP_PLANK_TRAPDOOR.get());
+        this.add(ModBlocks.HEMP_PLANK_DOOR.get(), block -> createDoorTable(ModBlocks.HEMP_PLANK_DOOR.get()));
+
+        // Lamps
         dropSelf(ModBlocks.REFLECTOR.get());
         dropSelf(ModBlocks.LED_LIGHT.get());
 

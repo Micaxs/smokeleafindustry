@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "smokeleafindustries:block/hemp_bricks",
+    "side": "smokeleafindustries:block/hemp_bricks",
+    "top": "smokeleafindustries:block/hemp_bricks"
+  }
+}

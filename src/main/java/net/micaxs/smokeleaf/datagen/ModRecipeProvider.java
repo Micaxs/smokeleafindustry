@@ -24,6 +24,32 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
     @Override
     protected void buildRecipes(RecipeOutput recipeOutput) {
+        slab(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.HEMP_PLANK_SLAB.get(), ModBlocks.HEMP_PLANKS.get());
+        slab(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.HEMP_STONE_SLAB.get(), ModBlocks.HEMP_STONE.get());
+        slab(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.HEMP_BRICK_SLAB.get(), ModBlocks.HEMP_BRICKS.get());
+        slab(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.HEMP_CHISELED_STONE_SLAB.get(), ModBlocks.HEMP_CHISELED_STONE.get());
+
+        stairBuilder(ModBlocks.HEMP_PLANK_STAIRS.get(), Ingredient.of(ModBlocks.HEMP_PLANKS.get())).group("hemp_planks").unlockedBy("has_hemp_planks", has(ModBlocks.HEMP_PLANKS.get())).save(recipeOutput);
+        stairBuilder(ModBlocks.HEMP_STONE_STAIRS.get(), Ingredient.of(ModBlocks.HEMP_STONE.get())).group("hemp_stone").unlockedBy("has_hemp_stone", has(ModBlocks.HEMP_STONE.get())).save(recipeOutput);
+        stairBuilder(ModBlocks.HEMP_BRICK_STAIRS.get(), Ingredient.of(ModBlocks.HEMP_BRICKS.get())).group("hemp_bricks").unlockedBy("has_hemp_bricks", has(ModBlocks.HEMP_BRICKS.get())).save(recipeOutput);
+        stairBuilder(ModBlocks.HEMP_CHISELED_STONE_STAIRS.get(), Ingredient.of(ModBlocks.HEMP_CHISELED_STONE.get())).group("hemp_chiseled_stone").unlockedBy("has_hemp_chiseled_stone", has(ModBlocks.HEMP_CHISELED_STONE.get())).save(recipeOutput);
+
+        pressurePlate(recipeOutput, ModBlocks.HEMP_STONE_PRESSURE_PLATE.get(), ModBlocks.HEMP_STONE.get());
+        pressurePlate(recipeOutput, ModBlocks.HEMP_PLANK_PRESSURE_PLATE.get(), ModBlocks.HEMP_PLANKS.get());
+        buttonBuilder(ModBlocks.HEMP_STONE_BUTTON.get(), Ingredient.of(ModBlocks.HEMP_STONE.get())).group("hemp_stone").unlockedBy("has_hemp_stone", has(ModBlocks.HEMP_STONE.get())).save(recipeOutput);
+        buttonBuilder(ModBlocks.HEMP_PLANK_BUTTON.get(), Ingredient.of(ModBlocks.HEMP_PLANKS.get())).group("hemp_planks").unlockedBy("has_hemp_planks", has(ModBlocks.HEMP_PLANKS.get())).save(recipeOutput);
+
+        wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.HEMP_STONE_WALL.get(), ModBlocks.HEMP_STONE.get());
+        wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.HEMP_BRICK_WALL.get(), ModBlocks.HEMP_BRICKS.get());
+        wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.HEMP_CHISELED_STONE_WALL.get(), ModBlocks.HEMP_CHISELED_STONE.get());
+
+        fenceBuilder(ModBlocks.HEMP_PLANK_FENCE.get(), Ingredient.of(ModBlocks.HEMP_PLANKS.get())).group("hemp_planks").unlockedBy("has_hemp_planks", has(ModBlocks.HEMP_PLANKS.get())).save(recipeOutput);
+        fenceGateBuilder(ModBlocks.HEMP_PLANK_FENCE_GATE.get(), Ingredient.of(ModBlocks.HEMP_PLANKS.get())).group("hemp_planks").unlockedBy("has_hemp_planks", has(ModBlocks.HEMP_PLANKS.get())).save(recipeOutput);
+
+        doorBuilder(ModBlocks.HEMP_PLANK_DOOR.get(), Ingredient.of(ModBlocks.HEMP_PLANKS.get())).group("hemp_planks").unlockedBy("has_hemp_planks", has(ModBlocks.HEMP_PLANKS.get())).save(recipeOutput);
+        trapdoorBuilder(ModBlocks.HEMP_PLANK_TRAPDOOR.get(), Ingredient.of(ModBlocks.HEMP_PLANKS.get())).group("hemp_planks").unlockedBy("has_hemp_planks", has(ModBlocks.HEMP_PLANKS.get())).save(recipeOutput);
+
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.BASE_EXTRACT.get())
                 .requires(Items.MILK_BUCKET)
                 .requires(Items.SUGAR)

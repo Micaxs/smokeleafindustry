@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "smokeleafindustries:block/hemp_stone_slab"
+    },
+    "type=double": {
+      "model": "smokeleafindustries:block/hemp_stone"
+    },
+    "type=top": {
+      "model": "smokeleafindustries:block/hemp_stone_slab_top"
+    }
+  }
+}

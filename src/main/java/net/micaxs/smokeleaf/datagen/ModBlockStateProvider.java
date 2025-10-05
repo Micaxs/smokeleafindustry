@@ -10,7 +10,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -31,9 +31,44 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         blockWithItem(ModBlocks.HEMP_STONE);
+        stairsBlock(((StairBlock) ModBlocks.HEMP_STONE_STAIRS.get()), blockTexture(ModBlocks.HEMP_STONE.get()));
+        slabBlock((((SlabBlock) ModBlocks.HEMP_STONE_SLAB.get())), blockTexture(ModBlocks.HEMP_STONE.get()), blockTexture(ModBlocks.HEMP_STONE.get()));
+        blockItem(ModBlocks.HEMP_STONE_SLAB);
+        blockItem(ModBlocks.HEMP_STONE_STAIRS);
+        pressurePlateBlock(((PressurePlateBlock) ModBlocks.HEMP_STONE_PRESSURE_PLATE.get()), blockTexture(ModBlocks.HEMP_STONE.get()));
+        buttonBlock(((ButtonBlock) ModBlocks.HEMP_STONE_BUTTON.get()), blockTexture(ModBlocks.HEMP_STONE.get()));
+        blockItem(ModBlocks.HEMP_STONE_PRESSURE_PLATE);
+        wallBlock(((WallBlock) ModBlocks.HEMP_STONE_WALL.get()), blockTexture(ModBlocks.HEMP_STONE.get()));
+
         blockWithItem(ModBlocks.HEMP_BRICKS);
+        stairsBlock(((StairBlock) ModBlocks.HEMP_BRICK_STAIRS.get()), blockTexture(ModBlocks.HEMP_BRICKS.get()));
+        slabBlock((((SlabBlock) ModBlocks.HEMP_BRICK_SLAB.get())), blockTexture(ModBlocks.HEMP_BRICKS.get()), blockTexture(ModBlocks.HEMP_BRICKS.get()));
+        blockItem(ModBlocks.HEMP_BRICK_SLAB);
+        blockItem(ModBlocks.HEMP_BRICK_STAIRS);
+        wallBlock(((WallBlock) ModBlocks.HEMP_BRICK_WALL.get()), blockTexture(ModBlocks.HEMP_BRICKS.get()));
+
         blockWithItem(ModBlocks.HEMP_CHISELED_STONE);
+        stairsBlock(((StairBlock) ModBlocks.HEMP_CHISELED_STONE_STAIRS.get()), blockTexture(ModBlocks.HEMP_CHISELED_STONE.get()));
+        slabBlock((((SlabBlock) ModBlocks.HEMP_CHISELED_STONE_SLAB.get())), blockTexture(ModBlocks.HEMP_CHISELED_STONE.get()), blockTexture(ModBlocks.HEMP_CHISELED_STONE.get()));
+        blockItem(ModBlocks.HEMP_CHISELED_STONE_SLAB);
+        blockItem(ModBlocks.HEMP_CHISELED_STONE_STAIRS);
+        wallBlock(((WallBlock) ModBlocks.HEMP_CHISELED_STONE_WALL.get()), blockTexture(ModBlocks.HEMP_CHISELED_STONE.get()));
+
         blockWithItem(ModBlocks.HEMP_PLANKS);
+        stairsBlock(((StairBlock) ModBlocks.HEMP_PLANK_STAIRS.get()), blockTexture(ModBlocks.HEMP_PLANKS.get()));
+        slabBlock((((SlabBlock) ModBlocks.HEMP_PLANK_SLAB.get())), blockTexture(ModBlocks.HEMP_PLANKS.get()), blockTexture(ModBlocks.HEMP_PLANKS.get()));
+        blockItem(ModBlocks.HEMP_PLANK_SLAB);
+        blockItem(ModBlocks.HEMP_PLANK_STAIRS);
+        pressurePlateBlock(((PressurePlateBlock) ModBlocks.HEMP_PLANK_PRESSURE_PLATE.get()), blockTexture(ModBlocks.HEMP_PLANKS.get()));
+        buttonBlock(((ButtonBlock) ModBlocks.HEMP_PLANK_BUTTON.get()), blockTexture(ModBlocks.HEMP_PLANKS.get()));
+        blockItem(ModBlocks.HEMP_PLANK_PRESSURE_PLATE);
+        fenceBlock(((FenceBlock) ModBlocks.HEMP_PLANK_FENCE.get()), blockTexture(ModBlocks.HEMP_PLANKS.get()));
+        fenceGateBlock(((FenceGateBlock) ModBlocks.HEMP_PLANK_FENCE_GATE.get()), blockTexture(ModBlocks.HEMP_PLANKS.get()));
+        blockItem(ModBlocks.HEMP_PLANK_FENCE_GATE);
+        doorBlockWithRenderType(((DoorBlock) ModBlocks.HEMP_PLANK_DOOR.get()), modLoc("block/hemp_plank_door_bottom"), modLoc("block/hemp_plank_door_top"), "cutout");
+        trapdoorBlockWithRenderType(((TrapDoorBlock) ModBlocks.HEMP_PLANK_TRAPDOOR.get()), modLoc("block/hemp_plank_trapdoor"), true, "cutout");
+
+        blockItem(ModBlocks.HEMP_PLANK_TRAPDOOR, "_bottom");
 
         makeWeedCrop((BaseWeedCropBlock) ModBlocks.HEMP_CROP.get(), "hemp_stage_", "hemp/hemp_stage_");
         makeWeedCrop((BaseWeedCropBlock) ModBlocks.WHITE_WIDOW_CROP.get(), "white_widow_stage_", "white_widow/white_widow_stage_");
@@ -196,6 +231,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         String itemSuffix = itemUsesTrueVariant ? trueSuffix : falseSuffix;
         simpleBlockItem(block, models().getExistingFile(modLoc("block/" + baseName + itemSuffix)));
+    }
+
+    private void blockItem(DeferredBlock<Block> deferredBlock) {
+            simpleBlockItem(deferredBlock.get(), new ModelFile.UncheckedModelFile("smokeleafindustries:block/" + deferredBlock.getId().getPath()));
+    }
+
+    private void blockItem(DeferredBlock<Block> deferredBlock, String appendix) {
+            simpleBlockItem(deferredBlock.get(), new ModelFile.UncheckedModelFile("smokeleafindustries:block/" + deferredBlock.getId().getPath() + appendix));
     }
 
 

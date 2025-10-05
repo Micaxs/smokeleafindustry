@@ -1,0 +1,84 @@
+{
+	"format_version": "1.21.1",
+	"credit": "Made by Mica",
+	"texture_size": [64, 64],
+	"textures": {
+		"0": "smokeleafindustries:block/grow_pot",
+		"particle": "smokeleafindustries:block/grow_pot"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 2, 16],
+			"faces": {
+				"north": {"uv": [0, 8, 4, 8.5], "texture": "#0"},
+				"east": {"uv": [8, 0, 12, 0.5], "texture": "#0"},
+				"south": {"uv": [8, 0.5, 12, 1], "texture": "#0"},
+				"west": {"uv": [8, 1, 12, 1.5], "texture": "#0"},
+				"up": {"uv": [4, 4, 0, 0], "texture": "#0"},
+				"down": {"uv": [4, 4, 0, 8], "texture": "#0"}
+			}
+		},
+		{
+			"from": [0, 2, 0],
+			"to": [16, 8, 1],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 2, 0]},
+			"faces": {
+				"north": {"uv": [4, 0, 8, 1.5], "texture": "#0"},
+				"east": {"uv": [0.5, 8.5, 0.75, 10], "texture": "#0"},
+				"south": {"uv": [4, 1.5, 8, 3], "texture": "#0"},
+				"west": {"uv": [0.75, 8.5, 1, 10], "texture": "#0"},
+				"up": {"uv": [12, 1.75, 8, 1.5], "texture": "#0"},
+				"down": {"uv": [12, 1.75, 8, 2], "texture": "#0"}
+			}
+		},
+		{
+			"from": [0, 2, 15],
+			"to": [16, 8, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 2, 15]},
+			"faces": {
+				"north": {"uv": [4, 3, 8, 4.5], "texture": "#0"},
+				"east": {"uv": [1, 8.5, 1.25, 10], "texture": "#0"},
+				"south": {"uv": [4, 4.5, 8, 6], "texture": "#0"},
+				"west": {"uv": [1.25, 8.5, 1.5, 10], "texture": "#0"},
+				"up": {"uv": [12, 2.25, 8, 2], "texture": "#0"},
+				"down": {"uv": [12, 2.25, 8, 2.5], "texture": "#0"}
+			}
+		},
+		{
+			"from": [0, 2, 1],
+			"to": [1, 8, 15],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 2, 14]},
+			"faces": {
+				"north": {"uv": [1.5, 8.5, 1.75, 10], "texture": "#0"},
+				"east": {"uv": [4, 6, 7.5, 7.5], "texture": "#0"},
+				"south": {"uv": [1.75, 8.5, 2, 10], "texture": "#0"},
+				"west": {"uv": [4, 7.5, 7.5, 9], "texture": "#0"},
+				"up": {"uv": [8.25, 6, 8, 2.5], "texture": "#0"},
+				"down": {"uv": [8.5, 2.5, 8.25, 6], "texture": "#0"}
+			}
+		},
+		{
+			"from": [15, 2, 1],
+			"to": [16, 8, 15],
+			"rotation": {"angle": 0, "axis": "y", "origin": [15, 2, 14]},
+			"faces": {
+				"north": {"uv": [2, 8.5, 2.25, 10], "texture": "#0"},
+				"east": {"uv": [7.5, 6, 11, 7.5], "texture": "#0"},
+				"south": {"uv": [2.25, 8.5, 2.5, 10], "texture": "#0"},
+				"west": {"uv": [7.5, 7.5, 11, 9], "texture": "#0"},
+				"up": {"uv": [0.25, 12, 0, 8.5], "texture": "#0"},
+				"down": {"uv": [0.5, 8.5, 0.25, 12], "texture": "#0"}
+			}
+		}
+	],
+	"display": {},
+	"groups": [
+		{
+			"name": "grow_pot",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [0, 1, 2, 3, 4]
+		}
+	]
+}
