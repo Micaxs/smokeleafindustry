@@ -8,8 +8,8 @@
 	},
 	"elements": [
 		{
-			"from": [0, 0, 0],
-			"to": [16, 2, 16],
+			"from": [1, 0, 1],
+			"to": [15, 2, 15],
 			"faces": {
 				"north": {"uv": [0, 8, 4, 8.5], "texture": "#0"},
 				"east": {"uv": [8, 0, 12, 0.5], "texture": "#0"},
@@ -20,9 +20,9 @@
 			}
 		},
 		{
-			"from": [0, 2, 0],
-			"to": [16, 8, 1],
-			"rotation": {"angle": 0, "axis": "y", "origin": [0, 2, 0]},
+			"from": [2, 2, 1],
+			"to": [14, 8, 2],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 2, 1]},
 			"faces": {
 				"north": {"uv": [4, 0, 8, 1.5], "texture": "#0"},
 				"east": {"uv": [0.5, 8.5, 0.75, 10], "texture": "#0"},
@@ -33,9 +33,9 @@
 			}
 		},
 		{
-			"from": [0, 2, 15],
-			"to": [16, 8, 16],
-			"rotation": {"angle": 0, "axis": "y", "origin": [0, 2, 15]},
+			"from": [2, 2, 14],
+			"to": [14, 8, 15],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 2, 14]},
 			"faces": {
 				"north": {"uv": [4, 3, 8, 4.5], "texture": "#0"},
 				"east": {"uv": [1, 8.5, 1.25, 10], "texture": "#0"},
@@ -46,9 +46,9 @@
 			}
 		},
 		{
-			"from": [0, 2, 1],
-			"to": [1, 8, 15],
-			"rotation": {"angle": 0, "axis": "y", "origin": [0, 2, 14]},
+			"from": [1, 2, 1],
+			"to": [2, 8, 15],
+			"rotation": {"angle": 0, "axis": "y", "origin": [1, 2, 14]},
 			"faces": {
 				"north": {"uv": [1.5, 8.5, 1.75, 10], "texture": "#0"},
 				"east": {"uv": [4, 6, 7.5, 7.5], "texture": "#0"},
@@ -59,9 +59,9 @@
 			}
 		},
 		{
-			"from": [15, 2, 1],
-			"to": [16, 8, 15],
-			"rotation": {"angle": 0, "axis": "y", "origin": [15, 2, 14]},
+			"from": [14, 2, 1],
+			"to": [15, 8, 15],
+			"rotation": {"angle": 0, "axis": "y", "origin": [14, 2, 14]},
 			"faces": {
 				"north": {"uv": [2, 8.5, 2.25, 10], "texture": "#0"},
 				"east": {"uv": [7.5, 6, 11, 7.5], "texture": "#0"},
@@ -72,7 +72,35 @@
 			}
 		}
 	],
-	"display": {},
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [30, 0, 0],
+			"translation": [0, 3.25, -1.75],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"firstperson_righthand": {
+			"rotation": [8, 1.19, -0.19],
+			"translation": [0, 1.75, 0],
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"ground": {
+			"translation": [0, 2.75, 0],
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"gui": {
+			"rotation": [38.96, 25, 0],
+			"translation": [0.25, 2, 0],
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"head": {
+			"rotation": [-180, 0, 0],
+			"translation": [0, 0.75, 0]
+		},
+		"fixed": {
+			"rotation": [-90, 0, 0],
+			"translation": [0, 0, -5.75]
+		}
+	},
 	"groups": [
 		{
 			"name": "grow_pot",

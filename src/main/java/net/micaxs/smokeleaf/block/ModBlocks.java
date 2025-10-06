@@ -96,7 +96,9 @@ public class ModBlocks {
                     .strength(1f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
 
 
-    // TODO: Grow Pot Implementation
+    public static final DeferredBlock<Block> GROW_POT = registerBlock("grow_pot",
+            () -> new GrowPotBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops()
+                    .strength(1f).noOcclusion().sound(SoundType.METAL)));
 
 
     public static final DeferredBlock<Block> LED_LIGHT = registerBlock("led_light",

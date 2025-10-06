@@ -3,6 +3,7 @@ package net.micaxs.smokeleaf;
 import net.micaxs.smokeleaf.block.ModBlocks;
 import net.micaxs.smokeleaf.block.entity.ModBlockEntities;
 import net.micaxs.smokeleaf.block.entity.client.DryingRackRenderer;
+import net.micaxs.smokeleaf.block.entity.render.GrowPotRenderer;
 import net.micaxs.smokeleaf.client.brainmelt.BrainMeltInputHandler;
 import net.micaxs.smokeleaf.component.ModDataComponentTypes;
 import net.micaxs.smokeleaf.effect.ModEffects;
@@ -108,6 +109,8 @@ public class SmokeleafIndustriesClient {
     @SubscribeEvent
     public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(ModBlockEntities.DRYING_RACK_BE.get(), DryingRackRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.GROW_POT.get(), GrowPotRenderer::new);
+
     }
 
     @SubscribeEvent

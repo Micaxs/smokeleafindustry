@@ -227,6 +227,7 @@
   "block.smokeleafindustries.hemp_plank_trapdoor": "Hemp Planks Trapdoor",
 
   "block.smokeleafindustries.led_light": "LED Grow Light",
+  "block.smokeleafindustries.grow_pot": "Grow Pot",
   "block.smokeleafindustries.grinder": "Grinder",
   "block.smokeleafindustries.extractor": "Extractor",
   "block.smokeleafindustries.liquifier": "Liquifier",
@@ -286,6 +287,9 @@
   "tooltip.smokeleafindustries.jelly_rancher_bag": "Contains 8 Jelly Rancher Weed.",
   "tooltip.smokeleafindustries.strawberry_shortcake_bag": "Contains 8 Strawberry Shortcake Weed.",
   "tooltip.smokeleafindustries.pink_kush_bag": "Contains 8 Pink Kush Weed.",
+  "tooltip.smokeleafindustries.grow_pot.soil": "Rightclick with (Dirt, Farmland, Podzol) to fill the pot with soil.",
+  "tooltip.smokeleafindustries.grow_pot.plant": "Rightclick with Weed Seeds to plant them in the soil.",
+  "tooltip.smokeleafindustries.grow_pot.info": "RightClick when fully grown to harvest the plant.\nShift + Rightclick to remove soil and/or plant.\n\nPlants will grow faster inside a Grow Pot and still require light to grow!",
 
 
   "message.smokeleafindustries.cat_urine_cooldown": "Cat is not ready. %s seconds left.",

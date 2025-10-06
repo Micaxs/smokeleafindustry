@@ -74,6 +74,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.HPS_LAMP);
                         output.accept(ModItems.DUAL_ARC_LAMP);
                         output.accept(ModBlocks.LED_LIGHT);
+                        output.accept(ModBlocks.GROW_POT);
 
                         output.accept(ModItems.HEMP_HAMMER);
                         output.accept(ModItems.MANUAL_GRINDER);

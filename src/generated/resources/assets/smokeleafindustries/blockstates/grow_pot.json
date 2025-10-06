@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "smokeleafindustries:block/grow_pot",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "smokeleafindustries:block/grow_pot"
+    },
+    "facing=south": {
+      "model": "smokeleafindustries:block/grow_pot",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "smokeleafindustries:block/grow_pot",
+      "y": 270
+    }
+  }
+}

@@ -1,4 +1,4 @@
-// 1.21.1	2025-10-05T19:27:07.50523651	Loot Tables
+// 1.21.1	2025-10-05T20:36:49.145470806	Loot Tables
 7f36961d059dd769eda46c224079c942c44c65ac data/smokeleafindustries/loot_table/blocks/afghani_crop.json
 63ec5c04e74680423a0b9c28f5027ed0e12a14c6 data/smokeleafindustries/loot_table/blocks/ak47_crop.json
 8e61852656b83605989a22cd7f5771dc80317277 data/smokeleafindustries/loot_table/blocks/amnesia_haze_crop.json
@@ -17,6 +17,7 @@ ec302e823fe62228e568d329f774847edbdf4536 data/smokeleafindustries/loot_table/blo
 ac5f0354fc58fa0fab969ba5ed74a6c69703d793 data/smokeleafindustries/loot_table/blocks/ghost_train_crop.json
 de6bf90931d661320c333a1f712915ba945f6fa3 data/smokeleafindustries/loot_table/blocks/grape_ape_crop.json
 81f4bc2d7fa1720dfc9fcb8774cb0a7521ff6b93 data/smokeleafindustries/loot_table/blocks/grinder.json
+bcdf5fe2939a0d969835e17500f41ca8c749a573 data/smokeleafindustries/loot_table/blocks/grow_pot.json
 cdb5157e09f6010cf2d963be0a86b1315a85073f data/smokeleafindustries/loot_table/blocks/hemp_brick_slab.json
 a636e55ea6df7d3349a02560a23b5191c5e7eec1 data/smokeleafindustries/loot_table/blocks/hemp_brick_stairs.json
 47cd883e382c572e63fda27d6639a234e0dbc9dc data/smokeleafindustries/loot_table/blocks/hemp_brick_wall.json

@@ -11,7 +11,8 @@
   },
   "pattern": [
     " I ",
-    "IRI"
+    "IRI",
+    "   "
   ],
   "result": {
     "count": 1,

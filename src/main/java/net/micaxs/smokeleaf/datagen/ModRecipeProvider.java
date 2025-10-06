@@ -11,8 +11,6 @@ import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.StonecutterRecipe;
-import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 
 import java.util.concurrent.CompletableFuture;
@@ -78,6 +76,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.REFLECTOR.get())
                 .pattern(" I ")
                 .pattern("IRI")
+                .pattern("   ")
                 .define('I', ModItems.HEMP_PLASTIC)
                 .define('R', Items.REDSTONE)
                 .unlockedBy(getHasName(ModItems.HEMP_PLASTIC), has(ModItems.HEMP_PLASTIC))
@@ -333,6 +332,16 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(ModItems.HEMP_CORE), has(ModItems.HEMP_CORE))
                 .save(recipeOutput);
 
+        // Grow Pot
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.GROW_POT.get())
+                .pattern("H H")
+                .pattern("HCH")
+                .pattern("HBH")
+                .define('H', ModItems.HEMP_PLASTIC)
+                .define('C', ModItems.HEMP_CORE)
+                .define('B', Items.WATER_BUCKET)
+                .unlockedBy(getHasName(ModItems.HEMP_CORE), has(ModItems.HEMP_CORE))
+                .save(recipeOutput);
 
 
 

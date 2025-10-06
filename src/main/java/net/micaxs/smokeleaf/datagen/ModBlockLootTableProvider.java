@@ -69,6 +69,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.REFLECTOR.get());
         dropSelf(ModBlocks.LED_LIGHT.get());
 
+        // Grow Pot
+        dropSelf(ModBlocks.GROW_POT.get());
 
         // Weed Crops
         addHempCropLoot(ModBlocks.HEMP_CROP, ModItems.HEMP_FIBERS, ModItems.HEMP_SEEDS, ModItems.HEMP_LEAF);

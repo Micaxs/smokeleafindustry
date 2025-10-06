@@ -2,9 +2,11 @@ package net.micaxs.smokeleaf.utils;
 
 import net.micaxs.smokeleaf.SmokeleafIndustries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.level.block.Block;
 
 public class ModTags {
 
@@ -20,8 +22,13 @@ public class ModTags {
     public static final TagKey<Item> BLUE_ICE_STRAIN = tag("blue_ice_strain");
     public static final TagKey<Item> PURPLE_HAZE_STRAIN = tag("purple_haze_strain");
 
+    public static final TagKey<Block> POT_SOILS = blockTag("pot_soils");
 
     private static TagKey<Item> tag(String name) {
         return ItemTags.create(ResourceLocation.fromNamespaceAndPath(SmokeleafIndustries.MODID, name));
+    }
+
+    private static TagKey<Block> blockTag(String name) {
+        return BlockTags.create(ResourceLocation.fromNamespaceAndPath(SmokeleafIndustries.MODID, name));
     }
 }

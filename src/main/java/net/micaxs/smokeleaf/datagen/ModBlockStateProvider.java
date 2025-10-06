@@ -116,6 +116,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         horizontalBlock(ModBlocks.DRYING_RACK.get(), new ModelFile.UncheckedModelFile(modLoc("block/drying_rack")));
 
+        horizontalBlock(ModBlocks.GROW_POT.get(), new ModelFile.UncheckedModelFile(modLoc("block/grow_pot")));
+
     }
 
 
