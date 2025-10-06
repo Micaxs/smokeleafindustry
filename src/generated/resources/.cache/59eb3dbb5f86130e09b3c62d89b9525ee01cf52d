@@ -1,4 +1,4 @@
-// 1.21.1	2025-10-05T20:36:49.145470806	Loot Tables
+// 1.21.1	2025-10-07T00:51:51.859585827	Loot Tables
 7f36961d059dd769eda46c224079c942c44c65ac data/smokeleafindustries/loot_table/blocks/afghani_crop.json
 63ec5c04e74680423a0b9c28f5027ed0e12a14c6 data/smokeleafindustries/loot_table/blocks/ak47_crop.json
 8e61852656b83605989a22cd7f5771dc80317277 data/smokeleafindustries/loot_table/blocks/amnesia_haze_crop.json
@@ -10,6 +10,7 @@ d3c25823e0a129194ddfd3f5bc00133c7699cca4 data/smokeleafindustries/loot_table/blo
 e1fd734b2fcd2270567b510c19061f68fba2623e data/smokeleafindustries/loot_table/blocks/bubblegum_crop.json
 d1a7744e42bbe8b926f2c445fea2a028f26c3a07 data/smokeleafindustries/loot_table/blocks/carbon_fiber_crop.json
 d98239eeddc6a7d309d7769cddb329547655e9ba data/smokeleafindustries/loot_table/blocks/cotton_candy_crop.json
+1c2f09a89d2bc6229dbe9d242698fee6e6bddd51 data/smokeleafindustries/loot_table/blocks/dryer.json
 fab64721896ee96c21104ca4f4c6bd118806f209 data/smokeleafindustries/loot_table/blocks/drying_rack.json
 ec302e823fe62228e568d329f774847edbdf4536 data/smokeleafindustries/loot_table/blocks/extractor.json
 24b378f723d1319015c51a9e7a3ad086a671796b data/smokeleafindustries/loot_table/blocks/gary_peyton_crop.json

@@ -35,14 +35,14 @@ public class SynthesizerMenu extends AbstractContainerMenu {
         this.level = inv.player.level();
         this.data = data;
 
+        addPlayerInventory(inv);
+        addPlayerHotbar(inv);
+
         this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 0, 80, 11)); // DNA Input
         this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 1, 62, 35)); // Reagent 1
         this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 2, 80, 35)); // Reagent 2
         this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 3, 98, 35)); // Reagent 3
         this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 4, 80, 59)); // Output Slot
-
-        addPlayerInventory(inv);
-        addPlayerHotbar(inv);
 
         addDataSlots(data);
     }

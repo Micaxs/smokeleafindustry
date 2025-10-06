@@ -237,6 +237,7 @@
   "block.smokeleafindustries.synthesizer": "Synthesizer",
   "block.smokeleafindustries.drying_rack": "Drying Rack",
   "block.smokeleafindustries.reflector": "Reflector",
+  "block.smokeleafindustries.dryer": "Dryer",
 
   "fluid_type.smokeleafindustries.hemp_oil_fluid": "Hemp Oil",
   "fluid_type.smokeleafindustries.hash_oil_fluid": "Hash Oil",
@@ -327,6 +328,8 @@
   "gui.tooltip.liquifier.info": "The liquifier requires energy to operate, this machine will create a fluid extract of your provided weeds.",
   "gui.tooltip.mutator.info": "The mutator requires energy & hash oil to operate, this machine will create a new strain of weed from your provided seeds + extracts.",
   "gui.tooltip.synthesizer.info": "The synthesizer requires empty dna strand + 3 ingredients and energy to operate, this machine will fill your DNA strand with different items and can then be processed further into an extract.",
+  "gui.tooltip.sequencer.info": "The sequencer requires energy to operate, this machine will create a new strain extract from your provided valid dna strand + base extract.",
+  "gui.tooltip.dryer.info": "The dryer requires energy to operate, this machine will dry your fresh tobacco leaves into dried tobacco leaves, and fresh buds into dried buds.",
 
 
 

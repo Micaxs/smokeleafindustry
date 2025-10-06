@@ -37,7 +37,8 @@ public class ModMenuTypes {
     public static final DeferredHolder<MenuType<?>, MenuType<SequencerMenu>> SEQUENCER_MENU =
             registerMenuType("sequencer_menu", SequencerMenu::new);
 
-
+    public static final DeferredHolder<MenuType<?>, MenuType<DryerMenu>> DRYER_MENU =
+            registerMenuType("dryer_menu", DryerMenu::new);
 
 
     private static <T extends AbstractContainerMenu> DeferredHolder<MenuType<?>, MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {

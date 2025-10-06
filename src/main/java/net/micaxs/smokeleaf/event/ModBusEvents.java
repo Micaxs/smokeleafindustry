@@ -42,6 +42,9 @@ public class ModBusEvents {
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ModBlockEntities.SEQUENCER_BE.get(), SequencerBlockEntity::getEnergyStorage);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.SEQUENCER_BE.get(), SequencerBlockEntity::getItemHandler);
 
+        // Dryer BlockEntity Capabilities
+        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK, ModBlockEntities.DRYER_BE.get(), DryerBlockEntity::getEnergyStorage);
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.DRYER_BE.get(), DryerBlockEntity::getItemHandler);
 
     }
 

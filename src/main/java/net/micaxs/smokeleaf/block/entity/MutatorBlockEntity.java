@@ -145,8 +145,14 @@ public class MutatorBlockEntity extends BlockEntity implements MenuProvider {
             @Override
             public void set(int i, int value) {
                 switch (i) {
-                    case 0: MutatorBlockEntity.this.progress = value;
-                    case 1: MutatorBlockEntity.this.maxProgress = value;
+                    case 0:
+                        MutatorBlockEntity.this.progress = value;
+                        break;
+                    case 1:
+                        MutatorBlockEntity.this.maxProgress = value;
+                        break;
+                    default:
+                        break;
                 }
             }
 
@@ -270,7 +276,30 @@ public class MutatorBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     private Optional<RecipeHolder<MutatorRecipe>> getCurrentRecipe() {
-        return this.level.getRecipeManager().getRecipeFor(ModRecipes.MUTATOR_TYPE.get(), new MutatorRecipeInput(itemHandler.getStackInSlot(SEED_INPUT_SLOT), itemHandler.getStackInSlot(EXTRACT_INPUT_SLOT)), level);
+        if (this.level == null) return Optional.empty();
+
+        ItemStack seedStack = itemHandler.getStackInSlot(SEED_INPUT_SLOT);
+        ItemStack extractStack = itemHandler.getStackInSlot(EXTRACT_INPUT_SLOT);
+
+        if (seedStack.isEmpty() || extractStack.isEmpty()) return Optional.empty();
+
+        return this.level.getRecipeManager()
+                .getAllRecipesFor(ModRecipes.MUTATOR_TYPE.get())
+                .stream()
+                .filter(holder -> {
+                    MutatorRecipe rec = holder.value();
+                    NonNullList<IngredientWithCount> inputs = rec.inputItems();
+                    if (inputs.isEmpty()) return false;
+                    boolean seedOk = matches(inputs, 0, seedStack);
+                    boolean extractOk = inputs.size() < 2 || matches(inputs, 1, extractStack);
+                    FluidStack required = rec.getFluid();
+                    FluidStack inTank = FLUID_TANK.getFluid();
+                    boolean fluidOk = !inTank.isEmpty()
+                            && inTank.getFluid() == required.getFluid()
+                            && inTank.getAmount() >= required.getAmount();
+                    return seedOk && extractOk && fluidOk;
+                })
+                .findFirst();
     }
 
     private boolean canInsertItemIntoOutputSlot(ItemStack output) {
@@ -320,6 +349,12 @@ public class MutatorBlockEntity extends BlockEntity implements MenuProvider {
         progress++;
     }
 
+    private boolean matches(NonNullList<IngredientWithCount> inputs, int index, ItemStack stack) {
+        if (index >= inputs.size()) return false;
+        IngredientWithCount need = inputs.get(index);
+        int required = Math.max(1, need.count());
+        return need.ingredient().test(stack) && stack.getCount() >= required;
+    }
 
     // NBT Data
     @Override

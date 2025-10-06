@@ -43,10 +43,10 @@ public class LiquifierMenu extends AbstractContainerMenu {
         this.level = inv.player.level();
         this.data = data;
 
-        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 0, 30, 35));
-
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
+
+        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 0, 30, 35));
 
         addDataSlots(data);
     }

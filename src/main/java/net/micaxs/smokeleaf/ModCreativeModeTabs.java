@@ -102,9 +102,11 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.GRINDER);
                         output.accept(ModBlocks.EXTRACTOR);
                         output.accept(ModBlocks.LIQUIFIER);
+                        output.accept(ModBlocks.DRYER);
                         output.accept(ModBlocks.MUTATOR);
                         output.accept(ModBlocks.SYNTHESIZER);
                         output.accept(ModBlocks.SEQUENCER);
+
 
                         output.accept(ModBlocks.DRYING_RACK);
 

@@ -37,6 +37,9 @@ public class ModBlockEntities {
     public static final Supplier<BlockEntityType<SequencerBlockEntity>> SEQUENCER_BE = BLOCK_ENTITIES.register("sequencer_be",
             () -> BlockEntityType.Builder.of(SequencerBlockEntity::new, ModBlocks.SEQUENCER.get()).build(null));
 
+    public static final Supplier<BlockEntityType<DryerBlockEntity>> DRYER_BE = BLOCK_ENTITIES.register("dryer_be",
+            () -> BlockEntityType.Builder.of(DryerBlockEntity::new, ModBlocks.DRYER.get()).build(null));
+
     public static final Supplier<BlockEntityType<DryingRackBlockEntity>> DRYING_RACK_BE = BLOCK_ENTITIES.register("drying_rack_be",
             () -> BlockEntityType.Builder.of(DryingRackBlockEntity::new, ModBlocks.DRYING_RACK.get()).build(null));
 

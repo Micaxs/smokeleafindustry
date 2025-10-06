@@ -1,25 +1,32 @@
 
-Installation information
+Smokeleaf Industries
 =======
 
-This template repository can be directly cloned to get you started with a new
-mod. Simply create a new repository cloned from this one, by following the
-instructions provided by [GitHub](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
+This is a Minecraft Java Mod for NeoForge 1.21.1 that adds the cannabis cultivation within minecraft with a little bit of humor here and there to keep it interesting. 
+Start creating your own weed empire!
 
-Once you have your clone, simply open the repository in the IDE of your choice. The usual recommendation for an IDE is either IntelliJ IDEA or Eclipse.
+## Features
+- Hemp Plant & Tobacco Plant
+- 25 Different Weed Strain Variations with each having their own unique effects.
+- Machines to craft various products and create new strains (With RF/FE support).
+- Bongs, Joints, Blunts and more to smoke/consume your weed produce.
+- Dealer & Stoner villagers each with trades to help progress or to get rich by trading your produce to the stoner villager.
+- Grow Lights (LED, HPS variants) to increase your weed plants even faster.
+- Grow Pot to grow your plants indoors at various speeds.
+- A steady progression line to keep you engaged.
+- Custom Fluids (Hemp Oil, Hash Oil).
+- And a bunch of custom items, blocks and more!
 
-If at any point you are missing libraries in your IDE, or you've run into problems you can
-run `gradlew --refresh-dependencies` to refresh the local cache. `gradlew clean` to reset everything 
-{this does not affect your code} and then start the process again.
+## Installation
+- The Jar (Mod File) goes into your `mods` folder in your NeoForge 1.21.1 instance.
 
-Mapping Names:
-============
-By default, the MDK is configured to use the official mapping names from Mojang for methods and fields 
-in the Minecraft codebase. These names are covered by a specific license. All modders should be aware of this
-license. For the latest license text, refer to the mapping file itself, or the reference copy here:
-https://github.com/NeoForged/NeoForm/blob/main/Mojang.md
+## Dependencies
+- NeoForge 1.21.1
+- JEI (Just Enough Items) - For viewing recipes easier.
+- Patchouli - For in-game guide book (Currently unfinished).
 
-Additional Resources: 
-==========
-Community Documentation: https://docs.neoforged.net/  
-NeoForged Discord: https://discord.neoforged.net/
+
+## Modpack Developers
+- You are allowed to use this mod in your modpack.
+- Recipes are through datapacks, you can easily modify them to your liking, I highly recommend using KubeJS to modify recipes or doing so through datapacks.
+- If you encounter any issues or bugs, please report them on the GitHub issues page.

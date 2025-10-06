@@ -129,6 +129,7 @@ public class SmokeleafIndustriesClient {
         event.register(ModMenuTypes.MUTATOR_MENU.get(), MutatorScreen::new);
         event.register(ModMenuTypes.SYNTHESIZER_MENU.get(), SynthesizerScreen::new);
         event.register(ModMenuTypes.SEQUENCER_MENU.get(), SequencerScreen::new);
+        event.register(ModMenuTypes.DRYER_MENU.get(), DryerScreen::new);
     }
 
     @SubscribeEvent

@@ -35,12 +35,13 @@ public class SequencerMenu extends AbstractContainerMenu {
         this.level = inv.player.level();
         this.data = data;
 
+        addPlayerInventory(inv);
+        addPlayerHotbar(inv);
+
+
         this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 0, 26, 21)); // DNA Input
         this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 1, 26, 45)); // Base Extract Input
         this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 2, 116, 33)); // Output
-
-        addPlayerInventory(inv);
-        addPlayerHotbar(inv);
 
         addDataSlots(data);
     }

@@ -35,13 +35,14 @@ public class MutatorMenu extends AbstractContainerMenu {
         this.level = inv.player.level();
         this.data = data;
 
+        addPlayerInventory(inv);
+        addPlayerHotbar(inv);
+
+
         this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 0, 12, 15));     // Fluid Bucket Input
         this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 1, 86, 15));     // Seed Input
         this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 2, 106, 15));    // Extract Input
         this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 3, 86, 60));     // Output
-
-        addPlayerInventory(inv);
-        addPlayerHotbar(inv);
 
         addDataSlots(data);
     }

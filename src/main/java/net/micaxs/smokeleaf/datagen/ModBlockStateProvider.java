@@ -113,6 +113,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         horizontalBooleanVariants(ModBlocks.MUTATOR.get(), BlockStateProperties.HORIZONTAL_FACING, BlockStateProperties.POWERED, "_on", "", false);
         horizontalBooleanVariants(ModBlocks.SYNTHESIZER.get(), BlockStateProperties.HORIZONTAL_FACING, BlockStateProperties.POWERED, "_on", "", false);
         horizontalBooleanVariants(ModBlocks.SEQUENCER.get(), BlockStateProperties.HORIZONTAL_FACING, BlockStateProperties.POWERED, "_on", "", false);
+        horizontalBooleanVariants(ModBlocks.DRYER.get(), BlockStateProperties.HORIZONTAL_FACING, BlockStateProperties.POWERED, "_on", "", false);
+
+
 
         horizontalBlock(ModBlocks.DRYING_RACK.get(), new ModelFile.UncheckedModelFile(modLoc("block/drying_rack")));
 
