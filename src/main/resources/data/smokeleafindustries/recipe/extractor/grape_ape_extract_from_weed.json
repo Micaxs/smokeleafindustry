@@ -1,0 +1,10 @@
+{
+  "type": "smokeleafindustries:extractor",
+  "ingredient": {
+    "item": "smokeleafindustries:grape_ape_weed"
+  },
+  "result": {
+    "id": "smokeleafindustries:grape_ape_extract",
+    "count": 1
+  }
+}

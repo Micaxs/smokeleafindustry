@@ -1,0 +1,10 @@
+{
+  "type": "smokeleafindustries:extractor",
+  "ingredient": {
+    "item": "smokeleafindustries:moonbow_weed"
+  },
+  "result": {
+    "id": "smokeleafindustries:moonbow_extract",
+    "count": 1
+  }
+}
