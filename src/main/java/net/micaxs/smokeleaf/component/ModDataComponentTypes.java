@@ -44,6 +44,12 @@ public class ModDataComponentTypes {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> THC = register("thc", builder -> builder.persistent(Codec.INT));
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> CBD = register("cbd", builder -> builder.persistent(Codec.INT));
 
+    // Plant Nutrients (Increase THC with: 5N 10P 14K) (Increase CBD with: 8N 4P 13K) (Optimal pH: 6.0 - 7.0)
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> PH = register("ph", builder -> builder.persistent(Codec.INT));
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> NITROGEN = register("nitrogen", builder -> builder.persistent(Codec.INT));
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> PHOSPHORUS = register("phosphorus", builder -> builder.persistent(Codec.INT));
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<Integer>> POTASSIUM = register("potassium", builder -> builder.persistent(Codec.INT));
+
     // DNA Contents
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<DNAContents>> DNA_CONTENTS =
             register("dna_contents", b -> b.persistent(DNAContents.CODEC));
