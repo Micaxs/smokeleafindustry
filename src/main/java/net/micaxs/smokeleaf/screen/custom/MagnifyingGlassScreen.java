@@ -3,6 +3,7 @@ package net.micaxs.smokeleaf.screen.custom;
 import net.micaxs.smokeleaf.SmokeleafIndustries;
 import net.micaxs.smokeleaf.block.custom.BaseWeedCropBlock;
 import net.micaxs.smokeleaf.block.entity.BaseWeedCropBlockEntity;
+import net.micaxs.smokeleaf.utils.MouseUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
@@ -14,6 +15,9 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+
+import java.util.List;
+import java.util.Optional;
 
 public class MagnifyingGlassScreen extends Screen {
     private static final ResourceLocation BG_TEXTURE = ResourceLocation.fromNamespaceAndPath(SmokeleafIndustries.MODID, "textures/gui/analyzer/analyzer_gui.png"); // 256x256
@@ -123,9 +127,7 @@ public class MagnifyingGlassScreen extends Screen {
             } else {
                 drawScaledCentered(guiGraphics, Component.literal("Levels Invalid!"), xCenter, top + 110, 0xFF5555, 1f);
                 drawScaledCentered(guiGraphics, Component.literal("Plant produces no drops!"), xCenter, top + 125, 0x3d3d3d, 0.8f);
-
             }
-
 
 
             drawScaledCentered(guiGraphics, Component.literal("Press ESC to exit!"), xCenter, top + 150, 0x292929, 1f);
@@ -133,12 +135,95 @@ public class MagnifyingGlassScreen extends Screen {
             drawBar(guiGraphics, left + BAR_OFFSET_X, top + BAR_OFFSET_Y_N, BAR_U, BAR_V_N, scaledWidth(n));
             drawBar(guiGraphics, left + BAR_OFFSET_X, top + BAR_OFFSET_Y_P, BAR_U, BAR_V_P, scaledWidth(p));
             drawBar(guiGraphics, left + BAR_OFFSET_X, top + BAR_OFFSET_Y_K, BAR_U, BAR_V_K, scaledWidth(k));
+
+
+            var optimalNutrients = crop.getOptimalNutrientsLevels();
+
+            int barLeft  = left + BAR_OFFSET_X;
+            int barRight = barLeft + BAR_W - 1; // inclusive
+
+
+            // TODO: Render the still valid nutrient levels -1 and +1 as orange lines on the bars
+            // TODO: Render the still valid nutrient levels -2 and +2 as red lines on the bars
+            // TODO: Render the perfect valid nutrient levels as green lines on the bars
+            if (optimalNutrients.n > 0 && optimalNutrients.n <= MAX_NUTRIENT) {
+                int ox = Mth.clamp(barLeft + scaledWidth(optimalNutrients.n), barLeft, barRight);
+                guiGraphics.fill(ox, top + BAR_OFFSET_Y_N, ox + 1, top + BAR_OFFSET_Y_N + BAR_H, 0xFFFFFFFF);
+            }
+            if (optimalNutrients.p > 0 && optimalNutrients.p <= MAX_NUTRIENT) {
+                int ox = Mth.clamp(barLeft + scaledWidth(optimalNutrients.p), barLeft, barRight);
+                guiGraphics.fill(ox, top + BAR_OFFSET_Y_P, ox + 1, top + BAR_OFFSET_Y_P + BAR_H, 0xFFFFFFFF);
+            }
+            if (optimalNutrients.k > 0 && optimalNutrients.k <= MAX_NUTRIENT) {
+                int ox = Mth.clamp(barLeft + scaledWidth(optimalNutrients.k), barLeft, barRight);
+                guiGraphics.fill(ox, top + BAR_OFFSET_Y_K, ox + 1, top + BAR_OFFSET_Y_K + BAR_H, 0xFFFFFFFF);
+            }
+
+            renderOptimalNutrientsTooltip(
+                    guiGraphics, mouseX, mouseY, left, top,
+                    n, p, k,
+                    optimalNutrients.n, optimalNutrients.p, optimalNutrients.k
+            );
+
         } else {
             guiGraphics.drawCenteredString(this.font, Component.literal("No plant data available."), xCenter, yTopText + 34, 0xFF5555);
             drawBar(guiGraphics, left + BAR_OFFSET_X, top + BAR_OFFSET_Y_N, BAR_U, BAR_V_N, 0);
             drawBar(guiGraphics, left + BAR_OFFSET_X, top + BAR_OFFSET_Y_P, BAR_U, BAR_V_P, 0);
             drawBar(guiGraphics, left + BAR_OFFSET_X, top + BAR_OFFSET_Y_K, BAR_U, BAR_V_K, 0);
         }
+    }
+
+    private void renderOptimalNutrientsTooltip(GuiGraphics g,
+                                               int mouseX, int mouseY,
+                                               int baseX, int baseY,
+                                               int n, int p, int k,
+                                               int optN, int optP, int optK) {
+        // N bar
+        if (isMouseAboveArea(mouseX, mouseY, baseX, baseY, BAR_OFFSET_X, BAR_OFFSET_Y_N, BAR_W, BAR_H)) {
+            g.renderTooltip(
+                    this.font,
+                    List.of(
+                            Component.literal("Nitrogen"),
+                            Component.literal("Current: " + n),
+                            Component.literal("Optimal: " + optN)
+                    ),
+                    Optional.empty(),
+                    mouseX, mouseY
+            );
+            return;
+        }
+        // P bar
+        if (isMouseAboveArea(mouseX, mouseY, baseX, baseY, BAR_OFFSET_X, BAR_OFFSET_Y_P, BAR_W, BAR_H)) {
+            g.renderTooltip(
+                    this.font,
+                    List.of(
+                            Component.literal("Phosphorus"),
+                            Component.literal("Current: " + p),
+                            Component.literal("Optimal: " + optP)
+                    ),
+                    Optional.empty(),
+                    mouseX, mouseY
+            );
+            return;
+        }
+        // K bar
+        if (isMouseAboveArea(mouseX, mouseY, baseX, baseY, BAR_OFFSET_X, BAR_OFFSET_Y_K, BAR_W, BAR_H)) {
+            g.renderTooltip(
+                    this.font,
+                    List.of(
+                            Component.literal("Potassium"),
+                            Component.literal("Current: " + k),
+                            Component.literal("Optimal: " + optK)
+                    ),
+                    Optional.empty(),
+                    mouseX, mouseY
+            );
+        }
+    }
+
+
+    private boolean isMouseAboveArea(int mouseX, int mouseY, int x, int y, int offsetX, int offsetY, int width, int height) {
+        return MouseUtil.isMouseOver(mouseX, mouseY, x + offsetX, y + offsetY, width, height);
     }
 
 

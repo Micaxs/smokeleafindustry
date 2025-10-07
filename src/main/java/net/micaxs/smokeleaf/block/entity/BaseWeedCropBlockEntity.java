@@ -13,6 +13,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
+import java.util.Optional;
+
 public class BaseWeedCropBlockEntity extends BlockEntity {
 
     private static final int MAX_PERCENT = 100;
@@ -93,6 +95,12 @@ public class BaseWeedCropBlockEntity extends BlockEntity {
         boolean kOk = Math.abs(this.potassium - t.k) <= NPK_TOLERANCE;
 
         return nOk && pOk && kOk;
+    }
+
+    public Config.NutrientTarget getOptimalNutrientsLevels() {
+        var cropId = getCropId();
+        var targetOpt = Config.getNutrientTargetFor(cropId);
+        return targetOpt.orElseGet(() -> new Config.NutrientTarget(0, 0, 0));
     }
 
     public int getThc() {
