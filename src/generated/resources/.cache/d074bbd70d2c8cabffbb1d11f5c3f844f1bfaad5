@@ -1,4 +1,4 @@
-// 1.21.1	2025-10-05T19:27:07.502632094	Item Models: smokeleafindustries
+// 1.21.1	2025-10-07T08:01:18.930894095	Item Models: smokeleafindustries
 35fa437ca373fbd1597433c8807e764f57461e59 assets/smokeleafindustries/models/item/afghani_bag.json
 26a569e1bc76759afcc1eefebadc628e7f487fcb assets/smokeleafindustries/models/item/afghani_bud.json
 0a5543f67ca79e02bd2d230634a51848fde780a8 assets/smokeleafindustries/models/item/afghani_extract.json
@@ -143,6 +143,7 @@ dfd106cb599b21d5b58f83ed6ac44086a4566498 assets/smokeleafindustries/models/item/
 f8329615053669316f1915341f85247cd78fc12d assets/smokeleafindustries/models/item/lemon_haze_gummy.json
 e8b4a67f34b337715d01692b070b01f50706c5e3 assets/smokeleafindustries/models/item/lemon_haze_seeds.json
 bfbf5989771443fe60c1eb4f3609b3ea86b22545 assets/smokeleafindustries/models/item/lemon_haze_weed.json
+b1cb61f8711917ce5efd797ea17e0fbffe3de611 assets/smokeleafindustries/models/item/magnifying_glass.json
 ba3a1ef1cd819e2e3dc0f37efe2f0fc1be731569 assets/smokeleafindustries/models/item/moonbow_bag.json
 05701ed089930a119d2e0bbf76fa2af1b2ba674b assets/smokeleafindustries/models/item/moonbow_bud.json
 d9d7405b400d83d444fe5d2d3fd31d35de8a0613 assets/smokeleafindustries/models/item/moonbow_extract.json

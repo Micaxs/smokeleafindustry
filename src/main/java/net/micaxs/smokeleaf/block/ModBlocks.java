@@ -119,7 +119,7 @@ public class ModBlocks {
     public static final DeferredBlock<Block> HEMP_CROP = BLOCKS.register("hemp_crop", () ->
             new BaseWeedCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT).noOcclusion().noCollission(), ModItems.HEMP_SEEDS));
     public static final DeferredBlock<Block> WHITE_WIDOW_CROP = BLOCKS.register("white_widow_crop", () ->
-        new BaseWeedCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT).noOcclusion().noCollission(), ModItems.WHITE_WIDOW_SEEDS));
+        new BaseWeedCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT).noOcclusion().noCollission(), ModItems.WHITE_WIDOW_SEEDS, 10, 7, 11, 6, 15, 10));
     public static final DeferredBlock<Block> BUBBLE_KUSH_CROP = BLOCKS.register("bubble_kush_crop", () ->
         new BaseWeedCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHEAT).noOcclusion().noCollission(), ModItems.BUBBLE_KUSH_SEEDS));
     public static final DeferredBlock<Block> LEMON_HAZE_CROP = BLOCKS.register("lemon_haze_crop", () ->

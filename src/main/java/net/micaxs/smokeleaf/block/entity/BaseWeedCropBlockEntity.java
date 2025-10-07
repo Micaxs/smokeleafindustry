@@ -1,9 +1,12 @@
 package net.micaxs.smokeleaf.block.entity;
 
+import net.micaxs.smokeleaf.Config;
 import net.micaxs.smokeleaf.component.ModDataComponentTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -14,6 +17,7 @@ public class BaseWeedCropBlockEntity extends BlockEntity {
 
     private static final int MAX_PERCENT = 100;
     private static final int MAX_PH = 14;
+    private static final int NPK_TOLERANCE = 2;
 
     private int thc;
     private int cbd;
@@ -27,8 +31,6 @@ public class BaseWeedCropBlockEntity extends BlockEntity {
     }
 
     // Getters
-    public int getThc() { return thc; }
-    public int getCbd() { return cbd; }
     public int getPh() { return ph; }
     public int getNitrogen() { return nitrogen; }
     public int getPhosphorus() { return phosphorus; }
@@ -71,6 +73,55 @@ public class BaseWeedCropBlockEntity extends BlockEntity {
         this.nitrogen = tag.getInt("nitrogen");
         this.phosphorus = tag.getInt("phosphorus");
         this.potassium = tag.getInt("potassium");
+    }
+
+
+    private ResourceLocation getCropId() {
+        if (level == null) return null;
+        return BuiltInRegistries.BLOCK.getKey(getBlockState().getBlock());
+    }
+
+    public boolean isValidNutrientsLevels() {
+        var cropId = getCropId();
+        var targetOpt = Config.getNutrientTargetFor(cropId);
+        if (targetOpt.isEmpty()) {
+            return true; // no config entry -> considered valid
+        }
+        var t = targetOpt.get();
+        boolean nOk = Math.abs(this.nitrogen - t.n) <= NPK_TOLERANCE;
+        boolean pOk = Math.abs(this.phosphorus - t.p) <= NPK_TOLERANCE;
+        boolean kOk = Math.abs(this.potassium - t.k) <= NPK_TOLERANCE;
+
+        return nOk && pOk && kOk;
+    }
+
+    public int getThc() {
+        return computeWithNutrients(this.thc);
+    }
+
+    public int getCbd() {
+        return computeWithNutrients(this.cbd);
+    }
+
+    private int computeWithNutrients(int base) {
+        var cropId = getCropId();
+        var targetOpt = Config.getNutrientTargetFor(cropId);
+        if (targetOpt.isEmpty()) {
+            return base; // no config entry -> base
+        }
+        var t = targetOpt.get();
+        int dn = Math.abs(this.nitrogen - t.n);
+        int dp = Math.abs(this.phosphorus - t.p);
+        int dk = Math.abs(this.potassium - t.k);
+
+        if (dn == 0 && dp == 0 && dk == 0) {
+            return Mth.clamp(base * 2, 0, MAX_PERCENT);
+        }
+
+        int totalDiff = dn + dp + dk;
+        int reduction = (int)Math.round(base * 0.10 * totalDiff);
+        int value = base - reduction;
+        return Mth.clamp(value, 0, MAX_PERCENT);
     }
 
     public void writeToItem(ItemStack stack) {

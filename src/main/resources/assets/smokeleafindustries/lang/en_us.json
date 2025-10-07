@@ -239,6 +239,37 @@
   "block.smokeleafindustries.reflector": "Reflector",
   "block.smokeleafindustries.dryer": "Dryer",
 
+
+  "block.smokeleafindustries.hemp_crop": "Hemp Plant",
+  "block.smokeleafindustries.white_widow_crop": "White Widow Plant",
+    "block.smokeleafindustries.blue_ice_crop": "Blue Ice Plant",
+    "block.smokeleafindustries.sour_diesel_crop": "Sour Diesel Plant",
+    "block.smokeleafindustries.purple_haze_crop": "Purple Haze Plant",
+    "block.smokeleafindustries.lemon_haze_crop": "Lemon Haze Plant",
+    "block.smokeleafindustries.bubblegum_crop": "Bubblegum Plant",
+    "block.smokeleafindustries.bubble_kush_crop": "Bubble Kush Plant",
+    "block.smokeleafindustries.og_kush_crop": "OG Kush Plant",
+    "block.smokeleafindustries.jack_herer_crop": "Jack Herer Plant",
+    "block.smokeleafindustries.gary_peyton_crop": "Gary Peyton Plant",
+    "block.smokeleafindustries.amnesia_haze_crop": "Amnesia Haze Plant",
+    "block.smokeleafindustries.ak47_crop": "AK47 Plant",
+    "block.smokeleafindustries.ghost_train_crop": "Ghost Train Plant",
+    "block.smokeleafindustries.grape_ape_crop": "Grape Ape Plant",
+    "block.smokeleafindustries.cotton_candy_crop": "Cotton Candy Plant",
+    "block.smokeleafindustries.banana_kush_crop": "Banana Kush Plant",
+    "block.smokeleafindustries.carbon_fiber_crop": "Carbon Fiber Plant",
+    "block.smokeleafindustries.birthday_cake_crop": "Birthday Cake Plant",
+    "block.smokeleafindustries.blue_cookies_crop": "Blue Cookies Plant",
+    "block.smokeleafindustries.afghani_crop": "Afghani Plant",
+    "block.smokeleafindustries.moonbow_crop": "Moonbow Plant",
+    "block.smokeleafindustries.lava_cake_crop": "Lava Cake Plant",
+    "block.smokeleafindustries.jelly_rancher_crop": "Jelly Rancher Plant",
+    "block.smokeleafindustries.strawberry_shortcake_crop": "Strawberry Shortcake Plant",
+    "block.smokeleafindustries.pink_kush_crop": "Pink Kush Plant",
+
+
+
+
   "fluid_type.smokeleafindustries.hemp_oil_fluid": "Hemp Oil",
   "fluid_type.smokeleafindustries.hash_oil_fluid": "Hash Oil",
   "fluid_type.smokeleafindustries.hash_oil_sludge_fluid": "Sludge Hash Oil",

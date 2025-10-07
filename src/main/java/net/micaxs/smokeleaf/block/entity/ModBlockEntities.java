@@ -18,6 +18,7 @@ public class ModBlockEntities {
 
     public static final Supplier<BlockEntityType<BaseWeedCropBlockEntity>> BASE_WEED_CROP_BE = BLOCK_ENTITIES.register("base_weed_crop_be",
             () -> BlockEntityType.Builder.of(BaseWeedCropBlockEntity::new,
+                    ModBlocks.HEMP_CROP.get(),
                     ModBlocks.WHITE_WIDOW_CROP.get(),
                     ModBlocks.BUBBLE_KUSH_CROP.get(),
                     ModBlocks.LEMON_HAZE_CROP.get(),

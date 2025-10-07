@@ -1,5 +1,7 @@
 package net.micaxs.smokeleaf.block.custom;
 
+import net.micaxs.smokeleaf.block.entity.BaseWeedCropBlockEntity;
+import net.micaxs.smokeleaf.block.entity.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -47,10 +49,28 @@ public class BaseWeedCropBlock extends CropBlock implements EntityBlock {
     };
 
     private final Supplier<Item> seedItem;
+    private final int baseN;
+    private final int baseP;
+    private final int baseK;
+    private final int basePh;
+
+    private int baseThc = 0;
+    private int baseCbd = 0;
 
     public BaseWeedCropBlock(Properties properties, Supplier<Item> seedItem) {
+        this(properties, seedItem, 0, 0, 0, 7, 0, 0);
+    }
+
+    public BaseWeedCropBlock(Properties properties, Supplier<Item> seedItem, int n, int p, int k, int ph, int thc, int cbd) {
         super(properties);
         this.seedItem = seedItem;
+        this.baseN = n;
+        this.baseP = p;
+        this.baseK = k;
+        this.basePh = ph;
+        this.baseThc = thc;
+        this.baseCbd = cbd;
+
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(this.getAgeProperty(), 0)
                 .setValue(TOP, false));
@@ -167,6 +187,17 @@ public class BaseWeedCropBlock extends CropBlock implements EntityBlock {
 
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return ModBlockEntityTypes.BASE_WEED_CROP.get().create(pos, state);
+        BaseWeedCropBlockEntity baseWeedCropBlockEntity = ModBlockEntities.BASE_WEED_CROP_BE.get().create(pos, state);
+        if (baseWeedCropBlockEntity != null) {
+
+            baseWeedCropBlockEntity.setThc(this.baseThc);
+            baseWeedCropBlockEntity.setCbd(this.baseCbd);
+
+            baseWeedCropBlockEntity.setNitrogen(this.baseN);
+            baseWeedCropBlockEntity.setPhosphorus(this.baseP);
+            baseWeedCropBlockEntity.setPotassium(this.baseK);
+            baseWeedCropBlockEntity.setPh(this.basePh);
+        }
+        return baseWeedCropBlockEntity;
     }
 }
