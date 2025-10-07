@@ -1,0 +1,10 @@
+{
+  "type": "smokeleafindustries:grinder",
+  "ingredient": {
+    "item": "smokeleafindustries:gary_peyton_bud"
+  },
+  "result": {
+    "id": "smokeleafindustries:gary_peyton_weed",
+    "count": 2
+  }
+}

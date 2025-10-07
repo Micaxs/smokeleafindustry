@@ -1,0 +1,10 @@
+{
+  "type": "smokeleafindustries:grinder",
+  "ingredient": {
+    "item": "smokeleafindustries:og_kush_bud"
+  },
+  "result": {
+    "id": "smokeleafindustries:og_kush_weed",
+    "count": 2
+  }
+}

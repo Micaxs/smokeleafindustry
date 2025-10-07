@@ -1,0 +1,10 @@
+{
+  "type": "smokeleafindustries:grinder",
+  "ingredient": {
+    "item": "smokeleafindustries:carbon_fiber_bud"
+  },
+  "result": {
+    "id": "smokeleafindustries:carbon_fiber_weed",
+    "count": 2
+  }
+}

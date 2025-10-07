@@ -1,0 +1,10 @@
+{
+  "type": "smokeleafindustries:grinder",
+  "ingredient": {
+    "item": "smokeleafindustries:grape_ape_bud"
+  },
+  "result": {
+    "id": "smokeleafindustries:grape_ape_weed",
+    "count": 2
+  }
+}

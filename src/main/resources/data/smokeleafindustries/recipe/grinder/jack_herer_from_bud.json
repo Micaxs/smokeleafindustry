@@ -1,0 +1,10 @@
+{
+  "type": "smokeleafindustries:grinder",
+  "ingredient": {
+    "item": "smokeleafindustries:jack_herer_bud"
+  },
+  "result": {
+    "id": "smokeleafindustries:jack_herer_weed",
+    "count": 2
+  }
+}

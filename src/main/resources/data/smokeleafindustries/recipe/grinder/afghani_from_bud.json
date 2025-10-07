@@ -1,0 +1,10 @@
+{
+  "type": "smokeleafindustries:grinder",
+  "ingredient": {
+    "item": "smokeleafindustries:afghani_bud"
+  },
+  "result": {
+    "id": "smokeleafindustries:afghani_weed",
+    "count": 2
+  }
+}
