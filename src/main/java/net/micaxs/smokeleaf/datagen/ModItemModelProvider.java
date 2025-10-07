@@ -21,6 +21,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         // --- Random Items
         basicItem(ModItems.HEMP_HAMMER.get());
+        basicItem(ModItems.MAGNIFYING_GLASS.get());
 
         basicItem(ModItems.UNFINISHED_HEMP_CORE.get());
         basicItem(ModItems.HEMP_CORE.get());

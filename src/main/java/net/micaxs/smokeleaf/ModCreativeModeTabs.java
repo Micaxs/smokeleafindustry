@@ -77,6 +77,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.GROW_POT);
 
                         output.accept(ModItems.HEMP_HAMMER);
+                        output.accept(ModItems.MAGNIFYING_GLASS);
                         output.accept(ModItems.MANUAL_GRINDER);
                         output.accept(ModItems.EMPTY_BAG);
                         output.accept(ModItems.JOINT);

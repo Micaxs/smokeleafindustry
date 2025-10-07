@@ -1,0 +1,57 @@
+package net.micaxs.smokeleaf.item.custom;
+
+import net.micaxs.smokeleaf.block.ModBlocks;
+import net.micaxs.smokeleaf.block.custom.BaseWeedCropBlock;
+import net.micaxs.smokeleaf.component.DNAContents;
+import net.micaxs.smokeleaf.component.ModDataComponentTypes;
+import net.micaxs.smokeleaf.recipe.ModRecipes;
+import net.micaxs.smokeleaf.recipe.SequencerRecipe;
+import net.micaxs.smokeleaf.screen.custom.MagnifyingGlassScreen;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MagnifyingGlassItem extends Item {
+
+    public MagnifyingGlassItem(Properties properties) {
+        super(properties);
+    }
+
+    @Override
+    public InteractionResult useOn(UseOnContext context) {
+        Level level = context.getLevel();
+        BlockPos pos = context.getClickedPos();
+        Player player = context.getPlayer();
+        if (player == null) return InteractionResult.PASS;
+
+        BlockState state = level.getBlockState(pos);
+        if (!(state.getBlock() instanceof BaseWeedCropBlock)) {
+            return InteractionResult.PASS;
+        }
+
+        if (level.isClientSide()) {
+            Minecraft.getInstance().setScreen(new MagnifyingGlassScreen(pos));
+        }
+
+        return InteractionResult.sidedSuccess(level.isClientSide());
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        tooltipComponents.add(Component.translatable("tooltip.smokeleafindustries.magnifying_glass").withStyle(ChatFormatting.GRAY));
+    }
+
+}
