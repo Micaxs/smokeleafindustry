@@ -2,6 +2,8 @@ package net.micaxs.smokeleaf.recipe;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.micaxs.smokeleaf.component.ModDataComponentTypes;
+import net.micaxs.smokeleaf.item.custom.BaseWeedItem;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.RegistryFriendlyByteBuf;
@@ -24,16 +26,32 @@ public record GrinderRecipe(Ingredient inputItem, ItemStack output) implements R
 
     @Override
     public boolean matches(GrinderRecipeInput grinderRecipeInput, Level level) {
-        if (level.isClientSide()) {
-            return false;
-        }
-
+        if (level.isClientSide()) return false;
         return inputItem.test(grinderRecipeInput.getItem(0));
     }
 
     @Override
     public ItemStack assemble(GrinderRecipeInput grinderRecipeInput, HolderLookup.Provider provider) {
-        return output.copy();
+        ItemStack out = output.copy();
+        ItemStack in = grinderRecipeInput.getItem(0);
+
+        if (!in.isEmpty()) {
+            // Initialize weed defaults first (effect, duration, default THC/CBD)
+            if (out.getItem() instanceof BaseWeedItem weedItem) {
+                weedItem.initializeStack(out);
+            }
+
+            // Only overwrite if present on the bud to avoid reverting to defaults
+            Integer thc = in.get(ModDataComponentTypes.THC.get());
+            Integer cbd = in.get(ModDataComponentTypes.CBD.get());
+
+            System.out.println("BUD thc/cbd: " + thc + "/" + cbd);
+
+            if (thc != null) out.set(ModDataComponentTypes.THC.get(), thc);
+            if (cbd != null) out.set(ModDataComponentTypes.CBD.get(), cbd);
+        }
+
+        return out;
     }
 
     @Override
@@ -43,7 +61,7 @@ public record GrinderRecipe(Ingredient inputItem, ItemStack output) implements R
 
     @Override
     public ItemStack getResultItem(HolderLookup.Provider provider) {
-        return output;
+        return output.copy();
     }
 
     @Override
@@ -56,21 +74,17 @@ public record GrinderRecipe(Ingredient inputItem, ItemStack output) implements R
         return ModRecipes.GRINDER_TYPE.get();
     }
 
-
     public static class Serializer implements RecipeSerializer<GrinderRecipe> {
-        // Codec
         public static final MapCodec<GrinderRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
                 Ingredient.CODEC_NONEMPTY.fieldOf("ingredient").forGetter(GrinderRecipe::inputItem),
                 ItemStack.CODEC.fieldOf("result").forGetter(GrinderRecipe::output)
         ).apply(inst, GrinderRecipe::new));
 
-        // StreamCodec
         public static final StreamCodec<RegistryFriendlyByteBuf, GrinderRecipe> STREAM_CODEC =
                 StreamCodec.composite(
                         Ingredient.CONTENTS_STREAM_CODEC, GrinderRecipe::inputItem,
                         ItemStack.STREAM_CODEC, GrinderRecipe::output,
                         GrinderRecipe::new);
-
 
         @Override
         public MapCodec<GrinderRecipe> codec() {

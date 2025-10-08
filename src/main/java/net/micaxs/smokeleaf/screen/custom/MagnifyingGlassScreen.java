@@ -183,7 +183,7 @@ public class MagnifyingGlassScreen extends Screen {
             // Draw Produces Info "THC: ?%   CBD: ?%   SEED: ?   BUD: ?"
             int thcVal = crop.getThc();
             int cbdVal =  crop.getCbd();
-            int budVal = 1;  // TODO: Add Increased Bud Logic and Implement Here.
+            int budVal =  crop.getBudCount();
 
 
             Component producesLine = Component.literal("")

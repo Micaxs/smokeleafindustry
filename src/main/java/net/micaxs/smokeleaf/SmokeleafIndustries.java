@@ -8,6 +8,7 @@ import net.micaxs.smokeleaf.effect.ModParticles;
 import net.micaxs.smokeleaf.fluid.ModFluidTypes;
 import net.micaxs.smokeleaf.fluid.ModFluids;
 import net.micaxs.smokeleaf.item.ModItems;
+import net.micaxs.smokeleaf.loot.ModLootItemFunctions;
 import net.micaxs.smokeleaf.loot.ModLootModifiers;
 import net.micaxs.smokeleaf.network.ModPayloads;
 import net.micaxs.smokeleaf.recipe.ModRecipes;
@@ -63,6 +64,7 @@ public class SmokeleafIndustries {
 
         ModDataComponentTypes.register(modEventBus);
         ModLootModifiers.register(modEventBus);
+        ModLootItemFunctions.register(modEventBus);
 
         ModParticles.register(modEventBus);
 

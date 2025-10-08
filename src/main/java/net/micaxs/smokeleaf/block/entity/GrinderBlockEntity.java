@@ -47,18 +47,14 @@ public class GrinderBlockEntity extends BlockEntity implements MenuProvider {
         protected void onContentsChanged(int slot) {
             setChanged();
             if (!level.isClientSide()) {
-              level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+                level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
             }
         }
 
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
-            if (slot != INPUT_SLOT) {
-                return false;
-            }
-            if (stack.isEmpty() || level == null) {
-                return false;
-            }
+            if (slot != INPUT_SLOT) return false;
+            if (stack.isEmpty() || level == null) return false;
 
             return level.getRecipeManager()
                     .getRecipeFor(ModRecipes.GRINDER_TYPE.get(), new GrinderRecipeInput(stack), level)
@@ -70,7 +66,6 @@ public class GrinderBlockEntity extends BlockEntity implements MenuProvider {
         return this.itemHandler;
     }
 
-
     private static final int ENERGY_CONSTANT = 40;
     private static final int INPUT_SLOT = 0;
     private static final int OUTPUT_SLOT = 1;
@@ -78,8 +73,6 @@ public class GrinderBlockEntity extends BlockEntity implements MenuProvider {
     protected final ContainerData data;
     private int progress = 0;
     private int maxProgress = 78;
-
-
 
     private static final int ENERGY_TRANSFER_AMOUNT = 320;
     private final ModEnergyStorage ENERGY_STORAGE = createEnergyStorage();
@@ -109,8 +102,8 @@ public class GrinderBlockEntity extends BlockEntity implements MenuProvider {
             @Override
             public void set(int i, int value) {
                 switch (i) {
-                    case 0: GrinderBlockEntity.this.progress = value;
-                    case 1: GrinderBlockEntity.this.maxProgress = value;
+                    case 0 -> GrinderBlockEntity.this.progress = value;
+                    case 1 -> GrinderBlockEntity.this.maxProgress = value;
                 }
             }
 
@@ -129,12 +122,9 @@ public class GrinderBlockEntity extends BlockEntity implements MenuProvider {
         }
     }
 
-
-
     public IEnergyStorage getEnergyStorage(@Nullable Direction direction) {
         return this.ENERGY_STORAGE;
     }
-
 
     @Override
     public Component getDisplayName() {
@@ -154,9 +144,7 @@ public class GrinderBlockEntity extends BlockEntity implements MenuProvider {
         Containers.dropContents(this.level, this.worldPosition, inventory);
     }
 
-
     public void tick(Level level, BlockPos blockPos, BlockState blockState) {
-        // Check if has energy
         boolean hasEnergy = this.ENERGY_STORAGE.getEnergyStored() > 0;
 
         if (hasEnergy && hasRecipe()) {
@@ -191,28 +179,41 @@ public class GrinderBlockEntity extends BlockEntity implements MenuProvider {
 
     private boolean hasRecipe() {
         Optional<RecipeHolder<GrinderRecipe>> recipe = getCurrentRecipe();
-        if (recipe.isEmpty()) {
-            return false;
+        if (recipe.isEmpty()) return false;
+
+        ItemStack input = itemHandler.getStackInSlot(INPUT_SLOT);
+        ItemStack assembled = recipe.get().value().assemble(
+                new GrinderRecipeInput(input.copyWithCount(1)),
+                level.registryAccess()
+        );
+
+        int bonus = 0;
+        if (input.getItem() instanceof BaseBudItem) {
+            if (Boolean.TRUE.equals(input.get(ModDataComponentTypes.DRY))) {
+                bonus = 1;
+            }
         }
-        ItemStack output = recipe.get().value().output();
-        return canInsertAmountIntoOutputSlot(output.getCount()) && canInsertItemIntoOutputSlot(output);
+        int totalOut = assembled.getCount() + bonus;
+
+        return canInsertAmountIntoOutputSlot(totalOut) && canInsertItemIntoOutputSlot(assembled);
     }
 
     private boolean canInsertItemIntoOutputSlot(ItemStack output) {
-        return itemHandler.getStackInSlot(OUTPUT_SLOT).isEmpty() ||
-                itemHandler.getStackInSlot(OUTPUT_SLOT).getItem() == output.getItem();
+        ItemStack existing = itemHandler.getStackInSlot(OUTPUT_SLOT);
+        return existing.isEmpty() || ItemStack.isSameItemSameComponents(existing, output);
     }
 
-
-
     private boolean canInsertAmountIntoOutputSlot(int count) {
-        int maxCount = itemHandler.getStackInSlot(OUTPUT_SLOT).isEmpty() ? 64 : itemHandler.getStackInSlot(OUTPUT_SLOT).getMaxStackSize();
+        int maxCount = itemHandler.getStackInSlot(OUTPUT_SLOT).isEmpty()
+                ? 64
+                : itemHandler.getStackInSlot(OUTPUT_SLOT).getMaxStackSize();
         int currentCount = itemHandler.getStackInSlot(OUTPUT_SLOT).getCount();
         return maxCount >= currentCount + count;
     }
 
     private Optional<RecipeHolder<GrinderRecipe>> getCurrentRecipe() {
-        return this.level.getRecipeManager().getRecipeFor(ModRecipes.GRINDER_TYPE.get(), new GrinderRecipeInput(itemHandler.getStackInSlot(INPUT_SLOT)), level);
+        return this.level.getRecipeManager()
+                .getRecipeFor(ModRecipes.GRINDER_TYPE.get(), new GrinderRecipeInput(itemHandler.getStackInSlot(INPUT_SLOT)), level);
     }
 
     private void craftItem() {
@@ -220,33 +221,38 @@ public class GrinderBlockEntity extends BlockEntity implements MenuProvider {
         if (recipeOpt.isEmpty()) return;
 
         ItemStack inputStack = itemHandler.getStackInSlot(INPUT_SLOT);
-        ItemStack recipeOutput = recipeOpt.get().value().output();
-        int baseOutput = recipeOutput.getCount();
+        ItemStack result = recipeOpt.get().value().assemble(
+                new GrinderRecipeInput(inputStack.copyWithCount(1)),
+                level.registryAccess()
+        );
 
-        // Determine bonus (+1 if the bud is marked dry)
+        // Apply bonus amount (+1 if bud is dry)
         int bonus = 0;
         if (inputStack.getItem() instanceof BaseBudItem) {
             if (Boolean.TRUE.equals(inputStack.get(ModDataComponentTypes.DRY))) {
                 bonus = 1;
             }
         }
-
-        // Consume exactly 1 input
-        itemHandler.extractItem(INPUT_SLOT, 1, false);
-
-        int totalProduced = baseOutput + bonus;
+        int totalProduced = result.getCount() + bonus;
 
         ItemStack existing = itemHandler.getStackInSlot(OUTPUT_SLOT);
+
+        // Insert result, preserving data components
+        boolean inserted = false;
         if (existing.isEmpty()) {
-            ItemStack newStack = new ItemStack(recipeOutput.getItem(),
-                    Math.min(totalProduced, recipeOutput.getMaxStackSize()));
-            itemHandler.setStackInSlot(OUTPUT_SLOT, newStack);
-        } else {
-            if (existing.getItem() == recipeOutput.getItem()) {
-                int newCount = Math.min(existing.getCount() + totalProduced, existing.getMaxStackSize());
-                existing.setCount(newCount);
-                itemHandler.setStackInSlot(OUTPUT_SLOT, existing);
-            }
+            result.setCount(Math.min(totalProduced, result.getMaxStackSize()));
+            itemHandler.setStackInSlot(OUTPUT_SLOT, result);
+            inserted = true;
+        } else if (ItemStack.isSameItemSameComponents(existing, result)) {
+            int newCount = Math.min(existing.getCount() + totalProduced, existing.getMaxStackSize());
+            existing.setCount(newCount);
+            itemHandler.setStackInSlot(OUTPUT_SLOT, existing);
+            inserted = true;
+        }
+
+        // Only consume input if we actually inserted the crafted item
+        if (inserted) {
+            itemHandler.extractItem(INPUT_SLOT, 1, false);
         }
     }
 
@@ -261,8 +267,6 @@ public class GrinderBlockEntity extends BlockEntity implements MenuProvider {
     private void increaseCraftingProgress() {
         progress++;
     }
-
-
 
     // NBT Data
     @Override
@@ -283,7 +287,6 @@ public class GrinderBlockEntity extends BlockEntity implements MenuProvider {
         progress = tag.getInt("grinder.progress");
         maxProgress = tag.getInt("grinder.maxProgress");
     }
-
 
     // Server / Client Syncing
     @Override

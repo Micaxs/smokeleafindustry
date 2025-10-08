@@ -118,6 +118,32 @@ public class BaseWeedCropBlockEntity extends BlockEntity {
         return computeWithNutrients(this.cbd);
     }
 
+    public int getBudCount() {
+        // If the nutrients are optimal, triple the buds. If from NPK there is only 1 off, double the buds, if they are more then 1 off only 1.
+        var cropId = getCropId();
+        var targetOpt = Config.getNutrientTargetFor(cropId);
+        if (targetOpt.isEmpty()) {
+            return 1; // no config entry -> base
+        }
+
+        var t = targetOpt.get();
+        int dn = Math.abs(this.nitrogen - t.n);
+        int dp = Math.abs(this.phosphorus - t.p);
+        int dk = Math.abs(this.potassium - t.k);
+        if (dn == 0 && dp == 0 && dk == 0) {
+            return 3; // optimal
+        }
+
+        int offCount = 0;
+        if (dn > NPK_TOLERANCE) offCount++;
+        if (dp > NPK_TOLERANCE) offCount++;
+        if (dk > NPK_TOLERANCE) offCount++;
+        if (offCount == 0) {
+            return 2; // only 1 off
+        }
+        return 1;
+    }
+
     private int computeWithNutrients(int base) {
         var cropId = getCropId();
         var targetOpt = Config.getNutrientTargetFor(cropId);
