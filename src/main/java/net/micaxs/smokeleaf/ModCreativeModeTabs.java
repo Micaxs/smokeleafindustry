@@ -107,11 +107,26 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.MUTATOR);
                         output.accept(ModBlocks.SYNTHESIZER);
                         output.accept(ModBlocks.SEQUENCER);
-
-
                         output.accept(ModBlocks.DRYING_RACK);
 
 
+                        output.accept(ModItems.WORM_CASTINGS);
+                        output.accept(ModItems.COMPOST);
+                        output.accept(ModItems.MYCORRHIZAE);
+                        output.accept(ModItems.DOLOMITE_LIME);
+                        output.accept(ModItems.BLOOD_MEAL);
+                        output.accept(ModItems.PHOSPHORUS_POWDER);
+                        output.accept(ModItems.BAT_GUANO);
+                        output.accept(ModItems.KELP_MEAL);
+                        output.accept(ModItems.WOOD_ASH);
+                        output.accept(ModItems.FISH_EMULSION);
+                        output.accept(ModItems.BLOOM_BOOSTER);
+                        output.accept(ModItems.FRUIT_FINISHER);
+                        output.accept(ModItems.NITROGEN_BOOST);
+                        output.accept(ModItems.POTASH_BOOST);
+                        output.accept(ModItems.BALANCED_BOOST);
+                        output.accept(ModItems.PHOSPHORUS_REDUCER);
+                        output.accept(ModItems.POTASSIUM_REDUCER);
 
 
                     }).build());

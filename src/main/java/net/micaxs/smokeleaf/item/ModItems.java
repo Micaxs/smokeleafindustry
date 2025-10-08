@@ -377,6 +377,24 @@ public class ModItems {
             () -> new WeedDerivedItem(new Item.Properties().food(ModFoods.WEED_GUMMY), 1.5f, 1f, UseAnim.EAT, 40));
 
 
+    // --- FERTILIZER ITEMS ---
+    public static final DeferredItem<Item> WORM_CASTINGS = ITEMS.register("worm_castings", () -> new FertilizerItem(2, 2, 2, new Item.Properties()));
+    public static final DeferredItem<Item> COMPOST = ITEMS.register("compost", () -> new FertilizerItem(1, 1, 1, new Item.Properties()));
+    public static final DeferredItem<Item> MYCORRHIZAE = ITEMS.register("mycorrhizae", () -> new FertilizerItem(0, 3, 1, new Item.Properties()));
+    public static final DeferredItem<Item> DOLOMITE_LIME = ITEMS.register("dolomite_lime", () -> new FertilizerItem(-2, 4, -2, new Item.Properties()));
+    public static final DeferredItem<Item> BLOOD_MEAL = ITEMS.register("blood_meal", () -> new FertilizerItem(4, 0, 0, new Item.Properties()));
+    public static final DeferredItem<Item> FISH_EMULSION = ITEMS.register("fish_emulsion", () -> new FertilizerItem(2, 2, -1, new Item.Properties()));
+    public static final DeferredItem<Item> PHOSPHORUS_POWDER = ITEMS.register("phosphorus_feed", () -> new FertilizerItem(0, 5, 0, new Item.Properties()));
+    public static final DeferredItem<Item> BAT_GUANO = ITEMS.register("bat_guano", () -> new FertilizerItem(-1, 4, 1, new Item.Properties()));
+    public static final DeferredItem<Item> KELP_MEAL = ITEMS.register("kelp_meal", () -> new FertilizerItem(0, 0, 4, new Item.Properties()));
+    public static final DeferredItem<Item> WOOD_ASH = ITEMS.register("wood_ash", () -> new FertilizerItem(-1, -1, 5, new Item.Properties()));
+    public static final DeferredItem<Item> BLOOM_BOOSTER = ITEMS.register("bloom_booster", () -> new FertilizerItem(-2, 4, 2, new Item.Properties()));
+    public static final DeferredItem<Item> FRUIT_FINISHER = ITEMS.register("fruit_finisher", () -> new FertilizerItem(0, -2, -2, new Item.Properties()));
+    public static final DeferredItem<Item> NITROGEN_BOOST = ITEMS.register("nitrogen_boost", () -> new FertilizerItem(3, -1, 0, new Item.Properties()));
+    public static final DeferredItem<Item> POTASH_BOOST = ITEMS.register("potash_boost", () -> new FertilizerItem(0, -1, 3, new Item.Properties()));
+    public static final DeferredItem<Item> BALANCED_BOOST = ITEMS.register("balanced_boost", () -> new FertilizerItem(1, 1, 1, new Item.Properties()));
+    public static final DeferredItem<Item> PHOSPHORUS_REDUCER = ITEMS.register("phosphorus_reducer", () -> new FertilizerItem(0, -3, 0, new Item.Properties()));
+    public static final DeferredItem<Item> POTASSIUM_REDUCER = ITEMS.register("potassium_reducer", () -> new FertilizerItem(0, 0, -3, new Item.Properties()));
 
 
     // Consumables

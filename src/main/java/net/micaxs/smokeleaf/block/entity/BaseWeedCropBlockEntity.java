@@ -6,12 +6,19 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
@@ -19,7 +26,7 @@ public class BaseWeedCropBlockEntity extends BlockEntity {
 
     private static final int MAX_PERCENT = 100;
     private static final int MAX_PH = 14;
-    private static final int NPK_TOLERANCE = 2;
+    private static final int NPK_TOLERANCE = 3;
 
     private int thc;
     private int cbd;
@@ -135,6 +142,30 @@ public class BaseWeedCropBlockEntity extends BlockEntity {
     public void writeToItem(ItemStack stack) {
         stack.set(ModDataComponentTypes.THC.get(), thc);
         stack.set(ModDataComponentTypes.CBD.get(), cbd);
+    }
+
+
+    // Server / Client Syncing
+    @Override
+    public @Nullable Packet<ClientGamePacketListener> getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
+
+    @Override
+    public @NotNull CompoundTag getUpdateTag(HolderLookup.Provider registries) {
+        return saveWithoutMetadata(registries);
+    }
+
+    @Override
+    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt, HolderLookup.Provider lookupProvider) {
+        super.onDataPacket(net, pkt, lookupProvider);
+    }
+
+    public void sync() {
+        if (this.level instanceof ServerLevel server) {
+            this.setChanged();
+            server.sendBlockUpdated(this.worldPosition, getBlockState(), getBlockState(), 3);
+        }
     }
 
 }

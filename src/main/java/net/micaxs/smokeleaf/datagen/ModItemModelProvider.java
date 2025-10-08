@@ -74,6 +74,26 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.DRIED_TOBACCO_LEAF.get());
 
 
+        // --- Fertilizer Items
+        basicItem(ModItems.WORM_CASTINGS.get());
+        basicItem(ModItems.COMPOST.get());
+        basicItem(ModItems.MYCORRHIZAE.get());
+        basicItem(ModItems.DOLOMITE_LIME.get());
+        basicItem(ModItems.BLOOD_MEAL.get());
+        basicItem(ModItems.FISH_EMULSION.get());
+        basicItem(ModItems.PHOSPHORUS_POWDER.get());
+        basicItem(ModItems.BAT_GUANO.get());
+        basicItem(ModItems.KELP_MEAL.get());
+        basicItem(ModItems.WOOD_ASH.get());
+        basicItem(ModItems.BLOOM_BOOSTER.get());
+        basicItem(ModItems.FRUIT_FINISHER.get());
+        basicItem(ModItems.NITROGEN_BOOST.get());
+        basicItem(ModItems.POTASH_BOOST.get());
+        basicItem(ModItems.BALANCED_BOOST.get());
+        basicItem(ModItems.PHOSPHORUS_REDUCER.get());
+        basicItem(ModItems.POTASSIUM_REDUCER.get());
+
+
         // --- Weed Items
 
         // White Widow

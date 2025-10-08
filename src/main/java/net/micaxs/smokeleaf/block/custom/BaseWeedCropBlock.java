@@ -187,17 +187,20 @@ public class BaseWeedCropBlock extends CropBlock implements EntityBlock {
 
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        BaseWeedCropBlockEntity baseWeedCropBlockEntity = ModBlockEntities.BASE_WEED_CROP_BE.get().create(pos, state);
-        if (baseWeedCropBlockEntity != null) {
-
-            baseWeedCropBlockEntity.setThc(this.baseThc);
-            baseWeedCropBlockEntity.setCbd(this.baseCbd);
-
-            baseWeedCropBlockEntity.setNitrogen(this.baseN);
-            baseWeedCropBlockEntity.setPhosphorus(this.baseP);
-            baseWeedCropBlockEntity.setPotassium(this.baseK);
-            baseWeedCropBlockEntity.setPh(this.basePh);
+        // Only the bottom half owns a BlockEntity
+        if (state.hasProperty(TOP) && state.getValue(TOP)) {
+            return null;
         }
-        return baseWeedCropBlockEntity;
+
+        BaseWeedCropBlockEntity be = ModBlockEntities.BASE_WEED_CROP_BE.get().create(pos, state);
+        if (be != null) {
+            be.setThc(this.baseThc);
+            be.setCbd(this.baseCbd);
+            be.setNitrogen(this.baseN);
+            be.setPhosphorus(this.baseP);
+            be.setPotassium(this.baseK);
+            be.setPh(this.basePh);
+        }
+        return be;
     }
 }

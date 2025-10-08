@@ -1,9 +1,6 @@
 package net.micaxs.smokeleaf;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 import com.electronwill.nightconfig.core.UnmodifiableConfig;
 
@@ -17,20 +14,8 @@ import net.neoforged.neoforge.common.ModConfigSpec;
 public class Config {
     private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
 
-    // plant_nutrients is a list of NightConfig tables (NOT java.util.Map).
-    // Example TOML:
-    // plant_nutrients = [
-    //   { "white_widow_crop" = { n = 7, p = 6, k = 13 } }
-    // ]
     public static final ModConfigSpec.ConfigValue<List<? extends UnmodifiableConfig>> PLANT_NUTRIENTS =
-            BUILDER
-                    .comment(
-                            "Per-plant nutrient targets as a list of tables.",
-                            "Example:",
-                            "plant_nutrients = [ { \"white_widow_crop\" = { n = 7, p = 6, k = 13 } } ]",
-                            "You can also use full IDs like \"smokeleafindustry:white_widow_crop\""
-                    )
-                    .defineListAllowEmpty(
+            BUILDER.defineListAllowEmpty(
                             "plant_nutrients",
                             defaultPlantNutrients(),
                             Config::validatePlantNutrientsElement
@@ -55,15 +40,52 @@ public class Config {
 
     // Defaults using NightConfig in-memory tables so the writer can serialize them.
     private static List<UnmodifiableConfig> defaultPlantNutrients() {
-        var wwInner = com.electronwill.nightconfig.core.Config.inMemory();
-        wwInner.set("n", 7);
-        wwInner.set("p", 6);
-        wwInner.set("k", 13);
+        List<UnmodifiableConfig> list = new ArrayList<>();
 
-        var wwOuter = com.electronwill.nightconfig.core.Config.inMemory();
-        wwOuter.set("white_widow_crop", wwInner);
+        // 🟢 Easy (1-2 fertilizers) - 5 crops
+        list.add(make("white_widow_crop", 11, 8, 10));
+        list.add(make("bubble_kush_crop", 12, 10, 18));
+        list.add(make("amnesia_haze_crop", 10, 13, 9));
+        list.add(make("blue_cookies_crop", 10, 13, 9));
+        list.add(make("ghost_train_crop", 13, 12, 10));
 
-        return List.of(wwOuter);
+        // 🟡 Medium (2-3 fertilizers) - 10 crops
+        list.add(make("sour_diesel_crop", 11, 13, 10));
+        list.add(make("lemon_haze_crop", 9, 12, 15));
+        list.add(make("jack_herer_crop", 10, 15, 10));
+        list.add(make("grape_ape_crop", 15, 13, 15));
+        list.add(make("cotton_candy_crop", 10, 13, 9));
+        list.add(make("afghani_crop", 11, 10, 19));
+        list.add(make("lava_cake_crop", 14, 12, 11));
+        list.add(make("jelly_rancher_crop", 11, 14, 9));
+        list.add(make("strawberry_shortcake_crop", 14, 11, 15));
+        list.add(make("purple_haze_crop", 11, 13, 7));
+
+        // 🟠 Hard (3-4 fertilizers) - 6 crops
+        list.add(make("blue_ice_crop", 14, 9, 14));
+        list.add(make("bubblegum_crop", 14, 14, 12));
+        list.add(make("gary_peyton_crop", 14, 15, 9));
+        list.add(make("ak47_crop", 17, 8, 11));
+        list.add(make("banana_kush_crop", 15, 13, 15));
+        list.add(make("pink_kush_crop", 17, 9, 12));
+
+        // 🔴 Expert (5 fertilizers) - 4 crops
+        list.add(make("og_kush_crop", 12, 13, 15));
+        list.add(make("carbon_fiber_crop", 14, 13, 20));
+        list.add(make("birthday_cake_crop", 11, 13, 16));
+        list.add(make("moonbow_crop", 15, 2, 22));
+
+        return List.copyOf(list);
+    }
+
+    private static UnmodifiableConfig make(String cropName, int n, int p, int k) {
+        var inner = com.electronwill.nightconfig.core.Config.inMemory();
+        inner.set("n", n);
+        inner.set("p", p);
+        inner.set("k", k);
+        var outer = com.electronwill.nightconfig.core.Config.inMemory();
+        outer.set(cropName, inner);
+        return outer.unmodifiable();
     }
 
     private static boolean validatePlantNutrientsElement(Object o) {

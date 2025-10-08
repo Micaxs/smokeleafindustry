@@ -36,7 +36,6 @@
   "item.smokeleafindustries.dual_arc_lamp": "Dual Arc Bulb",
 
 
-
   "item.smokeleafindustries.joint.mixed": "Mixed Joint",
   "item.smokeleafindustries.joint.format": "%s Joint",
   "tooltip.smokeleafindustries.joint.empty": "No active ingredients.",
@@ -45,6 +44,31 @@
   "item.smokeleafindustries.blunt.format": "%s Blunt",
   "tooltip.smokeleafindustries.blunt.empty": "No active ingredients.",
   "tooltip.smokeleafindustries.blunt.effects_title": "Blunt Effects:",
+
+
+  "item.smokeleafindustries.worm_castings": "Worm Castings",
+  "item.smokeleafindustries.compost": "Compost",
+  "item.smokeleafindustries.mycorrhizae": "Mycorrhizae",
+  "item.smokeleafindustries.dolomite_lime": "Dolomite Lime",
+  "item.smokeleafindustries.blood_meal": "Blood Meal",
+  "item.smokeleafindustries.phosphorus_feed": "Phosphorus Feed",
+  "item.smokeleafindustries.bat_guano": "Bat Guano",
+  "item.smokeleafindustries.wood_ash": "Wood Ash",
+  "item.smokeleafindustries.kelp_meal": "Kelp Meal",
+  "item.smokeleafindustries.fish_emulsion": "Fish Emulsion",
+  "item.smokeleafindustries.bloom_booster": "Bloom Booster",
+  "item.smokeleafindustries.fruit_finisher": "Fruit Finisher",
+  "item.smokeleafindustries.nitrogen_boost": "Nitrogen Boost",
+  "item.smokeleafindustries.potash_boost": "Potash Boost",
+  "item.smokeleafindustries.balanced_boost": "Balanced Boost",
+  "item.smokeleafindustries.phosphorus_reducer": "Phosphorus Reducer",
+  "item.smokeleafindustries.potassium_reducer": "Potassium Reducer",
+
+
+
+
+
+
 
 
   "item.smokeleafindustries.hemp_seeds": "Hemp Seeds",
