@@ -306,6 +306,7 @@
 
   "tooltip.smokeleafindustries.dried": "Dried",
   "tooltip.smokeleafindustries.fresh": "Fresh",
+  "tooltip.smokeleafindustries.extra_effects": "Extra effects: %s",
   "tooltip.smokeleafindustries.base_weed": "Effect duration varies, turn into hash oil for reliable effect durations.",
   "tooltip.smokeleafindustries.empty_bag": "Empty bag can be filled with 8 weed for easier distribution.",
   "tooltip.smokeleafindustries.tincture": "Right click with it on Hash Oil within the Liquifier to fill.",
@@ -370,6 +371,7 @@
   "effect.smokeleafindustries.breathing": "Heavy Breathing",
   "effect.smokeleafindustries.sleepy": "Sleepy",
   "effect.smokeleafindustries.melted": "Melted",
+  "effect.smokeleafindustries.dizzy": "Dizzy",
   "effect.smokeleafindustries.rainbow": "Rainbow Vision",
   "effect.smokeleafindustries.brain_melt": "Melted Brain",
   "effect.smokeleafindustries.high_flyer": "Flying High",

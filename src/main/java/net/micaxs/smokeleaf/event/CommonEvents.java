@@ -2,33 +2,353 @@ package net.micaxs.smokeleaf.event;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.micaxs.smokeleaf.SmokeleafIndustries;
+import net.micaxs.smokeleaf.component.ManualGrinderContents;
+import net.micaxs.smokeleaf.component.ModDataComponentTypes;
+import net.micaxs.smokeleaf.effect.ModEffects;
 import net.micaxs.smokeleaf.fluid.ModFluids;
 import net.micaxs.smokeleaf.item.ModItems;
 import net.micaxs.smokeleaf.villager.ModVillagers;
-import net.minecraft.world.entity.npc.VillagerTrades;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.Container;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.ExperienceOrb;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.animal.Cat;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.monster.Zombie;
+import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.ItemCost;
 import net.minecraft.world.item.trading.MerchantOffer;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.event.village.VillagerTradesEvent;
-import net.neoforged.neoforge.fluids.RegisterCauldronFluidContentEvent;
+import net.neoforged.neoforge.common.NeoForgeMod;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
+import net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent;
+import net.neoforged.neoforge.event.level.BlockEvent;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @EventBusSubscriber(modid = SmokeleafIndustries.MODID)
-public class ModEvents {
+public class CommonEvents {
+
+
+
+    // -------- Cat Urine Collection --------
+    private static final String TAG_LAST_TIME = "SmokeleafIndustriesLastUrineCollect";
+    private static final long COOLDOWN_TICKS = 5L * 60L * 20L; // 5 minutes
 
     @SubscribeEvent
-    public static void addCustomTrades(VillagerTradesEvent event) {
-        if (event.getType() == ModVillagers.STONER.value()) {
-            Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
+    public static void onCatInteract(PlayerInteractEvent.EntityInteract event) {
+        if (!(event.getTarget() instanceof Cat cat)) return;
 
-            // Level 1 (pick 2) - Novice
+        Player player = event.getEntity();
+        Level level = player.level();
+        ItemStack held = player.getItemInHand(event.getHand());
+
+        if (!held.is(Items.GLASS_BOTTLE)) return;
+        if (level.isClientSide()) return;
+
+        long now = level.getGameTime();
+        long last = cat.getPersistentData().getLong(TAG_LAST_TIME);
+
+        if (now - last < COOLDOWN_TICKS) {
+            long remaining = COOLDOWN_TICKS - (now - last);
+            long seconds = remaining / 20;
+            player.displayClientMessage(
+                    Component.translatable("message.smokeleafindustries.cat_urine_cooldown", seconds),
+                    true
+            );
+            return;
+        }
+
+        cat.getPersistentData().putLong(TAG_LAST_TIME, now);
+
+        if (!player.isCreative()) {
+            held.shrink(1);
+        }
+
+        ItemStack result = new ItemStack(ModItems.CAT_URINE_BOTTLE.get());
+        if (!player.addItem(result)) {
+            player.drop(result, false);
+        }
+
+        level.playSound(null, cat.blockPosition(), SoundEvents.BOTTLE_FILL, SoundSource.PLAYERS, 1f, 1f);
+
+        event.setCancellationResult(InteractionResult.SUCCESS);
+        event.setCanceled(true);
+    }
+
+
+
+
+
+
+    // -------- HIGH_FLYER Effect (Creative Flight) --------
+    @SubscribeEvent
+    public static void onHighFlyerAdded(MobEffectEvent.Added event) {
+        MobEffectInstance inst = event.getEffectInstance();
+        if (inst == null || inst.getEffect() != ModEffects.HIGH_FLYER) return;
+
+        if (event.getEntity() instanceof net.minecraft.server.level.ServerPlayer sp) {
+            sp.getAbilities().mayfly = true;
+            sp.onUpdateAbilities();
+        }
+    }
+
+    @SubscribeEvent
+    public static void onHighFlyerExpired(MobEffectEvent.Expired event) {
+        handleHighFlyerEnd(event.getEntity(), event.getEffectInstance());
+    }
+
+    @SubscribeEvent
+    public static void onHighFlyerRemoved(MobEffectEvent.Remove event) {
+        handleHighFlyerEnd(event.getEntity(), event.getEffectInstance());
+    }
+
+    private static void handleHighFlyerEnd(LivingEntity entity, MobEffectInstance inst) {
+        if (inst == null || inst.getEffect() != ModEffects.HIGH_FLYER) return;
+        if (!(entity instanceof net.minecraft.server.level.ServerPlayer sp)) return;
+
+        AttributeInstance flightAttr = sp.getAttribute(NeoForgeMod.CREATIVE_FLIGHT);
+        double value = flightAttr != null ? flightAttr.getValue() : 0.0D;
+
+        if (value <= 0.0D && !sp.getAbilities().instabuild) {
+            sp.getAbilities().mayfly = false;
+            sp.getAbilities().flying = false;
+            sp.onUpdateAbilities();
+        }
+    }
+
+
+
+
+    // -------- ManualGrinder Crafting Recipe --------
+    @SubscribeEvent
+    public static void onManualGrinderCraft(PlayerEvent.ItemCraftedEvent event) {
+        ItemStack result = event.getCrafting();
+        if (!(result.getItem() instanceof net.micaxs.smokeleaf.item.custom.ManualGrinderItem)) return;
+        if (result.has(ModDataComponentTypes.MANUAL_GRINDER_CONTENTS.get())) return;
+
+        Container inv = event.getInventory();
+        ItemStack candidate = ItemStack.EMPTY;
+
+        for (int i = 0; i < inv.getContainerSize(); i++) {
+            ItemStack slot = inv.getItem(i);
+            if (slot.isEmpty()) continue;
+            if (slot.getItem() instanceof net.micaxs.smokeleaf.item.custom.ManualGrinderItem) continue;
+            candidate = slot.copyWithCount(1);
+            break;
+        }
+
+        if (!candidate.isEmpty()) {
+            result.set(ModDataComponentTypes.MANUAL_GRINDER_CONTENTS.get(),
+                    ManualGrinderContents.fromStack(candidate));
+        }
+    }
+
+
+
+
+
+    // -------- Player Effects: Chillout, Zombified, Sticky Icky --------
+    private static final int CHILL_RADIUS = 16;
+    private static final int VACUUM_RADIUS = 12;
+    private static final int MAX_VEIN = 128;
+    private static final int MAX_TREE = 1024;
+
+    private static final int SELF_DROP_GRACE_TICKS = 50;
+    private static final double SELF_DROP_NEAR_SQR = 9.0D;
+
+    @SubscribeEvent
+    public static void onPlayerTick(PlayerTickEvent.Post event) {
+        Player player = event.getEntity();
+        Level lvl = player.level();
+        if (lvl.isClientSide) return;
+        ServerLevel level = (ServerLevel) lvl;
+
+        // Chillout: pacify nearby zombies + particles
+        if (player.hasEffect(ModEffects.CHILLOUT)) {
+            AABB box = player.getBoundingBox().inflate(CHILL_RADIUS);
+            for (LivingEntity le : level.getEntitiesOfClass(LivingEntity.class, box)) {
+                if (le instanceof Zombie zombie) {
+                    if (zombie.getTarget() != null) zombie.setTarget(null);
+                    if (zombie.getLastHurtByMob() != null) zombie.setLastHurtByMob(null);
+                    level.sendParticles(ParticleTypes.SMOKE, zombie.getX(), zombie.getY() + 1.0, zombie.getZ(), 2, 0.2, 0.2, 0.2, 0.01);
+                }
+            }
+        }
+
+        // Zombified: nearby hostiles ignore you + Burn in sunlight.
+        if (player.hasEffect(ModEffects.ZOMBIFIED)) {
+            AABB box = player.getBoundingBox().inflate(24);
+            for (Monster mob : level.getEntitiesOfClass(Monster.class, box)) {
+                if (mob.getTarget() instanceof Player) {
+                    mob.setTarget(null);
+                    mob.setLastHurtByMob(null);
+                }
+            }
+        }
+
+        // Sticky Icky: vacuum items/xp (Magnet Like)
+        if (player.hasEffect(ModEffects.STICKY_ICKY)) {
+            AABB box = player.getBoundingBox().inflate(VACUUM_RADIUS);
+
+            for (ItemEntity item : level.getEntitiesOfClass(ItemEntity.class, box)) {
+                if (item.isRemoved()) continue;
+
+                int age = item.getAge();
+                boolean freshNear = age < SELF_DROP_GRACE_TICKS && item.distanceToSqr(player) < SELF_DROP_NEAR_SQR;
+
+                if (freshNear) {
+                    int remaining = SELF_DROP_GRACE_TICKS - age;
+                    if (remaining > 0) item.setPickUpDelay(remaining);
+                    continue;
+                }
+
+                if (item.hasPickUpDelay()) continue;
+                pullToward(item, player, 0.35f);
+            }
+
+            for (ExperienceOrb xp : level.getEntitiesOfClass(ExperienceOrb.class, box)) {
+                if (xp.isRemoved()) continue;
+                pullToward(xp, player, 0.35f);
+            }
+        }
+    }
+
+    private static void pullToward(net.minecraft.world.entity.Entity e, Player player, float strength) {
+        double dx = player.getX() - e.getX();
+        double dy = (player.getY() + player.getEyeHeight() * 0.4) - e.getY();
+        double dz = player.getZ() - e.getZ();
+        double d = Math.max(0.25, Math.sqrt(dx * dx + dy * dy + dz * dz));
+        double s = strength / d;
+        e.setDeltaMovement(e.getDeltaMovement().add(dx * s, dy * s, dz * s));
+        e.hurtMarked = true;
+    }
+
+
+
+
+    // -------- Villager interaction hooks --------
+    @SubscribeEvent
+    public static void onVillagerInteract(PlayerInteractEvent.EntityInteract event) {
+        Player player = event.getEntity();
+        if (player.level().isClientSide) return;
+
+        if (event.getTarget() instanceof Villager villager) {
+            if (player.hasEffect(ModEffects.CHILLOUT)) {
+                villager.playSound(SoundEvents.VILLAGER_NO, 1.0f, 1.0f);
+            }
+            if (player.hasEffect(ModEffects.LINGUISTS_HIGH)) {
+                villager.addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.HERO_OF_THE_VILLAGE, 200, 0, false, false));
+            }
+        }
+    }
+
+
+
+
+    // -------- Tree Cutting & Veinmining Effects --------
+    @SubscribeEvent
+    public static void onBlockBreak(BlockEvent.BreakEvent event) {
+        if (!(event.getLevel() instanceof ServerLevel level)) return;
+        Player player = event.getPlayer();
+        if (player == null) return;
+
+        BlockPos pos = event.getPos();
+        BlockState state = level.getBlockState(pos);
+
+        if (player.hasEffect(ModEffects.R_TREES) && state.is(BlockTags.LOGS)) {
+            breakConnectedLogs(level, pos, player);
+        }
+
+        if (player.hasEffect(ModEffects.VEIN_HIGH) && state.is(Tags.Blocks.ORES)) {
+            veinMine(level, pos, state, player);
+        }
+    }
+
+    private static void breakConnectedLogs(ServerLevel level, BlockPos start, Player player) {
+        Set<BlockPos> visited = new HashSet<>();
+        Queue<BlockPos> q = new ArrayDeque<>();
+        q.add(start);
+        int broken = 0;
+
+        while (!q.isEmpty() && broken < MAX_TREE) {
+            BlockPos p = q.poll();
+            if (!visited.add(p)) continue;
+            BlockState s = level.getBlockState(p);
+            if (!s.is(BlockTags.LOGS)) continue;
+
+            level.destroyBlock(p, true, player);
+            broken++;
+
+            for (BlockPos n : BlockPos.betweenClosedStream(p.offset(-1, -1, -1), p.offset(1, 1, 1)).map(BlockPos::immutable).toList()) {
+                if (!visited.contains(n)) q.add(n);
+            }
+        }
+    }
+
+    private static void veinMine(ServerLevel level, BlockPos start, BlockState target, Player player) {
+        Set<BlockPos> visited = new HashSet<>();
+        Queue<BlockPos> q = new ArrayDeque<>();
+        q.add(start);
+        int broken = 0;
+
+        while (!q.isEmpty() && broken < MAX_VEIN) {
+            BlockPos p = q.poll();
+            if (!visited.add(p)) continue;
+            BlockState s = level.getBlockState(p);
+            if (!s.is(target.getBlock())) continue;
+
+            level.destroyBlock(p, true, player);
+            broken++;
+
+            for (BlockPos n : new BlockPos[]{p.north(), p.south(), p.east(), p.west(), p.above(), p.below()}) {
+                if (!visited.contains(n)) q.add(n);
+            }
+        }
+    }
+
+
+
+
+    // -------- Furnace Fuel: Hemp Coal --------
+    @SubscribeEvent
+    public static void onFuelBurnTime(FurnaceFuelBurnTimeEvent event) {
+        if (event.getItemStack().is(ModItems.HEMP_COAL.get())) {
+            event.setBurnTime(3200); // 16 items
+        }
+    }
+
+
+
+
+
+    // -------- Villager Trades --------
+    @SubscribeEvent
+    public static void addCustomTrades(net.neoforged.neoforge.event.village.VillagerTradesEvent event) {
+        if (event.getType() == ModVillagers.STONER.value()) {
+            Int2ObjectMap<List<net.minecraft.world.entity.npc.VillagerTrades.ItemListing>> trades = event.getTrades();
+
             addRandomTrades(trades, 1, 2,
                     (pTrader, pRandom) -> new MerchantOffer(new ItemCost(ModItems.HEMP_FIBERS, 18), new ItemStack(Items.EMERALD, 1), 16, 2, 0.01f),
                     (pTrader, pRandom) -> new MerchantOffer(new ItemCost(ModItems.HEMP_COAL, 5), new ItemStack(Items.EMERALD, 1), 16, 2, 0.01f),
@@ -36,7 +356,6 @@ public class ModEvents {
                     (pTrader, pRandom) -> new MerchantOffer(new ItemCost(ModItems.HEMP_LEAF, 5), new ItemStack(Items.EMERALD, 1), 10, 2, 0.01f)
             );
 
-            // Level 2 (pick 2) - Apprentice
             addRandomTrades(trades, 2, 1,
                     (pTrader, pRandom) -> new MerchantOffer(new ItemCost(ModItems.WHITE_WIDOW_BAG, 1), new ItemStack(Items.EMERALD, 1), 10, 5, 0.01f),
                     (pTrader, pRandom) -> new MerchantOffer(new ItemCost(ModItems.BUBBLE_KUSH_BAG, 1), new ItemStack(Items.EMERALD, 1), 10, 5, 0.01f),
@@ -69,7 +388,6 @@ public class ModEvents {
                     (pTrader, pRandom) -> new MerchantOffer(new ItemCost(ModItems.BIO_COMPOSITE, 1), new ItemStack(Items.EMERALD, 3), 8, 5, 0.01f)
             );
 
-            // Level 3 (pick 2) - Journeyman
             addRandomTrades(trades, 3, 2,
                     (pTrader, pRandom) -> new MerchantOffer(new ItemCost(ModFluids.HASH_OIL_BUCKET, 1), new ItemStack(Items.EMERALD, 3), 4, 10, 0.01f),
                     (pTrader, pRandom) -> new MerchantOffer(new ItemCost(ModFluids.HEMP_OIL_BUCKET, 1), new ItemStack(Items.EMERALD, 3), 4, 10, 0.01f),
@@ -77,7 +395,6 @@ public class ModEvents {
                     (pTrader, pRandom) -> new MerchantOffer(new ItemCost(ModItems.INFUSED_BUTTER, 3), new ItemStack(Items.EMERALD, 1), 7, 10, 0.01f)
             );
 
-            // Level 4 (pick 2) - Expert
             addRandomTrades(trades, 4, 2,
                     (pTrader, pRandom) -> new MerchantOffer(new ItemCost(ModItems.WEED_COOKIE, 1), new ItemStack(Items.EMERALD, 2), 8, 15, 0.01f),
                     (pTrader, pRandom) -> new MerchantOffer(new ItemCost(ModItems.HASH_BROWNIE, 1), new ItemStack(Items.EMERALD, 3), 6, 15, 0.01f),
@@ -85,7 +402,6 @@ public class ModEvents {
                     (pTrader, pRandom) -> new MerchantOffer(new ItemCost(ModItems.BONG, 1), new ItemStack(Items.EMERALD, 4), 1, 15, 0.01f)
             );
 
-            // Level 5 (pick 2) - Master
             addRandomTrades(trades, 5, 2,
                     (pTrader, pRandom) -> new MerchantOffer(new ItemCost(ModItems.HERB_CAKE, 1), new ItemStack(Items.EMERALD, 6), 4, 20, 0.01f),
                     (pTrader, pRandom) -> new MerchantOffer(new ItemCost(ModItems.HASH_OIL_TINCTURE, 1), new ItemStack(Items.EMERALD, 5), 4, 20, 0.01f),
@@ -95,9 +411,8 @@ public class ModEvents {
         }
 
         if (event.getType() == ModVillagers.DEALER.value()) {
-            Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
+            Int2ObjectMap<List<net.minecraft.world.entity.npc.VillagerTrades.ItemListing>> trades = event.getTrades();
 
-            // Level 1 Trades
             trades.get(1).add((pTrader, pRandom) -> new MerchantOffer(
                     new ItemCost(Items.EMERALD, 1),
                     new ItemStack(ModItems.HEMP_SEEDS.get(), 1), 16, 2, 0.01f)
@@ -107,7 +422,6 @@ public class ModEvents {
                     new ItemStack(ModItems.TOBACCO_SEEDS.get(), 1), 16, 2, 0.01f)
             );
 
-            // Level 2 Trades
             addRandomTrades(trades, 2, 1,
                     (pTrader, pRandom) -> new MerchantOffer(new ItemCost(Items.EMERALD, 4), new ItemStack(ModItems.WHITE_WIDOW_WEED.get(), 1), 6, 5, 0.01f),
                     (pTrader, pRandom) -> new MerchantOffer(new ItemCost(Items.EMERALD, 4), new ItemStack(ModItems.BUBBLE_KUSH_WEED.get(), 1), 6, 5, 0.01f),
@@ -190,13 +504,10 @@ public class ModEvents {
         }
     }
 
-
-    private static void addRandomTrades(Int2ObjectMap<List<VillagerTrades.ItemListing>> trades, int level, int pick, VillagerTrades.ItemListing... candidates) {
-        List<VillagerTrades.ItemListing> pool = new ArrayList<>(List.of(candidates));
-        // Shuffle using default source (or use a cached java.util.Random if you prefer determinism per JVM run)
+    private static void addRandomTrades(Int2ObjectMap<List<net.minecraft.world.entity.npc.VillagerTrades.ItemListing>> trades, int level, int pick, net.minecraft.world.entity.npc.VillagerTrades.ItemListing... candidates) {
+        List<net.minecraft.world.entity.npc.VillagerTrades.ItemListing> pool = new ArrayList<>(List.of(candidates));
         Collections.shuffle(pool);
-        List<VillagerTrades.ItemListing> levelList = trades.get(level);
+        List<net.minecraft.world.entity.npc.VillagerTrades.ItemListing> levelList = trades.get(level);
         levelList.addAll(pool.subList(0, Math.min(pick, pool.size())));
     }
-
 }

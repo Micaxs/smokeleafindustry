@@ -8,6 +8,7 @@ import net.micaxs.smokeleaf.effect.ModParticles;
 import net.micaxs.smokeleaf.fluid.ModFluidTypes;
 import net.micaxs.smokeleaf.fluid.ModFluids;
 import net.micaxs.smokeleaf.item.ModItems;
+import net.micaxs.smokeleaf.item.custom.BaseWeedItem;
 import net.micaxs.smokeleaf.loot.ModLootItemFunctions;
 import net.micaxs.smokeleaf.loot.ModLootModifiers;
 import net.micaxs.smokeleaf.network.ModPayloads;
@@ -15,6 +16,7 @@ import net.micaxs.smokeleaf.recipe.ModRecipes;
 import net.micaxs.smokeleaf.screen.ModMenuTypes;
 import net.micaxs.smokeleaf.sound.ModSounds;
 import net.micaxs.smokeleaf.villager.ModVillagers;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.ComposterBlock;
 import org.slf4j.Logger;
 
@@ -29,6 +31,8 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+
+import java.util.List;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(SmokeleafIndustries.MODID)
@@ -82,6 +86,22 @@ public class SmokeleafIndustries {
     private void commonSetup(FMLCommonSetupEvent event) {
         // Some common setup code
         LOGGER.info("SmokeleafIndustries loading...");
+
+        event.enqueueWork(() -> {
+            BaseWeedItem.setAdditionalEffectPool(List.of(
+                    ResourceLocation.fromNamespaceAndPath(SmokeleafIndustries.MODID, "stoned"),
+                    ResourceLocation.fromNamespaceAndPath(SmokeleafIndustries.MODID, "sleepy"),
+                    ResourceLocation.fromNamespaceAndPath(SmokeleafIndustries.MODID, "rainbow"),
+                    ResourceLocation.fromNamespaceAndPath(SmokeleafIndustries.MODID, "breathing"),
+                    ResourceLocation.fromNamespaceAndPath(SmokeleafIndustries.MODID, "bubbled"),
+                    ResourceLocation.fromNamespaceAndPath(SmokeleafIndustries.MODID, "melted"),
+                    ResourceLocation.fromNamespaceAndPath(SmokeleafIndustries.MODID, "dizzy"),
+                    ResourceLocation.fromNamespaceAndPath(SmokeleafIndustries.MODID, "paranoia"),
+                    ResourceLocation.fromNamespaceAndPath(SmokeleafIndustries.MODID, "dry_eyes"),
+                    ResourceLocation.fromNamespaceAndPath(SmokeleafIndustries.MODID, "brain_melt")
+            ));
+        });
+
     }
 
     // Add the example block item to the building blocks tab
