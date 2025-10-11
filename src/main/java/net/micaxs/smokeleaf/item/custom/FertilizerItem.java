@@ -1,3 +1,4 @@
+// src/main/java/net/micaxs/smokeleaf/item/custom/FertilizerItem.java
 package net.micaxs.smokeleaf.item.custom;
 
 import net.micaxs.smokeleaf.block.custom.BaseWeedCropBlock;
@@ -46,6 +47,18 @@ public class FertilizerItem extends Item {
         BlockPos bePos = clickedPos;
         if (clickedState.hasProperty(weedBlock.getTop()) && clickedState.getValue(weedBlock.getTop())) {
             bePos = clickedPos.below();
+        }
+
+        // Check if the crop is fully grown (use bottom state for safety)
+        BlockState bottomState = level.getBlockState(bePos);
+        if (bottomState.getBlock() instanceof BaseWeedCropBlock bottomCrop && bottomCrop.isMaxAge(bottomState)) {
+            if (!level.isClientSide() && context.getPlayer() != null) {
+                context.getPlayer().displayClientMessage(
+                        Component.translatable("tooltip.smokeleafindustries.add_fertilizer"),
+                        true
+                );
+            }
+            return InteractionResult.sidedSuccess(level.isClientSide());
         }
 
         if (!level.isClientSide) {

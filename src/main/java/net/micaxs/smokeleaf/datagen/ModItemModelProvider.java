@@ -85,6 +85,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.BAT_GUANO.get());
         basicItem(ModItems.KELP_MEAL.get());
         basicItem(ModItems.WOOD_ASH.get());
+        basicItem(ModItems.EMPTY_VIAL.get());
         basicItem(ModItems.BLOOM_BOOSTER.get());
         basicItem(ModItems.FRUIT_FINISHER.get());
         basicItem(ModItems.NITROGEN_BOOST.get());

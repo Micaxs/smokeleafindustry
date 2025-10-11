@@ -36,8 +36,6 @@ import java.util.WeakHashMap;
 public class ClientEvents {
 
 
-
-
     // -------- Echo Location particles on sound --------
     @SubscribeEvent
     public static void onPlaySound(PlaySoundEvent event) {
@@ -108,7 +106,7 @@ public class ClientEvents {
         Minecraft mc = Minecraft.getInstance();
         if (mc.player == null || !mc.player.hasEffect(ModEffects.LINGUISTS_HIGH)) return;
 
-        int variant = 1 + RAND.nextInt(5);
+        int variant = 1 + RAND.nextInt(11);
         var text = net.minecraft.network.chat.Component.translatable("linguist.smokeleafindustries.villager_text." + variant);
         mc.gui.setOverlayMessage(text, false);
     }

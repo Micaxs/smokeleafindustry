@@ -11,6 +11,7 @@ import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 
 import java.util.concurrent.CompletableFuture;
@@ -671,6 +672,149 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(ModItems.PINK_KUSH_BAG)
                 .unlockedBy(getHasName(ModItems.PINK_KUSH_BAG), has(ModItems.PINK_KUSH_BAG))
                 .save(recipeOutput);
+
+
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.WORM_CASTINGS.get(), 2)
+                .requires(Items.DIRT)
+                .requires(Items.BONE_MEAL)
+                .requires(Items.ROTTEN_FLESH)
+                .requires(ModItems.COMPOST)
+                .unlockedBy(getHasName(ModItems.COMPOST), has(ModItems.COMPOST))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.COMPOST.get(), 2)
+                .requires(Items.OAK_LEAVES)
+                .requires(ModItems.HEMP_SEEDS)
+                .requires(ModTags.LEAVES)
+                .requires(ModItems.COMPOST)
+                .unlockedBy(getHasName(ModItems.HEMP_SEEDS), has(ModItems.HEMP_SEEDS))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.MYCORRHIZAE.get(), 2)
+                .requires(Items.RED_MUSHROOM)
+                .requires(Items.BROWN_MUSHROOM)
+                .requires(Items.BONE_MEAL)
+                .requires(ModItems.BIO_COMPOSITE)
+                .unlockedBy(getHasName(ModItems.BIO_COMPOSITE), has(ModItems.BIO_COMPOSITE))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.DOLOMITE_LIME.get(), 2)
+                .requires(Items.CALCITE)
+                .requires(Items.BONE_MEAL)
+                .requires(Items.SAND)
+                .unlockedBy(getHasName(Items.CALCITE), has(Items.CALCITE))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.BLOOD_MEAL.get(), 2)
+                .requires(Items.ROTTEN_FLESH)
+                .requires(ModItems.CAT_URINE_BOTTLE)
+                .requires(Items.BONE_MEAL)
+                .unlockedBy(getHasName(ModItems.CAT_URINE_BOTTLE), has(ModItems.CAT_URINE_BOTTLE))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.PHOSPHORUS_POWDER.get(), 2)
+                .requires(Items.GLOWSTONE_DUST)
+                .requires(ModItems.BIO_COMPOSITE)
+                .requires(Items.BONE_MEAL)
+                .unlockedBy(getHasName(ModItems.BIO_COMPOSITE), has(ModItems.BIO_COMPOSITE))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.BAT_GUANO.get(), 2)
+                .requires(Items.BONE_MEAL)
+                .requires(Items.CHARCOAL)
+                .requires(ModItems.COMPOST)
+                .unlockedBy(getHasName(ModItems.COMPOST), has(ModItems.COMPOST))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.KELP_MEAL.get(), 2)
+                .requires(Items.DRIED_KELP)
+                .requires(Items.DRIED_KELP)
+                .requires(ModItems.TOBACCO_LEAF)
+                .unlockedBy(getHasName(ModItems.TOBACCO_LEAF), has(ModItems.TOBACCO_LEAF))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.WOOD_ASH.get(), 2)
+                .requires(Items.GRAY_CONCRETE_POWDER)
+                .requires(Items.CHARCOAL)
+                .requires(Items.GUNPOWDER)
+                .unlockedBy(getHasName(Items.GRAY_CONCRETE_POWDER), has(Items.GRAY_CONCRETE_POWDER))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.EMPTY_VIAL.get())
+                .pattern("P P")
+                .pattern("P P")
+                .pattern(" G ")
+                .define('P', Items.GLASS_PANE)
+                .define('G', Items.WHITE_STAINED_GLASS)
+                .unlockedBy(getHasName(Items.WHITE_STAINED_GLASS), has(Items.WHITE_STAINED_GLASS))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.FISH_EMULSION.get(), 2)
+                .requires(ModItems.EMPTY_VIAL)
+                .requires(Items.TROPICAL_FISH)
+                .requires(Items.COD)
+                .requires(Items.SALMON)
+                .unlockedBy(getHasName(ModItems.EMPTY_VIAL), has(ModItems.EMPTY_VIAL))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.BLOOM_BOOSTER.get(), 2)
+                .requires(ModItems.EMPTY_VIAL)
+                .requires(Items.ALLIUM)
+                .requires(Items.POPPY)
+                .requires(Items.DANDELION)
+                .unlockedBy(getHasName(ModItems.EMPTY_VIAL), has(ModItems.EMPTY_VIAL))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.FRUIT_FINISHER.get(), 2)
+                .requires(ModItems.EMPTY_VIAL)
+                .requires(Items.APPLE)
+                .requires(Items.MELON_SLICE)
+                .requires(Items.SWEET_BERRIES)
+                .unlockedBy(getHasName(ModItems.EMPTY_VIAL), has(ModItems.EMPTY_VIAL))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.NITROGEN_BOOST.get(), 2)
+                .requires(ModItems.EMPTY_VIAL)
+                .requires(ModItems.CAT_URINE_BOTTLE)
+                .requires(Items.TORCHFLOWER)
+                .unlockedBy(getHasName(ModItems.EMPTY_VIAL), has(ModItems.EMPTY_VIAL))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.POTASH_BOOST.get(), 2)
+                .requires(ModItems.EMPTY_VIAL)
+                .requires(ModItems.WOOD_ASH)
+                .requires(Items.BONE_MEAL)
+                .unlockedBy(getHasName(ModItems.EMPTY_VIAL), has(ModItems.EMPTY_VIAL))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.BALANCED_BOOST.get(), 2)
+                .requires(ModItems.EMPTY_VIAL)
+                .requires(Items.CRIMSON_FUNGUS)
+                .requires(Items.VINE)
+                .unlockedBy(getHasName(ModItems.EMPTY_VIAL), has(ModItems.EMPTY_VIAL))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.PHOSPHORUS_REDUCER.get(), 2)
+                .requires(ModItems.EMPTY_VIAL)
+                .requires(Items.BLUE_ORCHID)
+                .requires(Items.SUGAR)
+                .unlockedBy(getHasName(ModItems.EMPTY_VIAL), has(ModItems.EMPTY_VIAL))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.POTASSIUM_REDUCER.get(), 2)
+                .requires(ModItems.EMPTY_VIAL)
+                .requires(Items.CHORUS_FRUIT)
+                .requires(Items.GLOW_BERRIES)
+                .unlockedBy(getHasName(ModItems.EMPTY_VIAL), has(ModItems.EMPTY_VIAL))
+                .save(recipeOutput);
+
+        /*
+         FISH_EMULSION
+         BLOOM_BOOSTER
+
+
+        */
 
 
     }

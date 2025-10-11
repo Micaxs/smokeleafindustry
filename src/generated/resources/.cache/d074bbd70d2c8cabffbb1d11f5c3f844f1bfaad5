@@ -1,4 +1,4 @@
-// 1.21.1	2025-10-11T07:16:21.768378076	Item Models: smokeleafindustries
+// 1.21.1	2025-10-11T17:40:52.397432637	Item Models: smokeleafindustries
 35fa437ca373fbd1597433c8807e764f57461e59 assets/smokeleafindustries/models/item/afghani_bag.json
 26a569e1bc76759afcc1eefebadc628e7f487fcb assets/smokeleafindustries/models/item/afghani_bud.json
 0a5543f67ca79e02bd2d230634a51848fde780a8 assets/smokeleafindustries/models/item/afghani_extract.json
@@ -83,6 +83,7 @@ a94634409fa949546387489a7fb79d4331ad2557 assets/smokeleafindustries/models/item/
 191344052c6339b3c57f21a6a8235e7ba9780c14 assets/smokeleafindustries/models/item/dried_tobacco_leaves.json
 c6da099f1d934141cfcb1ba5312f5a538682d221 assets/smokeleafindustries/models/item/empty_bag.json
 fb338400aa7fa9870fd9273278c9e770b90532d0 assets/smokeleafindustries/models/item/empty_tincture.json
+c94967a0baba24718bc9127041c78599859663c1 assets/smokeleafindustries/models/item/empty_vial.json
 d331c3f7ab678b087016d249b9e68c211a878719 assets/smokeleafindustries/models/item/fish_emulsion.json
 948412f2604d326d213d85a9a69e44d7e0fa8cf4 assets/smokeleafindustries/models/item/fruit_finisher.json
 e573b44fb8f086263f55a3d6d5cd84a9965e119b assets/smokeleafindustries/models/item/gary_peyton_bag.json

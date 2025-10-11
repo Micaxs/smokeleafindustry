@@ -35,6 +35,7 @@
   "item.smokeleafindustries.hps_lamp": "HPS Bulb",
   "item.smokeleafindustries.dual_arc_lamp": "Dual Arc Bulb",
   "item.smokeleafindustries.plant_analyzer": "Plant Analyzer",
+  "item.smokeleafindustries.empty_vial": "Empty Vial",
 
   "item.smokeleafindustries.joint.mixed": "Mixed Joint",
   "item.smokeleafindustries.joint.format": "%s Joint",
@@ -317,6 +318,7 @@
   "tooltip.smokeleafindustries.manual_grinder.usage_full": "Hold Right Click to grind.",
   "tooltip.smokeleafindustries.hemp_hammer.uses": "%s/%s Uses Remaining",
   "tooltip.smokeleafindustries.hps_lamp": "Place in a reflector to produce light and increase weed plants growth speed. Bulb will break when lifespan ends.",
+  "tooltip.smokeleafindustries.plant_analyzer": "Right click a Weed Crop to Analyzer the Nutrient Levels.",
 
 
   "tooltip.smokeleafindustries.white_widow_bag": "Contains 8 White Widow Weed.",
@@ -347,7 +349,7 @@
   "tooltip.smokeleafindustries.grow_pot.soil": "Rightclick with (Dirt, Farmland, Podzol) to fill the pot with soil.",
   "tooltip.smokeleafindustries.grow_pot.plant": "Rightclick with Weed Seeds to plant them in the soil.",
   "tooltip.smokeleafindustries.grow_pot.info": "RightClick when fully grown to harvest the plant.\nShift + Rightclick to remove soil and/or plant.\n\nPlants will grow faster inside a Grow Pot and still require light to grow!",
-
+  "tooltip.smokeleafindustries.add_fertilizer": "You can only add fertilizer when the crop is not fully grown yet.",
 
   "message.smokeleafindustries.cat_urine_cooldown": "Cat is not ready. %s seconds left.",
 
@@ -410,6 +412,17 @@
   "advancement.smokeleafindustries.joint.desc": "Craft a joint.",
 
 
+  "linguist.smokeleafindustries.villager_text.1": "Yo... you ever just... stare at redstone dust for like an hour?",
+  "linguist.smokeleafindustries.villager_text.2": "I tried to roll a joint but it turned into a paper airplane, man.",
+  "linguist.smokeleafindustries.villager_text.3": "Bro, I swear the creeper just wanted a hug...",
+  "linguist.smokeleafindustries.villager_text.4": "The smoke… it whispers… 'build another farm, dude.'",
+  "linguist.smokeleafindustries.villager_text.5": "I mixed some weeds and now my screen is all wavy, bro.",
+  "linguist.smokeleafindustries.villager_text.6": "Wait… what if Herobrine was just baked the whole time?",
+  "linguist.smokeleafindustries.villager_text.7": "My cow told me to chill today. I think I’m gonna listen, bro.",
+  "linguist.smokeleafindustries.villager_text.8": "Got any weed? Asking for my incense collection.",
+  "linguist.smokeleafindustries.villager_text.9": "You ever notice how the Enderman just… gets you, man?",
+  "linguist.smokeleafindustries.villager_text.10": "You ever wonder if you can eat the moon? Like, is it made of cheese or something?",
+  "linguist.smokeleafindustries.villager_text.11": "Imagine the munchies, but no pizza in Minecraft...",
 
 
   "item.smokeleafindustries.guide_book": "Smokeleaf Guide",

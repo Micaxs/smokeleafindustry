@@ -8,6 +8,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -140,6 +141,20 @@ public class ModItemTagProvider extends ItemTagsProvider {
         this.tag(ModTags.WHITE_WIDOW_STRAIN).add(
                 ModItems.WHITE_WIDOW_WEED.get(),
                 ModItems.WHITE_WIDOW_EXTRACT.get()
+        );
+
+        this.tag(ModTags.LEAVES).add(
+                Items.ACACIA_LEAVES,
+                Items.BIRCH_LEAVES,
+                Items.DARK_OAK_LEAVES,
+                Items.JUNGLE_LEAVES,
+                Items.OAK_LEAVES,
+                Items.SPRUCE_LEAVES,
+                Items.FLOWERING_AZALEA_LEAVES,
+                Items.AZALEA_LEAVES,
+                Items.FLOWERING_AZALEA_LEAVES,
+                Items.CHERRY_LEAVES,
+                Items.MANGROVE_LEAVES
         );
 
     }

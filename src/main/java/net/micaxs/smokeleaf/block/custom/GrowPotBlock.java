@@ -1,3 +1,4 @@
+// src/main/java/net/micaxs/smokeleaf/block/custom/GrowPotBlock.java
 package net.micaxs.smokeleaf.block.custom;
 
 import com.mojang.serialization.MapCodec;
@@ -98,7 +99,8 @@ public class GrowPotBlock extends BaseEntityBlock {
                 && stack.is(ModTags.WEED_SEEDS)
                 && GrowPotBlockEntity.resolveCropBySeed(stack.getItem()) != null;
 
-        boolean canFertilize = pot.hasCrop() && holdingFertilizer;
+        boolean canFertilize = pot.hasCrop() && holdingFertilizer && !pot.canHarvest();
+        boolean tryingFertilizeFullyGrown = pot.hasCrop() && holdingFertilizer && pot.canHarvest();
         boolean canBonemeal = pot.hasCrop() && holdingBoneMeal;
         boolean canHarvest = pot.canHarvest();
         boolean emptyHand = stack.isEmpty();
@@ -113,7 +115,7 @@ public class GrowPotBlock extends BaseEntityBlock {
 
         if (level.isClientSide) {
             if ((sneaking && emptyHand && (pot.hasCrop() || pot.hasSoil()))
-                    || canInsertSoil || canPlantCrop || canFertilize || canBonemeal || canHarvest) {
+                    || canInsertSoil || canPlantCrop || canFertilize || canBonemeal || canHarvest || tryingFertilizeFullyGrown) {
                 return ItemInteractionResult.SUCCESS;
             }
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
@@ -129,6 +131,13 @@ public class GrowPotBlock extends BaseEntityBlock {
                     return ItemInteractionResult.SUCCESS;
                 }
             }
+        }
+
+        if (tryingFertilizeFullyGrown) {
+            if (player != null) {
+                player.displayClientMessage(Component.translatable("tooltip.smokeleafindustries.add_fertilizer"), true);
+            }
+            return ItemInteractionResult.SUCCESS;
         }
 
         if (canInsertSoil) {

@@ -114,6 +114,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.BAT_GUANO);
                         output.accept(ModItems.KELP_MEAL);
                         output.accept(ModItems.WOOD_ASH);
+                        output.accept(ModItems.EMPTY_VIAL);
                         output.accept(ModItems.FISH_EMULSION);
                         output.accept(ModItems.BLOOM_BOOSTER);
                         output.accept(ModItems.FRUIT_FINISHER);

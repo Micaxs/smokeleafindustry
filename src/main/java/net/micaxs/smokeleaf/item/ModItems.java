@@ -380,7 +380,6 @@ public class ModItems {
     public static final DeferredItem<Item> MYCORRHIZAE = ITEMS.register("mycorrhizae", () -> new FertilizerItem(0, 3, 1, new Item.Properties()));
     public static final DeferredItem<Item> DOLOMITE_LIME = ITEMS.register("dolomite_lime", () -> new FertilizerItem(-2, 4, -2, new Item.Properties()));
     public static final DeferredItem<Item> BLOOD_MEAL = ITEMS.register("blood_meal", () -> new FertilizerItem(4, 0, 0, new Item.Properties()));
-    public static final DeferredItem<Item> FISH_EMULSION = ITEMS.register("fish_emulsion", () -> new FertilizerItem(2, 2, -1, new Item.Properties()));
     public static final DeferredItem<Item> PHOSPHORUS_POWDER = ITEMS.register("phosphorus_feed", () -> new FertilizerItem(0, 5, 0, new Item.Properties()));
     public static final DeferredItem<Item> BAT_GUANO = ITEMS.register("bat_guano", () -> new FertilizerItem(-1, 4, 1, new Item.Properties()));
     public static final DeferredItem<Item> KELP_MEAL = ITEMS.register("kelp_meal", () -> new FertilizerItem(0, 0, 4, new Item.Properties()));
@@ -392,6 +391,7 @@ public class ModItems {
     public static final DeferredItem<Item> BALANCED_BOOST = ITEMS.register("balanced_boost", () -> new FertilizerItem(1, 1, 1, new Item.Properties()));
     public static final DeferredItem<Item> PHOSPHORUS_REDUCER = ITEMS.register("phosphorus_reducer", () -> new FertilizerItem(0, -3, 0, new Item.Properties()));
     public static final DeferredItem<Item> POTASSIUM_REDUCER = ITEMS.register("potassium_reducer", () -> new FertilizerItem(0, 0, -3, new Item.Properties()));
+    public static final DeferredItem<Item> FISH_EMULSION = ITEMS.register("fish_emulsion", () -> new FertilizerItem(2, 2, -1, new Item.Properties()));
 
 
     // Consumables
@@ -443,12 +443,16 @@ public class ModItems {
     public static final DeferredItem<Item> INFUSED_BUTTER = ITEMS.register("infused_butter",  () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> HEMP_COAL = ITEMS.register("hemp_coal",  () -> new Item(new Item.Properties()));
 
+    public static final DeferredItem<Item> EMPTY_VIAL = ITEMS.register("empty_vial",  () -> new Item(new Item.Properties()));
+
 
 
     public static final DeferredItem<Item> HPS_LAMP = ITEMS.register("hps_lamp",  () -> new BaseLampItem(new Item.Properties().stacksTo(1).durability(6000)));
     public static final DeferredItem<Item> DUAL_ARC_LAMP = ITEMS.register("dual_arc_lamp",  () -> new BaseLampItem(new Item.Properties().stacksTo(1).durability(12000)));
 
     public static final DeferredItem<Item> PLANT_ANALYZER = ITEMS.register("plant_analyzer",  () -> new PlantAnalyzerItem(new Item.Properties().stacksTo(1).durability(512)));
+
+
 
     public static final DeferredItem<Item> SMOKELEAF_GUIDE = ITEMS.register("smokeleaf_guide", () -> new SmokeleafGuideItem(new Item.Properties().stacksTo(1)));
 
