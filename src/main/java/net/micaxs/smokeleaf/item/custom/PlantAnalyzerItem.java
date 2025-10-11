@@ -1,13 +1,7 @@
 package net.micaxs.smokeleaf.item.custom;
 
-import net.micaxs.smokeleaf.block.ModBlocks;
 import net.micaxs.smokeleaf.block.custom.BaseWeedCropBlock;
 import net.micaxs.smokeleaf.block.custom.GrowPotBlock;
-import net.micaxs.smokeleaf.block.entity.GrowPotBlockEntity;
-import net.micaxs.smokeleaf.component.DNAContents;
-import net.micaxs.smokeleaf.component.ModDataComponentTypes;
-import net.micaxs.smokeleaf.recipe.ModRecipes;
-import net.micaxs.smokeleaf.recipe.SequencerRecipe;
 import net.micaxs.smokeleaf.screen.custom.MagnifyingGlassScreen;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
@@ -19,16 +13,14 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class MagnifyingGlassItem extends Item {
+public class PlantAnalyzerItem extends Item {
 
-    public MagnifyingGlassItem(Properties properties) {
+    public PlantAnalyzerItem(Properties properties) {
         super(properties);
     }
 
@@ -53,7 +45,7 @@ public class MagnifyingGlassItem extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        tooltipComponents.add(Component.translatable("tooltip.smokeleafindustries.magnifying_glass").withStyle(ChatFormatting.GRAY));
+        tooltipComponents.add(Component.translatable("tooltip.smokeleafindustries.plant_analyzer").withStyle(ChatFormatting.GRAY));
     }
 
 }

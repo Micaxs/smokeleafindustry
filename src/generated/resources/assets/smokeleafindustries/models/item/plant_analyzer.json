@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "smokeleafindustries:item/magnifying_glass"
+    "layer0": "smokeleafindustries:item/plant_analyzer"
   }
 }

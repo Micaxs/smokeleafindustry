@@ -4,7 +4,7 @@ import com.mojang.serialization.MapCodec;
 import net.micaxs.smokeleaf.block.entity.GrowPotBlockEntity;
 import net.micaxs.smokeleaf.block.entity.ModBlockEntities;
 import net.micaxs.smokeleaf.item.custom.FertilizerItem;
-import net.micaxs.smokeleaf.item.custom.MagnifyingGlassItem;
+import net.micaxs.smokeleaf.item.custom.PlantAnalyzerItem;
 import net.micaxs.smokeleaf.screen.custom.MagnifyingGlassScreen;
 import net.micaxs.smokeleaf.utils.ModTags;
 import net.minecraft.ChatFormatting;
@@ -86,7 +86,7 @@ public class GrowPotBlock extends BaseEntityBlock {
         if (!(be instanceof GrowPotBlockEntity pot)) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 
         boolean holdingBoneMeal = !stack.isEmpty() && stack.is(Items.BONE_MEAL);
-        boolean holdingMagnifyingGlass = !stack.isEmpty() && stack.getItem() instanceof MagnifyingGlassItem;
+        boolean holdingMagnifyingGlass = !stack.isEmpty() && stack.getItem() instanceof PlantAnalyzerItem;
         boolean holdingFertilizer = !stack.isEmpty() && stack.getItem() instanceof FertilizerItem;
 
         boolean canInsertSoil = !pot.hasSoil()

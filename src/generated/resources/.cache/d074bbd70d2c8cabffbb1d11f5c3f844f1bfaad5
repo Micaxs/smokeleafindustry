@@ -1,4 +1,4 @@
-// 1.21.1	2025-10-08T12:35:57.340647069	Item Models: smokeleafindustries
+// 1.21.1	2025-10-11T07:16:21.768378076	Item Models: smokeleafindustries
 35fa437ca373fbd1597433c8807e764f57461e59 assets/smokeleafindustries/models/item/afghani_bag.json
 26a569e1bc76759afcc1eefebadc628e7f487fcb assets/smokeleafindustries/models/item/afghani_bud.json
 0a5543f67ca79e02bd2d230634a51848fde780a8 assets/smokeleafindustries/models/item/afghani_extract.json
@@ -152,7 +152,6 @@ dfd106cb599b21d5b58f83ed6ac44086a4566498 assets/smokeleafindustries/models/item/
 f8329615053669316f1915341f85247cd78fc12d assets/smokeleafindustries/models/item/lemon_haze_gummy.json
 e8b4a67f34b337715d01692b070b01f50706c5e3 assets/smokeleafindustries/models/item/lemon_haze_seeds.json
 bfbf5989771443fe60c1eb4f3609b3ea86b22545 assets/smokeleafindustries/models/item/lemon_haze_weed.json
-b1cb61f8711917ce5efd797ea17e0fbffe3de611 assets/smokeleafindustries/models/item/magnifying_glass.json
 ba3a1ef1cd819e2e3dc0f37efe2f0fc1be731569 assets/smokeleafindustries/models/item/moonbow_bag.json
 05701ed089930a119d2e0bbf76fa2af1b2ba674b assets/smokeleafindustries/models/item/moonbow_bud.json
 d9d7405b400d83d444fe5d2d3fd31d35de8a0613 assets/smokeleafindustries/models/item/moonbow_extract.json
@@ -175,6 +174,7 @@ d0650d37ae7f4e3e3f6bac9989d6e64190d0fc14 assets/smokeleafindustries/models/item/
 2d36f1c9687e24038d0e75acb7c1d7833afd1b28 assets/smokeleafindustries/models/item/pink_kush_gummy.json
 eb0094c50ab82ed4f6733dae2d16f31ec9b1a370 assets/smokeleafindustries/models/item/pink_kush_seeds.json
 9a2179f6a7791c93b4669596f17ed7afe82d001b assets/smokeleafindustries/models/item/pink_kush_weed.json
+dfbd9a8b2b7c57070a5759cdcdb6bd5242f7d471 assets/smokeleafindustries/models/item/plant_analyzer.json
 6efc8c9b896488ef66974bd8d0d12c30da1ce4ab assets/smokeleafindustries/models/item/potash_boost.json
 e4133b69fa73f91dc0f1b6cbab52c2430aea26dc assets/smokeleafindustries/models/item/potassium_reducer.json
 ce79279b2c4e214218c183651933c403c59890ab assets/smokeleafindustries/models/item/purple_haze_bag.json

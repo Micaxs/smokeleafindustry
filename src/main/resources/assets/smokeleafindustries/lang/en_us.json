@@ -34,7 +34,7 @@
   "item.smokeleafindustries.hemp_hammer": "Hemp Hammer",
   "item.smokeleafindustries.hps_lamp": "HPS Bulb",
   "item.smokeleafindustries.dual_arc_lamp": "Dual Arc Bulb",
-
+  "item.smokeleafindustries.plant_analyzer": "Plant Analyzer",
 
   "item.smokeleafindustries.joint.mixed": "Mixed Joint",
   "item.smokeleafindustries.joint.format": "%s Joint",
@@ -384,7 +384,7 @@
   "effect.smokeleafindustries.linguists_high": "Linguist's High",
   "effect.smokeleafindustries.sticky_icky": "Sticky Icky",
   "effect.smokeleafindustries.r_trees": "R. Trees",
-  "effect.smokeleafindustries.vein_high": "Vein High", 
+  "effect.smokeleafindustries.vein_high": "Vein High",
 
 
 

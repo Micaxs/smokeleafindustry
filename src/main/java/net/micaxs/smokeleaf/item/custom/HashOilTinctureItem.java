@@ -35,9 +35,4 @@ public class HashOilTinctureItem extends Item {
         }
     }
 
-
-
-
-
-
 }

@@ -2,17 +2,12 @@ package net.micaxs.smokeleaf;
 
 import net.micaxs.smokeleaf.block.ModBlocks;
 import net.micaxs.smokeleaf.fluid.ModFluids;
-import net.micaxs.smokeleaf.item.ModFoods;
 import net.micaxs.smokeleaf.item.ModItems;
-import net.micaxs.smokeleaf.item.custom.WeedDerivedItem;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.UseAnim;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
@@ -77,15 +72,15 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.GROW_POT);
 
                         output.accept(ModItems.HEMP_HAMMER);
-                        output.accept(ModItems.MAGNIFYING_GLASS);
+                        output.accept(ModItems.PLANT_ANALYZER);
                         output.accept(ModItems.MANUAL_GRINDER);
                         output.accept(ModItems.EMPTY_BAG);
                         output.accept(ModItems.JOINT);
                         output.accept(ModItems.BLUNT);
                         output.accept(ModItems.BONG);
                         output.accept(ModItems.DAB_RIG);
-                        output.accept(ModItems.EMPTY_TINCTURE);
-                        output.accept(ModItems.HASH_OIL_TINCTURE);
+//                        output.accept(ModItems.EMPTY_TINCTURE);       // Liquifier to get the liquid from the extracts, then mixer to mix the new liquids to then fill the tincture's.
+//                        output.accept(ModItems.HASH_OIL_TINCTURE);    // Same applies for VAPE cartriges when implementing this.
                         output.accept(ModItems.BASE_EXTRACT);
                         output.accept(ModItems.DNA_STRAND);
 

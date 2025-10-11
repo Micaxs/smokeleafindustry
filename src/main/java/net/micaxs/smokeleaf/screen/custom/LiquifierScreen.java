@@ -2,6 +2,8 @@ package net.micaxs.smokeleaf.screen.custom;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.micaxs.smokeleaf.SmokeleafIndustries;
+import net.micaxs.smokeleaf.fluid.ModFluids;
+import net.micaxs.smokeleaf.item.ModItems;
 import net.micaxs.smokeleaf.screen.renderer.EnergyDisplayTooltipArea;
 import net.micaxs.smokeleaf.screen.renderer.FluidTankRenderer;
 import net.micaxs.smokeleaf.utils.MouseUtil;
@@ -136,8 +138,18 @@ public class LiquifierScreen extends AbstractContainerScreen<LiquifierMenu> {
                     return true;
                 } else if (button == 1) { // Right click: fill held container from tank
 
-                    // check if the item is an empty tincture item if so remove from hand and repalce it with a filled one
-
+                    FluidStack stack = menu.blockEntity.getFluid();
+                    if (stack != null && !stack.isEmpty()) {
+                        if (stack.getFluid() == ModFluids.SOURCE_HASH_OIL_FLUID.get()) {
+                           // remove the EMPTY TINCTURE from the player's hand and replace it with a filled one
+                            if (this.minecraft.player.getInventory().getSelected().getItem() == ModItems.EMPTY_TINCTURE.get()) {
+                                this.minecraft.player.getInventory().removeItem(this.minecraft.player.getInventory().selected, 1);
+                                this.minecraft.player.getInventory().add(new net.minecraft.world.item.ItemStack(ModItems.HASH_OIL_TINCTURE.get()));
+                                return true;
+                            }
+                            return true;
+                        }
+                    }
 
                     this.minecraft.gameMode.handleInventoryButtonClick(this.menu.containerId, LiquifierMenu.BUTTON_DRAIN_TO_BUCKET);
                     return true;
