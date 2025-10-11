@@ -1,14 +1,17 @@
-// Java
 package net.micaxs.smokeleaf.block.entity;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.micaxs.smokeleaf.Config;
 import net.micaxs.smokeleaf.block.custom.BaseWeedCropBlock;
+import net.micaxs.smokeleaf.item.custom.BaseBudItem;
+import net.micaxs.smokeleaf.utils.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
+import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
@@ -26,8 +29,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,21 +41,66 @@ public class GrowPotBlockEntity extends BlockEntity {
     public static int FULL_GROWTH_SECONDS_FAST = 60;
     public static int FULL_GROWTH_SECONDS_SLOW = 90;
 
+    private static final int MAX_PERCENT = 100;
+    private static final int MAX_PH = 14;
+
     @Nullable private BlockState soilState;
     @Nullable private BaseWeedCropBlock cropBlock;
     private int cropAge;
     private int growthProgressTicks;
 
+    // Virtual crop stats stored in the pot
+    private int thc;
+    private int cbd;
+    private int ph;
+    private int nitrogen;
+    private int phosphorus;
+    private int potassium;
+
     public GrowPotBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.GROW_POT.get(), pos, state);
     }
 
-    private record PotData(Optional<ResourceLocation> soil, Optional<ResourceLocation> crop, int age, int prog) {
+    // Initialize stats from crop definition when planting
+    public void initFromCrop(BaseWeedCropBlock crop) {
+        this.thc = crop.getBaseThc();
+        this.cbd = crop.getBaseCbd();
+        this.nitrogen = crop.getBaseN();
+        this.phosphorus = crop.getBaseP();
+        this.potassium = crop.getBaseK();
+        this.ph = crop.getBasePh();
+    }
+
+    // Nutrient mutators (clamped)
+    public void setThc(int v) { this.thc = Mth.clamp(v, 0, MAX_PERCENT); }
+    public void setCbd(int v) { this.cbd = Mth.clamp(v, 0, MAX_PERCENT); }
+    public void setPh(int v) { this.ph = Mth.clamp(v, 0, MAX_PH); }
+    public void setNitrogen(int v) { this.nitrogen = Mth.clamp(v, 0, MAX_PERCENT); }
+    public void setPhosphorus(int v) { this.phosphorus = Mth.clamp(v, 0, MAX_PERCENT); }
+    public void setPotassium(int v) { this.potassium = Mth.clamp(v, 0, MAX_PERCENT); }
+
+    public void addNitrogen(int d) { setNitrogen(this.nitrogen + d); }
+    public void addPhosphorus(int d) { setPhosphorus(this.phosphorus + d); }
+    public void addPotassium(int d) { setPotassium(this.potassium + d); }
+    public void addPh(int d) { setPh(this.ph + d); }
+
+    public int getNitrogen() { return nitrogen; }
+    public int getPhosphorus() { return phosphorus; }
+    public int getPotassium() { return potassium; }
+
+    private record PotData(Optional<ResourceLocation> soil, Optional<ResourceLocation> crop, int age, int prog,
+                           int thc, int cbd, int ph, int n, int p, int k) {
         static final Codec<PotData> CODEC = RecordCodecBuilder.create(inst -> inst.group(
                 ResourceLocation.CODEC.optionalFieldOf("soil").forGetter(PotData::soil),
                 ResourceLocation.CODEC.optionalFieldOf("crop").forGetter(PotData::crop),
                 Codec.INT.fieldOf("age").forGetter(PotData::age),
-                Codec.INT.fieldOf("prog").forGetter(PotData::prog)
+                Codec.INT.fieldOf("prog").forGetter(PotData::prog),
+                Codec.INT.fieldOf("thc").forGetter(PotData::thc),
+                Codec.INT.fieldOf("cbd").forGetter(PotData::cbd),
+                Codec.INT.fieldOf("ph").forGetter(PotData::ph),
+                Codec.INT.fieldOf("n").forGetter(PotData::n),
+                Codec.INT.fieldOf("p").forGetter(PotData::p),
+                Codec.INT.fieldOf("k").forGetter(PotData::k)
         ).apply(inst, PotData::new));
     }
 
@@ -103,6 +153,7 @@ public class GrowPotBlockEntity extends BlockEntity {
         this.cropBlock = crop;
         this.cropAge = 0;
         this.growthProgressTicks = 0;
+        initFromCrop(crop);
         setChangedAndSync();
     }
 
@@ -110,6 +161,7 @@ public class GrowPotBlockEntity extends BlockEntity {
         this.cropBlock = null;
         this.cropAge = 0;
         this.growthProgressTicks = 0;
+        this.thc = this.cbd = this.ph = this.nitrogen = this.phosphorus = this.potassium = 0;
         setChangedAndSync();
     }
 
@@ -163,10 +215,35 @@ public class GrowPotBlockEntity extends BlockEntity {
                 .withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(worldPosition))
                 .withParameter(LootContextParams.TOOL, ItemStack.EMPTY);
 
-        List<ItemStack> drops = lootState.getDrops(builder);
+        List<ItemStack> drops = new ArrayList<>(lootState.getDrops(builder));
 
+        // Remove seeds
         Item seedItem = cropBlock.getBaseSeedId().asItem();
         drops.removeIf(stk -> stk.is(seedItem));
+
+        // Scale bud/leaf stacks and apply THC/CBD to buds
+        int budFactor = getBudCount();
+        int thcVal = getThc();
+        int cbdVal = getCbd();
+
+        for (ItemStack drop : drops) {
+            // Buds
+            if (drop.getItem() instanceof BaseBudItem) {
+                if (drop.getCount() > 0 && budFactor > 1) {
+                    drop.setCount(drop.getCount() * budFactor);
+                }
+                BaseBudItem.setThc(drop, thcVal);
+                BaseBudItem.setCbd(drop, cbdVal);
+            }
+            // Leaves (Nope)
+//            else if (drop.is(ModTags.WEED_LEAVES)) {
+//                if (drop.getCount() > 0 && budFactor > 1) {
+//                    drop.setCount(drop.getCount() * budFactor);
+//                }
+//            }
+
+            // Other drops unchanged
+        }
 
         for (ItemStack drop : drops) {
             Block.popResource(serverLevel, worldPosition, drop);
@@ -177,7 +254,6 @@ public class GrowPotBlockEntity extends BlockEntity {
         setChangedAndSync();
     }
 
-    // --- Shift-right-click removals ---
     public boolean removeCropAndGiveSeed(ServerLevel level, Player player) {
         if (!hasCrop()) return false;
         Item seedItem = cropBlock.getBaseSeedId().asItem();
@@ -190,7 +266,7 @@ public class GrowPotBlockEntity extends BlockEntity {
     }
 
     public boolean removeSoilAndGiveBack(ServerLevel level, Player player) {
-        if (!hasSoil() || hasCrop()) return false; // only when no crop
+        if (!hasSoil() || hasCrop()) return false;
         ItemStack soil = new ItemStack(soilState.getBlock());
         if (!player.addItem(soil)) {
             Block.popResource(level, worldPosition, soil);
@@ -206,8 +282,64 @@ public class GrowPotBlockEntity extends BlockEntity {
         }
     }
 
+    // Virtual crop "stats" API for the magnifying glass or UI
+    public Config.NutrientTarget getOptimalNutrientsLevels() {
+        if (cropBlock == null) return new Config.NutrientTarget(0, 0, 0);
+        var cropId = BuiltInRegistries.BLOCK.getKey(cropBlock);
+        return Config.getNutrientTargetFor(cropId).orElseGet(() -> new Config.NutrientTarget(0, 0, 0));
+    }
+
+    public int getThc() {
+        return computeWithNutrients(this.thc);
+    }
+
+    public int getCbd() {
+        return computeWithNutrients(this.cbd);
+    }
+
+    public int getBudCount() {
+        if (cropBlock == null) return 0;
+        var cropId = BuiltInRegistries.BLOCK.getKey(cropBlock);
+        var targetOpt = Config.getNutrientTargetFor(cropId);
+        if (targetOpt.isEmpty()) return 1;
+
+        var t = targetOpt.get();
+        int dn = Math.abs(this.nitrogen - t.n);
+        int dp = Math.abs(this.phosphorus - t.p);
+        int dk = Math.abs(this.potassium - t.k);
+        if (dn == 0 && dp == 0 && dk == 0) return 3;
+
+        final int NPK_TOL = 3;
+        int offCount = 0;
+        if (dn > NPK_TOL) offCount++;
+        if (dp > NPK_TOL) offCount++;
+        if (dk > NPK_TOL) offCount++;
+        return (offCount == 0) ? 2 : 1;
+    }
+
+    private int computeWithNutrients(int base) {
+        if (cropBlock == null) return base;
+        var cropId = BuiltInRegistries.BLOCK.getKey(cropBlock);
+        var targetOpt = Config.getNutrientTargetFor(cropId);
+        if (targetOpt.isEmpty()) return base;
+
+        var t = targetOpt.get();
+        int dn = Math.abs(this.nitrogen - t.n);
+        int dp = Math.abs(this.phosphorus - t.p);
+        int dk = Math.abs(this.potassium - t.k);
+
+        if (dn == 0 && dp == 0 && dk == 0) {
+            return Mth.clamp(base * 2, 0, 100);
+        }
+
+        int totalDiff = dn + dp + dk;
+        int reduction = (int) Math.round(base * 0.10 * totalDiff);
+        int value = base - reduction;
+        return Mth.clamp(value, 0, 100);
+    }
+
     @Nullable
-    public static BaseWeedCropBlock resolveCropBySeed(net.minecraft.world.item.Item seed) {
+    public static BaseWeedCropBlock resolveCropBySeed(Item seed) {
         for (Block b : BuiltInRegistries.BLOCK) {
             if (b instanceof BaseWeedCropBlock crop && crop.getBaseSeedId().asItem() == seed) {
                 return crop;
@@ -219,7 +351,6 @@ public class GrowPotBlockEntity extends BlockEntity {
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
-
         Optional<ResourceLocation> soilId = soilState != null
                 ? Optional.ofNullable(BuiltInRegistries.BLOCK.getKey(soilState.getBlock()))
                 : Optional.empty();
@@ -227,7 +358,8 @@ public class GrowPotBlockEntity extends BlockEntity {
                 ? Optional.ofNullable(BuiltInRegistries.BLOCK.getKey(cropBlock))
                 : Optional.empty();
 
-        PotData data = new PotData(soilId, cropId, cropAge, growthProgressTicks);
+        PotData data = new PotData(soilId, cropId, cropAge, growthProgressTicks,
+                thc, cbd, ph, nitrogen, phosphorus, potassium);
         PotData.CODEC.encodeStart(NbtOps.INSTANCE, data)
                 .resultOrPartial(err -> {})
                 .ifPresent(encoded -> tag.put("Pot", encoded));
@@ -236,11 +368,11 @@ public class GrowPotBlockEntity extends BlockEntity {
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
-
         this.soilState = null;
         this.cropBlock = null;
         this.cropAge = 0;
         this.growthProgressTicks = 0;
+        this.thc = this.cbd = this.ph = this.nitrogen = this.phosphorus = this.potassium = 0;
 
         if (tag.contains("Pot")) {
             PotData.CODEC.parse(NbtOps.INSTANCE, tag.get("Pot"))
@@ -256,24 +388,28 @@ public class GrowPotBlockEntity extends BlockEntity {
                         });
                         this.cropAge = Math.max(0, data.age());
                         this.growthProgressTicks = Math.max(0, data.prog());
+                        this.thc = Math.max(0, data.thc());
+                        this.cbd = Math.max(0, data.cbd());
+                        this.ph = Math.max(0, data.ph());
+                        this.nitrogen = Math.max(0, data.n());
+                        this.phosphorus = Math.max(0, data.p());
+                        this.potassium = Math.max(0, data.k());
                     });
         }
     }
 
     @Override
-    public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
-        CompoundTag tag = new CompoundTag();
-        saveAdditional(tag, registries);
-        return tag;
-    }
-
-    @Override
-    public void handleUpdateTag(CompoundTag tag, HolderLookup.Provider registries) {
-        loadAdditional(tag, registries);
-    }
-
-    @Override
-    public Packet<ClientGamePacketListener> getUpdatePacket() {
+    public @Nullable Packet<ClientGamePacketListener> getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
+    }
+
+    @Override
+    public @NotNull CompoundTag getUpdateTag(HolderLookup.Provider registries) {
+        return saveWithoutMetadata(registries);
+    }
+
+    @Override
+    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt, HolderLookup.Provider lookupProvider) {
+        super.onDataPacket(net, pkt, lookupProvider);
     }
 }

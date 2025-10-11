@@ -1,11 +1,14 @@
-// Java
 package net.micaxs.smokeleaf.block.custom;
 
 import com.mojang.serialization.MapCodec;
 import net.micaxs.smokeleaf.block.entity.GrowPotBlockEntity;
 import net.micaxs.smokeleaf.block.entity.ModBlockEntities;
+import net.micaxs.smokeleaf.item.custom.FertilizerItem;
+import net.micaxs.smokeleaf.item.custom.MagnifyingGlassItem;
+import net.micaxs.smokeleaf.screen.custom.MagnifyingGlassScreen;
 import net.micaxs.smokeleaf.utils.ModTags;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -83,6 +86,8 @@ public class GrowPotBlock extends BaseEntityBlock {
         if (!(be instanceof GrowPotBlockEntity pot)) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 
         boolean holdingBoneMeal = !stack.isEmpty() && stack.is(Items.BONE_MEAL);
+        boolean holdingMagnifyingGlass = !stack.isEmpty() && stack.getItem() instanceof MagnifyingGlassItem;
+        boolean holdingFertilizer = !stack.isEmpty() && stack.getItem() instanceof FertilizerItem;
 
         boolean canInsertSoil = !pot.hasSoil()
                 && stack.getItem() instanceof BlockItem bi
@@ -93,20 +98,27 @@ public class GrowPotBlock extends BaseEntityBlock {
                 && stack.is(ModTags.WEED_SEEDS)
                 && GrowPotBlockEntity.resolveCropBySeed(stack.getItem()) != null;
 
+        boolean canFertilize = pot.hasCrop() && holdingFertilizer;
         boolean canBonemeal = pot.hasCrop() && holdingBoneMeal;
         boolean canHarvest = pot.canHarvest();
         boolean emptyHand = stack.isEmpty();
         boolean sneaking = player.isShiftKeyDown();
 
+        if (holdingMagnifyingGlass) {
+            if (level.isClientSide()) {
+                Minecraft.getInstance().setScreen(new MagnifyingGlassScreen(pos));
+            }
+            return ItemInteractionResult.SUCCESS;
+        }
+
         if (level.isClientSide) {
             if ((sneaking && emptyHand && (pot.hasCrop() || pot.hasSoil()))
-                    || canInsertSoil || canPlantCrop || canBonemeal || canHarvest) {
+                    || canInsertSoil || canPlantCrop || canFertilize || canBonemeal || canHarvest) {
                 return ItemInteractionResult.SUCCESS;
             }
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
 
-        // Server-side handling
         if (sneaking && emptyHand && level instanceof ServerLevel serverLevel) {
             if (pot.hasCrop()) {
                 if (pot.removeCropAndGiveSeed(serverLevel, player)) {
@@ -119,7 +131,6 @@ public class GrowPotBlock extends BaseEntityBlock {
             }
         }
 
-        // Insert soil
         if (canInsertSoil) {
             Block soilBlock = ((BlockItem) stack.getItem()).getBlock();
             pot.setSoil(soilBlock.defaultBlockState());
@@ -128,10 +139,10 @@ public class GrowPotBlock extends BaseEntityBlock {
             return ItemInteractionResult.SUCCESS;
         }
 
-        // Plant crop
         if (canPlantCrop) {
             BaseWeedCropBlock crop = GrowPotBlockEntity.resolveCropBySeed(stack.getItem());
             if (crop != null) {
+                pot.initFromCrop(crop);
                 pot.plantCrop(crop);
                 if (!player.isCreative()) stack.shrink(1);
                 pot.setChangedAndSync();
@@ -139,7 +150,15 @@ public class GrowPotBlock extends BaseEntityBlock {
             }
         }
 
-        // Bonemeal
+        if (canFertilize && stack.getItem() instanceof FertilizerItem fert) {
+            pot.addNitrogen(fert.getN());
+            pot.addPhosphorus(fert.getP());
+            pot.addPotassium(fert.getK());
+            if (!player.isCreative()) stack.shrink(1);
+            pot.setChangedAndSync();
+            return ItemInteractionResult.SUCCESS;
+        }
+
         if (canBonemeal && pot.applyBonemeal(level)) {
             if (!player.isCreative()) stack.shrink(1);
             level.levelEvent(1505, pos, 0);
@@ -147,7 +166,6 @@ public class GrowPotBlock extends BaseEntityBlock {
             return ItemInteractionResult.SUCCESS;
         }
 
-        // Harvest
         if (canHarvest && level instanceof ServerLevel serverLevel) {
             pot.harvest(serverLevel);
             return ItemInteractionResult.SUCCESS;

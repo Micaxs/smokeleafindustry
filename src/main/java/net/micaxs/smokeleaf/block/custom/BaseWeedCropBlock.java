@@ -1,5 +1,6 @@
 package net.micaxs.smokeleaf.block.custom;
 
+import net.micaxs.smokeleaf.block.ModBlocks;
 import net.micaxs.smokeleaf.block.entity.BaseWeedCropBlockEntity;
 import net.micaxs.smokeleaf.block.entity.ModBlockEntities;
 import net.minecraft.core.BlockPos;
@@ -34,6 +35,8 @@ public class BaseWeedCropBlock extends CropBlock implements EntityBlock {
     private static final int MAX_PERCENT = 100;
     private static final int MAX_PH = 14;
 
+    public BaseWeedCropBlockEntity blockEntity;
+
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
             Block.box(0.0, 0.0, 0.0, 16.0, 2.0, 16.0),
             Block.box(0.0, 0.0, 0.0, 16.0, 4.0, 16.0),
@@ -58,7 +61,7 @@ public class BaseWeedCropBlock extends CropBlock implements EntityBlock {
     private int baseCbd = 0;
 
     public BaseWeedCropBlock(Properties properties, Supplier<Item> seedItem) {
-        this(properties, seedItem, 0, 0, 0, 7, 0, 0);
+        this(properties, seedItem, 88, 0, 0, 7, 0, 0);
     }
 
     public BaseWeedCropBlock(Properties properties, Supplier<Item> seedItem, int n, int p, int k, int ph, int thc, int cbd) {
@@ -75,6 +78,13 @@ public class BaseWeedCropBlock extends CropBlock implements EntityBlock {
                 .setValue(this.getAgeProperty(), 0)
                 .setValue(TOP, false));
     }
+
+    public int getBaseThc() { return this.baseThc; }
+    public int getBaseCbd() { return this.baseCbd; }
+    public int getBaseN()   { return this.baseN; }
+    public int getBaseP()   { return this.baseP; }
+    public int getBaseK()   { return this.baseK; }
+    public int getBasePh()  { return this.basePh; }
 
     @Override
     protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
@@ -185,6 +195,13 @@ public class BaseWeedCropBlock extends CropBlock implements EntityBlock {
         return getGrowthSpeed(this.defaultBlockState(), level, pos);
     }
 
+    public BaseWeedCropBlockEntity getBlockEntity() {
+        if (this.blockEntity instanceof BaseWeedCropBlockEntity) {
+            return this.blockEntity;
+        }
+        return null;
+    }
+
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         // Only the bottom half owns a BlockEntity
@@ -201,6 +218,7 @@ public class BaseWeedCropBlock extends CropBlock implements EntityBlock {
             be.setPotassium(this.baseK);
             be.setPh(this.basePh);
         }
+        this.blockEntity = be;
         return be;
     }
 }

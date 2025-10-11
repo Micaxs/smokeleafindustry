@@ -2,6 +2,8 @@ package net.micaxs.smokeleaf.item.custom;
 
 import net.micaxs.smokeleaf.block.ModBlocks;
 import net.micaxs.smokeleaf.block.custom.BaseWeedCropBlock;
+import net.micaxs.smokeleaf.block.custom.GrowPotBlock;
+import net.micaxs.smokeleaf.block.entity.GrowPotBlockEntity;
 import net.micaxs.smokeleaf.component.DNAContents;
 import net.micaxs.smokeleaf.component.ModDataComponentTypes;
 import net.micaxs.smokeleaf.recipe.ModRecipes;
@@ -38,7 +40,7 @@ public class MagnifyingGlassItem extends Item {
         if (player == null) return InteractionResult.PASS;
 
         BlockState state = level.getBlockState(pos);
-        if (!(state.getBlock() instanceof BaseWeedCropBlock)) {
+        if (!(state.getBlock() instanceof BaseWeedCropBlock) && !(state.getBlock() instanceof GrowPotBlock)) {
             return InteractionResult.PASS;
         }
 
