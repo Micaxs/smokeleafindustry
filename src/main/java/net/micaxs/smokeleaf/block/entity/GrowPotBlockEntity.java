@@ -217,17 +217,14 @@ public class GrowPotBlockEntity extends BlockEntity {
 
         List<ItemStack> drops = new ArrayList<>(lootState.getDrops(builder));
 
-        // Remove seeds
         Item seedItem = cropBlock.getBaseSeedId().asItem();
         drops.removeIf(stk -> stk.is(seedItem));
 
-        // Scale bud/leaf stacks and apply THC/CBD to buds
         int budFactor = getBudCount();
         int thcVal = getThc();
         int cbdVal = getCbd();
 
         for (ItemStack drop : drops) {
-            // Buds
             if (drop.getItem() instanceof BaseBudItem) {
                 if (drop.getCount() > 0 && budFactor > 1) {
                     drop.setCount(drop.getCount() * budFactor);
@@ -235,14 +232,6 @@ public class GrowPotBlockEntity extends BlockEntity {
                 BaseBudItem.setThc(drop, thcVal);
                 BaseBudItem.setCbd(drop, cbdVal);
             }
-            // Leaves (Nope)
-//            else if (drop.is(ModTags.WEED_LEAVES)) {
-//                if (drop.getCount() > 0 && budFactor > 1) {
-//                    drop.setCount(drop.getCount() * budFactor);
-//                }
-//            }
-
-            // Other drops unchanged
         }
 
         for (ItemStack drop : drops) {
