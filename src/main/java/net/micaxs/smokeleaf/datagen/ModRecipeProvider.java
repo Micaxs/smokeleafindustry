@@ -119,6 +119,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(ModItems.HEMP_PLASTIC), has(ModItems.HEMP_PLASTIC))
                 .save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.HEMP_FABRIC.get(), 1)
+                .pattern("PP ")
+                .pattern("PP ")
+                .pattern("   ")
+                .define('P', ModItems.HEMP_FIBERS)
+                .unlockedBy(getHasName(ModItems.HEMP_FIBERS), has(ModItems.HEMP_FIBERS))
+                .save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.HEMP_BRICKS.get(), 4)
                 .pattern("PP")
                 .pattern("PP")
@@ -247,6 +255,50 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(ModItems.UNFINISHED_HEMP_CORE), has(ModItems.UNFINISHED_HEMP_CORE))
                 .save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.BONG.get())
+                .pattern("  P")
+                .pattern(" BP")
+                .pattern("PPP")
+                .define('P', Items.GLASS_PANE)
+                .define('B', Items.WATER_BUCKET)
+                .unlockedBy(getHasName(Items.WATER_BUCKET), has(Items.WATER_BUCKET))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(SmokeleafIndustries.MODID, "bong_recipe"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.DAB_RIG.get())
+                .pattern("P  ")
+                .pattern("PBG")
+                .pattern("PPP")
+                .define('P', Items.GLASS_PANE)
+                .define('B', Items.WATER_BUCKET)
+                .define('G', Items.GLASS_BOTTLE)
+                .unlockedBy(getHasName(Items.WATER_BUCKET), has(Items.WATER_BUCKET))
+                .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(SmokeleafIndustries.MODID, "dab_rig_recipe"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.PLANT_ANALYZER.get())
+                .pattern(" C ")
+                .pattern("WIW")
+                .pattern("PPP")
+                .define('W', ModTags.WEEDS)
+                .define('C', ModItems.HEMP_CORE)
+                .define('I', Items.IRON_INGOT)
+                .define('P', ModItems.HEMP_PLASTIC)
+                .unlockedBy(getHasName(ModItems.HEMP_CORE), has(ModItems.HEMP_CORE))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.LED_LIGHT.get())
+                .pattern("PLP")
+                .pattern("RGB")
+                .pattern("CAC")
+                .define('P', ModItems.HEMP_PLASTIC)
+                .define('L', ModItems.HEMP_CORE)
+                .define('R', Items.RED_DYE)
+                .define('G', Items.GREEN_DYE)
+                .define('B', Items.BLUE_DYE)
+                .define('C', Items.GLOWSTONE)
+                .define('A', Items.TINTED_GLASS)
+                .unlockedBy(getHasName(ModItems.HEMP_CORE), has(ModItems.HEMP_CORE))
+                .save(recipeOutput);
+
 
         // Machine Recipes
         // Generator
@@ -342,6 +394,18 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('C', ModItems.HEMP_CORE)
                 .define('B', Items.WATER_BUCKET)
                 .unlockedBy(getHasName(ModItems.HEMP_CORE), has(ModItems.HEMP_CORE))
+                .save(recipeOutput);
+
+        // Dryer
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.DRYER.get())
+                .pattern("HCH")
+                .pattern("IGI")
+                .pattern("HCH")
+                .define('H', ModItems.HEMP_PLASTIC)
+                .define('C', ModItems.HEMP_CORE)
+                .define('I', Items.MAGMA_BLOCK)
+                .define('G', ModBlocks.DRYING_RACK)
+                .unlockedBy(getHasName(ModBlocks.DRYING_RACK), has(ModBlocks.DRYING_RACK))
                 .save(recipeOutput);
 
 
@@ -808,14 +872,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(Items.GLOW_BERRIES)
                 .unlockedBy(getHasName(ModItems.EMPTY_VIAL), has(ModItems.EMPTY_VIAL))
                 .save(recipeOutput);
-
-        /*
-         FISH_EMULSION
-         BLOOM_BOOSTER
-
-
-        */
-
 
     }
 }

@@ -186,47 +186,43 @@ public class BaseWeedItem extends Item {
 
         MobEffect base = getEffect(stack);
         ResourceLocation baseId = base != null ? BuiltInRegistries.MOB_EFFECT.getKey(base) : null;
-        ResourceLocation itemId = BuiltInRegistries.ITEM.getKey(stack.getItem());
 
-        // Seed composition ensures same inputs => same outputs
         int thc = getTHC(stack);
         int cbd = getCBD(stack);
         long seed = 1469598103934665603L; // FNV offset basis
-        seed = seed ^ (itemId != null ? itemId.toString().hashCode() : 0);
-        seed = (seed * 1099511628211L) ^ (baseId != null ? baseId.toString().hashCode() : 0);
+        seed ^= (baseId != null ? baseId.toString().hashCode() : 0);
         seed = (seed * 1099511628211L) ^ thc;
         seed = (seed * 1099511628211L) ^ cbd;
 
-        // Build candidate list, excluding base effect if present
+        String activeStr = stack.get(ModDataComponentTypes.ACTIVE_INGREDIENT.get());
+        if (activeStr != null) {
+            seed = (seed * 1099511628211L) ^ activeStr.hashCode();
+        }
+
         List<MobEffect> candidates = new ArrayList<>();
         for (ResourceLocation rl : ADDITIONAL_EFFECT_POOL) {
             if (rl == null) continue;
-            if (baseId != null && rl.equals(baseId)) continue; // exclude base effect
+            if (baseId != null && rl.equals(baseId)) continue;
             MobEffect eff = BuiltInRegistries.MOB_EFFECT.get(rl);
             if (eff != null) candidates.add(eff);
         }
         if (candidates.isEmpty()) return List.of();
 
-        // Deterministic shuffle and pick first N
         Collections.shuffle(candidates, new Random(seed));
         if (count >= candidates.size()) return List.copyOf(candidates);
         return List.copyOf(candidates.subList(0, count));
     }
 
-    // Build all effect instances to apply (base + extra), with unified duration
     private static Holder<MobEffect> toHolder(MobEffect effect) {
         if (effect == null) return null;
         var registry = BuiltInRegistries.MOB_EFFECT;
         var keyOpt = registry.getResourceKey(effect);
         if (keyOpt.isPresent()) {
-            // Registered effect → use the registry-backed reference holder
             return registry.getHolderOrThrow(keyOpt.get());
         }
-        // Unregistered/built-in → use a direct holder
         return Holder.direct(effect);
     }
 
-    // Build all effect instances to apply (base + extra), with unified duration
     public List<MobEffectInstance> buildEffectInstances(ItemStack stack) {
         int durationTicks = computeUnifiedDurationTicks(stack);
         int amp = this.effectAmplifier;

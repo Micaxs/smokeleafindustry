@@ -1,6 +1,7 @@
 package net.micaxs.smokeleaf.block.entity;
 
 import net.micaxs.smokeleaf.block.entity.energy.ModEnergyStorage;
+import net.micaxs.smokeleaf.component.ModDataComponentTypes;
 import net.micaxs.smokeleaf.item.custom.BaseBudItem;
 import net.micaxs.smokeleaf.item.custom.BaseWeedItem;
 import net.micaxs.smokeleaf.recipe.ExtractorRecipe;
@@ -37,6 +38,7 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Objects;
 import java.util.Optional;
 
 public class ExtractorBlockEntity extends BlockEntity implements MenuProvider {
@@ -143,6 +145,37 @@ public class ExtractorBlockEntity extends BlockEntity implements MenuProvider {
         return new ExtractorMenu(i, inventory, this, this.data);
     }
 
+    private ItemStack buildOutputWithWeedData(ItemStack input, ItemStack recipeOutput) {
+        ItemStack result = new ItemStack(recipeOutput.getItem(), recipeOutput.getCount());
+
+        Integer thc = input.get(ModDataComponentTypes.THC.get());
+        if (thc != null) result.set(ModDataComponentTypes.THC.get(), thc);
+
+        Integer cbd = input.get(ModDataComponentTypes.CBD.get());
+        if (cbd != null) result.set(ModDataComponentTypes.CBD.get(), cbd);
+
+        // Preserve the base/active effect from the input item
+        String eff = input.get(ModDataComponentTypes.ACTIVE_INGREDIENT.get());
+        if (eff != null) result.set(ModDataComponentTypes.ACTIVE_INGREDIENT.get(), eff);
+
+        return result;
+    }
+
+    private boolean areWeedDataEqual(ItemStack a, ItemStack b) {
+        Integer aTHC = a.get(ModDataComponentTypes.THC.get());
+        Integer bTHC = b.get(ModDataComponentTypes.THC.get());
+        if (!Objects.equals(aTHC, bTHC)) return false;
+
+        Integer aCBD = a.get(ModDataComponentTypes.CBD.get());
+        Integer bCBD = b.get(ModDataComponentTypes.CBD.get());
+        if (!Objects.equals(aCBD, bCBD)) return false;
+
+        // Ensure stacks only merge when the active effect matches
+        String aEff = a.get(ModDataComponentTypes.ACTIVE_INGREDIENT.get());
+        String bEff = b.get(ModDataComponentTypes.ACTIVE_INGREDIENT.get());
+        return Objects.equals(aEff, bEff);
+    }
+
     public void drops() {
         SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
         for (int i = 0; i < itemHandler.getSlots(); i++) {
@@ -188,16 +221,21 @@ public class ExtractorBlockEntity extends BlockEntity implements MenuProvider {
 
     private boolean hasRecipe() {
         Optional<RecipeHolder<ExtractorRecipe>> recipe = getCurrentRecipe();
-        if (recipe.isEmpty()) {
-            return false;
-        }
-        ItemStack output = recipe.get().value().output();
-        return canInsertAmountIntoOutputSlot(output.getCount()) && canInsertItemIntoOutputSlot(output);
+        if (recipe.isEmpty()) return false;
+
+        ItemStack input = itemHandler.getStackInSlot(INPUT_SLOT);
+        ItemStack recipeOut = recipe.get().value().output();
+        ItemStack candidate = buildOutputWithWeedData(input, recipeOut);
+
+        return canInsertAmountIntoOutputSlot(candidate.getCount())
+                && canInsertItemIntoOutputSlot(candidate);
     }
 
-    private boolean canInsertItemIntoOutputSlot(ItemStack output) {
-        return itemHandler.getStackInSlot(OUTPUT_SLOT).isEmpty() ||
-                itemHandler.getStackInSlot(OUTPUT_SLOT).getItem() == output.getItem();
+    private boolean canInsertItemIntoOutputSlot(ItemStack candidate) {
+        ItemStack slot = itemHandler.getStackInSlot(OUTPUT_SLOT);
+        if (slot.isEmpty()) return true;
+        if (slot.getItem() != candidate.getItem()) return false;
+        return areWeedDataEqual(slot, candidate);
     }
 
 
@@ -214,10 +252,25 @@ public class ExtractorBlockEntity extends BlockEntity implements MenuProvider {
 
     private void craftItem() {
         Optional<RecipeHolder<ExtractorRecipe>> recipe = getCurrentRecipe();
-        ItemStack output = recipe.get().value().output();
-        // To get the amount from json if we have ingredients recipe/codec/stuff --->  recipe.get().value().inputItem().getItems()[0].getCount()
+        if (recipe.isEmpty()) return;
+
+        ItemStack input = itemHandler.getStackInSlot(INPUT_SLOT);
+        ItemStack recipeOut = recipe.get().value().output();
+        ItemStack candidate = buildOutputWithWeedData(input, recipeOut);
+
+        // Consume input
         itemHandler.extractItem(INPUT_SLOT, 1, false);
-        itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(output.getItem(), itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() + output.getCount()));
+
+        // Merge into output slot (safe because hasRecipe() already validated compatibility)
+        ItemStack outSlot = itemHandler.getStackInSlot(OUTPUT_SLOT);
+        if (outSlot.isEmpty()) {
+            itemHandler.setStackInSlot(OUTPUT_SLOT, candidate);
+        } else {
+            // Grow count while preserving the existing data (identical to candidate)
+            ItemStack merged = outSlot.copy();
+            merged.grow(candidate.getCount());
+            itemHandler.setStackInSlot(OUTPUT_SLOT, merged);
+        }
     }
 
     private void resetProgress() {
