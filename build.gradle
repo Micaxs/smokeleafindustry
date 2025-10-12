@@ -28,12 +28,7 @@ repositories {
         name = "ModMaven"
         url = "https://modmaven.dev"
     }
-    maven {
-        url "https://www.cursemaven.com"
-        content {
-            includeGroup "curse.maven"
-        }
-    }
+    maven { url = "https://api.modrinth.com/maven" }
 }
 
 base {
@@ -41,7 +36,11 @@ base {
 }
 
 // Mojang ships Java 21 to end users in 1.21.1, so mods should target Java 21.
-java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21) // use 17 if you're on MC 1.20.x
+    }
+}
 
 neoForge {
     // Specify the version of NeoForge to use.
@@ -134,8 +133,7 @@ dependencies {
     compileOnly("vazkii.patchouli:Patchouli:${patchouli_version}:api")
     runtimeOnly("vazkii.patchouli:Patchouli:${patchouli_version}")
 
-    compileOnly("curse.maven:jade-324717:${jade_id}")
-    runtimeOnly("curse.maven:jade-324717:${jade_id}")
+    implementation "maven.modrinth:jade:${jade_version}"
 
 
 }

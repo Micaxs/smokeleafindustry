@@ -104,6 +104,14 @@ public class GrowPotBlockEntity extends BlockEntity {
         ).apply(inst, PotData::new));
     }
 
+    public int getCropAge() {
+        return cropAge;
+    }
+
+    public int getCropMaxAge() {
+        return cropBlock != null ? cropBlock.getMaxAge() : 0;
+    }
+
     public static void tick(Level level, BlockPos pos, BlockState state, GrowPotBlockEntity be) {
         if (!(level instanceof ServerLevel)) return;
         if (!be.hasCrop()) return;
