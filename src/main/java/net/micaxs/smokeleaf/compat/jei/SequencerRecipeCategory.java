@@ -1,4 +1,4 @@
-package net.micaxs.smokeleaf.compat;
+package net.micaxs.smokeleaf.compat.jei;
 
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -16,7 +16,6 @@ import net.micaxs.smokeleaf.block.ModBlocks;
 import net.micaxs.smokeleaf.component.DNAContents;
 import net.micaxs.smokeleaf.component.ModDataComponentTypes;
 import net.micaxs.smokeleaf.item.ModItems; // Adjust if your package differs
-import net.micaxs.smokeleaf.item.custom.DNAStrandItem;
 import net.micaxs.smokeleaf.recipe.SequencerRecipe;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;

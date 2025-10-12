@@ -1,5 +1,4 @@
-// java
-package net.micaxs.smokeleaf.compat;
+package net.micaxs.smokeleaf.compat.jei;
 
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -11,30 +10,26 @@ import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.micaxs.smokeleaf.SmokeleafIndustries;
-import net.micaxs.smokeleaf.recipe.JointRecipe;
+import net.micaxs.smokeleaf.recipe.BluntRecipe;
 import net.micaxs.smokeleaf.utils.ModTags;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
 import java.util.List;
 
-public class JointRecipeCategory implements IRecipeCategory<JointRecipe> {
-    public static final RecipeType<JointRecipe> JOINT_RECIPE_TYPE =
-            RecipeType.create(SmokeleafIndustries.MODID, "joint", JointRecipe.class);
+public class BluntRecipeCategory implements IRecipeCategory<BluntRecipe> {
+
+    public static final RecipeType<BluntRecipe> BLUNT_RECIPE_TYPE =
+            RecipeType.create(SmokeleafIndustries.MODID, "blunt", BluntRecipe.class);
 
     private static final ResourceLocation VANILLA_BG =
             ResourceLocation.withDefaultNamespace("textures/gui/container/crafting_table.png");
 
-    private static final TagKey<Item> JOINT_WEEDS = ModTags.WEEDS;
-
     private static List<ItemStack> weedStacks() {
-        return BuiltInRegistries.ITEM.getTag(JOINT_WEEDS)
+        return BuiltInRegistries.ITEM.getTag(ModTags.WEEDS)
                 .map(tag -> tag.stream().map(h -> new ItemStack(h.value())).toList())
                 .orElse(List.of());
     }
@@ -43,35 +38,52 @@ public class JointRecipeCategory implements IRecipeCategory<JointRecipe> {
     private final IDrawable icon;
     private final Component title;
 
-    public JointRecipeCategory(IGuiHelper guiHelper) {
+    public BluntRecipeCategory(IGuiHelper guiHelper) {
         this.background = guiHelper.createDrawable(VANILLA_BG, 29, 16, 116, 54);
         this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(Items.PAPER));
-        this.title = Component.translatable("jei.smokeleafindustries.category.joint");
+        this.title = Component.translatable("jei.smokeleafindustries.category.blunt");
     }
 
     @Override
-    public RecipeType<JointRecipe> getRecipeType() { return JOINT_RECIPE_TYPE; }
+    public RecipeType<BluntRecipe> getRecipeType() {
+        return BLUNT_RECIPE_TYPE;
+    }
 
     @Override
-    public Component getTitle() { return title; }
+    public Component getTitle() {
+        return title;
+    }
 
     @SuppressWarnings("removal")
     @Override
-    public IDrawable getBackground() { return background; }
+    public IDrawable getBackground() {
+        return background;
+    }
 
     @Override
-    public IDrawable getIcon() { return icon; }
+    public IDrawable getIcon() {
+        return icon;
+    }
 
     @Override
-    public void setRecipe(IRecipeLayoutBuilder builder, JointRecipe recipe, IFocusGroup focuses) {
+    public void setRecipe(IRecipeLayoutBuilder builder, BluntRecipe recipe, IFocusGroup focuses) {
+        // Top row: paper
+        builder.addSlot(RecipeIngredientRole.INPUT, 1, 1).addItemStack(new ItemStack(Items.PAPER));
         builder.addSlot(RecipeIngredientRole.INPUT, 19, 1).addItemStack(new ItemStack(Items.PAPER));
-        builder.addSlot(RecipeIngredientRole.INPUT, 19, 37).addItemStack(new ItemStack(Items.PAPER));
+        builder.addSlot(RecipeIngredientRole.INPUT, 37, 1).addItemStack(new ItemStack(Items.PAPER));
 
+        // Middle row: weeds (tag)
         var weeds = weedStacks();
         builder.addSlot(RecipeIngredientRole.INPUT, 1, 19).addItemStacks(weeds);
+        builder.addSlot(RecipeIngredientRole.INPUT, 19, 19).addItemStacks(weeds);
         builder.addSlot(RecipeIngredientRole.INPUT, 37, 19).addItemStacks(weeds);
 
-        builder.addSlot(RecipeIngredientRole.INPUT, 19, 19).addItemStack(new ItemStack(recipe.getTobaccoItem()));
+        // Bottom row: paper
+        builder.addSlot(RecipeIngredientRole.INPUT, 1, 37).addItemStack(new ItemStack(Items.PAPER));
+        builder.addSlot(RecipeIngredientRole.INPUT, 19, 37).addItemStack(new ItemStack(Items.PAPER));
+        builder.addSlot(RecipeIngredientRole.INPUT, 37, 37).addItemStack(new ItemStack(Items.PAPER));
+
+        // Output
         builder.addSlot(RecipeIngredientRole.OUTPUT, 95, 19).addItemStack(recipe.getResultItem(null));
     }
 }

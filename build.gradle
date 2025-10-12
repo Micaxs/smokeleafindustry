@@ -28,6 +28,12 @@ repositories {
         name = "ModMaven"
         url = "https://modmaven.dev"
     }
+    maven {
+        url "https://www.cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
 }
 
 base {
@@ -117,6 +123,7 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 // a dependency that will be present for runtime testing but that is
 // "optional", meaning it will not be pulled by dependents of this mod.
 configurations {
+    localRuntime
     runtimeClasspath.extendsFrom localRuntime
 }
 
@@ -126,6 +133,11 @@ dependencies {
 
     compileOnly("vazkii.patchouli:Patchouli:${patchouli_version}:api")
     runtimeOnly("vazkii.patchouli:Patchouli:${patchouli_version}")
+
+    compileOnly("curse.maven:jade-324717:${jade_id}")
+    runtimeOnly("curse.maven:jade-324717:${jade_id}")
+
+
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
