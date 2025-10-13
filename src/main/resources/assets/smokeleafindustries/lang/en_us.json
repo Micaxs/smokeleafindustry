@@ -427,7 +427,8 @@
 
   "config.jade.plugin_smokeleafindustries.grow_pot_jade": "Grow Pot",
   "config.jade.plugin_smokeleafindustries.weed_crop_jade": "Weed Crop",
-
+  "config.jade.plugin_smokeleafindustries.drying_rack": "Drying Rack",
+  "config.jade.plugin_smokeleafindustries.reflector": "Reflector",
 
 
   "item.smokeleafindustries.guide_book": "Smokeleaf Guide"

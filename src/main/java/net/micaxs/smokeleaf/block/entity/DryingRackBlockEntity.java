@@ -129,6 +129,28 @@ public class DryingRackBlockEntity extends BlockEntity {
         if (changed) be.setChangedAndSync();
     }
 
+    public int getProgressForSlot(int slot) {
+        if (slot < 0 || slot >= SLOT_COUNT) return 0;
+        return progress[slot];
+    }
+
+    // Compute total time (ticks) needed for the current item in the slot, or 0 if no recipe
+    public int getTotalTimeForSlot(Level level, int slot) {
+        if (slot < 0 || slot >= SLOT_COUNT) return 0;
+        ItemStack stack = items[slot];
+        if (stack.isEmpty()) return 0;
+
+        Optional<RecipeHolder<DryingRecipe>> recipeHolderOpt =
+                level.getRecipeManager().getRecipeFor(ModRecipes.DRYING_TYPE.get(), new DryingRecipeInput(stack), level);
+        if (recipeHolderOpt.isEmpty()) return 0;
+
+        DryingRecipe recipe = recipeHolderOpt.get().value();
+        if (recipe.dryBud() && stack.getItem() instanceof BaseBudItem budItem) {
+            return Math.max(1, budItem.dryingTime);
+        }
+        return Math.max(1, recipe.time());
+    }
+
     private boolean isDry(ItemStack stack) {
         Boolean v = stack.get(ModDataComponentTypes.DRY);
         return v != null && v;

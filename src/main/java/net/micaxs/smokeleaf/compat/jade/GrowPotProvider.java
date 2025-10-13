@@ -119,6 +119,8 @@ public enum GrowPotProvider implements IBlockComponentProvider, IServerDataProvi
             int n = data.getInt("n"), p = data.getInt("p"), k = data.getInt("k");
             int tn = data.getInt("tn"), tp = data.getInt("tp"), tk = data.getInt("tk");
 
+            if (tn == 0 && tp == 0 && tk == 0) return;
+
             tooltip.add(Component.literal("Nitrogen (N): ")
                     .append(Component.literal(String.valueOf(n)).withStyle(colorForDiff(Math.abs(n - tn))))
                     .append(Component.literal("/").withStyle(ChatFormatting.GRAY))

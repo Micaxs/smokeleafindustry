@@ -61,7 +61,7 @@ public class BaseWeedCropBlock extends CropBlock implements EntityBlock {
     private int baseCbd = 0;
 
     public BaseWeedCropBlock(Properties properties, Supplier<Item> seedItem) {
-        this(properties, seedItem, 88, 0, 0, 7, 0, 0);
+        this(properties, seedItem, 0, 0, 0, 7, 0, 0);
     }
 
     public BaseWeedCropBlock(Properties properties, Supplier<Item> seedItem, int n, int p, int k, int ph, int thc, int cbd) {

@@ -7,9 +7,13 @@ import net.micaxs.smokeleaf.component.ModDataComponentTypes;
 import net.micaxs.smokeleaf.effect.ModEffects;
 import net.micaxs.smokeleaf.fluid.ModFluids;
 import net.micaxs.smokeleaf.item.ModItems;
+import net.micaxs.smokeleaf.item.custom.BaseWeedItem;
+import net.micaxs.smokeleaf.utils.ModTags;
+import net.micaxs.smokeleaf.utils.WeedDataUtil;
 import net.micaxs.smokeleaf.villager.ModVillagers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -27,6 +31,7 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.ItemCost;
@@ -340,6 +345,85 @@ public class CommonEvents {
     }
 
 
+
+    // -------- CraftingDataCopy
+
+    @SubscribeEvent
+    public static void onCraftingPreview(PlayerEvent.ItemCraftedEvent event) {
+        // Copy weed data components from any ingredient that has them to the crafted result
+        ItemStack result = event.getCrafting();
+        if (result.isEmpty()) return;
+
+        Container inv = event.getInventory();
+        for (int i = 0; i < inv.getContainerSize(); i++) {
+            ItemStack src = inv.getItem(i);
+            if (src.isEmpty()) continue;
+
+            boolean hasWeedData =
+                    src.has(ModDataComponentTypes.ACTIVE_INGREDIENT.get()) ||
+                            src.has(ModDataComponentTypes.THC.get()) ||
+                            src.has(ModDataComponentTypes.CBD.get());
+
+            if (hasWeedData) {
+                WeedDataUtil.copyWeedComponents(src, result);
+                break;
+            }
+        }
+    }
+
+    private static ItemStack findWeedComponentSource(CraftingContainer grid) {
+        for (int i = 0; i < grid.getContainerSize(); i++) {
+            ItemStack s = grid.getItem(i);
+            if (s.isEmpty()) continue;
+
+            boolean hasAny =
+                    s.get(ModDataComponentTypes.ACTIVE_INGREDIENT.get()) != null ||
+                            s.get(ModDataComponentTypes.EFFECT_DURATION.get()) != null ||
+                            s.get(ModDataComponentTypes.THC.get()) != null ||
+                            s.get(ModDataComponentTypes.CBD.get()) != null;
+
+            if (hasAny) return s;
+        }
+        return ItemStack.EMPTY;
+    }
+
+    private static boolean contains(CraftingContainer grid, ItemStack needle) {
+        for (int i = 0; i < grid.getContainerSize(); i++) {
+            ItemStack s = grid.getItem(i);
+            if (!s.isEmpty() && ItemStack.isSameItemSameComponents(s, needle)) return true;
+        }
+        return false;
+    }
+
+    private static ItemStack firstMatching(CraftingContainer grid, boolean weedsOnly) {
+        for (int i = 0; i < grid.getContainerSize(); i++) {
+            ItemStack s = grid.getItem(i);
+            if (s.isEmpty()) continue;
+            if (!weedsOnly || s.is(ModTags.WEEDS)) return s;
+        }
+        return ItemStack.EMPTY;
+    }
+
+    private static boolean anySlotMatches(CraftingContainer grid, java.util.function.Predicate<ItemStack> pred) {
+        for (int i = 0; i < grid.getContainerSize(); i++) {
+            ItemStack s = grid.getItem(i);
+            if (!s.isEmpty() && pred.test(s)) return true;
+        }
+        return false;
+    }
+
+    private static ItemStack firstBag(CraftingContainer grid) {
+        for (int i = 0; i < grid.getContainerSize(); i++) {
+            ItemStack s = grid.getItem(i);
+            if (!s.isEmpty() && looksLikeBag(s)) return s;
+        }
+        return ItemStack.EMPTY;
+    }
+
+    private static boolean looksLikeBag(ItemStack stack) {
+        var key = BuiltInRegistries.ITEM.getKey(stack.getItem());
+        return key != null && key.getPath().endsWith("_bag");
+    }
 
 
 

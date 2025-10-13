@@ -66,6 +66,9 @@ public enum WeedCropProvider implements IBlockComponentProvider, IServerDataProv
         int tp = data.getInt("tp");
         int tk = data.getInt("tk");
 
+        // Don't add the NPK if the plant doesn't have a target (e.g. non-weed crops)
+        if (tn == 0 && tp == 0 && tk == 0) return;
+        
         // Nitrogen
         tooltip.add(Component.literal("Nitrogen (N): ")
                 .append(Component.literal(String.valueOf(n)).withStyle(colorForDiff(Math.abs(n - tn))))
