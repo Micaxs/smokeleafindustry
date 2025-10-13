@@ -454,7 +454,7 @@ public class ModItems {
 
 
 
-    public static final DeferredItem<Item> SMOKELEAF_GUIDE = ITEMS.register("smokeleaf_guide", () -> new SmokeleafGuideItem(new Item.Properties().stacksTo(1)));
+//    public static final DeferredItem<Item> SMOKELEAF_GUIDE = ITEMS.register("smokeleaf_guide", () -> new SmokeleafGuideItem(new Item.Properties().stacksTo(1)));
 
 
 

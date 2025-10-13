@@ -1,0 +1,17 @@
+{
+  "name": "Blood Meal",
+  "icon": "smokeleafindustries:blood_meal",
+  "category": "smokeleafindustries:fertilizer_category",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "smokeleafindustries:blood_meal",
+      "text": "This applies various Nutrients to a Weed Crop when right clicked onto a crop or grow pot.$(br2)Nitrogen (N): +4$(br)Phosphorus (P): 0$(br)Potassium (K): 0"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "smokeleafindustries:blood_meal"
+    }
+  ]
+}
