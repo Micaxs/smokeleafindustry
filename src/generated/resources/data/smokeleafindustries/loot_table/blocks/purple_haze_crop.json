@@ -53,6 +53,11 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "smokeleafindustries:apply_bud_stats"
+            }
+          ],
           "name": "smokeleafindustries:purple_haze_bud"
         }
       ],

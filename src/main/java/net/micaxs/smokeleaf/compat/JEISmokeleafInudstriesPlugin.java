@@ -8,6 +8,7 @@ import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.micaxs.smokeleaf.SmokeleafIndustries;
 import net.micaxs.smokeleaf.block.ModBlocks;
+import net.micaxs.smokeleaf.compat.jei.*;
 import net.micaxs.smokeleaf.item.ModItems;
 import net.micaxs.smokeleaf.recipe.*;
 import net.micaxs.smokeleaf.screen.custom.*;

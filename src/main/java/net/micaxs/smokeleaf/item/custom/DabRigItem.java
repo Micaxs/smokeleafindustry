@@ -7,12 +7,14 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -34,7 +36,7 @@ public class DabRigItem extends Item {
 
     @Override
     public int getUseDuration(ItemStack stack, LivingEntity entity) {
-        return 30;
+        return 24;
     }
 
     private List<MobEffectInstance> getOffhandEffects(ItemStack offhandItem, LivingEntity livingEntity) {
@@ -70,39 +72,67 @@ public class DabRigItem extends Item {
                 .orElseThrow(() -> new IllegalStateException("Unregistered MobEffect: " + effect));
     }
 
-
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
-        ItemStack itemstack = player.getItemInHand(usedHand);
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+        ItemStack rigStack = player.getItemInHand(hand);
+        ItemStack offhandExtract = getOffhandExtract(player);
 
-        // Check if the offhand item is valid
-        if (!isValidOffhandItem(player.getItemInHand(InteractionHand.OFF_HAND))) {
-            return InteractionResultHolder.fail(itemstack);
+        if (offhandExtract.isEmpty()) {
+            return InteractionResultHolder.fail(rigStack);
         }
 
-        player.startUsingItem(usedHand);
-        return InteractionResultHolder.consume(itemstack);
+        player.startUsingItem(hand);
+        return InteractionResultHolder.consume(rigStack);
+    }
+
+    private ItemStack findExtract(Player player) {
+        // Prefer offhand, then mainhand
+        ItemStack off = player.getOffhandItem();
+        if (isExtract(off)) return off;
+
+        ItemStack main = player.getMainHandItem();
+        if (isExtract(main)) return main;
+
+        // Search inventory
+        Inventory inv = player.getInventory();
+        for (int i = 0; i < inv.getContainerSize(); i++) {
+            ItemStack s = inv.getItem(i);
+            if (isExtract(s)) return s;
+        }
+        return ItemStack.EMPTY;
+    }
+
+    private ItemStack getOffhandExtract(Player player) {
+        ItemStack off = player.getOffhandItem();
+        return isExtract(off) ? off : ItemStack.EMPTY;
+    }
+
+
+    private boolean isExtract(ItemStack stack) {
+        if (stack.isEmpty() || !(stack.getItem() instanceof BaseWeedItem)) return false;
+        ResourceLocation key = BuiltInRegistries.ITEM.getKey(stack.getItem());
+        return key != null && key.getPath().endsWith("_extract");
     }
 
 
     @Override
-    public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {
-        InteractionHand offHand = InteractionHand.OFF_HAND;
-        ItemStack offhandItem = livingEntity.getItemInHand(offHand);
+    public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
+        if (!level.isClientSide && entity instanceof Player player) {
+            ItemStack offhandExtract = getOffhandExtract(player);
 
-        if (isValidOffhandItem(offhandItem)) {
-            livingEntity.setItemInHand(InteractionHand.OFF_HAND, offhandItem);
+            if (!offhandExtract.isEmpty() && offhandExtract.getItem() instanceof BaseWeedItem weedItem) {
+                for (MobEffectInstance inst : weedItem.buildEffectInstances(offhandExtract)) {
+                    if (inst != null && inst.getEffect() != null) {
+                        entity.addEffect(inst);
+                    }
+                }
 
-            List<MobEffectInstance> offhandEffects = getOffhandEffects(offhandItem, livingEntity);
-            spawnSmokeParticles(level, livingEntity);
-            offhandItem.shrink(1);
-
-            // Apply the offhand item's effects
-            for (MobEffectInstance effect : offhandEffects) {
-                livingEntity.addEffect(effect);
+                if (!player.getAbilities().instabuild) {
+                    offhandExtract.shrink(1);
+                }
             }
         }
-        return super.finishUsingItem(stack, level, livingEntity);
+        return super.finishUsingItem(stack, level, entity);
     }
 
 

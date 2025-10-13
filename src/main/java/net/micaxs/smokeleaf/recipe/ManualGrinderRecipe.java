@@ -3,6 +3,8 @@ package net.micaxs.smokeleaf.recipe;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.micaxs.smokeleaf.component.ModDataComponentTypes;
+import net.micaxs.smokeleaf.item.custom.BaseWeedItem;
 import net.micaxs.smokeleaf.recipe.ModRecipes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
@@ -16,9 +18,6 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 
-/**
- * Manual Grinder: single ingredient -> result, with per-recipe grind time (ticks).
- */
 public record ManualGrinderRecipe(Ingredient ingredient, ItemStack result, int grindTime) implements Recipe<ManualGrinderInput> {
 
     @Override
@@ -28,7 +27,21 @@ public record ManualGrinderRecipe(Ingredient ingredient, ItemStack result, int g
 
     @Override
     public ItemStack assemble(ManualGrinderInput input, HolderLookup.Provider provider) {
-        return result.copy();
+        ItemStack out = result.copy();
+        ItemStack in = input.getItem(0);
+
+        if (!in.isEmpty()) {
+            if (out.getItem() instanceof BaseWeedItem weedItem) {
+                weedItem.initializeStack(out);
+            }
+
+            Integer thc = in.get(ModDataComponentTypes.THC.get());
+            Integer cbd = in.get(ModDataComponentTypes.CBD.get());
+            if (thc != null) out.set(ModDataComponentTypes.THC.get(), thc);
+            if (cbd != null) out.set(ModDataComponentTypes.CBD.get(), cbd);
+        }
+
+        return out;
     }
 
     @Override
@@ -45,7 +58,7 @@ public record ManualGrinderRecipe(Ingredient ingredient, ItemStack result, int g
 
     @Override
     public ItemStack getResultItem(HolderLookup.Provider provider) {
-        return result;
+        return result.copy();
     }
 
     @Override
@@ -59,15 +72,12 @@ public record ManualGrinderRecipe(Ingredient ingredient, ItemStack result, int g
     }
 
     public static class Serializer implements RecipeSerializer<ManualGrinderRecipe> {
-
-        // Data (json) codec
         public static final MapCodec<ManualGrinderRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
                 Ingredient.CODEC_NONEMPTY.fieldOf("ingredient").forGetter(ManualGrinderRecipe::ingredient),
                 ItemStack.CODEC.fieldOf("result").forGetter(ManualGrinderRecipe::result),
                 Codec.INT.optionalFieldOf("grind_time", 40).forGetter(ManualGrinderRecipe::grindTime)
         ).apply(inst, ManualGrinderRecipe::new));
 
-        // Network codec
         public static final StreamCodec<RegistryFriendlyByteBuf, ManualGrinderRecipe> STREAM_CODEC =
                 StreamCodec.composite(
                         Ingredient.CONTENTS_STREAM_CODEC, ManualGrinderRecipe::ingredient,

@@ -2,7 +2,7 @@
   "name": "Base Extract",
   "icon": "smokeleafindustries:base_extract",
   "category": "smokeleafindustries:items_category",
-  "sortnum": 11,
+  "sortnum": 16,
   "pages": [
     {
       "type": "patchouli:spotlight",

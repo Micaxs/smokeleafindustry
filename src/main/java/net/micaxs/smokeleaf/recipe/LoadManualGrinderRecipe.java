@@ -4,7 +4,6 @@ import com.mojang.serialization.MapCodec;
 import net.micaxs.smokeleaf.component.ManualGrinderContents;
 import net.micaxs.smokeleaf.component.ModDataComponentTypes;
 import net.micaxs.smokeleaf.item.custom.ManualGrinderItem;
-import net.micaxs.smokeleaf.recipe.ModRecipes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
@@ -69,9 +68,12 @@ public class LoadManualGrinderRecipe extends CustomRecipe {
 
         ItemStack result = grinder.copy();
         result.setCount(1);
-        // Preserve full component state (dry/fresh) of the ingredient.
+
+        // Store the full input stack (all data components, incl. THC/CBD)
+        ItemStack stored = ingredient.copyWithCount(1);
         result.set(ModDataComponentTypes.MANUAL_GRINDER_CONTENTS.get(),
-                ManualGrinderContents.fromStack(ingredient.copyWithCount(1)));
+                ManualGrinderContents.fromStack(stored));
+
         return result;
     }
 
@@ -82,7 +84,6 @@ public class LoadManualGrinderRecipe extends CustomRecipe {
 
     @Override
     public ItemStack getResultItem(HolderLookup.Provider provider) {
-        // Neutral preview (avoid forcing a specific bud / freshness)
         return ItemStack.EMPTY;
     }
 

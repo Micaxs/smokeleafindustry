@@ -22,6 +22,8 @@ public class ModTags {
     public static final TagKey<Item> BLUE_ICE_STRAIN = tag("blue_ice_strain");
     public static final TagKey<Item> PURPLE_HAZE_STRAIN = tag("purple_haze_strain");
 
+    public static final TagKey<Item> LEAVES = tag("leaves");
+
     public static final TagKey<Block> POT_SOILS = blockTag("pot_soils");
 
     private static TagKey<Item> tag(String name) {
