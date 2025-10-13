@@ -1,0 +1,33 @@
+{
+  "name": "Lemon Haze",
+  "icon": "smokeleafindustries:lemon_haze_bud",
+  "category": "smokeleafindustries:strains_category",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "smokeleafindustries:lemon_haze_bud",
+      "text": "The Lemon Haze Strain$(br2)Base THC: 19% $(br)Base CBD: 6% $(br)Effect: Speed"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "smokeleafindustries:lemon_haze_weed",
+      "text": "Lemon Haze Weed can be obtained by grinding your Fresh or Dried buds in a Grinder machine or using the manual grinder."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "smokeleafindustries:lemon_haze_seeds",
+      "text": "Lemon Haze Seeds can be planted on farmland or inside the Grow Pot"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "smokeleafindustries:lemon_haze_extract",
+      "text": "Lemon Haze Extract can be gained through the DNA Process or by extracting Lemon Haze Weed in an Extractor"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "smokeleafindustries:lemon_haze_bag",
+      "text": "You can package your lemon haze weed for easier distribution or selling to the stoner villager."
+    }
+  ]
+}

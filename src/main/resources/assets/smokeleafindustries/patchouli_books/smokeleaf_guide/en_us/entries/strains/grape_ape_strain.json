@@ -1,0 +1,33 @@
+{
+  "name": "Grape Ape",
+  "icon": "smokeleafindustries:grape_ape_bud",
+  "category": "smokeleafindustries:strains_category",
+  "sortnum": 13,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "smokeleafindustries:grape_ape_bud",
+      "text": "The Grape Ape Strain$(br2)Base THC: 18% $(br)Base CBD: 7% $(br)Effect: Aroused"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "smokeleafindustries:grape_ape_weed",
+      "text": "Grape Ape Weed can be obtained by grinding your Fresh or Dried buds in a Grinder machine or using the manual grinder."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "smokeleafindustries:grape_ape_seeds",
+      "text": "Grape Ape Seeds can be planted on farmland or inside the Grow Pot"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "smokeleafindustries:grape_ape_extract",
+      "text": "Grape Ape Extract can be gained through the DNA Process or by extracting Grape Ape Weed in an Extractor"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "smokeleafindustries:grape_ape_bag",
+      "text": "You can package your grape ape weed for easier distribution or selling to the stoner villager."
+    }
+  ]
+}

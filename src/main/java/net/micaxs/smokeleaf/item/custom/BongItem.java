@@ -38,26 +38,32 @@ public class BongItem extends Item {
     }
 
 
-    private List<MobEffectInstance> getOffhandEffects(ItemStack offhandItem, LivingEntity livingEntity) {
+    private List<MobEffectInstance> getOffhandEffects(ItemStack offhandItem, LivingEntity entity) {
         List<MobEffectInstance> effects = new ArrayList<>();
         if (!(offhandItem.getItem() instanceof BaseWeedItem weedItem)) {
             return effects;
         }
 
-        Holder<MobEffect> effectHolder = toHolder(weedItem.getEffect(), livingEntity);
+        // Build the proper \[base + extra\] effects with CBD-based unified duration
+        List<MobEffectInstance> built = weedItem.buildEffectInstances(offhandItem);
+        if (built.isEmpty()) return effects;
 
-        int baseDuration = weedItem.getDuration();
-        int amplifier = weedItem.getEffectAmplifier();
+        // Optional: stack with current effects (add durations)
+        for (MobEffectInstance inst : built) {
+            var holder = inst.getEffect();                   // Holder<MobEffect>
+            int duration = inst.getDuration();
+            MobEffectInstance current = entity.getEffect(holder);
+            int totalDuration = current != null ? current.getDuration() + duration : duration;
 
-        int totalDuration = baseDuration;
-        if (livingEntity.hasEffect(effectHolder)) {
-            MobEffectInstance current = livingEntity.getEffect(effectHolder);
-            if (current != null) {
-                totalDuration = current.getDuration() + baseDuration;
-            }
+            effects.add(new MobEffectInstance(
+                    holder,
+                    totalDuration,
+                    inst.getAmplifier(),
+                    inst.isAmbient(),
+                    inst.isVisible(),
+                    inst.showIcon()
+            ));
         }
-
-        effects.add(new MobEffectInstance(effectHolder, totalDuration, amplifier));
         return effects;
     }
 

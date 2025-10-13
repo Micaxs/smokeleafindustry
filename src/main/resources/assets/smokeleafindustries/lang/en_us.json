@@ -34,8 +34,8 @@
   "item.smokeleafindustries.hemp_hammer": "Hemp Hammer",
   "item.smokeleafindustries.hps_lamp": "HPS Bulb",
   "item.smokeleafindustries.dual_arc_lamp": "Dual Arc Bulb",
-
-
+  "item.smokeleafindustries.plant_analyzer": "Plant Analyzer",
+  "item.smokeleafindustries.empty_vial": "Empty Vial",
 
   "item.smokeleafindustries.joint.mixed": "Mixed Joint",
   "item.smokeleafindustries.joint.format": "%s Joint",
@@ -45,6 +45,31 @@
   "item.smokeleafindustries.blunt.format": "%s Blunt",
   "tooltip.smokeleafindustries.blunt.empty": "No active ingredients.",
   "tooltip.smokeleafindustries.blunt.effects_title": "Blunt Effects:",
+
+
+  "item.smokeleafindustries.worm_castings": "Worm Castings",
+  "item.smokeleafindustries.compost": "Compost",
+  "item.smokeleafindustries.mycorrhizae": "Mycorrhizae",
+  "item.smokeleafindustries.dolomite_lime": "Dolomite Lime",
+  "item.smokeleafindustries.blood_meal": "Blood Meal",
+  "item.smokeleafindustries.phosphorus_feed": "Phosphorus Feed",
+  "item.smokeleafindustries.bat_guano": "Bat Guano",
+  "item.smokeleafindustries.wood_ash": "Wood Ash",
+  "item.smokeleafindustries.kelp_meal": "Kelp Meal",
+  "item.smokeleafindustries.fish_emulsion": "Fish Emulsion",
+  "item.smokeleafindustries.bloom_booster": "Bloom Booster",
+  "item.smokeleafindustries.fruit_finisher": "Fruit Finisher",
+  "item.smokeleafindustries.nitrogen_boost": "Nitrogen Boost",
+  "item.smokeleafindustries.potash_boost": "Potash Boost",
+  "item.smokeleafindustries.balanced_boost": "Balanced Boost",
+  "item.smokeleafindustries.phosphorus_reducer": "Phosphorus Reducer",
+  "item.smokeleafindustries.potassium_reducer": "Potassium Reducer",
+
+
+
+
+
+
 
 
   "item.smokeleafindustries.hemp_seeds": "Hemp Seeds",
@@ -239,6 +264,37 @@
   "block.smokeleafindustries.reflector": "Reflector",
   "block.smokeleafindustries.dryer": "Dryer",
 
+
+  "block.smokeleafindustries.hemp_crop": "Hemp Plant",
+  "block.smokeleafindustries.white_widow_crop": "White Widow Plant",
+    "block.smokeleafindustries.blue_ice_crop": "Blue Ice Plant",
+    "block.smokeleafindustries.sour_diesel_crop": "Sour Diesel Plant",
+    "block.smokeleafindustries.purple_haze_crop": "Purple Haze Plant",
+    "block.smokeleafindustries.lemon_haze_crop": "Lemon Haze Plant",
+    "block.smokeleafindustries.bubblegum_crop": "Bubblegum Plant",
+    "block.smokeleafindustries.bubble_kush_crop": "Bubble Kush Plant",
+    "block.smokeleafindustries.og_kush_crop": "OG Kush Plant",
+    "block.smokeleafindustries.jack_herer_crop": "Jack Herer Plant",
+    "block.smokeleafindustries.gary_peyton_crop": "Gary Peyton Plant",
+    "block.smokeleafindustries.amnesia_haze_crop": "Amnesia Haze Plant",
+    "block.smokeleafindustries.ak47_crop": "AK47 Plant",
+    "block.smokeleafindustries.ghost_train_crop": "Ghost Train Plant",
+    "block.smokeleafindustries.grape_ape_crop": "Grape Ape Plant",
+    "block.smokeleafindustries.cotton_candy_crop": "Cotton Candy Plant",
+    "block.smokeleafindustries.banana_kush_crop": "Banana Kush Plant",
+    "block.smokeleafindustries.carbon_fiber_crop": "Carbon Fiber Plant",
+    "block.smokeleafindustries.birthday_cake_crop": "Birthday Cake Plant",
+    "block.smokeleafindustries.blue_cookies_crop": "Blue Cookies Plant",
+    "block.smokeleafindustries.afghani_crop": "Afghani Plant",
+    "block.smokeleafindustries.moonbow_crop": "Moonbow Plant",
+    "block.smokeleafindustries.lava_cake_crop": "Lava Cake Plant",
+    "block.smokeleafindustries.jelly_rancher_crop": "Jelly Rancher Plant",
+    "block.smokeleafindustries.strawberry_shortcake_crop": "Strawberry Shortcake Plant",
+    "block.smokeleafindustries.pink_kush_crop": "Pink Kush Plant",
+
+
+
+
   "fluid_type.smokeleafindustries.hemp_oil_fluid": "Hemp Oil",
   "fluid_type.smokeleafindustries.hash_oil_fluid": "Hash Oil",
   "fluid_type.smokeleafindustries.hash_oil_sludge_fluid": "Sludge Hash Oil",
@@ -251,6 +307,7 @@
 
   "tooltip.smokeleafindustries.dried": "Dried",
   "tooltip.smokeleafindustries.fresh": "Fresh",
+  "tooltip.smokeleafindustries.extra_effects": "Extra effects: %s",
   "tooltip.smokeleafindustries.base_weed": "Effect duration varies, turn into hash oil for reliable effect durations.",
   "tooltip.smokeleafindustries.empty_bag": "Empty bag can be filled with 8 weed for easier distribution.",
   "tooltip.smokeleafindustries.tincture": "Right click with it on Hash Oil within the Liquifier to fill.",
@@ -261,6 +318,7 @@
   "tooltip.smokeleafindustries.manual_grinder.usage_full": "Hold Right Click to grind.",
   "tooltip.smokeleafindustries.hemp_hammer.uses": "%s/%s Uses Remaining",
   "tooltip.smokeleafindustries.hps_lamp": "Place in a reflector to produce light and increase weed plants growth speed. Bulb will break when lifespan ends.",
+  "tooltip.smokeleafindustries.plant_analyzer": "Right click a Weed Crop to Analyzer the Nutrient Levels.",
 
 
   "tooltip.smokeleafindustries.white_widow_bag": "Contains 8 White Widow Weed.",
@@ -291,7 +349,7 @@
   "tooltip.smokeleafindustries.grow_pot.soil": "Rightclick with (Dirt, Farmland, Podzol) to fill the pot with soil.",
   "tooltip.smokeleafindustries.grow_pot.plant": "Rightclick with Weed Seeds to plant them in the soil.",
   "tooltip.smokeleafindustries.grow_pot.info": "RightClick when fully grown to harvest the plant.\nShift + Rightclick to remove soil and/or plant.\n\nPlants will grow faster inside a Grow Pot and still require light to grow!",
-
+  "tooltip.smokeleafindustries.add_fertilizer": "You can only add fertilizer when the crop is not fully grown yet.",
 
   "message.smokeleafindustries.cat_urine_cooldown": "Cat is not ready. %s seconds left.",
 
@@ -315,10 +373,20 @@
   "effect.smokeleafindustries.breathing": "Heavy Breathing",
   "effect.smokeleafindustries.sleepy": "Sleepy",
   "effect.smokeleafindustries.melted": "Melted",
+  "effect.smokeleafindustries.dizzy": "Dizzy",
   "effect.smokeleafindustries.rainbow": "Rainbow Vision",
   "effect.smokeleafindustries.brain_melt": "Melted Brain",
   "effect.smokeleafindustries.high_flyer": "Flying High",
   "effect.smokeleafindustries.dry_eyes": "Dry Eyes",
+  "effect.smokeleafindustries.dry_mouth": "Dry Mouth",
+  "effect.smokeleafindustries.chillout": "Chillout",
+  "effect.smokeleafindustries.zombified": "Zombified",
+  "effect.smokeleafindustries.echo_location": "Echo Location",
+  "effect.smokeleafindustries.friend_or_foe": "Friend or Foe",
+  "effect.smokeleafindustries.linguists_high": "Linguist's High",
+  "effect.smokeleafindustries.sticky_icky": "Sticky Icky",
+  "effect.smokeleafindustries.r_trees": "R. Trees",
+  "effect.smokeleafindustries.vein_high": "Vein High",
 
 
 
@@ -344,30 +412,24 @@
   "advancement.smokeleafindustries.joint.desc": "Craft a joint.",
 
 
+  "linguist.smokeleafindustries.villager_text.1": "Yo... you ever just... stare at redstone dust for like an hour?",
+  "linguist.smokeleafindustries.villager_text.2": "I tried to roll a joint but it turned into a paper airplane, man.",
+  "linguist.smokeleafindustries.villager_text.3": "Bro, I swear the creeper just wanted a hug...",
+  "linguist.smokeleafindustries.villager_text.4": "The smoke… it whispers… 'build another farm, dude.'",
+  "linguist.smokeleafindustries.villager_text.5": "I mixed some weeds and now my screen is all wavy, bro.",
+  "linguist.smokeleafindustries.villager_text.6": "Wait… what if Herobrine was just baked the whole time?",
+  "linguist.smokeleafindustries.villager_text.7": "My cow told me to chill today. I think I’m gonna listen, bro.",
+  "linguist.smokeleafindustries.villager_text.8": "Got any weed? Asking for my incense collection.",
+  "linguist.smokeleafindustries.villager_text.9": "You ever notice how the Enderman just… gets you, man?",
+  "linguist.smokeleafindustries.villager_text.10": "You ever wonder if you can eat the moon? Like, is it made of cheese or something?",
+  "linguist.smokeleafindustries.villager_text.11": "Imagine the munchies, but no pizza in Minecraft...",
 
 
-  "item.smokeleafindustries.guide_book": "Smokeleaf Guide",
-  "book.smokeleafindustries.title": "SmokeleafIndustries Guide",
-  "book.smokeleafindustries.page1.title": "Welcome",
-  "book.smokeleafindustries.page1.body": "Hi, welcome to Smokeleaf Industries! This guide will help you get started with our mod. Let's begin with the basics of growing and processing your herbs.",
-  "book.smokeleafindustries.page2.title": "Seeds",
-  "book.smokeleafindustries.page2.body": "You'll have to start by breaking some tall grass to find the initial strain. Once you have your seeds you can plant these in tilted soil and wait for them to grow. When fully grown, you can harvest and continue expanding your farm.",
-  "book.smokeleafindustries.page3.title": "Weed Buds",
-  "book.smokeleafindustries.page3.body": "These can be obtained from harvesting your plants. There are several type of buds you can collect from different strains, which we will go over in a future chapter.",
-  "book.smokeleafindustries.page4.title": "Weeds",
-  "book.smokeleafindustries.page4.body": "These can be obtained by grinding your buds.\n\nManual Grinder: Hold Grinder in offhand + Bud in mainHand to grind.\n\nGrinder Machine: Place Buds in the input slot and power the machine with energy to grind.",
-  "book.smokeleafindustries.page5.title": "Extracts",
-  "book.smokeleafindustries.page5.body": "Extracts are a concentrated form of your weed, these can be created in the Extractor Machine which requires energy to operate. These extracts are used in various recipes and machines throughout the mod.",
-  "book.smokeleafindustries.page6.title": "Hash Oil",
-  "book.smokeleafindustries.page6.body": "Hash Oil is a special fluid that can be created in the Liquifier Machine, which requires energy to operate. This fluid is essential for creating new strains of weed in the Mutator Machine.",
-  "book.smokeleafindustries.page7.title": "Mutating New Strains",
-  "book.smokeleafindustries.page7.body": "The Mutator Machine allows you to create new strains of weed by combining seeds and extracts, along with Hash Oil. This process requires energy and can yield exciting new varieties for your farm.",
-  "book.smokeleafindustries.page8.title": "Weed Edibles",
-  "book.smokeleafindustries.page8.body": "Weed Edibles are special food items that provide unique effects when consumed. These can be crafted using various weed strains and other ingredients. Experiment with different recipes to discover their benefits.",
-  "book.smokeleafindustries.page9.title": "Energy Generation",
-  "book.smokeleafindustries.page9.body": "The Generator Machine converts your weed into energy, which can then be used to power other machines in the mod. This is a great way to ensure a steady supply of energy for your operations.\n\nYou can also use any other FE generation mods to supply power to the machines.",
-  "book.smokeleafindustries.page10.title": "Joints & Blunts",
-  "book.smokeleafindustries.page10.body": "Joints and Blunts are smokable items that provide various effects when used depending on the type of weed used. These can be crafted using weed items and other materials. Enjoy the benefits of your hard work by crafting and using these items.",
-  "book.smokeleafindustries.page11.title": "Machines",
-  "book.smokeleafindustries.page11.body": "Here is a list of machines available in Smokeleaf Industries:\n\n- Grinder: Doubles your weed output from buds.\n- Extractor: Creates extracts from your weed.\n- Liquifier: Produces Hash Oil from your weed.\n- Mutator: Creates new strains of weed using seeds and extracts.\n- Generator: Converts weed into energy to power other machines.\n\nEach machine requires energy to operate, so make sure to manage your resources wisely."
+  "config.jade.plugin_smokeleafindustries.grow_pot_jade": "Grow Pot",
+  "config.jade.plugin_smokeleafindustries.weed_crop_jade": "Weed Crop",
+  "config.jade.plugin_smokeleafindustries.drying_rack": "Drying Rack",
+  "config.jade.plugin_smokeleafindustries.reflector": "Reflector",
+
+
+  "item.smokeleafindustries.guide_book": "Smokeleaf Guide"
 }

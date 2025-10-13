@@ -136,7 +136,7 @@ public class ModItems {
 
     // Weeds
     public static final DeferredItem<Item> WHITE_WIDOW_WEED = ITEMS.register("white_widow_weed",
-            () -> new BaseWeedItem(new Item.Properties(), ModEffects.DRY_EYES.value(), 200, 1, 15, 10,
+            () -> new BaseWeedItem(new Item.Properties(), MobEffects.WIND_CHARGED.value(), 200, 1, 15, 10,
                     "White", "Widow"));
     public static final DeferredItem<Item> BUBBLE_KUSH_WEED = ITEMS.register("bubble_kush_weed",
             () -> new BaseWeedItem(new Item.Properties(), MobEffects.DAMAGE_BOOST.value(), 180, 1, 20, 5,
@@ -157,16 +157,16 @@ public class ModItems {
             () -> new BaseWeedItem(new Item.Properties(), MobEffects.LUCK.value(), 140, 1, 16, 9,
                     "Purple", "Haze"));
     public static final DeferredItem<Item> OG_KUSH_WEED = ITEMS.register("og_kush_weed",
-            () -> new BaseWeedItem(new Item.Properties(), MobEffects.DAMAGE_RESISTANCE.value(), 210, 1, 25, 0,
+            () -> new BaseWeedItem(new Item.Properties(), MobEffects.DAMAGE_RESISTANCE.value(), 210, 1, 25, 10,
                     "OG", "Kush"));
     public static final DeferredItem<Item> JACK_HERER_WEED = ITEMS.register("jack_herer_weed",
-            () -> new BaseWeedItem(new Item.Properties(), ModEffects.BUBBLED.value(), 205, 1, 18, 7,
+            () -> new BaseWeedItem(new Item.Properties(), ModEffects.R_TREES.value(), 205, 1, 18, 7,
                     "Jack", "Herer"));
     public static final DeferredItem<Item> GARY_PEYTON_WEED = ITEMS.register("gary_peyton_weed",
             () -> new BaseWeedItem(new Item.Properties(), ModEffects.UPLIFTED.value(), 195, 1, 22, 3,
                     "Gary", "Peyton"));
     public static final DeferredItem<Item> AMNESIA_HAZE_WEED = ITEMS.register("amnesia_haze_weed",
-            () -> new BaseWeedItem(new Item.Properties(), ModEffects.PARANOIA.value(), 185, 1, 19, 6,
+            () -> new BaseWeedItem(new Item.Properties(), ModEffects.ZOMBIFIED.value(), 185, 1, 19, 6,
                     "Amnesia", "Haze"));
     public static final DeferredItem<Item> AK47_WEED = ITEMS.register("ak47_weed",
             () -> new BaseWeedItem(new Item.Properties(), ModEffects.RELAXED.value(), 190, 1, 19, 6,
@@ -178,19 +178,19 @@ public class ModItems {
             () -> new BaseWeedItem(new Item.Properties(), ModEffects.AROUSED.value(), 175, 1, 18, 7,
                     "Grape", "Ape"));
     public static final DeferredItem<Item> COTTON_CANDY_WEED = ITEMS.register("cotton_candy_weed",
-            () -> new BaseWeedItem(new Item.Properties(), ModEffects.BREATHING.value(), 165, 1, 19, 6,
+            () -> new BaseWeedItem(new Item.Properties(), ModEffects.CHILLOUT.value(), 165, 1, 19, 6,
                     "Cotton", "Candy"));
     public static final DeferredItem<Item> BANANA_KUSH_WEED = ITEMS.register("banana_kush_weed",
-            () -> new BaseWeedItem(new Item.Properties(), ModEffects.SLEEPY.value(), 200, 1, 21, 4,
+            () -> new BaseWeedItem(new Item.Properties(), ModEffects.STICKY_ICKY.value(), 200, 1, 21, 4,
                     "Banana", "Kush"));
     public static final DeferredItem<Item> CARBON_FIBER_WEED = ITEMS.register("carbon_fiber_weed",
-            () -> new BaseWeedItem(new Item.Properties(), ModEffects.MELTED.value(), 230, 1, 24, 1,
+            () -> new BaseWeedItem(new Item.Properties(), ModEffects.VEIN_HIGH.value(), 230, 1, 24, 1,
                     "Carbon", "Fiber"));
     public static final DeferredItem<Item> BIRTHDAY_CAKE_WEED = ITEMS.register("birthday_cake_weed",
-            () -> new BaseWeedItem(new Item.Properties(), ModEffects.RAINBOW.value(), 170, 1, 23, 2,
+            () -> new BaseWeedItem(new Item.Properties(), MobEffects.OOZING.value(), 170, 1, 23, 2,
                     "Birthday", "Cake"));
     public static final DeferredItem<Item> BLUE_COOKIES_WEED = ITEMS.register("blue_cookies_weed",
-            () -> new BaseWeedItem(new Item.Properties(), ModEffects.MELTED.value(), 180, 1, 17, 8,
+            () -> new BaseWeedItem(new Item.Properties(), ModEffects.LINGUISTS_HIGH.value(), 180, 1, 17, 8,
                     "Blue", "Cookies"));
     public static final DeferredItem<Item> AFGHANI_WEED = ITEMS.register("afghani_weed",
             () -> new BaseWeedItem(new Item.Properties(), MobEffects.BAD_OMEN.value(), 240, 1, 18, 7,
@@ -202,7 +202,7 @@ public class ModItems {
             () -> new BaseWeedItem(new Item.Properties(), MobEffects.GLOWING.value(), 175, 1, 22, 3,
                     "Lava", "Cake"));
     public static final DeferredItem<Item> JELLY_RANCHER_WEED = ITEMS.register("jelly_rancher_weed",
-            () -> new BaseWeedItem(new Item.Properties(), ModEffects.BRAIN_MELT.value(), 165, 1, 20, 5,
+            () -> new BaseWeedItem(new Item.Properties(), MobEffects.DOLPHINS_GRACE.value(), 165, 1, 20, 5,
                     "Jelly", "Rancher"));
     public static final DeferredItem<Item> STRAWBERRY_SHORTCAKE_WEED = ITEMS.register("strawberry_shortcake_weed",
             () -> new BaseWeedItem(new Item.Properties(), ModEffects.HIGH_FLYER.value(), 160, 1, 16, 9,
@@ -214,10 +214,8 @@ public class ModItems {
 
     // Extracts
     public static final DeferredItem<Item> BASE_EXTRACT = ITEMS.register("base_extract",  () -> new Item(new Item.Properties()));
-
-    // Updated THC & CBD to match weed strains
     public static final DeferredItem<Item> WHITE_WIDOW_EXTRACT = ITEMS.register("white_widow_extract",
-            () -> new BaseWeedItem(new Item.Properties(), ModEffects.DRY_EYES.value(), 400, 2, 15, 10, false));
+            () -> new BaseWeedItem(new Item.Properties(), MobEffects.WIND_CHARGED.value(), 400, 2, 15, 10, false));
     public static final DeferredItem<Item> BUBBLE_KUSH_EXTRACT = ITEMS.register("bubble_kush_extract",
             () -> new BaseWeedItem(new Item.Properties(), MobEffects.DAMAGE_BOOST.value(), 360, 2, 20, 5, false));
     public static final DeferredItem<Item> LEMON_HAZE_EXTRACT = ITEMS.register("lemon_haze_extract",
@@ -233,11 +231,11 @@ public class ModItems {
     public static final DeferredItem<Item> OG_KUSH_EXTRACT = ITEMS.register("og_kush_extract",
             () -> new BaseWeedItem(new Item.Properties(), MobEffects.DAMAGE_RESISTANCE.value(), 420, 2, 25, 0, false));
     public static final DeferredItem<Item> JACK_HERER_EXTRACT = ITEMS.register("jack_herer_extract",
-            () -> new BaseWeedItem(new Item.Properties(), ModEffects.BUBBLED.value(), 410, 2, 18, 7, false));
+            () -> new BaseWeedItem(new Item.Properties(), ModEffects.R_TREES.value(), 410, 2, 18, 7, false));
     public static final DeferredItem<Item> GARY_PEYTON_EXTRACT = ITEMS.register("gary_peyton_extract",
             () -> new BaseWeedItem(new Item.Properties(), ModEffects.UPLIFTED.value(), 390, 2, 22, 3, false));
     public static final DeferredItem<Item> AMNESIA_HAZE_EXTRACT = ITEMS.register("amnesia_haze_extract",
-            () -> new BaseWeedItem(new Item.Properties(), ModEffects.PARANOIA.value(), 370, 2, 19, 6, false));
+            () -> new BaseWeedItem(new Item.Properties(), ModEffects.ZOMBIFIED.value(), 370, 2, 19, 6, false));
     public static final DeferredItem<Item> AK47_EXTRACT = ITEMS.register("ak47_extract",
             () -> new BaseWeedItem(new Item.Properties(), ModEffects.RELAXED.value(), 380, 2, 19, 6, false));
     public static final DeferredItem<Item> GHOST_TRAIN_EXTRACT = ITEMS.register("ghost_train_extract",
@@ -245,28 +243,27 @@ public class ModItems {
     public static final DeferredItem<Item> GRAPE_APE_EXTRACT = ITEMS.register("grape_ape_extract",
             () -> new BaseWeedItem(new Item.Properties(), ModEffects.AROUSED.value(), 350, 2, 18, 7, false));
     public static final DeferredItem<Item> COTTON_CANDY_EXTRACT = ITEMS.register("cotton_candy_extract",
-            () -> new BaseWeedItem(new Item.Properties(), ModEffects.BREATHING.value(), 330, 2, 19, 6, false));
+            () -> new BaseWeedItem(new Item.Properties(), ModEffects.CHILLOUT.value(), 330, 2, 19, 6, false));
     public static final DeferredItem<Item> BANANA_KUSH_EXTRACT = ITEMS.register("banana_kush_extract",
-            () -> new BaseWeedItem(new Item.Properties(), ModEffects.SLEEPY.value(), 400, 2, 21, 4, false));
+            () -> new BaseWeedItem(new Item.Properties(), ModEffects.STICKY_ICKY.value(), 400, 2, 21, 4, false));
     public static final DeferredItem<Item> CARBON_FIBER_EXTRACT = ITEMS.register("carbon_fiber_extract",
-            () -> new BaseWeedItem(new Item.Properties(), ModEffects.MELTED.value(), 460, 2, 24, 1, false));
+            () -> new BaseWeedItem(new Item.Properties(), ModEffects.VEIN_HIGH.value(), 460, 2, 24, 1, false));
     public static final DeferredItem<Item> BIRTHDAY_CAKE_EXTRACT = ITEMS.register("birthday_cake_extract",
-            () -> new BaseWeedItem(new Item.Properties(), ModEffects.RAINBOW.value(), 340, 2, 23, 2, false));
+            () -> new BaseWeedItem(new Item.Properties(), MobEffects.OOZING.value(), 340, 2, 23, 2, false));
     public static final DeferredItem<Item> BLUE_COOKIES_EXTRACT = ITEMS.register("blue_cookies_extract",
-            () -> new BaseWeedItem(new Item.Properties(), ModEffects.MELTED.value(), 360, 2, 17, 8, false));
+            () -> new BaseWeedItem(new Item.Properties(), ModEffects.LINGUISTS_HIGH.value(), 360, 2, 17, 8, false));
     public static final DeferredItem<Item> AFGHANI_EXTRACT = ITEMS.register("afghani_extract",
             () -> new BaseWeedItem(new Item.Properties(), MobEffects.BAD_OMEN.value(), 480, 2, 18, 7, false));
     public static final DeferredItem<Item> MOONBOW_EXTRACT = ITEMS.register("moonbow_extract",
-            () -> new BaseWeedItem(new Item.Properties(), MobEffects.NIGHT_VISION.value(), 215, 1, 30, 13, false));
+            () -> new BaseWeedItem(new Item.Properties(), MobEffects.NIGHT_VISION.value(), 430, 2, 30, 13, false));
     public static final DeferredItem<Item> LAVA_CAKE_EXTRACT = ITEMS.register("lava_cake_extract",
             () -> new BaseWeedItem(new Item.Properties(), MobEffects.GLOWING.value(), 350, 2, 22, 3, false));
     public static final DeferredItem<Item> JELLY_RANCHER_EXTRACT = ITEMS.register("jelly_rancher_extract",
-            () -> new BaseWeedItem(new Item.Properties(), ModEffects.BRAIN_MELT.value(), 330, 2, 20, 5, false));
+            () -> new BaseWeedItem(new Item.Properties(), MobEffects.DOLPHINS_GRACE.value(), 330, 2, 20, 5, false));
     public static final DeferredItem<Item> STRAWBERRY_SHORTCAKE_EXTRACT = ITEMS.register("strawberry_shortcake_extract",
             () -> new BaseWeedItem(new Item.Properties(), ModEffects.HIGH_FLYER.value(), 320, 2, 16, 9, false));
     public static final DeferredItem<Item> PINK_KUSH_EXTRACT = ITEMS.register("pink_kush_extract",
             () -> new BaseWeedItem(new Item.Properties(), MobEffects.REGENERATION.value(), 410, 2, 19, 6, false));
-
 
 
     // Bags
@@ -377,6 +374,24 @@ public class ModItems {
             () -> new WeedDerivedItem(new Item.Properties().food(ModFoods.WEED_GUMMY), 1.5f, 1f, UseAnim.EAT, 40));
 
 
+    // --- FERTILIZER ITEMS ---
+    public static final DeferredItem<Item> WORM_CASTINGS = ITEMS.register("worm_castings", () -> new FertilizerItem(2, 2, 2, new Item.Properties()));
+    public static final DeferredItem<Item> COMPOST = ITEMS.register("compost", () -> new FertilizerItem(1, 1, 1, new Item.Properties()));
+    public static final DeferredItem<Item> MYCORRHIZAE = ITEMS.register("mycorrhizae", () -> new FertilizerItem(0, 3, 1, new Item.Properties()));
+    public static final DeferredItem<Item> DOLOMITE_LIME = ITEMS.register("dolomite_lime", () -> new FertilizerItem(-2, 4, -2, new Item.Properties()));
+    public static final DeferredItem<Item> BLOOD_MEAL = ITEMS.register("blood_meal", () -> new FertilizerItem(4, 0, 0, new Item.Properties()));
+    public static final DeferredItem<Item> PHOSPHORUS_POWDER = ITEMS.register("phosphorus_feed", () -> new FertilizerItem(0, 5, 0, new Item.Properties()));
+    public static final DeferredItem<Item> BAT_GUANO = ITEMS.register("bat_guano", () -> new FertilizerItem(-1, 4, 1, new Item.Properties()));
+    public static final DeferredItem<Item> KELP_MEAL = ITEMS.register("kelp_meal", () -> new FertilizerItem(0, 0, 4, new Item.Properties()));
+    public static final DeferredItem<Item> WOOD_ASH = ITEMS.register("wood_ash", () -> new FertilizerItem(-1, -1, 5, new Item.Properties()));
+    public static final DeferredItem<Item> BLOOM_BOOSTER = ITEMS.register("bloom_booster", () -> new FertilizerItem(-2, 4, 2, new Item.Properties()));
+    public static final DeferredItem<Item> FRUIT_FINISHER = ITEMS.register("fruit_finisher", () -> new FertilizerItem(0, -2, -2, new Item.Properties()));
+    public static final DeferredItem<Item> NITROGEN_BOOST = ITEMS.register("nitrogen_boost", () -> new FertilizerItem(3, -1, 0, new Item.Properties()));
+    public static final DeferredItem<Item> POTASH_BOOST = ITEMS.register("potash_boost", () -> new FertilizerItem(0, -1, 3, new Item.Properties()));
+    public static final DeferredItem<Item> BALANCED_BOOST = ITEMS.register("balanced_boost", () -> new FertilizerItem(1, 1, 1, new Item.Properties()));
+    public static final DeferredItem<Item> PHOSPHORUS_REDUCER = ITEMS.register("phosphorus_reducer", () -> new FertilizerItem(0, -3, 0, new Item.Properties()));
+    public static final DeferredItem<Item> POTASSIUM_REDUCER = ITEMS.register("potassium_reducer", () -> new FertilizerItem(0, 0, -3, new Item.Properties()));
+    public static final DeferredItem<Item> FISH_EMULSION = ITEMS.register("fish_emulsion", () -> new FertilizerItem(2, 2, -1, new Item.Properties()));
 
 
     // Consumables
@@ -428,16 +443,18 @@ public class ModItems {
     public static final DeferredItem<Item> INFUSED_BUTTER = ITEMS.register("infused_butter",  () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> HEMP_COAL = ITEMS.register("hemp_coal",  () -> new Item(new Item.Properties()));
 
-
-
-    public static final DeferredItem<Item> HPS_LAMP = ITEMS.register("hps_lamp",  () -> new BaseLampItem(new Item.Properties().stacksTo(1).durability(6000)));
-    public static final DeferredItem<Item> DUAL_ARC_LAMP = ITEMS.register("dual_arc_lamp",  () -> new BaseLampItem(new Item.Properties().stacksTo(1).durability(12000)));
+    public static final DeferredItem<Item> EMPTY_VIAL = ITEMS.register("empty_vial",  () -> new Item(new Item.Properties()));
 
 
 
+    public static final DeferredItem<Item> HPS_LAMP = ITEMS.register("hps_lamp",  () -> new BaseLampItem(new Item.Properties().stacksTo(1).durability(18000))); // 15mins
+    public static final DeferredItem<Item> DUAL_ARC_LAMP = ITEMS.register("dual_arc_lamp",  () -> new BaseLampItem(new Item.Properties().stacksTo(1).durability(54000))); // 45mins
+
+    public static final DeferredItem<Item> PLANT_ANALYZER = ITEMS.register("plant_analyzer",  () -> new PlantAnalyzerItem(new Item.Properties().stacksTo(1).durability(512)));
 
 
-    public static final DeferredItem<Item> SMOKELEAF_GUIDE = ITEMS.register("smokeleaf_guide", () -> new SmokeleafGuideItem(new Item.Properties().stacksTo(1)));
+
+//    public static final DeferredItem<Item> SMOKELEAF_GUIDE = ITEMS.register("smokeleaf_guide", () -> new SmokeleafGuideItem(new Item.Properties().stacksTo(1)));
 
 
 

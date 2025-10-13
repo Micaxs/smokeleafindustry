@@ -1,0 +1,13 @@
+{
+  "name": "Tobacco Leaves",
+  "icon": "smokeleafindustries:tobacco_leaves",
+  "category": "smokeleafindustries:items_category",
+  "sortnum": 7,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "smokeleafindustries:tobacco_leaves",
+      "text": "Tobacco Leaves you get from growing and harvesting a fully grown tobacco plant."
+    }
+  ]
+}

@@ -2,15 +2,12 @@
   "name": "Dried Tobacco Leaves",
   "icon": "smokeleafindustries:dried_tobacco_leaves",
   "category": "smokeleafindustries:items_category",
-  "sortnum": 7,
+  "sortnum": 8,
   "pages": [
     {
-      "type": "patchouli:text",
-      "text": "This item can be obtained by drying tobacco leaves on the drying rack.$(br)$(br)It takes 300 ticks to fully dry."
-    },
-    {
       "type": "patchouli:spotlight",
-      "item": "smokeleafindustries:dried_tobacco_leaves"
+      "item": "smokeleafindustries:dried_tobacco_leaves",
+      "text": "Dried tobacco leaves you get by processing tobacco leaves in the Dryer if you have power. You can also dry them on a Drying Rack in case you do not have power just yet."
     }
   ]
 }

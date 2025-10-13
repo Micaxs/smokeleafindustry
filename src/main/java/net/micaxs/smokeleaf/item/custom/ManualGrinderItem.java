@@ -75,11 +75,16 @@ public class ManualGrinderItem extends Item {
         if (used >= needed) {
             if (!level.isClientSide) {
                 ManualGrinderRecipe recipe = match.get();
-                ItemStack result = recipe.getResultItem(level.registryAccess()).copy();
 
-                // Detect dried bud for bonus output BEFORE shrinking stored.
+                // Assemble with the real stored bud so THC/CBD are copied to the result
+                ItemStack result = recipe.assemble(
+                        new ManualGrinderInput(stored.copyWithCount(1)),
+                        level.registryAccess()
+                );
+
                 boolean bonus = isDriedBud(stored);
 
+                // Consume one input and persist the remainder
                 stored.shrink(1);
                 if (stored.isEmpty()) {
                     stack.remove(ModDataComponentTypes.MANUAL_GRINDER_CONTENTS.get());
@@ -89,7 +94,6 @@ public class ManualGrinderItem extends Item {
                 }
 
                 if (bonus) {
-                    // Add one extra item (total +1) for dried input.
                     result.grow(1);
                 }
 
@@ -101,7 +105,6 @@ public class ManualGrinderItem extends Item {
     }
 
     private boolean isDriedBud(ItemStack stack) {
-        // Must be a BaseBudItem and have DRY == true
         if (!(stack.getItem() instanceof BaseBudItem)) return false;
         Boolean dry = stack.get(ModDataComponentTypes.DRY);
         return Boolean.TRUE.equals(dry);

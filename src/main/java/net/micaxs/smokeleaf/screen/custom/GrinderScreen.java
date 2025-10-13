@@ -9,6 +9,7 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.entity.player.Inventory;
 
 import java.util.List;
@@ -37,14 +38,6 @@ public class GrinderScreen extends AbstractContainerScreen<GrinderMenu> {
 
 
     @Override
-    protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
-        int x = (width - imageWidth) / 2;
-        int y = (height - imageHeight) / 2;
-        renderEnergyInfoArea(guiGraphics, mouseX, mouseY, x, y);
-        renderInfoIconTooltip(guiGraphics, mouseX, mouseY, x, y);
-    }
-
-    @Override
     protected void renderBg(GuiGraphics guiGraphics, float v, int i, int i1) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
@@ -68,16 +61,9 @@ public class GrinderScreen extends AbstractContainerScreen<GrinderMenu> {
 
     private void renderInfoIconTooltip(GuiGraphics g, int mouseX, int mouseY, int baseX, int baseY) {
         if (isMouseAboveArea(mouseX, mouseY, baseX, baseY, ICON_SIZE, ICON_SIZE, ICON_SIZE, ICON_SIZE)) {
-            g.pose().pushPose();
-            g.pose().scale(TOOLTIP_SCALE, TOOLTIP_SCALE, 1.0f);
-            g.renderTooltip(
-                    this.font,
-                    List.of(Component.translatable("gui.tooltip.grinder.info")),
-                    Optional.empty(),
-                    (mouseX / 2) - (baseX / 4),
-                    mouseY / 2
-            );
-            g.pose().popPose();
+            Component info = Component.translatable("gui.tooltip.grinder.info");
+            List<FormattedCharSequence> wrapped = this.font.split(info, 300);
+            g.renderTooltip(this.font, wrapped, mouseX, mouseY);
         }
     }
 
@@ -103,8 +89,20 @@ public class GrinderScreen extends AbstractContainerScreen<GrinderMenu> {
     }
 
     @Override
+    protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+        int x = (width - imageWidth) / 2;
+        int y = (height - imageHeight) / 2;
+        renderEnergyInfoArea(guiGraphics, mouseX, mouseY, x, y);
+    }
+
+    @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
         super.render(guiGraphics, mouseX, mouseY, partialTick);
+
+        int x = (width - imageWidth) / 2;
+        int y = (height - imageHeight) / 2;
+        renderInfoIconTooltip(guiGraphics, mouseX, mouseY, x, y);
+
         renderTooltip(guiGraphics, mouseX, mouseY);
     }
 }

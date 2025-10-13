@@ -5,8 +5,9 @@
   "sortnum": 2,
   "pages": [
     {
-      "type": "patchouli:text",
-      "text": "This item is used in various crafting recipes!"
+      "type": "patchouli:spotlight",
+      "item": "smokeleafindustries:hemp_stick",
+      "text": "A Hemp Stick can be crafted and will be used in various recipes through the mod."
     },
     {
       "type": "patchouli:crafting",

@@ -1,0 +1,34 @@
+{
+  "name": "Gary Peyton",
+  "icon": "smokeleafindustries:gary_peyton_bud",
+  "category": "smokeleafindustries:strains_category",
+  "sortnum": 9,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "smokeleafindustries:gary_peyton_bud",
+      "text": "The Gary Peyton Strain$(br2)Base THC: 22% $(br)Base CBD: 3% $(br)Effect: Uplifted"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "smokeleafindustries:gary_peyton_weed",
+      "text": "Gary Peyton Weed can be obtained by grinding your Fresh or Dried buds in a Grinder machine or using the manual grinder."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "smokeleafindustries:gary_peyton_seeds",
+      "text": "Gary Peyton Seeds can be planted on farmland or inside the Grow Pot"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "smokeleafindustries:gary_peyton_extract",
+      "text": "Gary Peyton Extract can be gained through the DNA Process or by extracting Gary Peyton Weed in an Extractor"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "smokeleafindustries:gary_peyton_bag",
+      "text": "You can package your gary peyton weed for easier distribution or selling to the stoner villager."
+    }
+  ]
+}
+

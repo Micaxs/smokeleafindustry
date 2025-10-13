@@ -2,17 +2,12 @@ package net.micaxs.smokeleaf;
 
 import net.micaxs.smokeleaf.block.ModBlocks;
 import net.micaxs.smokeleaf.fluid.ModFluids;
-import net.micaxs.smokeleaf.item.ModFoods;
 import net.micaxs.smokeleaf.item.ModItems;
-import net.micaxs.smokeleaf.item.custom.WeedDerivedItem;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.UseAnim;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
@@ -77,14 +72,15 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.GROW_POT);
 
                         output.accept(ModItems.HEMP_HAMMER);
+                        output.accept(ModItems.PLANT_ANALYZER);
                         output.accept(ModItems.MANUAL_GRINDER);
                         output.accept(ModItems.EMPTY_BAG);
                         output.accept(ModItems.JOINT);
                         output.accept(ModItems.BLUNT);
                         output.accept(ModItems.BONG);
                         output.accept(ModItems.DAB_RIG);
-                        output.accept(ModItems.EMPTY_TINCTURE);
-                        output.accept(ModItems.HASH_OIL_TINCTURE);
+//                        output.accept(ModItems.EMPTY_TINCTURE);       // Liquifier to get the liquid from the extracts, then mixer to mix the new liquids to then fill the tincture's.
+//                        output.accept(ModItems.HASH_OIL_TINCTURE);    // Same applies for VAPE cartriges when implementing this.
                         output.accept(ModItems.BASE_EXTRACT);
                         output.accept(ModItems.DNA_STRAND);
 
@@ -106,11 +102,27 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.MUTATOR);
                         output.accept(ModBlocks.SYNTHESIZER);
                         output.accept(ModBlocks.SEQUENCER);
-
-
                         output.accept(ModBlocks.DRYING_RACK);
 
 
+                        output.accept(ModItems.WORM_CASTINGS);
+                        output.accept(ModItems.COMPOST);
+                        output.accept(ModItems.MYCORRHIZAE);
+                        output.accept(ModItems.DOLOMITE_LIME);
+                        output.accept(ModItems.BLOOD_MEAL);
+                        output.accept(ModItems.PHOSPHORUS_POWDER);
+                        output.accept(ModItems.BAT_GUANO);
+                        output.accept(ModItems.KELP_MEAL);
+                        output.accept(ModItems.WOOD_ASH);
+                        output.accept(ModItems.EMPTY_VIAL);
+                        output.accept(ModItems.FISH_EMULSION);
+                        output.accept(ModItems.BLOOM_BOOSTER);
+                        output.accept(ModItems.FRUIT_FINISHER);
+                        output.accept(ModItems.NITROGEN_BOOST);
+                        output.accept(ModItems.POTASH_BOOST);
+                        output.accept(ModItems.BALANCED_BOOST);
+                        output.accept(ModItems.PHOSPHORUS_REDUCER);
+                        output.accept(ModItems.POTASSIUM_REDUCER);
 
 
                     }).build());
@@ -148,6 +160,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.PINK_KUSH_SEEDS);
 
                         output.accept(ModItems.WHITE_WIDOW_BUD);
+                        output.accept(ModItems.BUBBLE_KUSH_WEED);
                         output.accept(ModItems.LEMON_HAZE_BUD);
                         output.accept(ModItems.SOUR_DIESEL_BUD);
                         output.accept(ModItems.BLUE_ICE_BUD);
@@ -173,6 +186,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.PINK_KUSH_BUD);
 
                         output.accept(ModItems.WHITE_WIDOW_WEED);
+                        output.accept(ModItems.BUBBLE_KUSH_WEED);
                         output.accept(ModItems.LEMON_HAZE_WEED);
                         output.accept(ModItems.SOUR_DIESEL_WEED);
                         output.accept(ModItems.BLUE_ICE_WEED);
@@ -198,6 +212,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.PINK_KUSH_WEED);
 
                         output.accept(ModItems.WHITE_WIDOW_EXTRACT);
+                        output.accept(ModItems.BUBBLE_KUSH_EXTRACT);
                         output.accept(ModItems.LEMON_HAZE_EXTRACT);
                         output.accept(ModItems.SOUR_DIESEL_EXTRACT);
                         output.accept(ModItems.BLUE_ICE_EXTRACT);
@@ -223,6 +238,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.PINK_KUSH_EXTRACT);
 
                         output.accept(ModItems.WHITE_WIDOW_BAG);
+                        output.accept(ModItems.BUBBLE_KUSH_BAG);
                         output.accept(ModItems.LEMON_HAZE_BAG);
                         output.accept(ModItems.SOUR_DIESEL_BAG);
                         output.accept(ModItems.BLUE_ICE_BAG);
@@ -248,6 +264,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.PINK_KUSH_BAG);
 
                         output.accept(ModItems.WHITE_WIDOW_GUMMY);
+                        output.accept(ModItems.BUBBLE_KUSH_GUMMY);
                         output.accept(ModItems.SOUR_DIESEL_GUMMY);
                         output.accept(ModItems.PURPLE_HAZE_GUMMY);
                         output.accept(ModItems.LEMON_HAZE_GUMMY);

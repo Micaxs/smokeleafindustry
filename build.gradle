@@ -28,6 +28,7 @@ repositories {
         name = "ModMaven"
         url = "https://modmaven.dev"
     }
+    maven { url = "https://api.modrinth.com/maven" }
 }
 
 base {
@@ -35,7 +36,11 @@ base {
 }
 
 // Mojang ships Java 21 to end users in 1.21.1, so mods should target Java 21.
-java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21) // use 17 if you're on MC 1.20.x
+    }
+}
 
 neoForge {
     // Specify the version of NeoForge to use.
@@ -117,6 +122,7 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 // a dependency that will be present for runtime testing but that is
 // "optional", meaning it will not be pulled by dependents of this mod.
 configurations {
+    localRuntime
     runtimeClasspath.extendsFrom localRuntime
 }
 
@@ -126,6 +132,10 @@ dependencies {
 
     compileOnly("vazkii.patchouli:Patchouli:${patchouli_version}:api")
     runtimeOnly("vazkii.patchouli:Patchouli:${patchouli_version}")
+
+    implementation "maven.modrinth:jade:${jade_version}"
+
+
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

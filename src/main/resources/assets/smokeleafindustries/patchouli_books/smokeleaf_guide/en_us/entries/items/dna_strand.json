@@ -1,0 +1,13 @@
+{
+  "name": "DNA Strand",
+  "icon": "smokeleafindustries:dna_strand",
+  "category": "smokeleafindustries:items_category",
+  "sortnum": 14,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "smokeleafindustries:dna_strand",
+      "text": "This item is used to be filled with random items to create different strains. You can craft it by putting Hemp Seeds in an Extractor machine."
+    }
+  ]
+}

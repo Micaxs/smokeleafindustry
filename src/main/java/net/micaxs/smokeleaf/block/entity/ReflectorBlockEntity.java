@@ -51,6 +51,10 @@ public class ReflectorBlockEntity extends BlockEntity {
         }
     }
 
+    public ItemStack getLampStack() {
+        return lamp;
+    }
+
     public ItemStack getLamp() {
         return lamp;
     }
@@ -85,6 +89,14 @@ public class ReflectorBlockEntity extends BlockEntity {
         if (level instanceof ServerLevel serverLevel) {
             accelerateCrops(serverLevel, pos);
         }
+    }
+
+    public int getLampRemainingTicks() {
+        if (lamp == null || lamp.isEmpty()) return 0;
+        int max = lamp.getMaxDamage();
+        int dmg = lamp.getDamageValue();
+        int remaining = Math.max(0, max - dmg);
+        return remaining;
     }
 
     public ItemStack extractLamp() {

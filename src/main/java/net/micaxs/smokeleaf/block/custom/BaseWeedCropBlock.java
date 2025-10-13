@@ -1,5 +1,8 @@
 package net.micaxs.smokeleaf.block.custom;
 
+import net.micaxs.smokeleaf.block.ModBlocks;
+import net.micaxs.smokeleaf.block.entity.BaseWeedCropBlockEntity;
+import net.micaxs.smokeleaf.block.entity.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -10,6 +13,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -19,13 +24,18 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.function.Supplier;
 
-public class BaseWeedCropBlock extends CropBlock {
+public class BaseWeedCropBlock extends CropBlock implements EntityBlock {
 
     public static final int FIRST_STAGE_MAX_AGE = 6;
     public static final int SECOND_STAGE_MAX_AGE = 4;
 
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 10);
     public static final BooleanProperty TOP = BooleanProperty.create("top");
+
+    private static final int MAX_PERCENT = 100;
+    private static final int MAX_PH = 14;
+
+    public BaseWeedCropBlockEntity blockEntity;
 
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
             Block.box(0.0, 0.0, 0.0, 16.0, 2.0, 16.0),
@@ -42,14 +52,39 @@ public class BaseWeedCropBlock extends CropBlock {
     };
 
     private final Supplier<Item> seedItem;
+    private final int baseN;
+    private final int baseP;
+    private final int baseK;
+    private final int basePh;
+
+    private int baseThc = 0;
+    private int baseCbd = 0;
 
     public BaseWeedCropBlock(Properties properties, Supplier<Item> seedItem) {
+        this(properties, seedItem, 0, 0, 0, 7, 0, 0);
+    }
+
+    public BaseWeedCropBlock(Properties properties, Supplier<Item> seedItem, int n, int p, int k, int ph, int thc, int cbd) {
         super(properties);
         this.seedItem = seedItem;
+        this.baseN = n;
+        this.baseP = p;
+        this.baseK = k;
+        this.basePh = ph;
+        this.baseThc = thc;
+        this.baseCbd = cbd;
+
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(this.getAgeProperty(), 0)
                 .setValue(TOP, false));
     }
+
+    public int getBaseThc() { return this.baseThc; }
+    public int getBaseCbd() { return this.baseCbd; }
+    public int getBaseN()   { return this.baseN; }
+    public int getBaseP()   { return this.baseP; }
+    public int getBaseK()   { return this.baseK; }
+    public int getBasePh()  { return this.basePh; }
 
     @Override
     protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
@@ -158,5 +193,32 @@ public class BaseWeedCropBlock extends CropBlock {
 
     public float getLocalGrowthSpeed(BlockGetter level, BlockPos pos) {
         return getGrowthSpeed(this.defaultBlockState(), level, pos);
+    }
+
+    public BaseWeedCropBlockEntity getBlockEntity() {
+        if (this.blockEntity instanceof BaseWeedCropBlockEntity) {
+            return this.blockEntity;
+        }
+        return null;
+    }
+
+    @Override
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        // Only the bottom half owns a BlockEntity
+        if (state.hasProperty(TOP) && state.getValue(TOP)) {
+            return null;
+        }
+
+        BaseWeedCropBlockEntity be = ModBlockEntities.BASE_WEED_CROP_BE.get().create(pos, state);
+        if (be != null) {
+            be.setThc(this.baseThc);
+            be.setCbd(this.baseCbd);
+            be.setNitrogen(this.baseN);
+            be.setPhosphorus(this.baseP);
+            be.setPotassium(this.baseK);
+            be.setPh(this.basePh);
+        }
+        this.blockEntity = be;
+        return be;
     }
 }

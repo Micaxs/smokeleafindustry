@@ -55,75 +55,25 @@ public class ModEffects {
             () -> new BrainMeltEffect(MobEffectCategory.HARMFUL, 31458724));
 
 
+    public static final Holder<MobEffect> CHILLOUT = MOB_EFFECTS.register("chillout",
+            () -> new ChilloutEffect(MobEffectCategory.BENEFICIAL, 31458724));
+    public static final Holder<MobEffect> ZOMBIFIED = MOB_EFFECTS.register("zombified",
+            () -> new ZombifiedEffect(MobEffectCategory.HARMFUL, 31458724));
+    public static final Holder<MobEffect> ECHO_LOCATION = MOB_EFFECTS.register("echo_location",
+            () -> new EchoLocationEffect(MobEffectCategory.BENEFICIAL, 31458724));
+    public static final Holder<MobEffect> FRIEND_OR_FOE = MOB_EFFECTS.register("friend_or_foe",
+            () -> new FriendOrFoeEffect(MobEffectCategory.NEUTRAL, 31458724));
+    public static final Holder<MobEffect> LINGUISTS_HIGH = MOB_EFFECTS.register("linguists_high",
+            () -> new LinguistsHighEffect(MobEffectCategory.BENEFICIAL, 31458724));
+    public static final Holder<MobEffect> STICKY_ICKY = MOB_EFFECTS.register("sticky_icky",
+            () -> new StickyIckyEffect(MobEffectCategory.BENEFICIAL, 31458724));
+    public static final Holder<MobEffect> R_TREES = MOB_EFFECTS.register("r_trees",
+            () -> new RTreesEffect(MobEffectCategory.BENEFICIAL, 31458724));
+    public static final Holder<MobEffect> VEIN_HIGH = MOB_EFFECTS.register("vein_high",
+            () -> new VeinHighEffect(MobEffectCategory.BENEFICIAL, 31458724));
+
+
     public static void register(IEventBus eventBus) {
         MOB_EFFECTS.register(eventBus);
     }
 }
-
-
-
-/*
-1. Breathing Screen Warp
-
-The entire screen pulses in/out like it’s “breathing.”
-
-Done by scaling the projection matrix slightly up and down (RenderLevelStageEvent).
-
-Gives that “wavy” room feel.
-
-2. Chromatic Aberration
-
-Slightly offset red, green, and blue channels separately.
-
-Can be faked by drawing the HUD/world three times with tiny offsets and tinting each pass.
-
-Looks like a trippy 3D effect.
-
-3. Rainbow Fog
-
-Replace fog color with a constantly shifting rainbow (ViewportEvent.RenderFogColors).
-
-Makes caves/fields glow psychedelic.
-
-4. Swirling Particles
-
-Spawn custom particles (tiny colored sparkles or spirals) around the player’s head.
-
-Rotate them slowly in a circle.
-
-5. Melty HUD
-
-Make hotbar and hearts icons slowly slide left/right or “wiggle.”
-
-Hook into RenderGuiEvent and offset elements with Math.sin(tickCount * 0.1).
-
-6. Kaleidoscope Shader
-
-Mirror the world render in quadrants or triangles.
-
-A proper shader (GLSL) can be injected with ShaderInstance.
-
-7. Fish-Eye Lens
-
-Curve the world so the edges of the screen warp outward.
-
-Can be approximated by tweaking FOV dynamically every few ticks.
-
-8. Afterimages
-
-Draw a faint ghostly “afterimage” of the player when they move/jump.
-
-Achieved by rendering translucent entities with delay.
-
-9. Fractal Stars
-
-At night, add slowly rotating fractal/star patterns overlayed in the sky.
-
-Hook into RenderLevelStageEvent → sky phase.
-
-10. Sudden Color Flashes
-
-Occasionally flash the screen with a bright neon overlay when mining/jumping.
-
-Similar to a “synesthesia” effect.
- */
