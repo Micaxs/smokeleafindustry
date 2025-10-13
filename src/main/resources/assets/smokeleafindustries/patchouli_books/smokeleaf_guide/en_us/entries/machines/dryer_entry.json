@@ -1,0 +1,16 @@
+{
+  "name": "Dryer",
+  "icon": "smokeleafindustries:dryer",
+  "category": "smokeleafindustries:machines_category",
+  "sortnum": 7,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The Dryer is a machine that dries specific items into dried items using Power."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "smokeleafindustries:dryer"
+    }
+  ]
+}

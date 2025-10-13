@@ -160,6 +160,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.PINK_KUSH_SEEDS);
 
                         output.accept(ModItems.WHITE_WIDOW_BUD);
+                        output.accept(ModItems.BUBBLE_KUSH_WEED);
                         output.accept(ModItems.LEMON_HAZE_BUD);
                         output.accept(ModItems.SOUR_DIESEL_BUD);
                         output.accept(ModItems.BLUE_ICE_BUD);
@@ -185,6 +186,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.PINK_KUSH_BUD);
 
                         output.accept(ModItems.WHITE_WIDOW_WEED);
+                        output.accept(ModItems.BUBBLE_KUSH_WEED);
                         output.accept(ModItems.LEMON_HAZE_WEED);
                         output.accept(ModItems.SOUR_DIESEL_WEED);
                         output.accept(ModItems.BLUE_ICE_WEED);
@@ -210,6 +212,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.PINK_KUSH_WEED);
 
                         output.accept(ModItems.WHITE_WIDOW_EXTRACT);
+                        output.accept(ModItems.BUBBLE_KUSH_EXTRACT);
                         output.accept(ModItems.LEMON_HAZE_EXTRACT);
                         output.accept(ModItems.SOUR_DIESEL_EXTRACT);
                         output.accept(ModItems.BLUE_ICE_EXTRACT);
@@ -235,6 +238,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.PINK_KUSH_EXTRACT);
 
                         output.accept(ModItems.WHITE_WIDOW_BAG);
+                        output.accept(ModItems.BUBBLE_KUSH_BAG);
                         output.accept(ModItems.LEMON_HAZE_BAG);
                         output.accept(ModItems.SOUR_DIESEL_BAG);
                         output.accept(ModItems.BLUE_ICE_BAG);
@@ -260,6 +264,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.PINK_KUSH_BAG);
 
                         output.accept(ModItems.WHITE_WIDOW_GUMMY);
+                        output.accept(ModItems.BUBBLE_KUSH_GUMMY);
                         output.accept(ModItems.SOUR_DIESEL_GUMMY);
                         output.accept(ModItems.PURPLE_HAZE_GUMMY);
                         output.accept(ModItems.LEMON_HAZE_GUMMY);
