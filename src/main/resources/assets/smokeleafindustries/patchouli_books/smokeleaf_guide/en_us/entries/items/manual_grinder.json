@@ -1,0 +1,17 @@
+{
+  "name": "Manual Grinder",
+  "icon": "smokeleafindustries:manual_grinder",
+  "category": "smokeleafindustries:items_category",
+  "sortnum": 19,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "smokeleafindustries:manual_grinder",
+      "text": "This is a tool is used to grind specific items into other items without power and operates manually.$(br)To use simply craft the Manual Grinder along with an item to fill, then hold right click with the item in hand to start processing."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "smokeleafindustries:manual_grinder"
+    }
+  ]
+}

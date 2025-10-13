@@ -157,7 +157,7 @@ public class ModItems {
             () -> new BaseWeedItem(new Item.Properties(), MobEffects.LUCK.value(), 140, 1, 16, 9,
                     "Purple", "Haze"));
     public static final DeferredItem<Item> OG_KUSH_WEED = ITEMS.register("og_kush_weed",
-            () -> new BaseWeedItem(new Item.Properties(), MobEffects.DAMAGE_RESISTANCE.value(), 210, 1, 25, 0,
+            () -> new BaseWeedItem(new Item.Properties(), MobEffects.DAMAGE_RESISTANCE.value(), 210, 1, 25, 10,
                     "OG", "Kush"));
     public static final DeferredItem<Item> JACK_HERER_WEED = ITEMS.register("jack_herer_weed",
             () -> new BaseWeedItem(new Item.Properties(), ModEffects.R_TREES.value(), 205, 1, 18, 7,
