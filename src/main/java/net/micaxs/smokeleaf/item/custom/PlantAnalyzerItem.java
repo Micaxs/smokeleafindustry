@@ -15,6 +15,8 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 
 import java.util.List;
 
@@ -36,12 +38,18 @@ public class PlantAnalyzerItem extends Item {
             return InteractionResult.PASS;
         }
 
-        if (level.isClientSide()) {
-            Minecraft.getInstance().setScreen(new MagnifyingGlassScreen(pos));
+        if (level.isClientSide) {
+            openAnalyzerScreen(pos);
         }
 
         return InteractionResult.sidedSuccess(level.isClientSide());
     }
+
+    @OnlyIn(Dist.CLIENT)
+    public static void openAnalyzerScreen(BlockPos pos) {
+        Minecraft.getInstance().setScreen(new MagnifyingGlassScreen(pos));
+    }
+
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {

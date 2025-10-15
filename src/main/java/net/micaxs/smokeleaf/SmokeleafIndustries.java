@@ -74,9 +74,6 @@ public class SmokeleafIndustries {
 
         ModVillagers.register(modEventBus);
 
-        // Register the item to a creative tab
-        modEventBus.addListener(this::addCreative);
-
         modEventBus.register(ModPayloads.class);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
@@ -103,12 +100,6 @@ public class SmokeleafIndustries {
         });
 
     }
-
-    // Add the example block item to the building blocks tab
-    private void addCreative(BuildCreativeModeTabContentsEvent event) {
-
-    }
-
 
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {

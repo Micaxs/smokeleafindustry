@@ -13,13 +13,6 @@ public class ModPayloads {
                 .versioned("1")
                 .optional();
 
-        // GigglyFit -> client
-        registrar.playToClient(
-                GigglyFitPayload.TYPE,
-                GigglyFitPayload.STREAM_CODEC,
-                GigglyFitClientHandler::handle
-        );
-
         // Paranoia Hallucination -> client
         registrar.playToClient(
                 ParanoiaHallucinationPayload.TYPE,

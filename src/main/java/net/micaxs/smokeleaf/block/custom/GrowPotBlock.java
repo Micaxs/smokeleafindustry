@@ -34,6 +34,8 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -107,8 +109,8 @@ public class GrowPotBlock extends BaseEntityBlock {
         boolean sneaking = player.isShiftKeyDown();
 
         if (holdingMagnifyingGlass) {
-            if (level.isClientSide()) {
-                Minecraft.getInstance().setScreen(new MagnifyingGlassScreen(pos));
+            if (level.isClientSide) {
+                openAnalyzerScreen(pos);
             }
             return ItemInteractionResult.SUCCESS;
         }
@@ -182,6 +184,13 @@ public class GrowPotBlock extends BaseEntityBlock {
 
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
+
+
+    @OnlyIn(Dist.CLIENT)
+    public static void openAnalyzerScreen(BlockPos pos) {
+        Minecraft.getInstance().setScreen(new MagnifyingGlassScreen(pos));
+    }
+
 
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {

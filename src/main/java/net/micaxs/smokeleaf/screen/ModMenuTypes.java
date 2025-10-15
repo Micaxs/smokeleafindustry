@@ -1,7 +1,14 @@
 package net.micaxs.smokeleaf.screen;
 
 import net.micaxs.smokeleaf.SmokeleafIndustries;
-import net.micaxs.smokeleaf.screen.custom.*;
+import net.micaxs.smokeleaf.screen.custom.GeneratorMenu;
+import net.micaxs.smokeleaf.screen.custom.GrinderMenu;
+import net.micaxs.smokeleaf.screen.custom.ExtractorMenu;
+import net.micaxs.smokeleaf.screen.custom.LiquifierMenu;
+import net.micaxs.smokeleaf.screen.custom.MutatorMenu;
+import net.micaxs.smokeleaf.screen.custom.SynthesizerMenu;
+import net.micaxs.smokeleaf.screen.custom.SequencerMenu;
+import net.micaxs.smokeleaf.screen.custom.DryerMenu;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
