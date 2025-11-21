@@ -45,8 +45,6 @@ public record GrinderRecipe(Ingredient inputItem, ItemStack output) implements R
             Integer thc = in.get(ModDataComponentTypes.THC.get());
             Integer cbd = in.get(ModDataComponentTypes.CBD.get());
 
-            System.out.println("BUD thc/cbd: " + thc + "/" + cbd);
-
             if (thc != null) out.set(ModDataComponentTypes.THC.get(), thc);
             if (cbd != null) out.set(ModDataComponentTypes.CBD.get(), cbd);
         }

@@ -95,7 +95,6 @@ public class DryingRackBlock extends BaseEntityBlock {
 
         if (recipeOpt.isEmpty()) {
             // No recipe -> not insertable
-            System.out.println("No recipe found!? " + stack.getItem());
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
 
