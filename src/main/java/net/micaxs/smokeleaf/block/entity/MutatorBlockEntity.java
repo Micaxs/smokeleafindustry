@@ -68,7 +68,7 @@ public class MutatorBlockEntity extends BlockEntity implements MenuProvider {
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
             return switch(slot) {
-                case 0 -> stack.is(ModFluids.HASH_OIL_BUCKET);
+                case 0 -> stack.is(ModFluids.HASH_OIL_BUCKET) || stack.is(ModFluids.HEMP_OIL_BUCKET);
                 case 1 -> stack.is(ModTags.WEED_SEEDS);
                 case 2 -> stack.is(ModTags.WEED_EXTRACTS);
                 case 3 -> false;

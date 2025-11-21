@@ -115,28 +115,30 @@ public class LiquifierScreen extends AbstractContainerScreen<LiquifierMenu> {
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
-        // Tank area at \[134, 11] with size \[16x64]
-        if (isMouseAboveArea((int) mouseX, (int) mouseY, x, y, 134, 11, fluidRenderer)) {
+        if (fluidRenderer != null && isMouseAboveArea((int) mouseX, (int) mouseY, x, y, 134, 11, fluidRenderer)) {
             if (this.minecraft != null && this.minecraft.gameMode != null) {
-                if (button == 0) { // Left click: empty held container into tank
-                    this.minecraft.gameMode.handleInventoryButtonClick(this.menu.containerId, LiquifierMenu.BUTTON_FILL_FROM_BUCKET);
+                // Left click: empty held container (bucket) into tank
+                if (button == 0) {
+                    this.minecraft.gameMode.handleInventoryButtonClick(this.menu.containerId,
+                            LiquifierMenu.BUTTON_FILL_FROM_BUCKET);
                     return true;
-                } else if (button == 1) { // Right click: fill held container from tank
-
+                }
+                // Right click: fill held container from tank (bucket or tincture)
+                if (button == 1) {
                     FluidStack stack = menu.blockEntity.getFluid();
-                    if (stack != null && !stack.isEmpty()) {
-                        if (stack.getFluid() == ModFluids.SOURCE_HASH_OIL_FLUID.get()) {
-                           // remove the EMPTY TINCTURE from the player's hand and replace it with a filled one
-                            if (this.minecraft.player.getInventory().getSelected().getItem() == ModItems.EMPTY_TINCTURE.get()) {
-                                this.minecraft.player.getInventory().removeItem(this.minecraft.player.getInventory().selected, 1);
-                                this.minecraft.player.getInventory().add(new net.minecraft.world.item.ItemStack(ModItems.HASH_OIL_TINCTURE.get()));
-                                return true;
-                            }
-                            return true;
-                        }
+                    if (!stack.isEmpty()
+                            && stack.getFluid() == ModFluids.SOURCE_HASH_OIL_FLUID.get()
+                            && this.minecraft.player.getInventory().getSelected().getItem() == ModItems.EMPTY_TINCTURE.get()) {
+
+                        // Replace empty tincture with filled one
+                        this.minecraft.player.getInventory().removeItem(this.minecraft.player.getInventory().selected, 1);
+                        this.minecraft.player.getInventory().add(new net.minecraft.world.item.ItemStack(ModItems.HASH_OIL_TINCTURE.get()));
+                        return true; // handled tincture; do not process bucket logic
                     }
 
-                    this.minecraft.gameMode.handleInventoryButtonClick(this.menu.containerId, LiquifierMenu.BUTTON_DRAIN_TO_BUCKET);
+                    // Default: try to drain to bucket (now also works for hash oil)
+                    this.minecraft.gameMode.handleInventoryButtonClick(this.menu.containerId,
+                            LiquifierMenu.BUTTON_DRAIN_TO_BUCKET);
                     return true;
                 }
             }
